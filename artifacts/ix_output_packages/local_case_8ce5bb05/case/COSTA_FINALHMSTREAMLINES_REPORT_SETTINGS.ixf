@@ -1,0 +1,305 @@
+######################################
+# IXFVERSION: 2023.4 Petrel
+######################################
+
+MODEL_DEFINITION
+
+EclReports {
+    MaxWells=15
+    MaxGroups=2
+    MaxConnections=62
+    MaxSegments=1
+    MaxHeaters=1
+    ExtendedReportNames="True"
+}
+
+AllocationReport "AllocationReport" {
+    FileFormat=BOTH
+    AllocationLevel=WELL
+    AllocationCondition=SURFACE
+    AllocationBasis=BOTH
+}
+
+Initial3DReport "InitialReport" {
+    add_property(property_name=POROSITY
+                 report_label="PORO")
+    add_property(property_name=PERM_I
+                 report_label="PERMX")
+    add_property(property_name=PERM_J
+                 report_label="PERMY")
+    add_property(property_name=PERM_K
+                 report_label="PERMZ")
+    add_property(property_name=NET_TO_GROSS_RATIO
+                 report_label="NTG")
+    add_property(property_name=PORE_VOLUME
+                 report_label="PORV")
+    add_property(property_name=TRANSMISSIBILITY_I
+                 report_label="TRANX")
+    add_property(property_name=TRANSMISSIBILITY_J
+                 report_label="TRANY")
+    add_property(property_name=TRANSMISSIBILITY_K
+                 report_label="TRANZ")
+    add_property(property_name=CELL_TOP_DEPTH
+                 report_label="TOPS")
+    add_property(property_name=CELL_CENTER_DEPTH
+                 report_label="DEPTH")
+    add_property(property_name=SATURATION_FUNCTION_DRAINAGE_TABLE_NO
+                 report_label="SATNUM")
+    add_property(property_name=SATURATION_FUNCTION_IMBIBITION_TABLE_NO
+                 report_label="IMBNUM")
+    add_property(property_name=PVT_REGION
+                 report_label="PVTNUM")
+    add_property(property_name=ROCK_COMPACTION_REGION
+                 report_label="ROCKNUM")
+    add_property(property_name=EQUILIBRATION_REGION
+                 report_label="EQLNUM")
+    add_property(property_name=EQUATION_OF_STATE_REGION
+                 report_label="EOSNUM")
+    On="True"
+    FileFormat=BINARY
+    Units=ECLIPSE_FIELD
+}
+
+Recurrent3DReport "RestartReport" {
+    add_property(property_name=PRESSURE
+                 report_label="PRESSURE")
+    add_property(property_name=WATER_SATURATION
+                 report_label="SWAT")
+    add_property(property_name=OIL_SATURATION
+                 report_label="SOIL")
+    add_property(property_name=GAS_SATURATION
+                 report_label="SGAS")
+    add_property(property_name=SOLUTION_GAS_OIL_RATIO
+                 report_label="RS")
+    add_property(property_name=VAPOR_OIL_GAS_RATIO
+                 report_label="RV")
+    Frequency=TARGET_TIMES
+    Period=1
+    On="True"
+    FileFormat=BINARY
+    Units=ECLIPSE_FIELD
+}
+
+RFTPLTReport "RFTPLTReport" [
+    WellNames    WellRFTFlags    WellPLTFlags    WellSegmentFlags
+          "*"         "False"         "False"             "False"
+]
+
+RFTPLTReport "RFTPLTReport" {
+    Frequency=TARGET_TIMES
+    Period=1
+    On="False"
+    FileFormat=BINARY
+    Units=ECLIPSE_FIELD
+}
+
+StreamlineReport "SLNReport" {
+    Frequency=TARGET_TIMES
+    Period=1
+    Streamlines=300
+}
+
+XYPlotSummaryReport "SummaryReport" {
+    OutputRSM="False"
+    Unified="False"
+    Frequency=CONVERGED_TIMESTEPS
+    Period=1
+    On="True"
+    FileFormat=BINARY
+    Units=ECLIPSE_FIELD
+    FieldProperties "RESERVOIR" {
+        add_property(property_name=GAS_OIL_RATIO
+                     report_label="FGOR")
+        add_property(property_name=GAS_INJECTION_CUML
+                     report_label="FGIT")
+        add_property(property_name=OIL_INJECTION_CUML
+                     report_label="FOIT")
+        add_property(property_name=WATER_INJECTION_CUML
+                     report_label="FWIT")
+        add_property(property_name=GAS_INJECTION_RATE
+                     report_label="FGIR")
+        add_property(property_name=OIL_INJECTION_RATE
+                     report_label="FOIR")
+        add_property(property_name=WATER_INJECTION_RATE
+                     report_label="FWIR")
+        add_property(property_name=GAS_IN_PLACE_VAPOUR
+                     report_label="FGIPG")
+        add_property(property_name=GAS_IN_PLACE
+                     report_label="FGIP")
+        add_property(property_name=OIL_IN_PLACE_LIQUID
+                     report_label="FOIPL")
+        add_property(property_name=OIL_IN_PLACE
+                     report_label="FOIP")
+        add_property(property_name=GAS_IN_PLACE_LIQUID
+                     report_label="FGIPL")
+        add_property(property_name=OIL_IN_PLACE_VAPOUR
+                     report_label="FOIPG")
+        add_property(property_name=WATER_IN_PLACE
+                     report_label="FWIP")
+        add_property(property_name=PRESSURE
+                     report_label="FPR")
+        add_property(property_name=GAS_PRODUCTION_CUML
+                     report_label="FGPT")
+        add_property(property_name=OIL_PRODUCTION_CUML
+                     report_label="FOPT")
+        add_property(property_name=WATER_PRODUCTION_CUML
+                     report_label="FWPT")
+        add_property(property_name=GAS_PRODUCTION_RATE
+                     report_label="FGPR")
+        add_property(property_name=OIL_PRODUCTION_RATE
+                     report_label="FOPR")
+        add_property(property_name=WATER_PRODUCTION_RATE
+                     report_label="FWPR")
+        add_property(property_name=RES_VOLUME_INJECTION_CUML
+                     report_label="FVIT")
+        add_property(property_name=RES_VOLUME_INJECTION_RATE
+                     report_label="FVIR")
+        add_property(property_name=RES_VOLUME_PRODUCTION_CUML
+                     report_label="FVPT")
+        add_property(property_name=RES_VOLUME_PRODUCTION_RATE
+                     report_label="FVPR")
+        add_property(property_name=SOLUTION_GAS_OIL_RATIO
+                     report_label="FRS")
+        add_property(property_name=VAPOR_OIL_GAS_RATIO
+                     report_label="FRV")
+        add_property(property_name=WATER_CUT
+                     report_label="FWCT")
+        add_property(property_name=WATER_GAS_RATIO
+                     report_label="FWGR")
+        add_property(property_name=GAS_DATUM_CORRECTED_POTENTIAL
+                     report_label="FPPG")
+        add_property(property_name=OIL_DATUM_CORRECTED_POTENTIAL
+                     report_label="FPPO")
+        add_property(property_name=WATER_DATUM_CORRECTED_POTENTIAL
+                     report_label="FPPW")
+    }
+    
+    GroupProperties "AllGroupProperties" {
+        add_property(property_name=GAS_OIL_RATIO
+                     report_label="GGOR")
+        add_property(property_name=GAS_INJECTION_CUML
+                     report_label="GGIT")
+        add_property(property_name=OIL_INJECTION_CUML
+                     report_label="GOIT")
+        add_property(property_name=WATER_INJECTION_CUML
+                     report_label="GWIT")
+        add_property(property_name=GAS_INJECTION_RATE
+                     report_label="GGIR")
+        add_property(property_name=OIL_INJECTION_RATE
+                     report_label="GOIR")
+        add_property(property_name=WATER_INJECTION_RATE
+                     report_label="GWIR")
+        add_property(property_name=GAS_PRODUCTION_CUML
+                     report_label="GGPT")
+        add_property(property_name=OIL_PRODUCTION_CUML
+                     report_label="GOPT")
+        add_property(property_name=WATER_PRODUCTION_CUML
+                     report_label="GWPT")
+        add_property(property_name=GAS_PRODUCTION_RATE
+                     report_label="GGPR")
+        add_property(property_name=OIL_PRODUCTION_RATE
+                     report_label="GOPR")
+        add_property(property_name=WATER_PRODUCTION_RATE
+                     report_label="GWPR")
+        add_property(property_name=RES_VOLUME_INJECTION_CUML
+                     report_label="GVIT")
+        add_property(property_name=RES_VOLUME_INJECTION_RATE
+                     report_label="GVIR")
+        add_property(property_name=RES_VOLUME_PRODUCTION_CUML
+                     report_label="GVPT")
+        add_property(property_name=RES_VOLUME_PRODUCTION_RATE
+                     report_label="GVPR")
+        add_property(property_name=WATER_CUT
+                     report_label="GWCT")
+        add_property(property_name=WATER_GAS_RATIO
+                     report_label="GWGR")
+        GroupNames=["*"]
+    }
+    
+    SimulationEngineProperties "AllSimulationEngineProperties" {
+        add_property(property_name=TIMESTEP_LENGTH
+                     report_label="TIMESTEP")
+    }
+    
+    WellProperties "AllWellProperties" {
+        add_property(property_name=BOTTOM_HOLE_PRESSURE
+                     report_label="WBHP")
+        add_property(property_name=GAS_OIL_RATIO
+                     report_label="WGOR")
+        add_property(property_name=GAS_INJECTION_CUML
+                     report_label="WGIT")
+        add_property(property_name=OIL_INJECTION_CUML
+                     report_label="WOIT")
+        add_property(property_name=WATER_INJECTION_CUML
+                     report_label="WWIT")
+        add_property(property_name=GAS_INJECTION_RATE
+                     report_label="WGIR")
+        add_property(property_name=OIL_INJECTION_RATE
+                     report_label="WOIR")
+        add_property(property_name=WATER_INJECTION_RATE
+                     report_label="WWIR")
+        add_property(property_name=GAS_PRODUCTION_CUML
+                     report_label="WGPT")
+        add_property(property_name=OIL_PRODUCTION_CUML
+                     report_label="WOPT")
+        add_property(property_name=WATER_PRODUCTION_CUML
+                     report_label="WWPT")
+        add_property(property_name=ENERGY_PRODUCTION_RATE
+                     report_label="WEPR")
+        add_property(property_name=GAS_PRODUCTION_RATE
+                     report_label="WGPR")
+        add_property(property_name=OIL_PRODUCTION_RATE
+                     report_label="WOPR")
+        add_property(property_name=WATER_PRODUCTION_RATE
+                     report_label="WWPR")
+        add_property(property_name=RES_VOLUME_INJECTION_CUML
+                     report_label="WVIT")
+        add_property(property_name=RES_VOLUME_INJECTION_RATE
+                     report_label="WVIR")
+        add_property(property_name=RES_VOLUME_PRODUCTION_CUML
+                     report_label="WVPT")
+        add_property(property_name=RES_VOLUME_PRODUCTION_RATE
+                     report_label="WVPR")
+        add_property(property_name=TUBING_HEAD_PRESSURE
+                     report_label="WTHP")
+        add_property(property_name=WATER_CUT
+                     report_label="WWCT")
+        add_property(property_name=WATER_GAS_RATIO
+                     report_label="WWGR")
+        add_property(property_name=WELL_STATE
+                     report_label="WSTAT")
+        WellNames=["*"]
+    }
+    
+}
+
+
+START
+DATE "1-Feb-1996"
+#TIME 0.0
+
+FieldManagementStandardReport {
+    GroupReportFrequency=OFF
+    GroupReportVerbosity=0
+    WellReportFrequency=OFF
+    WellReportVerbosity=0
+    CompletionReportFrequency=OFF
+    CompletionReportVerbosity=0
+    GasAccountingReportFrequency=OFF
+    GasAccountingReportVerbosity=0
+    RigResourceReportFrequency=OFF
+    RigResourceReportVerbosity=0
+    DeviceReportFrequency=OFF
+    DeviceReportVerbosity=0
+}
+
+ReservoirStandardReport {
+    add_property(property_name=PRESSURE)
+    add_property(property_name=WATER_SATURATION)
+    add_property(property_name=OIL_SATURATION)
+    add_property(property_name=GAS_SATURATION)
+    add_property(property_name=SOLUTION_GAS_OIL_RATIO)
+    add_property(property_name=VAPOR_OIL_GAS_RATIO)
+    Frequency=NO_OUTPUT
+}
+

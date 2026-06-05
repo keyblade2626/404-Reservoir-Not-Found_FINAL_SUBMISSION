@@ -1,0 +1,131 @@
+{
+  "ok": true,
+  "source_summary_case": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\data\\sample_model\\CASE.SMSPEC",
+  "observed_bhp_min_valid_pressure": 1.0,
+  "context_csv_updated": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\diagnosis\\well_property_driver_context.csv",
+  "filtered_no_observed_bhp_count": 0,
+  "evaluated_bhp_count": 15,
+  "filtered_no_observed_bhp_wells": [],
+  "evaluated_bhp_wells": [
+    {
+      "well": "HW-10",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-10",
+      "wbhph_key": "WBHPH:HW-10",
+      "wbhpa_key": null,
+      "max_observed_bhp": 4366.65234375
+    },
+    {
+      "well": "HW-24",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-24",
+      "wbhph_key": "WBHPH:HW-24",
+      "wbhpa_key": null,
+      "max_observed_bhp": 3302.9677734375
+    },
+    {
+      "well": "HW-25",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-25",
+      "wbhph_key": "WBHPH:HW-25",
+      "wbhpa_key": null,
+      "max_observed_bhp": 3235.99853515625
+    },
+    {
+      "well": "HW-26",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-26",
+      "wbhph_key": "WBHPH:HW-26",
+      "wbhpa_key": null,
+      "max_observed_bhp": 4359.75048828125
+    },
+    {
+      "well": "HW-28",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-28",
+      "wbhph_key": "WBHPH:HW-28",
+      "wbhpa_key": null,
+      "max_observed_bhp": 4303.8740234375
+    },
+    {
+      "well": "HW-29",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-29",
+      "wbhph_key": "WBHPH:HW-29",
+      "wbhpa_key": null,
+      "max_observed_bhp": 3918.515625
+    },
+    {
+      "well": "HW-3",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-3",
+      "wbhph_key": "WBHPH:HW-3",
+      "wbhpa_key": null,
+      "max_observed_bhp": 3237.286376953125
+    },
+    {
+      "well": "HW-30",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-30",
+      "wbhph_key": "WBHPH:HW-30",
+      "wbhpa_key": null,
+      "max_observed_bhp": 4204.888671875
+    },
+    {
+      "well": "HW-31",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-31",
+      "wbhph_key": "WBHPH:HW-31",
+      "wbhpa_key": null,
+      "max_observed_bhp": 5170.0576171875
+    },
+    {
+      "well": "HW-32",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-32",
+      "wbhph_key": "WBHPH:HW-32",
+      "wbhpa_key": null,
+      "max_observed_bhp": 3947.728271484375
+    },
+    {
+      "well": "HW-5",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-5",
+      "wbhph_key": "WBHPH:HW-5",
+      "wbhpa_key": null,
+      "max_observed_bhp": 5425.72802734375
+    },
+    {
+      "well": "HW-6",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-6",
+      "wbhph_key": "WBHPH:HW-6",
+      "wbhpa_key": null,
+      "max_observed_bhp": 3477.40625
+    },
+    {
+      "well": "HW-7",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-7",
+      "wbhph_key": "WBHPH:HW-7",
+      "wbhpa_key": null,
+      "max_observed_bhp": 5293.25048828125
+    },
+    {
+      "well": "HW-8",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-8",
+      "wbhph_key": "WBHPH:HW-8",
+      "wbhpa_key": null,
+      "max_observed_bhp": 5369.19091796875
+    },
+    {
+      "well": "HW-9",
+      "available": true,
+      "selected_observed_bhp_key": "WBHPH:HW-9",
+      "wbhph_key": "WBHPH:HW-9",
+      "wbhpa_key": null,
+      "max_observed_bhp": 4971.732421875
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+######################################
+# IXFVERSION: 2023.4 Petrel
+######################################
+
+MODEL_DEFINITION
+
+
+START
+DATE "1-Feb-1996"
+#TIME 0.0
+
+StreamlineMgr {
+    SeedMethod=BOTH
+    VerbosityLevel=1
+}
+

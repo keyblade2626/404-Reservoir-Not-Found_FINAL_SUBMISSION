@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 Reservoir Not Found - HM Copilot</title>
+  <link rel="stylesheet" href="/web/dashboard_final.css?v=v508_plot_units_no_slider" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style id="v806-chat-answer-readability">
+/* V806 chat answer readability fix */
+.assistant-message,
+.assistant-content,
+.assistant-response,
+.chat-message,
+.chat-message-content,
+.chat-answer,
+.chat-response,
+.answer,
+.answer-text,
+.response-text,
+.copilot-answer,
+.ai-response,
+.message-body,
+.markdown-body {
+  white-space: pre-line;
+}
+</style>
+
+
+
+
+
+
+
+
+<style id="minimalAskScrollStyle">
+  html {
+    scroll-behavior: smooth;
+  }
+
+  #askReservoirAI:target {
+    outline: 3px solid rgba(22, 119, 255, 0.35);
+    box-shadow: 0 0 0 8px rgba(22, 119, 255, 0.08);
+  }
+</style>
+
+
+
+<script>
+
+/* 404_RNF_DISABLE_V393_OUTER_RENDERER_START */
+window.__404_RNF_DISABLE_V393_HM_KPI_OUTER_RENDERER = true;
+/* 404_RNF_DISABLE_V393_OUTER_RENDERER_END */
+
+</script>
+</head>
+
+<body>
+<a href="/" id="backToLandingBtn" style="
+  position: fixed;
+  top: 18px;
+  right: 24px;
+  left: auto;
+  z-index: 9999;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  font-weight: 750;
+  color: #06111f;
+  background: linear-gradient(135deg, #6ee7ff, #82f7b4);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+">Back to Case Import</a>
+
+<a href="#askReservoirAI" id="askFloatRightBtn" style="
+  position: fixed;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  z-index: 9998;
+  width: 132px;
+  padding: 10px 12px 12px 12px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0b4f9c, #1677ff);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+">
+  <span style="
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    color: #0a1730;
+    background: linear-gradient(135deg, #6ee7ff, #82f7b4);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 6px 14px rgba(0,0,0,0.18);
+  ">AI</span>
+  <span style="
+    display: block;
+    font-weight: 800;
+    font-size: 13px;
+    line-height: 1.2;
+    color: #ffffff;
+  ">Ask me<br>something</span>
+</a>
+
+
+  <div class="app-shell">
+    <header class="top-header">
+      <div>
+        <h1>404 Reservoir Not Found</h1>
+        <p>Reservoir HM Copilot</p>
+      </div>
+
+      <div class="header-actions">
+        
+        
+      </div>
+    </header>
+
+    <section id="kpiRow" class="kpi-row"></section>
+
+    <main class="main-grid">
+      <section class="panel map-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Spatial History Match Map</h2>
+            <p>Main investigation map. Click a well to inspect details.</p>
+          </div>
+
+          <div class="map-controls">
+            <label><input id="showInjectors" type="checkbox" /> Injectors</label>
+            <label><input id="showInactive" type="checkbox" /> Inactive producers</label>
+            <select id="hmVariable">
+              <option value="overall">Overall HM</option>
+              <option value="oil">Oil HM</option>
+              <option value="water">Water HM</option>
+              <option value="gas">Gas HM</option>
+              <option value="bhp">BHP HM</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="mapCanvas" class="map-canvas">
+          <div class="loading">Loading map...</div>
+        </div>
+      </section>
+
+      <aside class="panel insight-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Well Insight</h2>
+            <p>Selected well KPIs, criticalities and recommended action.</p>
+          </div>
+        </div>
+
+        <div id="wellInsight" class="panel-body">
+          <div class="empty-state">Click a well on the map to inspect its diagnostics.</div>
+        </div>
+      </aside>
+    </main>
+
+    <section id="patternAwareSlotV311" class="panel pattern-aware-panel-v311" style="display:none;">
+      <div class="panel-header">
+        <div>
+          <h2>Pattern-Aware Recommendation</h2>
+          <p>Reservoir-engineering interpretation and model-edit guidance for the selected well.</p>
+        </div>
+      </div>
+      <div id="patternAwareContentV311" class="panel-body"></div>
+    </section>
+
+    <section class="bottom-grid">
+      <section id="askReservoirAI" class="panel ask-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Ask Reservoir AI</h2>
+            <p>Ask a technical question or use quick actions.</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="quick-actions">
+            <button data-prompt="Give me an executive summary of the history match quality.">Executive HM Summary</button>
+            <button data-prompt="Which wells have the weakest pressure match and what do they have in common?">Pressure Issues</button>
+            <button data-prompt="Why is HW-6 not matching water?">Explain HW-6 Water</button>
+            <button data-prompt="Is HW-6 really a water mismatch or is water negligible?">Check HW-6 WCT</button>
+            <button data-prompt="Show the same analysis for pressure.">Same Well Pressure</button>
+            <button data-prompt="Where would you test a transmissibility multiplier and why?">TRAN Multiplier</button>
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+        <div id="visualPanel" class="panel-body evidence-body">
+          <div class="empty-state">Visual evidence will appear here when requested.</div>
+        </div>
+      </section>
+
+
+      <section class="panel agent-trace-panel collapsed" id="agentTraceSection">
+        <div class="panel-header agent-trace-header">
+          <div>
+            <h2>Agent Collaboration Trace</h2>
+            <p>Why this answer? Inspect routing, shared memory and critic validation.</p>
+          </div>
+          <button id="toggleAgentTraceBtn" type="button">Show Trace</button>
+        </div>
+
+        <div id="agentTracePanel" class="panel-body agent-trace-body" style="display:none;">
+          <div class="empty-state">Ask a question to inspect agent collaboration.</div>
+        </div>
+      </section>
+
+    </section>
+  </div>
+
+  <script src="/web/dashboard_final_v79.js?v=v508_plot_units_no_slider"></script>
+  <script src="/web/pattern_aware_first_click_v408.js?v=v508_plot_units_no_slider"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

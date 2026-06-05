@@ -1,0 +1,290 @@
+﻿:root{
+  --nv-bg-0:#050816;
+  --nv-bg-1:#0b1020;
+  --nv-bg-2:#121a2f;
+  --nv-panel:#0f172a;
+  --nv-panel-2:#111c33;
+  --nv-border:rgba(148,163,184,.16);
+  --nv-text:#e5e7eb;
+  --nv-sub:#94a3b8;
+  --nv-green:#22c55e;
+  --nv-yellow:#facc15;
+  --nv-red:#ef4444;
+  --nv-cyan:#38bdf8;
+  --nv-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+body{
+  background:
+    radial-gradient(circle at top right, rgba(34,197,94,.08), transparent 22%),
+    radial-gradient(circle at top left, rgba(56,189,248,.10), transparent 25%),
+    linear-gradient(180deg, var(--nv-bg-0), var(--nv-bg-1) 38%, #0a1326 100%);
+}
+
+/* nascondi vecchie patch “sporche” */
+#topKpiCardsV230,
+.top-kpi-v230{
+  display:none !important;
+}
+
+/* layout root */
+#nvDashboardShell{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  padding:10px 0 18px 0;
+}
+
+#nvTopBar{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+  width:100%;
+}
+
+.nv-kpi-card{
+  background:
+    radial-gradient(circle at top right, rgba(56,189,248,.10), transparent 34%),
+    linear-gradient(180deg, rgba(17,28,51,.92), rgba(10,18,35,.92));
+  border:1px solid var(--nv-border);
+  border-radius:18px;
+  padding:16px 18px;
+  box-shadow:var(--nv-shadow);
+  min-height:104px;
+}
+
+.nv-kpi-label{
+  color:var(--nv-sub);
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.nv-kpi-value{
+  margin-top:8px;
+  font-size:34px;
+  font-weight:900;
+  line-height:1;
+}
+
+.nv-kpi-value.good{ color:var(--nv-green); }
+.nv-kpi-value.fair{ color:var(--nv-yellow); }
+.nv-kpi-value.poor{ color:var(--nv-red); }
+.nv-kpi-value.na{ color:#cbd5e1; }
+
+.nv-kpi-class{
+  margin-top:6px;
+  color:var(--nv-text);
+  font-size:14px;
+  font-weight:800;
+}
+
+.nv-kpi-sub{
+  margin-top:4px;
+  color:#64748b;
+  font-size:12px;
+}
+
+#nvMainGrid{
+  display:grid;
+  grid-template-columns:minmax(0,1.8fr) minmax(320px,.85fr);
+  gap:16px;
+  align-items:start;
+  min-height:62vh;
+}
+
+.nv-card{
+  background:
+    radial-gradient(circle at top right, rgba(56,189,248,.08), transparent 30%),
+    linear-gradient(180deg, rgba(15,23,42,.92), rgba(10,18,35,.95));
+  border:1px solid var(--nv-border);
+  border-radius:20px;
+  box-shadow:var(--nv-shadow);
+  overflow:hidden;
+}
+
+.nv-card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  border-bottom:1px solid rgba(148,163,184,.12);
+  background:rgba(255,255,255,.02);
+}
+
+.nv-card-title{
+  color:var(--nv-text);
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:.01em;
+}
+
+.nv-card-subtitle{
+  color:var(--nv-sub);
+  font-size:12px;
+  margin-top:2px;
+}
+
+.nv-card-body{
+  padding:12px;
+}
+
+#nvMapCard .nv-card-body{
+  min-height:58vh;
+  height:58vh;
+}
+
+#nvMapMount,
+#nvMapMount > *,
+#nvMapMount .js-plotly-plot{
+  width:100% !important;
+  height:100% !important;
+}
+
+#nvRightPanel .nv-card-body{
+  min-height:58vh;
+  max-height:58vh;
+  overflow:auto;
+}
+
+#nvBottomRow{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+
+#nvChatMount{
+  min-height:220px;
+}
+
+.nv-insight{
+  color:var(--nv-text);
+}
+
+.nv-insight-title{
+  font-size:22px;
+  font-weight:900;
+  color:#f8fafc;
+}
+
+.nv-insight-sub{
+  margin-top:4px;
+  color:var(--nv-sub);
+  font-size:12px;
+}
+
+.nv-insight-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+
+.nv-mini-kpi{
+  border:1px solid rgba(148,163,184,.15);
+  border-radius:14px;
+  padding:10px 12px;
+  background:rgba(255,255,255,.02);
+}
+
+.nv-mini-kpi-label{
+  color:var(--nv-sub);
+  font-size:11px;
+  text-transform:uppercase;
+  font-weight:800;
+}
+
+.nv-mini-kpi-value{
+  margin-top:6px;
+  font-size:22px;
+  font-weight:900;
+}
+
+.nv-mini-kpi-value.good{ color:var(--nv-green); }
+.nv-mini-kpi-value.fair{ color:var(--nv-yellow); }
+.nv-mini-kpi-value.poor{ color:var(--nv-red); }
+.nv-mini-kpi-value.na{ color:#cbd5e1; }
+
+.nv-section-title{
+  margin-top:16px;
+  margin-bottom:6px;
+  color:#f8fafc;
+  font-size:14px;
+  font-weight:900;
+}
+
+.nv-bullets{
+  margin:0 0 0 18px;
+  padding:0;
+  color:#cbd5e1;
+  line-height:1.45;
+}
+
+.nv-text{
+  color:#cbd5e1;
+  line-height:1.5;
+  margin:0;
+}
+
+.nv-empty{
+  color:var(--sub);
+  padding:10px 2px;
+}
+
+.nv-pill{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(56,189,248,.10);
+  border:1px solid rgba(56,189,248,.18);
+  color:#bae6fd;
+  font-size:12px;
+  font-weight:700;
+}
+
+.nv-quick{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+
+.nv-quick button{
+  border:1px solid rgba(148,163,184,.16);
+  background:rgba(255,255,255,.03);
+  color:#e5e7eb;
+  border-radius:10px;
+  padding:8px 10px;
+  cursor:pointer;
+}
+
+.nv-quick button:hover{
+  background:rgba(56,189,248,.08);
+  border-color:rgba(56,189,248,.25);
+}
+
+/* se nel DOM ci sono card vecchie "Inactive Wells" / "Candidate Corridors" */
+[data-nv-hide="true"]{
+  display:none !important;
+}
+
+@media (max-width: 1200px){
+  #nvMainGrid{
+    grid-template-columns:1fr;
+  }
+
+  #nvMapCard .nv-card-body,
+  #nvRightPanel .nv-card-body{
+    min-height:460px;
+    max-height:none;
+    height:auto;
+  }
+
+  #nvTopBar{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}

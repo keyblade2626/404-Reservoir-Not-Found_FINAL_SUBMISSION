@@ -1,0 +1,81 @@
+{
+  "reason": "completed_run_activate_button",
+  "generated_at": "2026-06-05T08:22:52.193541Z",
+  "root": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128",
+  "diagnosis_dir": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\diagnosis",
+  "modules": [
+    {
+      "module": "app.driver_diagnosis",
+      "started_at": "2026-06-05T08:22:25.652706Z",
+      "returncode": 0,
+      "ok": true,
+      "stdout_tail": "Loading properties...\n[OK] tran_x: data\\sample_model\\TRANX.GRDECL keyword=TRANX\n[OK] tran_y: data\\sample_model\\TRANY.GRDECL keyword=TRANY\n[OK] tran_z: data\\sample_model\\TRANZ.GRDECL keyword=TRANZ\n[OK] mult_x: data\\sample_model\\MULTX.GRDECL keyword=MULTX\n[OK] mult_y: data\\sample_model\\MULTY.GRDECL keyword=MULTY\n[OK] mult_z: data\\sample_model\\MULTZ.GRDECL keyword=MULTZ\n[OK] perm_x: data\\sample_model\\PERM_X.GRDECL keyword=PERMX\n[OK] perm_y: data\\sample_model\\PERM_Y.GRDECL keyword=PERMY\n[OK] perm_z: data\\sample_model\\PERM_Z.GRDECL keyword=PERMZ\n[OK] swat_init: data\\sample_model\\SWAT_INIT.GRDECL keyword=SWAT\n[OK] swat_eoh: data\\sample_model\\SWAT_EOH.GRDECL keyword=SWAT\n[OK] soil_init: data\\sample_model\\SOIL_INIT.GRDECL keyword=SOIL\n[OK] soil_eoh: data\\sample_model\\SOIL_EOH.GRDECL keyword=SOIL\n[OK] sgas_init: data\\sample_model\\SGAS_INIT.GRDECL keyword=SGAS\n[OK] sgas_eoh: data\\sample_model\\SGAS_EOH.GRDECL keyword=SGAS\n[OK] pressure_init: data\\sample_model\\PRESSURE_INIT.GRDECL keyword=PRESSURE\n[OK] pressure_eoh: data\\sample_model\\PRESSURE_EOH.GRDECL keyword=PRESSURE\n[OK] poro: data\\sample_model\\PORO.GRDECL keyword=PORO\n[OK] poro_mult: data\\sample_model\\PORO_MULT.GRDECL keyword=PORO_MULT\n[OK] Saved artifacts\\diagnosis\\well_property_driver_context.csv\n[OK] Saved artifacts\\diagnosis\\water_driver_diagnosis.json\n[OK] Saved artifacts\\diagnosis\\driver_diagnosis_summary.json\n\nCompleted enhanced driver diagnosis.\nOpen folder: artifacts\\diagnosis\n",
+      "stderr_tail": ""
+    },
+    {
+      "module": "app.export_oil_profile_diagnostics",
+      "started_at": "2026-06-05T08:22:42.011403Z",
+      "returncode": 0,
+      "ok": true,
+      "stdout_tail": "Reading summary case: data\\sample_model\\CASE.SMSPEC\n[OK] Updated artifacts\\diagnosis\\well_property_driver_context.csv\n[OK] Saved artifacts\\diagnosis\\oil_profile_diagnostics.json\nOil profile diagnostics exported to well_property_driver_context.csv\n",
+      "stderr_tail": ""
+    },
+    {
+      "module": "app.export_gas_profile_diagnostics",
+      "started_at": "2026-06-05T08:22:43.038554Z",
+      "returncode": 0,
+      "ok": true,
+      "stdout_tail": "Reading summary case: data\\sample_model\\CASE.SMSPEC\n[OK] Updated artifacts\\diagnosis\\well_property_driver_context.csv\n[OK] Saved artifacts\\diagnosis\\gas_profile_diagnostics.json\nGas/GOR profile diagnostics exported to well_property_driver_context.csv\n",
+      "stderr_tail": ""
+    },
+    {
+      "module": "app.export_bhp_profile_diagnostics",
+      "started_at": "2026-06-05T08:22:44.019420Z",
+      "returncode": 0,
+      "ok": true,
+      "stdout_tail": "Reading summary case: data\\sample_model\\CASE.SMSPEC\n[OK] Updated artifacts\\diagnosis\\well_property_driver_context.csv\n[OK] Saved artifacts\\diagnosis\\bhp_profile_diagnostics.json\nBHP profile diagnostics exported to well_property_driver_context.csv\n",
+      "stderr_tail": ""
+    },
+    {
+      "module": "app.bhp_observed_filter",
+      "started_at": "2026-06-05T08:22:44.968542Z",
+      "returncode": 0,
+      "ok": true,
+      "stdout_tail": "[OK] Saved C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\diagnosis\\bhp_observed_filter_report.json\n[OK] Updated C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\diagnosis\\well_property_driver_context.csv\nBHP not evaluated due to missing observed data: 0\nBHP evaluated wells: 15\n",
+      "stderr_tail": ""
+    },
+    {
+      "module": "app.well_activity_classifier",
+      "started_at": "2026-06-05T08:22:45.922211Z",
+      "returncode": 0,
+      "ok": true,
+      "stdout_tail": "[OK] Saved C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\diagnosis\\well_activity_classification.json\n[OK] Saved C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\diagnosis\\well_activity_classification.csv\nTotal wells classified: 15\nActive producers: 11\nInactive producers: 4\nActive injectors: 0\nInactive injectors: 15\nExcluded from HM: 4\n",
+      "stderr_tail": ""
+    },
+    {
+      "module": "app.smart_well_recommendation_agent",
+      "started_at": "2026-06-05T08:22:46.995421Z",
+      "returncode": 0,
+      "ok": true,
+      "stdout_tail": "{'count': 15, 'json': 'C:\\\\Users\\\\gianluca.scutiero\\\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\\\artifacts\\\\diagnosis\\\\smart_well_recommendations.json', 'csv': 'C:\\\\Users\\\\gianluca.scutiero\\\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\\\artifacts\\\\diagnosis\\\\smart_well_recommendations.csv'}\n",
+      "stderr_tail": ""
+    }
+  ],
+  "required_outputs": [
+    "well_property_driver_context.csv",
+    "water_driver_diagnosis.json",
+    "driver_diagnosis_summary.json",
+    "oil_profile_diagnostics.json",
+    "gas_profile_diagnostics.json",
+    "bhp_profile_diagnostics.json",
+    "bhp_observed_filter_report.json",
+    "well_activity_classification.json",
+    "well_activity_classification.csv",
+    "smart_well_recommendations.json",
+    "smart_well_recommendations.csv"
+  ],
+  "missing_outputs": [],
+  "failed_modules": [],
+  "ok": true,
+  "note": "Diagnostics generated by existing deterministic reservoir scripts. No diagnosis artifact is generated by the LLM."
+}

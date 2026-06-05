@@ -1,0 +1,210 @@
+{
+  "grid_dimensions": {
+    "nx": 181,
+    "ny": 190,
+    "nz": 62,
+    "cell_count": 2132180
+  },
+  "property_load_report": {
+    "tran_x": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\TRANX.GRDECL",
+      "keyword": "TRANX",
+      "min": 0.0,
+      "max": 1.877874613,
+      "mean": 0.020741670176815594
+    },
+    "tran_y": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\TRANY.GRDECL",
+      "keyword": "TRANY",
+      "min": 0.0,
+      "max": 1.879049778,
+      "mean": 0.020745400823594624
+    },
+    "tran_z": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\TRANZ.GRDECL",
+      "keyword": "TRANZ",
+      "min": 0.0,
+      "max": 94341.08594,
+      "mean": 1286.1066661718583
+    },
+    "mult_x": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\MULTX.GRDECL",
+      "keyword": "MULTX",
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.6612096539691771
+    },
+    "mult_y": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\MULTY.GRDECL",
+      "keyword": "MULTY",
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.6612096539691771
+    },
+    "mult_z": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\MULTZ.GRDECL",
+      "keyword": "MULTZ",
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.6612096539691771
+    },
+    "perm_x": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\PERM_X.GRDECL",
+      "keyword": "PERMX",
+      "min": 0.0,
+      "max": 488.5174255,
+      "mean": 6.726582783427613
+    },
+    "perm_y": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\PERM_Y.GRDECL",
+      "keyword": "PERMY",
+      "min": 0.0,
+      "max": 488.5174255,
+      "mean": 6.726582783427613
+    },
+    "perm_z": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\PERM_Z.GRDECL",
+      "keyword": "PERMZ",
+      "min": 0.0,
+      "max": 488.5174255,
+      "mean": 6.726582783427613
+    },
+    "swat_init": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\SWAT_INIT.GRDECL",
+      "keyword": "SWAT",
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.34802900587542934
+    },
+    "swat_eoh": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\SWAT_EOH.GRDECL",
+      "keyword": "SWAT",
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.3484664807856518
+    },
+    "soil_init": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\SOIL_INIT.GRDECL",
+      "keyword": "SOIL",
+      "min": 0.0,
+      "max": 0.9861985445,
+      "mean": 0.3131806480905622
+    },
+    "soil_eoh": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\SOIL_EOH.GRDECL",
+      "keyword": "SOIL",
+      "min": 0.0,
+      "max": 0.9861703515,
+      "mean": 0.31274314124863156
+    },
+    "sgas_init": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\SGAS_INIT.GRDECL",
+      "keyword": "SGAS",
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+    },
+    "sgas_eoh": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\SGAS_EOH.GRDECL",
+      "keyword": "SGAS",
+      "min": 0.0,
+      "max": 0.06810259074,
+      "mean": 3.194035716496731e-08
+    },
+    "pressure_init": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\PRESSURE_INIT.GRDECL",
+      "keyword": "PRESSURE",
+      "min": 0.0,
+      "max": 4369.245117,
+      "mean": 2776.331022733076
+    },
+    "pressure_eoh": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\PRESSURE_EOH.GRDECL",
+      "keyword": "PRESSURE",
+      "min": 0.0,
+      "max": 4328.37207,
+      "mean": 2618.5298571115027
+    },
+    "poro": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\PORO.GRDECL",
+      "keyword": "PORO",
+      "min": 0.0,
+      "max": 0.3449999988,
+      "mean": 0.14800259830027065
+    },
+    "poro_mult": {
+      "status": "loaded",
+      "source_file": "data\\sample_model\\PORO_MULT.GRDECL",
+      "keyword": "PORO_MULT",
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.6612096539691771
+    }
+  },
+  "summary": {
+    "well_count": 15,
+    "action_counts": {
+      "review_relperm_or_well_connection": 3,
+      "early_breakthrough_no_local_driver": 1,
+      "water_signal_not_interpretable": 2,
+      "review_under_connectivity": 1,
+      "inactive_water_in_sim_and_history": 3,
+      "no_hm_comment": 4,
+      "profile_shape_mismatch": 1
+    },
+    "water_timing_counts": {
+      "breakthrough_timing_close": 4,
+      "early_breakthrough": 1,
+      "no_breakthrough_detected": 10
+    },
+    "wells_by_action": {
+      "early_breakthrough_no_local_driver": [
+        "HW-24"
+      ],
+      "inactive_water_in_sim_and_history": [
+        "HW-29",
+        "HW-3",
+        "HW-30"
+      ],
+      "no_hm_comment": [
+        "HW-31",
+        "HW-5",
+        "HW-7",
+        "HW-8"
+      ],
+      "profile_shape_mismatch": [
+        "HW-32"
+      ],
+      "review_relperm_or_well_connection": [
+        "HW-10",
+        "HW-28",
+        "HW-9"
+      ],
+      "review_under_connectivity": [
+        "HW-26"
+      ],
+      "water_signal_not_interpretable": [
+        "HW-25",
+        "HW-6"
+      ]
+    }
+  }
+}

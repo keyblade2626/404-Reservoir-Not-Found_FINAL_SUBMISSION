@@ -1,0 +1,83 @@
+{
+  "mapping_strategy": "property_value_equals_prt_index",
+  "mapping_count": 7,
+  "rows": [
+    {
+      "property_name": "FILEUNIT",
+      "property_value": 0,
+      "prt_index": 0,
+      "prt_region_name": "ROCKNUM_1_RRT_01",
+      "rrt": "RRT_01",
+      "rocknum": 1,
+      "saturation_model": "Model_01",
+      "mapping_confidence": "Medium",
+      "mapping_reason": "RRT_01 matches Model_01. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7)."
+    },
+    {
+      "property_name": "FILEUNIT",
+      "property_value": 1,
+      "prt_index": 1,
+      "prt_region_name": "ROCKNUM_1_RRT_02",
+      "rrt": "RRT_02",
+      "rocknum": 1,
+      "saturation_model": "Model_02",
+      "mapping_confidence": "Medium",
+      "mapping_reason": "RRT_02 matches Model_02. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7)."
+    },
+    {
+      "property_name": "FILEUNIT",
+      "property_value": 2,
+      "prt_index": 2,
+      "prt_region_name": "ROCKNUM_1_RRT_03",
+      "rrt": "RRT_03",
+      "rocknum": 1,
+      "saturation_model": "Model_03",
+      "mapping_confidence": "Medium",
+      "mapping_reason": "RRT_03 matches Model_03. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7)."
+    },
+    {
+      "property_name": "FILEUNIT",
+      "property_value": 3,
+      "prt_index": 3,
+      "prt_region_name": "ROCKNUM_1_RRT_04",
+      "rrt": "RRT_04",
+      "rocknum": 1,
+      "saturation_model": "Model_04",
+      "mapping_confidence": "Medium",
+      "mapping_reason": "RRT_04 matches Model_04. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7)."
+    },
+    {
+      "property_name": "FILEUNIT",
+      "property_value": 4,
+      "prt_index": 4,
+      "prt_region_name": "ROCKNUM_1_RRT_05",
+      "rrt": "RRT_05",
+      "rocknum": 1,
+      "saturation_model": "Model_05",
+      "mapping_confidence": "Medium",
+      "mapping_reason": "RRT_05 matches Model_05. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7)."
+    },
+    {
+      "property_name": "FILEUNIT",
+      "property_value": 5,
+      "prt_index": 5,
+      "prt_region_name": "ROCKNUM_1_RRT_06",
+      "rrt": "RRT_06",
+      "rocknum": 1,
+      "saturation_model": "Model_06",
+      "mapping_confidence": "Medium",
+      "mapping_reason": "RRT_06 matches Model_06. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7)."
+    },
+    {
+      "property_name": "FILEUNIT",
+      "property_value": 6,
+      "prt_index": 6,
+      "prt_region_name": "ROCKNUM_1_RRT_07",
+      "rrt": "RRT_07",
+      "rocknum": 1,
+      "saturation_model": "Model_07",
+      "mapping_confidence": "Medium",
+      "mapping_reason": "RRT_07 matches Model_07. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7)."
+    }
+  ]
+}

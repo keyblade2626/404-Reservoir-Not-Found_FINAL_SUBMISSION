@@ -1,0 +1,2784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 Reservoir Not Found - Case Import Wizard</title>
+  <style>
+    :root {
+      --bg0: #07111f;
+      --bg1: #0b1e35;
+      --card: rgba(255, 255, 255, 0.075);
+      --card2: rgba(255, 255, 255, 0.11);
+      --line: rgba(255, 255, 255, 0.14);
+      --text: #eef6ff;
+      --muted: #a9bdd3;
+      --accent: #6ee7ff;
+      --accent2: #82f7b4;
+      --warn: #ffd166;
+      --danger: #ff7b7b;
+      --ok: #82f7b4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(110, 231, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(130, 247, 180, 0.14), transparent 28%),
+        linear-gradient(135deg, var(--bg0), var(--bg1));
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(1280px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 60px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 34px;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: grid;
+      place-items: center;
+      color: #07111f;
+      font-weight: 900;
+      box-shadow: 0 0 40px rgba(110, 231, 255, 0.22);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 750;
+      transition: 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--card2);
+      border-color: rgba(110, 231, 255, 0.45);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(110, 231, 255, 0.92), rgba(130, 247, 180, 0.92));
+      color: #06111f;
+      border: none;
+    }
+
+    .btn.warn {
+      background: rgba(255, 209, 102, 0.16);
+      border-color: rgba(255, 209, 102, 0.35);
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.105), rgba(255,255,255,0.055));
+      box-shadow: 0 24px 70px rgba(0,0,0,0.25);
+      border-radius: 28px;
+      padding: 28px;
+      margin-bottom: 22px;
+      backdrop-filter: blur(10px);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 4.8vw, 62px);
+      line-height: 0.98;
+      margin: 0 0 14px;
+      letter-spacing: -2.2px;
+    }
+
+    .sub {
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: 16px;
+      margin: 0;
+      max-width: 930px;
+    }
+
+    .section {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.065);
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+
+    .section p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .dim-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 520px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 750;
+    }
+
+    input[type="number"], input[type="file"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .file-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .slot {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px;
+      background: rgba(255,255,255,0.045);
+    }
+
+    .slot-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 11px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .badge.required {
+      color: var(--warn);
+      border-color: rgba(255, 209, 102, 0.35);
+      background: rgba(255, 209, 102, 0.08);
+    }
+
+    .slot small {
+      display: block;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .status {
+      padding: 15px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.20);
+      color: var(--muted);
+      white-space: pre-wrap;
+      min-height: 64px;
+      line-height: 1.45;
+    }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13px;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .result-table th, .result-table td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      color: var(--muted);
+    }
+
+    .result-table th {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .ok { color: var(--ok); font-weight: 800; }
+    .missing { color: var(--warn); font-weight: 800; }
+
+    @media (max-width: 980px) {
+      .file-grid { grid-template-columns: 1fr; }
+      .dim-grid { grid-template-columns: 1fr; }
+      .nav { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+
+
+
+
+<style id="ixWorkflowV052Styles">
+  .workflow-stack {
+    display: grid;
+    gap: 18px;
+    margin: 18px 0 22px 0;
+  }
+
+  .workflow-card {
+    border: 1px solid rgba(118, 185, 0, 0.30);
+    background:
+      radial-gradient(circle at top left, rgba(118, 185, 0, 0.11), transparent 36%),
+      linear-gradient(180deg, rgba(20, 24, 29, 0.96), rgba(10, 12, 15, 0.96));
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  }
+
+  .workflow-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .workflow-title {
+    display: grid;
+    gap: 6px;
+  }
+
+  .workflow-title h2 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--text, #f3f6f8);
+  }
+
+  .workflow-title p {
+    margin: 0;
+  }
+
+  .workflow-pill {
+    display: inline-flex;
+    width: fit-content;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(118, 185, 0, 0.55);
+    color: #9be22d;
+    background: rgba(118, 185, 0, 0.08);
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .workflow-toggle {
+    min-width: 82px;
+    white-space: nowrap;
+  }
+
+  .workflow-body {
+    display: block;
+  }
+
+  .workflow-body.hidden {
+    display: none;
+  }
+
+  .workflow-help {
+    margin: 12px 0 16px 0;
+    padding: 12px 14px;
+    border-left: 3px solid #76b900;
+    border-radius: 12px;
+    background: rgba(118,185,0,0.075);
+  }
+
+  .workflow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .workflow-field {
+    display: grid;
+    gap: 8px;
+  }
+
+  .workflow-field label {
+    font-weight: 750;
+  }
+
+  .workflow-result {
+    margin-top: 14px;
+    padding: 14px;
+    border: 1px solid rgba(118,185,0,0.25);
+    border-radius: 12px;
+    background: rgba(0,0,0,0.20);
+  }
+
+  .workflow-downloads {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 800px) {
+    .workflow-head {
+      flex-direction: column;
+    }
+    .workflow-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+
+
+
+<style id="v312-afi-only-small-ui-fix">
+  label[for="ixSupportFiles"],
+  #ixSupportFiles {
+    display: none !important;
+  }
+
+  div:has(> label[for="ixSupportFiles"]),
+  div:has(> #ixSupportFiles) {
+    display: none !important;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style id="landingV318Style">
+:root {
+  --v318-bg-0: #030816;
+  --v318-bg-1: #071a3d;
+  --v318-bg-2: #0b2a5c;
+  --v318-card: rgba(5, 18, 44, 0.78);
+  --v318-card-2: rgba(9, 34, 76, 0.72);
+  --v318-line: rgba(120, 190, 255, 0.18);
+  --v318-line-strong: rgba(125, 214, 255, 0.34);
+  --v318-text: #e8f1ff;
+  --v318-muted: #93aacd;
+  --v318-soft: #c7d7f2;
+  --v318-cyan: #74e6ff;
+  --v318-blue: #5d8eff;
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% -10%, rgba(58, 157, 255, 0.18), transparent 32%),
+    radial-gradient(circle at 85% 0%, rgba(54, 102, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, #030816 0%, #06142e 45%, #030816 100%) !important;
+}
+
+.landing-shell-v318 {
+  position: relative;
+  overflow: hidden;
+  margin: 28px auto 28px auto;
+  padding: 30px;
+  border-radius: 34px;
+  border: 1px solid var(--v318-line);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(85, 210, 255, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(6, 25, 58, 0.94), rgba(3, 10, 26, 0.98));
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.34),
+    inset 0 0 46px rgba(100, 210, 255, 0.035);
+  color: var(--v318-text);
+}
+
+.landing-ambient-v318 {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, rgba(110, 220, 255, 0.035), transparent),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.016) 0 1px, transparent 1px 92px);
+  opacity: 0.6;
+}
+
+.landing-hero-v318,
+.landing-flow-v318,
+.case-builder-v318 {
+  position: relative;
+  z-index: 1;
+}
+
+.landing-hero-v318 {
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.landing-kicker-v318 {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 12px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(116, 230, 255, 0.26);
+  background: rgba(28, 108, 210, 0.20);
+  color: var(--v318-cyan);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .45px;
+  text-transform: uppercase;
+}
+
+.landing-kicker-v318 span {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--v318-cyan);
+  box-shadow: 0 0 18px rgba(116, 230, 255, 0.8);
+}
+
+.landing-hero-copy-v318 h1 {
+  margin: 0;
+  color: #fff6ed;
+  font-size: 42px;
+  line-height: 1.02;
+  letter-spacing: -0.9px;
+  font-weight: 950;
+}
+
+.landing-hero-copy-v318 p {
+  max-width: 980px;
+  margin: 14px 0 0 0;
+  color: var(--v318-muted);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.landing-status-card-v318 {
+  padding: 20px;
+  border-radius: 26px;
+  border: 1px solid var(--v318-line);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(116, 230, 255, 0.10), transparent 36%),
+    rgba(5, 18, 44, 0.72);
+}
+
+.landing-status-label-v318 {
+  color: var(--v318-cyan);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}
+
+.landing-status-title-v318 {
+  margin-top: 10px;
+  color: var(--v318-text);
+  font-size: 17px;
+  font-weight: 950;
+}
+
+.landing-status-text-v318 {
+  margin-top: 8px;
+  color: var(--v318-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.landing-flow-v318 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.landing-flow-step-v318 {
+  min-height: 118px;
+  display: flex;
+  gap: 13px;
+  padding: 17px;
+  border-radius: 24px;
+  border: 1px solid rgba(120, 190, 255, 0.14);
+  background: rgba(5, 18, 44, 0.54);
+}
+
+.landing-flow-step-v318.active {
+  border-color: rgba(116, 230, 255, 0.24);
+  background: linear-gradient(180deg, rgba(10, 43, 94, .70), rgba(5, 18, 44, .68));
+}
+
+.landing-flow-step-v318.muted {
+  opacity: 0.72;
+}
+
+.landing-flow-index-v318 {
+  color: var(--v318-cyan);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: .35px;
+}
+
+.landing-flow-step-v318 b {
+  display: block;
+  color: var(--v318-text);
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.landing-flow-step-v318 span {
+  display: block;
+  color: var(--v318-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.case-builder-v318 {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 28px;
+  border: 1px solid rgba(120, 190, 255, 0.16);
+  background: rgba(2, 10, 30, 0.46);
+}
+
+.case-builder-main-v318 {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 22px;
+  border-radius: 26px;
+  border: 1px dashed rgba(116, 230, 255, 0.30);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(116, 230, 255, 0.10), transparent 32%),
+    rgba(1, 8, 24, 0.58);
+}
+
+.case-builder-icon-v318 {
+  flex: 0 0 78px;
+  height: 78px;
+  display: grid;
+  place-items: center;
+  border-radius: 24px;
+  color: #041225;
+  font-weight: 950;
+  letter-spacing: .5px;
+  background: linear-gradient(135deg, var(--v318-cyan), var(--v318-blue));
+  box-shadow: 0 18px 42px rgba(66, 170, 255, .18);
+}
+
+.case-builder-content-v318 h2 {
+  margin: 0;
+  color: var(--v318-text);
+  font-size: 21px;
+  font-weight: 950;
+  letter-spacing: -0.2px;
+}
+
+.case-builder-content-v318 p {
+  margin: 9px 0 16px 0;
+  color: var(--v318-muted);
+  font-size: 13px;
+  line-height: 1.52;
+}
+
+.case-builder-actions-v318 {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-import-v318,
+.btn-generate-v318 {
+  cursor: pointer;
+  border-radius: 17px;
+  padding: 12px 16px;
+  font-weight: 950;
+  letter-spacing: .1px;
+}
+
+.btn-import-v318 {
+  color: var(--v318-text);
+  border: 1px solid rgba(120, 210, 255, .34);
+  background: rgba(28, 100, 190, .34);
+}
+
+.btn-generate-v318 {
+  color: #041225;
+  border: 1px solid rgba(95, 220, 255, .45);
+  background: linear-gradient(135deg, rgba(64,225,255,.94), rgba(78,135,255,.90));
+  box-shadow: 0 16px 34px rgba(45, 170, 255, .18);
+}
+
+.afi-selector-v318 {
+  margin-top: 16px;
+  padding: 16px 17px;
+  border-radius: 22px;
+  border: 1px solid rgba(120, 190, 255, .18);
+  background: linear-gradient(180deg, rgba(10, 44, 96, .58), rgba(4, 18, 44, .74));
+}
+
+.afi-selector-v318 label {
+  display: block;
+  color: var(--v318-text);
+  font-weight: 950;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+#afiSelectorV317 {
+  width: 100%;
+  padding: 12px 13px;
+  border-radius: 15px;
+  border: 1px solid rgba(120, 210, 255, .26);
+  background: rgba(1, 8, 24, .76);
+  color: var(--v318-text);
+  outline: none;
+}
+
+.afi-selector-v318 div {
+  color: var(--v318-muted);
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.case-folder-status-v318 {
+  margin-top: 16px;
+  padding: 14px 15px;
+  border-radius: 18px;
+  border: 1px solid rgba(120,190,255,.16);
+  background: rgba(4, 18, 44, .70);
+  color: var(--v318-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.case-folder-status-v318.ready {
+  border-color: rgba(116, 230, 255, .30);
+  color: #d8f8ff;
+}
+
+.case-folder-status-v318.error {
+  border-color: rgba(255, 120, 120, .35);
+  color: #ffd1d1;
+}
+
+.package-output-v318 {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.7fr) minmax(300px, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.package-output-v318 > div,
+.package-output-v318 code {
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(120, 190, 255, 0.12);
+  background: rgba(5, 18, 44, 0.52);
+}
+
+.package-output-v318 b {
+  display: block;
+  color: var(--v318-text);
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.package-output-v318 span {
+  display: block;
+  color: var(--v318-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.package-output-v318 code {
+  color: #cfe4ff;
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: normal;
+}
+
+@media (max-width: 1120px) {
+  .landing-hero-v318,
+  .landing-flow-v318,
+  .package-output-v318 {
+    grid-template-columns: 1fr;
+  }
+
+  .case-builder-main-v318 {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .landing-shell-v318 {
+    padding: 20px;
+  }
+
+  .landing-hero-copy-v318 h1 {
+    font-size: 32px;
+  }
+
+  .case-builder-main-v318 {
+    flex-direction: column;
+  }
+}
+</style>
+
+
+<style id="landingV319Style">
+/* ==========================================================
+   V319 Landing simplification
+   Main workflow visible; legacy manual wizard collapsed.
+   ========================================================== */
+
+.landing-shell-v318 {
+  max-width: 1180px;
+  margin-top: 26px !important;
+  padding: 30px !important;
+}
+
+.landing-kicker-v318 {
+  margin-bottom: 12px !important;
+}
+
+.landing-hero-copy-v318 h1 {
+  font-size: 40px !important;
+}
+
+.landing-hero-copy-v318 p {
+  max-width: 860px !important;
+  font-size: 14px !important;
+}
+
+.landing-status-card-v318 {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(116, 230, 255, 0.08), transparent 34%),
+    rgba(4, 17, 42, 0.62) !important;
+}
+
+/* Make the step cards less visually noisy */
+.landing-flow-v318 {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  margin-top: 22px !important;
+}
+
+.landing-flow-step-v318 {
+  min-height: auto !important;
+  padding: 13px 14px !important;
+  border-radius: 18px !important;
+  background: rgba(5, 18, 44, 0.42) !important;
+}
+
+.landing-flow-step-v318 b {
+  font-size: 12px !important;
+  margin-bottom: 4px !important;
+}
+
+.landing-flow-step-v318 span {
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+}
+
+.landing-flow-index-v318 {
+  font-size: 11px !important;
+}
+
+/* Focus attention on the actual action card */
+.case-builder-v318 {
+  margin-top: 18px !important;
+  padding: 18px !important;
+  background: rgba(2, 10, 30, 0.38) !important;
+}
+
+.case-builder-main-v318 {
+  padding: 24px !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(116, 230, 255, 0.26) !important;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(116, 230, 255, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(5, 23, 55, 0.78), rgba(2, 10, 30, 0.80)) !important;
+}
+
+.package-output-v318 {
+  grid-template-columns: 1fr !important;
+}
+
+.package-output-v318 code {
+  display: none !important;
+}
+
+.package-output-v318 > div {
+  border-radius: 18px !important;
+  background: rgba(5, 18, 44, 0.40) !important;
+}
+
+.package-output-v318 > div span::after {
+  content: " Click Generate Output Package to download the ZIP.";
+}
+
+/* Legacy manual import becomes a collapsed advanced section */
+.legacy-manual-import-v319 {
+  max-width: 1180px;
+  margin: 18px auto 40px auto;
+  border-radius: 24px;
+  border: 1px solid rgba(120, 190, 255, 0.16);
+  background:
+    linear-gradient(180deg, rgba(5, 20, 48, 0.76), rgba(2, 10, 28, 0.92));
+  color: #e8f1ff;
+  box-shadow: 0 16px 40px rgba(0,0,0,.22);
+  overflow: hidden;
+}
+
+.legacy-manual-import-v319 > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: 24px;
+}
+
+.legacy-manual-import-v319 > summary::-webkit-details-marker {
+  display: none;
+}
+
+.legacy-manual-import-v319 > summary span {
+  color: #e8f1ff;
+  font-weight: 950;
+  font-size: 15px;
+}
+
+.legacy-manual-import-v319 > summary small {
+  color: #93aacd;
+  font-size: 12px;
+  line-height: 1.35;
+  text-align: right;
+  max-width: 560px;
+}
+
+.legacy-manual-import-v319 > summary::after {
+  content: "Show";
+  flex: 0 0 auto;
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(120,210,255,.24);
+  background: rgba(28, 100, 190, .24);
+  color: #8fe6ff;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.legacy-manual-import-v319[open] > summary::after {
+  content: "Hide";
+}
+
+.legacy-manual-import-body-v319 {
+  padding: 0 20px 22px 20px;
+  border-top: 1px solid rgba(120,190,255,.10);
+}
+
+/* Tone down the old wizard when opened */
+.legacy-manual-import-body-v319 .nav,
+.legacy-manual-import-body-v319 .card,
+.legacy-manual-import-body-v319 section {
+  max-width: 100% !important;
+}
+
+.legacy-manual-import-body-v319 .brand .logo {
+  opacity: .85;
+}
+
+@media (max-width: 980px) {
+  .landing-flow-v318 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .legacy-manual-import-v319 > summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .legacy-manual-import-v319 > summary small {
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-flow-v318 {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
+
+<style id="v806-chat-answer-readability">
+/* V806 chat answer readability fix */
+.assistant-message,
+.assistant-content,
+.assistant-response,
+.chat-message,
+.chat-message-content,
+.chat-answer,
+.chat-response,
+.answer,
+.answer-text,
+.response-text,
+.copilot-answer,
+.ai-response,
+.message-body,
+.markdown-body {
+  white-space: pre-line;
+}
+</style>
+
+
+
+
+
+
+
+
+<style id="activate-case-loading-style">
+  .activate-case-loading-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(3, 10, 24, 0.72);
+    backdrop-filter: blur(8px);
+  }
+
+  .activate-case-loading-overlay.is-visible {
+    display: flex;
+  }
+
+  .activate-case-loading-card {
+    width: min(520px, calc(100vw - 40px));
+    padding: 28px 30px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(8, 20, 38, 0.98), rgba(14, 38, 58, 0.98));
+    border: 1px solid rgba(110, 231, 255, 0.35);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    color: #f4fbff;
+    font-family: Inter, Segoe UI, Arial, sans-serif;
+    text-align: center;
+  }
+
+  .activate-case-loading-spinner {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 18px auto;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.22);
+    border-top-color: #6ee7ff;
+    border-right-color: #82f7b4;
+    animation: activateCaseSpin 0.9s linear infinite;
+  }
+
+  @keyframes activateCaseSpin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .activate-case-loading-title {
+    margin: 0 0 8px 0;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .activate-case-loading-text {
+    margin: 0;
+    color: rgba(244, 251, 255, 0.82);
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .activate-case-loading-subtext {
+    margin-top: 14px;
+    color: rgba(130, 247, 180, 0.9);
+    font-size: 13px;
+    font-weight: 650;
+  }
+</style>
+
+</head>
+<body>
+  <main class="page">
+
+<!-- V320 Completed Run Import Workflow -->
+<section class="landing-shell-v318" id="landingShellV318">
+  <div class="landing-ambient-v318"></div>
+
+  <div class="landing-hero-v318">
+    <div class="landing-hero-copy-v318">
+      <div class="landing-kicker-v318">
+        <span></span>
+        Case setup
+      </div>
+
+      <h1>404 Reservoir Not Found</h1>
+
+      <p>
+        Prepare your INTERSECT case in one step. Import the full case folder, choose the main AFI if more than one is found, generate the output package, then run the modified AFI in INTERSECT.
+      </p>
+    </div>
+
+    <div class="landing-status-card-v318">
+      <div class="landing-status-label-v318">What to do now</div>
+      <div class="landing-status-title-v318">Generate the INTERSECT output package</div>
+      <div class="landing-status-text-v318">
+        First generate the modified AFI package. After you run the modified AFI, the completed-run extraction workflow will be added here.
+      </div>
+    </div>
+  </div>
+
+  <div class="landing-flow-v318">
+    <div class="landing-flow-step-v318 active">
+      <div class="landing-flow-index-v318">01</div>
+      <div>
+        <b>Import case folder</b>
+        <span>Select the folder that contains the main .AFI and all linked include files.</span>
+      </div>
+    </div>
+
+    <div class="landing-flow-step-v318 active">
+      <div class="landing-flow-index-v318">02</div>
+      <div>
+        <b>Generate run package</b>
+        <span>The tool creates a modified AFI plus the two generated include files required to export the right outputs.</span>
+      </div>
+    </div>
+
+    <div class="landing-flow-step-v318">
+      <div class="landing-flow-index-v318">03</div>
+      <div>
+        <b>Run in INTERSECT</b>
+        <span>Copy the generated files into the simulation folder and run the modified AFI.</span>
+      </div>
+    </div>
+
+    <div class="landing-flow-step-v318 muted">
+      <div class="landing-flow-index-v318">04</div>
+      <div>
+        <b>Import results</b>
+        <span>Coming next: import the completed run folder and populate the dashboard.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-builder-v318">
+    <div class="case-builder-main-v318">
+      <input id="caseFolderInputV315" type="file" webkitdirectory directory multiple hidden />
+
+      <div class="case-builder-icon-v318">AFI</div>
+
+      <div class="case-builder-content-v318">
+        <h2>Import complete INTERSECT case folder</h2>
+        <p>
+          Select the root folder of the case. It should contain the main <b>.AFI</b>,
+          related <b>.IXF/.INC/.GRDECL</b> includes, observed data, and any simulator files available in the case folder.
+        </p>
+
+        <div class="case-builder-actions-v318">
+          <button type="button" id="importCaseFolderBtnV315" class="btn-import-v318">
+            Import Case Folder
+          </button>
+
+          <button type="button" id="generateCasePackageBtnV315" class="btn-generate-v318">
+            Generate Output Package
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="afi-selector-v318" id="afiSelectorWrapV317" style="display:none;">
+      <label for="afiSelectorV317">Main AFI to use</label>
+      <select id="afiSelectorV317"></select>
+      <div>
+        Multiple AFI files were detected. Choose the AFI that should be modified and exported.
+      </div>
+    </div>
+
+    <div class="case-folder-status-v318" id="caseFolderStatusV315">
+      No case folder selected yet.
+    </div>
+
+    <div class="package-output-v318">
+      <div>
+        <b>Generated package will contain</b>
+        <span>Modified AFI + output include + streamline include + relperm metadata JSON.</span>
+      </div>
+      <code>
+        &lt;case&gt;_404_RNF.afi<br>
+        404_RNF_MINIMAL_OUTPUT_REQUEST_FM_EDIT.ixf<br>
+        404_RNF_STREAMLINE_MGR_IX_EDIT.ixf<br>
+        404_RNF_RELPERM_REGION_MAPPING_USED_BY_GENERATOR.json
+      </code>
+    </div>
+  </div>
+</section>
+
+
+    
+<details class="legacy-manual-import-v319" id="legacyManualImportV319">
+  <summary>
+    <span>Advanced manual import</span>
+    <small>Use only if you want to manually map individual files instead of using the case-folder workflow.</small>
+  </summary>
+
+  <div class="legacy-manual-import-body-v319">
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo">404</div>
+        <div>
+          <div>404 Reservoir Not Found</div>
+          <div style="color: var(--muted); font-size: 12px; font-weight: 650;">Reservoir Case Import Wizard</div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow">Agentathon Reservoir Intelligence</div>
+      <h1>Map uploaded reservoir files into the standard demo case structure.</h1>
+      <p class="sub">
+        Upload files by role, not by original name. The backend renames them to the filenames expected by the current scripts,
+        creates grid_dimensions.json from NX/NY/NZ, and corrects GRDECL header keywords where needed.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Grid dimensions</h2>
+          <p>These values are used to create <strong>grid_dimensions.json</strong>.</p>
+        </div>
+      </div>
+      <div class="dim-grid">
+        <div>
+          <label for="nx">NX</label>
+          <input id="nx" type="number" min="1" value="181" />
+        </div>
+        <div>
+          <label for="ny">NY</label>
+          <input id="ny" type="number" min="1" value="190" />
+        </div>
+        <div>
+          <label for="nz">NZ</label>
+          <input id="nz" type="number" min="1" value="62" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Simulation summary files</h2>
+          <p>These are standardized as CASE.SMSPEC and CASE.UNSMRY.</p>
+        </div>
+      </div>
+      <div class="file-grid">
+        <div class="slot">
+          <div class="slot-title">CASE.SMSPEC <span class="badge required">required</span></div>
+          <small>Simulation summary specification file.</small>
+          <input type="file" id="case_smspec" />
+        </div>
+        <div class="slot">
+          <div class="slot-title">CASE.UNSMRY <span class="badge required">required</span></div>
+          <small>Unified simulation summary file.</small>
+          <input type="file" id="case_unsmry" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Static and dynamic GRDECL properties</h2>
+          <p>Files are renamed to the expected standard names. GRDECL keyword headers are corrected where applicable.</p>
+        </div>
+      </div>
+      <div id="propertySlots" class="file-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>RelPerm, PRT, streamlines and well connections</h2>
+          <p>Upload supporting files used by the RelPerm, streamline and corridor workflows.</p>
+        </div>
+        <div class="nav-actions">
+          <a class="btn" href="/api/example-file/relperm" target="_blank">Download RELPERM example</a>
+          <a class="btn" href="/api/example-file/well_connections" target="_blank">Download WELL_CONNECTIONS example</a>
+        </div>
+      </div>
+      <div id="supportSlots" class="file-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Import actions</h2>
+          <p>Import creates a standardized case under artifacts/uploads. Activate copies the standardized files into data/sample_model.</p>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button class="btn primary" onclick="importCase()">Import and Standardize Case</button>
+        <button class="btn warn" onclick="activateCase()">Activate Uploaded Case</button>
+        <button class="btn" id="runGlobalBtn" onclick="runDemo()">Run Global Agent Screening</button>
+        <button class="btn warn" onclick="resetActiveCase()">Reset Active Case</button>
+        <a class="btn" href="/dashboard">Open Dashboard</a>
+      </div>
+      <div id="status" class="status" style="margin-top: 16px;">No import yet.</div>
+      <div id="result"></div>
+    </section>
+  </main>
+
+  <script>
+    let lastUploadId = null;
+    let activeCaseReady = false;
+
+    const propertySlots = [
+      ["tranx", "TRANX.GRDECL", "required", "X-direction transmissibility."],
+      ["trany", "TRANY.GRDECL", "required", "Y-direction transmissibility."],
+      ["tranz", "TRANZ.GRDECL", "required", "Z-direction transmissibility."],
+      ["permx", "PERM_X.GRDECL", "required", "X-direction permeability."],
+      ["permy", "PERM_Y.GRDECL", "required", "Y-direction permeability."],
+      ["permz", "PERM_Z.GRDECL", "required", "Z-direction permeability."],
+      ["poro", "PORO.GRDECL", "required", "Porosity property."],
+      ["poro_mult", "PORO_MULT.GRDECL", "required", "Porosity multiplier property."],
+      ["multx", "MULTX.GRDECL", "required", "X transmissibility multiplier."],
+      ["multy", "MULTY.GRDECL", "required", "Y transmissibility multiplier."],
+      ["multz", "MULTZ.GRDECL", "required", "Z transmissibility multiplier."],
+      ["pressure_init", "PRESSURE_INIT.GRDECL", "required", "Initial pressure property."],
+      ["pressure_eoh", "PRESSURE_EOH.GRDECL", "required", "End-of-history pressure property."],
+      ["swat_init", "SWAT_INIT.GRDECL", "required", "Initial water saturation."],
+      ["swat_eoh", "SWAT_EOH.GRDECL", "required", "End-of-history water saturation."],
+      ["soil_init", "SOIL_INIT.GRDECL", "required", "Initial oil saturation."],
+      ["soil_eoh", "SOIL_EOH.GRDECL", "required", "End-of-history oil saturation."],
+      ["sgas_init", "SGAS_INIT.GRDECL", "required", "Initial gas saturation."],
+      ["sgas_eoh", "SGAS_EOH.GRDECL", "required", "End-of-history gas saturation."],
+      ["relperm_region", "FIPNUM.GRDECL", "required", "GRDECL region property used to distribute RelPerm regions. It is standardized as FIPNUM.GRDECL."]
+    ];
+
+    const supportSlots = [
+      ["well_connections", "WELL_CONNECTIONS.ixf", "required", "Well connection/completion export."],
+      ["relperm", "RELPERM.ixf", "required", "Relative permeability curves exported from Petrel."],
+      ["prt", "SIMULATION.PRT", "required", "Simulator PRT report used to infer region/RelPerm assignments."],
+      ["streamlines_init", "STREAMLINES_INIT.SLN0001", "required", "Initial streamline file."],
+      ["streamlines_eoh", "STREAMLINES_EOH.SLN0359", "required", "End-of-history streamline file."]
+    ];
+
+    function renderSlots(containerId, slots) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      slots.forEach(([id, standard, level, desc]) => {
+        const div = document.createElement("div");
+        div.className = "slot";
+        div.innerHTML = `
+          <div class="slot-title">${standard} <span class="badge ${level === "required" ? "required" : ""}">${level}</span></div>
+          <small>${desc}</small>
+          <input type="file" id="${id}" />
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    renderSlots("propertySlots", propertySlots);
+    renderSlots("supportSlots", supportSlots);
+    refreshActiveCaseStatus();
+
+    function addFile(form, key) {
+      const input = document.getElementById(key);
+      if (input && input.files && input.files.length) {
+        form.append(key, input.files[0]);
+      }
+    }
+
+    function renderResult(data) {
+      const result = document.getElementById("result");
+      const rows = (data.files || []).map(f => `
+        <tr>
+          <td>${f.slot}</td>
+          <td>${f.standard_name}</td>
+          <td>${f.original_filename || ""}</td>
+          <td class="${f.received ? "ok" : "missing"}">${f.received ? "received" : "missing"}</td>
+          <td>${f.keyword_action || ""}</td>
+        </tr>
+      `).join("");
+
+      result.innerHTML = `
+        <div style="margin-top:14px;color:var(--muted);font-size:13px;font-weight:750;">Imported file mapping</div>
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>Slot</th>
+              <th>Standard name</th>
+              <th>Original file</th>
+              <th>Status</th>
+              <th>Keyword action</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+
+
+    async function refreshActiveCaseStatus() {
+      const btn = document.getElementById("runGlobalBtn");
+
+      try {
+        const res = await fetch("/api/active-case-status");
+        const data = await res.json();
+
+        activeCaseReady = !!data.active;
+
+        if (btn) {
+          btn.disabled = !activeCaseReady;
+          btn.style.opacity = activeCaseReady ? "1" : "0.45";
+          btn.style.cursor = activeCaseReady ? "pointer" : "not-allowed";
+          btn.title = activeCaseReady
+            ? "Run screening on the active uploaded case."
+            : "Import and activate a case before running global screening.";
+        }
+      } catch (err) {
+        activeCaseReady = false;
+        if (btn) {
+          btn.disabled = true;
+          btn.style.opacity = "0.45";
+          btn.style.cursor = "not-allowed";
+          btn.title = "Active case status could not be checked.";
+        }
+      }
+    }
+
+    function showFriendlyImportSummary(data) {
+      const missing = data.missing_required || [];
+      const received = data.received_count || 0;
+      const corrected = (data.files || []).filter(f => (f.keyword_action || "").startsWith("keyword_changed")).length;
+
+      let msg = "";
+      msg += "Case files received and standardized.\n\n";
+      msg += "Files received: " + received + "\n";
+      msg += "Grid dimensions file created from NX, NY, NZ.\n";
+
+      if (corrected > 0) {
+        msg += "GRDECL keyword headers corrected automatically: " + corrected + "\n";
+      }
+
+      if (missing.length > 0) {
+        msg += "\nSome required files are still missing:\n";
+        msg += missing.map(x => "â€¢ " + x).join("\n");
+        msg += "\n\nPlease upload the missing files and import again.";
+      } else {
+        msg += "\nAll required files are available.\n";
+        msg += "Next step: click Activate Uploaded Case.";
+      }
+
+      return msg;
+    }
+
+    function friendlyMissingText(missing) {
+      if (!missing || !missing.length) {
+        return "All required files are available.";
+      }
+      return "Missing required files: " + missing.join(", ");
+    }
+
+    function friendlyFileSummary(files) {
+      if (!files || !files.length) return "No files were received.";
+
+      const received = files.filter(f => f.received).length;
+      const missing = files.filter(f => !f.received).length;
+      const changedKeywords = files.filter(f => (f.keyword_action || "").startsWith("keyword_changed")).length;
+
+      let lines = [];
+      lines.push(received + " file(s) received.");
+      if (missing > 0) lines.push(missing + " required file(s) still missing.");
+      if (changedKeywords > 0) lines.push(changedKeywords + " GRDECL keyword header(s) corrected automatically.");
+      return lines.join("\n");
+    }
+
+    async function importCase() {
+      const status = document.getElementById("status");
+
+      const allFileInputs = Array.from(document.querySelectorAll('input[type="file"]'));
+      const uploadedCount = allFileInputs.filter(input => input.files && input.files.length > 0).length;
+
+      if (uploadedCount === 0) {
+        status.textContent =
+          "No files selected.\n\n" +
+          "Please upload the reservoir case files first, then click Import and Standardize Case.\n" +
+          "Each upload box corresponds to one required file role.";
+        return;
+      }
+
+      const form = new FormData();
+
+      form.append("nx", document.getElementById("nx").value);
+      form.append("ny", document.getElementById("ny").value);
+      form.append("nz", document.getElementById("nz").value);
+
+      addFile(form, "case_smspec");
+      addFile(form, "case_unsmry");
+
+      propertySlots.forEach(([id]) => addFile(form, id));
+      supportSlots.forEach(([id]) => addFile(form, id));
+
+      status.textContent = "Importing and standardizing uploaded reservoir case...";
+
+      try {
+        const res = await fetch("/api/import-case", {
+          method: "POST",
+          body: form
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || data.status !== "success") {
+          status.textContent = "Import failed:\n" + JSON.stringify(data, null, 2);
+          return;
+        }
+
+        lastUploadId = data.upload_id;
+
+        const missing = data.missing_required || [];
+
+        status.textContent = showFriendlyImportSummary(data);
+
+        renderResult(data);
+      } catch (err) {
+        status.textContent = "Import error: " + err;
+      }
+    }
+
+    async function activateCase() {
+      const status = document.getElementById("status");
+
+      if (!lastUploadId) {
+        status.textContent = "No imported case available. Import a case first.";
+        return;
+      }
+
+      status.textContent = "Activating uploaded case into data/sample_model...";
+
+      try {
+        const res = await fetch("/api/activate-uploaded-case/" + lastUploadId, {
+          method: "POST"
+        });
+
+        const data = await res.json();
+
+        if (data.status === "success") {
+          activeCaseReady = true;
+          refreshActiveCaseStatus();
+
+          status.textContent =
+            "This case is now active.\n\n" +
+            "The dashboard will now use the uploaded standardized files.\n" +
+            "Copied files: " + data.copied_file_count + "\n\n" +
+            "You can now open the reservoir dashboard or run global agent screening.";
+        } else {
+          status.textContent =
+            "The case could not be activated.\n\n" +
+            (data.message || JSON.stringify(data, null, 2));
+        }
+      } catch (err) {
+        status.textContent = "Activation error: " + err;
+      }
+    }
+
+    async function runDemo() {
+      const status = document.getElementById("status");
+
+      await refreshActiveCaseStatus();
+
+      if (!activeCaseReady) {
+        status.textContent =
+          "No active case selected.\n\n" +
+          "Please import and activate a reservoir case before running global agent screening.\n" +
+          "This prevents the system from using the previous demo case.";
+        return;
+      }
+
+      status.textContent = "Running global agent screening on the active case. The agent will look for candidate wells and model-edit hypotheses...";
+
+      const body = {
+        question: "show me where I have to improve transmissibility by multipliers",
+        mode: "demo",
+        upload_id: lastUploadId
+      };
+
+      try {
+        const res = await fetch("/run", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(body)
+        });
+
+        const data = await res.json();
+
+        status.textContent =
+          "Global agent screening completed.\n\n" +
+          "Detected workflow: " + data.intent + "\n\n" +
+          (data.answer || "").slice(0, 900);
+
+      } catch (err) {
+        status.textContent = "Demo run error: " + err;
+      }
+    }
+
+    async function resetActiveCase() {
+      const status = document.getElementById("status");
+      status.textContent = "Resetting active case marker...";
+
+      try {
+        const res = await fetch("/api/reset-active-case", { method: "POST" });
+        const data = await res.json();
+
+        activeCaseReady = false;
+        refreshActiveCaseStatus();
+
+        status.textContent =
+          "Active case has been reset.\n\n" +
+          "The dashboard is locked until another imported case is activated.\n" +
+          "Uploaded folders were not deleted.";
+
+        lastUploadId = null;
+      } catch (err) {
+        status.textContent = "Reset active case error: " + err;
+      }
+    }
+
+  </script>
+
+
+
+
+<script id="ixWorkflowV052Script">
+(function () {
+  function qs(sel, root = document) { return root.querySelector(sel); }
+
+  function setStatus(message) {
+    const status = qs("#status");
+    if (status) status.textContent = message;
+    console.log("[404 Reservoir Not Found]", message);
+  }
+
+  function toggleBody(button) {
+    const id = button.getAttribute("data-target");
+    const body = document.getElementById(id);
+    if (!body) return;
+    const hidden = body.classList.toggle("hidden");
+    button.textContent = hidden ? "Show" : "Hide";
+  }
+
+  function wireToggles() {
+    document.querySelectorAll(".workflow-toggle").forEach(btn => {
+      if (btn.dataset.wired === "1") return;
+      btn.dataset.wired = "1";
+      btn.addEventListener("click", () => toggleBody(btn));
+    });
+  }
+
+  function buildManualWrapper() {
+    const stack = document.getElementById("ixWorkflowStack");
+    const auto = document.getElementById("automaticIxWorkflow");
+    if (!stack || !auto) return;
+
+    if (document.getElementById("manualWorkflowShell")) return;
+
+    const root = stack.parentElement || document.querySelector("main") || document.body;
+
+    const manual = document.createElement("section");
+    manual.className = "card workflow-card";
+    manual.id = "manualWorkflowShell";
+    manual.innerHTML = `
+      <div class="workflow-head">
+        <div class="workflow-title">
+          <span class="workflow-pill">Fallback</span>
+          <h2>Manual file-by-file upload</h2>
+          <p class="muted">
+            Use this section if you already exported every required file manually and want to standardize the case directly.
+          </p>
+        </div>
+        <button class="btn workflow-toggle" type="button" data-target="manualWorkflowBody">Show</button>
+      </div>
+      <div class="workflow-body hidden" id="manualWorkflowBody"></div>
+    `;
+
+    stack.appendChild(manual);
+
+    const body = manual.querySelector("#manualWorkflowBody");
+
+    const nodesToMove = [];
+    let node = stack.nextElementSibling;
+
+    while (node) {
+      const next = node.nextElementSibling;
+
+      const tag = (node.tagName || "").toLowerCase();
+      const id = node.id || "";
+
+      const skip =
+        tag === "script" ||
+        tag === "style" ||
+        id === "ixWorkflowStack" ||
+        id === "automaticIxWorkflow" ||
+        id === "manualWorkflowShell";
+
+      if (!skip) {
+        nodesToMove.push(node);
+      }
+
+      node = next;
+    }
+
+    nodesToMove.forEach(n => body.appendChild(n));
+  }
+
+  async function generateIxOutputPackage() {
+    const afiInput = qs("#ixAfiFile");
+    const supportInput = qs("#ixSupportFiles");
+    const resultBox = qs("#ixPackageResult");
+
+    if (!afiInput || !afiInput.files || afiInput.files.length === 0) {
+      setStatus("Please upload the main AFI file first.");
+      return;
+    }
+
+    const form = new FormData();
+    form.append("afi_file", afiInput.files[0]);
+
+    if (supportInput && supportInput.files) {
+      for (const file of supportInput.files) {
+        form.append("support_files", file);
+      }
+    }
+
+    setStatus("Generating INTERSECT output package...");
+
+    try {
+      const res = await fetch("/api/generate-ix-output-package", {
+        method: "POST",
+        body: form
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.status === "error") {
+        if (resultBox) {
+          resultBox.style.display = "block";
+          resultBox.innerHTML = `
+            <b>Generation failed</b><br>
+            <span class="muted">${data.message || "Unknown error"}</span>
+          `;
+        }
+        setStatus(data.message || "Generation failed.");
+        return;
+      }
+
+      const base = data.download_base;
+
+      let html = "";
+      html += "<b>INTERSECT package generated successfully</b>";
+      html += "<div class='muted' style='margin-top:6px;'>Download the ZIP, run the modified AFI in INTERSECT, then return with the completed run results.</div>";
+
+      html += "<div style='margin-top:12px;line-height:1.8;'>";
+      html += "<b>Modified AFI:</b> " + data.modified_afi + "<br>";
+      html += "<b>IX include:</b> " + data.ix_include + "<br>";
+      html += "<b>FM include:</b> " + data.fm_include + "<br>";
+      html += "<b>History window:</b> " + data.history_start + " â†’ " + data.history_end + "<br>";
+      html += "</div>";
+
+      html += "<div class='workflow-downloads'>";
+      html += "<a class='btn primary' href='" + base + "/" + data.zip_file + "'>Download ZIP package</a>";
+      html += "<a class='btn' href='" + base + "/" + data.modified_afi + "'>Download modified AFI</a>";
+      html += "</div>";
+
+      if (data.relperm_detection && data.relperm_detection.detected) {
+        html += "<div style='margin-top:12px;line-height:1.7;'>";
+        html += "<b>RelPerm region detected</b><br>";
+        html += "Region family: " + data.relperm_detection.region_family + "<br>";
+        html += "3D property: " + data.relperm_detection.report_property_name + "<br>";
+        html += "Output label: " + data.relperm_detection.report_label;
+        html += "</div>";
+      }
+
+      if (resultBox) {
+        resultBox.innerHTML = html;
+        resultBox.style.display = "block";
+      }
+
+      setStatus("INTERSECT output package generated. Run the modified AFI, then upload the completed run results.");
+
+    } catch (err) {
+      if (resultBox) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<b>Generation failed</b><br><span class='muted'>" + err + "</span>";
+      }
+      setStatus("Generation failed: " + err);
+    }
+  }
+
+  function initWorkflows() {
+    buildManualWrapper();
+    wireToggles();
+
+    const btn = document.getElementById("generateIxPackageBtn");
+    if (btn && btn.dataset.wired !== "1") {
+      btn.dataset.wired = "1";
+      btn.addEventListener("click", generateIxOutputPackage);
+    }
+
+    console.log("[404 Reservoir Not Found] workflow layout initialized");
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initWorkflows);
+  } else {
+    initWorkflows();
+  }
+
+  window.generateIxOutputPackage = generateIxOutputPackage;
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</details>
+
+<script id="landingV318Script">
+(function(){
+  function installLandingV318(){
+    const input = document.getElementById("caseFolderInputV315");
+    const importBtn = document.getElementById("importCaseFolderBtnV315");
+    const generateBtn = document.getElementById("generateCasePackageBtnV315");
+    const status = document.getElementById("caseFolderStatusV315");
+    const selectorWrap = document.getElementById("afiSelectorWrapV317");
+    const selector = document.getElementById("afiSelectorV317");
+
+    if (!input || input.__v318Installed) return;
+
+    function relPath(file){
+      return file.webkitRelativePath || file.name;
+    }
+
+    function setStatus(html, mode){
+      if (!status) return;
+      status.innerHTML = html;
+      status.classList.remove("ready", "error");
+      if (mode) status.classList.add(mode);
+    }
+
+    function refreshAfiSelector(){
+      const files = Array.from(input.files || []);
+      const afiFiles = files.filter(f => String(f.name || "").toLowerCase().endsWith(".afi"));
+      const supportFiles = files.filter(f => !String(f.name || "").toLowerCase().endsWith(".afi"));
+
+      window.__caseFolderFilesV318 = files;
+      window.__caseFolderAfiFilesV318 = afiFiles;
+      window.__caseFolderSupportFilesV318 = supportFiles;
+
+      if (selector) {
+        selector.innerHTML = "";
+        afiFiles.forEach((f, idx) => {
+          const opt = document.createElement("option");
+          opt.value = relPath(f);
+          opt.textContent = relPath(f);
+          if (idx === 0) opt.selected = true;
+          selector.appendChild(opt);
+        });
+      }
+
+      if (selectorWrap) {
+        selectorWrap.style.display = afiFiles.length > 1 ? "block" : "none";
+      }
+
+      if (!files.length) {
+        setStatus("No case folder selected yet.");
+        return;
+      }
+
+      if (!afiFiles.length) {
+        setStatus("Folder selected, but no .AFI file was detected. Please select the root simulation case folder.", "error");
+        return;
+      }
+
+      const selected = selector?.value || relPath(afiFiles[0]);
+
+      setStatus(
+        "Case folder ready.<br>" +
+        "Selected files: <b>" + files.length + "</b><br>" +
+        "AFI files detected: <b>" + afiFiles.length + "</b><br>" +
+        "Selected AFI: <b>" + selected + "</b><br>" +
+        "Support/include files available: <b>" + supportFiles.length + "</b>",
+        "ready"
+      );
+    }
+
+    importBtn?.addEventListener("click", function(){
+      input.click();
+    });
+
+    input.addEventListener("change", refreshAfiSelector);
+    selector?.addEventListener("change", refreshAfiSelector);
+
+    generateBtn?.addEventListener("click", async function(){
+      const files = Array.from(input.files || []);
+      const afiFiles = files.filter(f => String(f.name || "").toLowerCase().endsWith(".afi"));
+
+      if (!files.length) {
+        setStatus("Please import the complete case folder first.", "error");
+        return;
+      }
+
+      if (!afiFiles.length) {
+        setStatus("No .AFI file detected. Please select the root simulation case folder.", "error");
+        return;
+      }
+
+      const selectedAfi = selector?.value || relPath(afiFiles[0]);
+
+      generateBtn.disabled = true;
+      generateBtn.innerText = "Generating package...";
+
+      try {
+        const form = new FormData();
+
+        for (const file of files) {
+          form.append("files", file, relPath(file));
+        }
+
+        form.append("main_afi_path", selectedAfi);
+
+        const res = await fetch("/api/intersect/import-case-folder-v317", {
+          method: "POST",
+          body: form
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || data.ok === false) {
+          setStatus("Package generation failed:<br>" + (data.message || data.error || "Unknown error"), "error");
+          generateBtn.disabled = false;
+          generateBtn.innerText = "Generate Output Package";
+          return;
+        }
+
+        setStatus(
+          "Package generated successfully.<br>" +
+          "Original AFI: <b>" + (data.original_afi || selectedAfi) + "</b><br>" +
+          "Modified AFI: <b>" + (data.modified_afi || "generated") + "</b><br>" +
+          "Generated includes: <b>" + (data.generated_include_count ?? 2) + "</b><br>" +
+          "RelPerm metadata: <b>" + (data.relperm_metadata || "generated") + "</b>" +
+          (data.download_url ? "<br><a style='color:#8fe6ff;font-weight:950;' href='" + data.download_url + "'>Download output package</a>" : ""),
+          "ready"
+        );
+
+        generateBtn.innerText = "Package generated";
+
+      } catch (e) {
+        console.error("[V318] package generation failed", e);
+        setStatus("Package generation failed. Check backend logs.", "error");
+        generateBtn.disabled = false;
+        generateBtn.innerText = "Generate Output Package";
+      }
+    });
+
+    input.__v318Installed = true;
+    console.log("[V318] Landing workflow installed");
+  }
+
+  setTimeout(installLandingV318, 250);
+  setTimeout(installLandingV318, 1200);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<style>
+/* V337 clean local case workflow */
+.v337-workflow {
+  max-width: 1180px;
+  margin: 22px auto 34px auto;
+  color: #e8f1ff;
+}
+
+.v337-hero {
+  padding: 26px;
+  border-radius: 30px;
+  border: 1px solid rgba(116,230,255,.22);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(116,230,255,.13), transparent 32%),
+    radial-gradient(circle at 92% 0%, rgba(58,108,255,.14), transparent 30%),
+    linear-gradient(180deg, rgba(5,23,55,.82), rgba(2,10,30,.88));
+  box-shadow: 0 22px 60px rgba(0,0,0,.32);
+}
+
+.v337-kicker {
+  color: rgba(160,198,255,.95);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.v337-hero h1 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.08;
+}
+
+.v337-hero p {
+  margin: 10px 0 0 0;
+  color: rgba(220,234,255,.78);
+  line-height: 1.55;
+  max-width: 890px;
+}
+
+.v337-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.v337-step {
+  padding: 15px;
+  border-radius: 20px;
+  background: rgba(5,14,32,.56);
+  border: 1px solid rgba(140,180,255,.14);
+}
+
+.v337-step b {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.v337-step span {
+  color: rgba(220,234,255,.72);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.v337-card {
+  margin-top: 18px;
+  padding: 22px;
+  border-radius: 28px;
+  border: 1px solid rgba(116,230,255,.18);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(116,230,255,.09), transparent 30%),
+    linear-gradient(180deg, rgba(5,23,55,.74), rgba(2,10,30,.82));
+}
+
+.v337-card-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.v337-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: #dceaff;
+  background: linear-gradient(135deg, rgba(52,116,255,.95), rgba(18,45,100,.95));
+  border: 1px solid rgba(160,200,255,.28);
+}
+
+.v337-card h2 {
+  margin: 0 0 6px 0;
+  font-size: 21px;
+}
+
+.v337-card p {
+  margin: 0;
+  color: rgba(220,234,255,.76);
+  line-height: 1.5;
+}
+
+.v337-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.v337-field {
+  margin-top: 14px;
+}
+
+.v337-field label {
+  display: block;
+  margin-bottom: 7px;
+  color: rgba(232,241,255,.88);
+  font-weight: 750;
+  font-size: 13px;
+}
+
+.v337-field input,
+.v337-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px;
+  color: #e8f1ff;
+  background: rgba(5,14,32,.76);
+  border: 1px solid rgba(140,180,255,.22);
+  border-radius: 16px;
+  outline: none;
+}
+
+.v337-field select {
+  cursor: pointer;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 30;
+}
+
+.v337-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.v337-result {
+  display: none;
+  margin-top: 15px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(5,14,32,.66);
+  border: 1px solid rgba(140,180,255,.16);
+  color: #dceaff;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.v337-muted {
+  margin-top: 8px;
+  color: rgba(220,234,255,.60);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .v337-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .v337-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+/* V337_CLEAN_LOCAL_CASE_WORKFLOW */
+(function () {
+  console.log("[V337] clean local case workflow loaded");
+
+  let caseFolderV337 = "";
+  let completedRunImportIdV337 = null;
+
+  function byId(id) {
+    return document.getElementById(id);
+  }
+
+  async function postJsonV337(url, payload = {}) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok || data.ok === false || data.status === "error") {
+      throw new Error(data.message || data.detail || "Request failed.");
+    }
+
+    return data;
+  }
+
+  function showV337(id, message, isError = false) {
+    const box = byId(id);
+    if (!box) return;
+
+    box.style.display = "block";
+    box.style.borderColor = isError ? "rgba(255,120,120,.35)" : "rgba(120,190,255,.24)";
+    box.textContent = message;
+  }
+
+  function hideLegacyV337() {
+    [
+      "#ixWorkflowStack",
+      "#manualWorkflowShell",
+      ".case-builder-v318",
+      ".legacy-manual-import-v319"
+    ].forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        el.style.display = "none";
+      });
+    });
+  }
+
+  function buildHtmlV337() {
+    return `
+      <section class="v337-workflow" id="v337CleanWorkflow">
+        <div class="v337-hero">
+          <div class="v337-kicker">404 Reservoir Not Found</div>
+          <h1>INTERSECT case workflow</h1>
+          <p>
+            Prepare the simulation outputs needed by the dashboard in a simple local workflow:
+            select the INTERSECT case folder, choose the main AFI, generate the modified AFI package,
+            run INTERSECT, then import the completed run folder.
+          </p>
+
+          <div class="v337-steps">
+            <div class="v337-step">
+              <b>1. Prepare run package</b>
+              <span>Select the original case folder and generate the modified AFI plus the required include files.</span>
+            </div>
+            <div class="v337-step">
+              <b>2. Run INTERSECT</b>
+              <span>Copy the generated files into the simulator case and run the modified AFI.</span>
+            </div>
+            <div class="v337-step">
+              <b>3. Import results</b>
+              <span>Select the completed run folder, import outputs, activate the case and open the dashboard.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="v337-card">
+          <div class="v337-card-head">
+            <div class="v337-number">1</div>
+            <div>
+              <h2>Generate modified AFI package</h2>
+              <p>
+                Select the folder containing the original .AFI and all linked include files.
+                If multiple AFI files are detected, choose the one that should be modified.
+              </p>
+            </div>
+          </div>
+
+          <div class="v337-field">
+            <label>INTERSECT case folder</label>
+            <div class="v337-grid">
+              <input id="v337CaseFolderPath" type="text" placeholder="Selected case folder will appear here" readonly />
+              <button class="btn" type="button" id="v337SelectCaseFolderBtn">Select Case Folder</button>
+            </div>
+            <div class="v337-muted">
+              Select the case folder, not a single AFI file. The tool scans the folder and lists available AFI files.
+            </div>
+          </div>
+
+          <div class="v337-field">
+            <label for="v337AfiSelect">Main AFI to modify</label>
+            <select id="v337AfiSelect">
+              <option value="">Select a case folder first</option>
+            </select>
+          </div>
+
+          <div class="v337-actions">
+            <button class="btn primary" type="button" id="v337GeneratePackageBtn">Generate Output Package</button>
+          </div>
+
+          <div id="v337GenerateResult" class="v337-result"></div>
+        </div>
+
+        <div class="v337-card">
+          <div class="v337-card-head">
+            <div class="v337-number">2</div>
+            <div>
+              <h2>Import completed run folder</h2>
+              <p>
+                After INTERSECT finishes, select the completed run folder. The tool extracts the required dashboard files,
+                including GRDECL maps, summary files, RelPerm curves, well connections, PRT, streamlines and grid dimensions.
+              </p>
+            </div>
+          </div>
+
+          <div class="v337-field">
+            <label>Completed run folder</label>
+            <div class="v337-grid">
+              <input id="v337CompletedRunFolderPath" type="text" placeholder="Selected completed run folder will appear here" readonly />
+              <button class="btn" type="button" id="v337SelectCompletedRunFolderBtn">Select Completed Run Folder</button>
+            </div>
+            <div class="v337-muted">
+              Select the folder, not a single file. It can be the raw completed run folder or an already extracted 404_RNF_EXTRACTED_GRDECL folder.
+            </div>
+          </div>
+
+          <div class="v337-actions">
+            <button class="btn primary" type="button" id="v337ImportResultsBtn">Import Results</button>
+            <button class="btn" type="button" id="v337ActivateCaseBtn" disabled>Activate Case</button>
+            <button class="btn" type="button" id="v337ResetCaseBtn">Reset Active Case</button>
+            <button class="btn" type="button" id="v337OpenDashboardBtn">Open Dashboard</button>
+          </div>
+
+          <div id="v337ImportResult" class="v337-result"></div>
+        </div>
+      </section>
+    `;
+  }
+
+  function installV337() {
+    hideLegacyV337();
+
+    if (byId("v337CleanWorkflow")) return;
+
+    const main = document.querySelector("main") || document.body;
+    main.insertAdjacentHTML("afterbegin", buildHtmlV337());
+
+    wireV337();
+  }
+
+  async function selectLocalFolderV337(title) {
+    return await postJsonV337("/api/local-folder-picker", { title });
+  }
+
+  async function selectCaseFolderV337() {
+    showV337("v337GenerateResult", "Opening local folder picker...");
+
+    const data = await selectLocalFolderV337("Select INTERSECT case folder");
+
+    if (data.cancelled) {
+      showV337("v337GenerateResult", "Folder selection cancelled.");
+      return;
+    }
+
+    caseFolderV337 = data.folder_path || "";
+
+    byId("v337CaseFolderPath").value = caseFolderV337;
+
+    showV337("v337GenerateResult", "Scanning AFI files...");
+
+    const scan = await postJsonV337("/api/local-case-folder/scan", {
+      folder_path: caseFolderV337
+    });
+
+    const select = byId("v337AfiSelect");
+    select.innerHTML = "";
+
+    if (!scan.afi_files || scan.afi_files.length === 0) {
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = "No AFI files found";
+      select.appendChild(opt);
+
+      showV337("v337GenerateResult", "No AFI files were found in the selected folder.", true);
+      return;
+    }
+
+    scan.afi_files.forEach((afi, idx) => {
+      const opt = document.createElement("option");
+      opt.value = afi.relative_path;
+      opt.textContent = afi.relative_path;
+      if (idx === 0) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    showV337(
+      "v337GenerateResult",
+      "Case folder selected:\n" +
+      caseFolderV337 +
+      "\n\nAFI files found:\n" +
+      scan.afi_files.map(a => "  - " + a.relative_path).join("\n")
+    );
+  }
+
+  async function generatePackageV337() {
+    const folderPath = byId("v337CaseFolderPath").value.trim();
+    const afiRel = byId("v337AfiSelect").value.trim();
+
+    console.log("[V337] Generate package clicked");
+    console.log("[V337] folder:", folderPath);
+    console.log("[V337] selected AFI:", afiRel);
+
+    if (!folderPath) {
+      showV337("v337GenerateResult", "Please select the INTERSECT case folder first.", true);
+      return;
+    }
+
+    if (!afiRel) {
+      showV337("v337GenerateResult", "Please choose the main AFI to modify.", true);
+      return;
+    }
+
+    showV337(
+      "v337GenerateResult",
+      "Generating INTERSECT output package...\nSelected AFI: " + afiRel
+    );
+
+    const data = await postJsonV337("/api/local-case-folder/generate-package", {
+      folder_path: folderPath,
+      afi_relative_path: afiRel
+    });
+
+    let msg = "";
+    msg += "INTERSECT output package generated successfully.\n\n";
+    msg += "Selected AFI:\n  " + (data.selected_afi || afiRel) + "\n\n";
+
+    if (data.generated_files && data.generated_files.length) {
+      msg += "Generated files:\n";
+      data.generated_files.forEach(f => {
+        msg += "  - " + f + "\n";
+      });
+    }
+
+    if (data.zip_file && data.download_base) {
+      msg += "\nZIP package:\n  " + data.download_base + "/" + data.zip_file;
+    }
+
+    showV337("v337GenerateResult", msg);
+
+    if (data.zip_file && data.download_base) {
+      const box = byId("v337GenerateResult");
+      const a = document.createElement("a");
+      a.className = "btn primary";
+      a.style.marginTop = "12px";
+      a.style.display = "inline-flex";
+      a.href = data.download_base + "/" + encodeURIComponent(data.zip_file);
+      a.textContent = "Download Output Package ZIP";
+      box.appendChild(document.createElement("br"));
+      box.appendChild(a);
+    }
+  }
+
+  async function selectCompletedRunFolderV337() {
+    showV337("v337ImportResult", "Opening local folder picker...");
+
+    const data = await selectLocalFolderV337("Select completed INTERSECT run folder");
+
+    if (data.cancelled) {
+      showV337("v337ImportResult", "Folder selection cancelled.");
+      return;
+    }
+
+    byId("v337CompletedRunFolderPath").value = data.folder_path || "";
+
+    showV337("v337ImportResult", "Selected completed run folder:\n" + (data.folder_path || ""));
+  }
+
+  function summarizeImportV337(data) {
+    const files = Array.isArray(data.files) ? data.files : [];
+    const names = files.map(f => f.name);
+
+    const important = [
+      "grid_dimensions.json", "CASE.SMSPEC", "CASE.UNSMRY",
+      "TRANX.GRDECL", "TRANY.GRDECL", "TRANZ.GRDECL",
+      "MULTX.GRDECL", "MULTY.GRDECL", "MULTZ.GRDECL", "PORO_MULT.GRDECL",
+      "PRESSURE_INIT.GRDECL", "PRESSURE_EOH.GRDECL",
+      "SWAT_INIT.GRDECL", "SWAT_EOH.GRDECL",
+      "SOIL_INIT.GRDECL", "SOIL_EOH.GRDECL",
+      "SGAS_INIT.GRDECL", "SGAS_EOH.GRDECL",
+      "RELPERM.ixf", "WELL_CONNECTIONS.ixf", "SIMULATION.PRT"
+    ];
+
+    const found = important.filter(x => names.includes(x));
+    const missing = Array.isArray(data.missing_core_files) ? data.missing_core_files : [];
+
+    return [
+      data.message || "Completed run imported.",
+      "",
+      "Import ID:",
+      data.import_id || "-",
+      "",
+      "Key files found:",
+      found.length ? found.map(x => "  - " + x).join("\n") : "  - none detected",
+      "",
+      "Streamlines:",
+      data.has_streamlines ? "  - INIT and EOH streamlines detected" : "  - streamlines missing or incomplete",
+      "",
+      "Missing core files:",
+      missing.length ? missing.map(x => "  - " + x).join("\n") : "  - none"
+    ].join("\n");
+  }
+
+  async function importResultsV337() {
+    const folderPath = byId("v337CompletedRunFolderPath").value.trim();
+
+    if (!folderPath) {
+      showV337("v337ImportResult", "Please select the completed run folder first.", true);
+      return;
+    }
+
+    showV337("v337ImportResult", "Importing completed run folder...\nThis may take a few minutes for large INIT/UNRST files.");
+
+    const data = await postJsonV337("/api/completed-run/import", {
+      folder_path: folderPath
+    });
+
+    completedRunImportIdV337 = data.import_id;
+
+    const activateBtn = byId("v337ActivateCaseBtn");
+    if (activateBtn) activateBtn.disabled = !completedRunImportIdV337;
+
+    showV337("v337ImportResult", summarizeImportV337(data), !data.ok);
+  }
+
+  async function activateCaseV337() {
+    if (!completedRunImportIdV337) {
+      showV337("v337ImportResult", "No completed run import is selected. Import results first.", true);
+      return;
+    }
+
+    const data = await postJsonV337("/api/completed-run/activate", {
+      import_id: completedRunImportIdV337
+    });
+
+    showV337("v337ImportResult", data.message || "Case activated.");
+  }
+
+  async function resetCaseV337() {
+    const data = await postJsonV337("/api/completed-run/reset-active", {});
+    showV337("v337ImportResult", data.message || "Active case reset.");
+  }
+
+  function wireV337() {
+    byId("v337SelectCaseFolderBtn").addEventListener("click", () => {
+      selectCaseFolderV337().catch(err => showV337("v337GenerateResult", err.message, true));
+    });
+
+    byId("v337GeneratePackageBtn").addEventListener("click", () => {
+      generatePackageV337().catch(err => showV337("v337GenerateResult", err.message, true));
+    });
+
+    byId("v337SelectCompletedRunFolderBtn").addEventListener("click", () => {
+      selectCompletedRunFolderV337().catch(err => showV337("v337ImportResult", err.message, true));
+    });
+
+    byId("v337ImportResultsBtn").addEventListener("click", () => {
+      importResultsV337().catch(err => showV337("v337ImportResult", err.message, true));
+    });
+
+    byId("v337ActivateCaseBtn").addEventListener("click", () => {
+      activateCaseV337().catch(err => showV337("v337ImportResult", err.message, true));
+    });
+
+    byId("v337ResetCaseBtn").addEventListener("click", () => {
+      resetCaseV337().catch(err => showV337("v337ImportResult", err.message, true));
+    });
+
+    byId("v337OpenDashboardBtn").addEventListener("click", () => {
+      window.location.href = "/dashboard";
+    });
+  }
+
+  function startV337() {
+    installV337();
+
+    const obs = new MutationObserver(() => {
+      hideLegacyV337();
+    });
+
+    obs.observe(document.documentElement, {
+      childList: true,
+      subtree: true
+    });
+
+    setTimeout(hideLegacyV337, 500);
+    setTimeout(hideLegacyV337, 1500);
+    setTimeout(hideLegacyV337, 3000);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startV337);
+  } else {
+    startV337();
+  }
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+<div id="activateCaseLoadingOverlay" class="activate-case-loading-overlay" aria-live="polite" aria-hidden="true">
+  <div class="activate-case-loading-card">
+    <div class="activate-case-loading-spinner"></div>
+    <h3 class="activate-case-loading-title">Activating case and rebuilding diagnostics...</h3>
+    <p class="activate-case-loading-text">
+      The model files are being activated and the diagnostic KPI pipeline is running.
+      This may take a few minutes. Please keep this page open.
+    </p>
+    <div class="activate-case-loading-subtext">Preparing dashboard evidence and well diagnostics</div>
+  </div>
+</div>
+
+
+
+<script id="activate-case-loading-script">
+(function () {
+  var activateLoadingSafetyTimer = null;
+
+  function getOverlay() {
+    return document.getElementById("activateCaseLoadingOverlay");
+  }
+
+  function setActivateButtonsDisabled(disabled) {
+    document.querySelectorAll("button, input[type='button'], input[type='submit']").forEach(function (btn) {
+      var txt = (btn.innerText || btn.value || "").toLowerCase();
+
+      if (txt.includes("activate") || btn.dataset.activateLoadingManaged === "true") {
+        if (disabled) {
+          btn.dataset.activateLoadingManaged = "true";
+          btn.disabled = true;
+
+          if (!btn.dataset.originalText) {
+            btn.dataset.originalText = btn.innerText || btn.value || "";
+          }
+
+          if (btn.innerText) {
+            btn.innerText = "Activating...";
+          } else if (btn.value) {
+            btn.value = "Activating...";
+          }
+        } else {
+          if (btn.dataset.originalText) {
+            if (btn.innerText) {
+              btn.innerText = btn.dataset.originalText;
+            } else if (btn.value) {
+              btn.value = btn.dataset.originalText;
+            }
+          }
+
+          btn.disabled = false;
+          delete btn.dataset.originalText;
+          delete btn.dataset.activateLoadingManaged;
+        }
+      }
+    });
+  }
+
+  function showActivateCaseLoading() {
+    var overlay = getOverlay();
+    if (!overlay) return;
+
+    overlay.classList.add("is-visible");
+    overlay.setAttribute("aria-hidden", "false");
+    setActivateButtonsDisabled(true);
+
+    if (activateLoadingSafetyTimer) {
+      clearTimeout(activateLoadingSafetyTimer);
+    }
+
+    // Safety fallback: never keep the overlay forever.
+    activateLoadingSafetyTimer = setTimeout(function () {
+      hideActivateCaseLoading();
+    }, 5 * 60 * 1000);
+  }
+
+  function hideActivateCaseLoading() {
+    var overlay = getOverlay();
+
+    if (activateLoadingSafetyTimer) {
+      clearTimeout(activateLoadingSafetyTimer);
+      activateLoadingSafetyTimer = null;
+    }
+
+    if (overlay) {
+      overlay.classList.remove("is-visible");
+      overlay.setAttribute("aria-hidden", "true");
+    }
+
+    setActivateButtonsDisabled(false);
+  }
+
+  function isActivateRequest(input) {
+    var url = "";
+
+    if (typeof input === "string") {
+      url = input;
+    } else if (input && input.url) {
+      url = input.url;
+    }
+
+    return (
+      url.includes("/api/completed-run/activate") ||
+      url.includes("/api/activate-uploaded-case/")
+    );
+  }
+
+  document.addEventListener("click", function (event) {
+    var el = event.target;
+    if (!el) return;
+
+    var btn = el.closest ? el.closest("button, a, input[type='button'], input[type='submit']") : null;
+    if (!btn) return;
+
+    var txt = (btn.innerText || btn.value || btn.getAttribute("aria-label") || "").toLowerCase();
+    var href = (btn.getAttribute("href") || "").toLowerCase();
+    var dataAction = (btn.getAttribute("data-action") || "").toLowerCase();
+
+    if (
+      txt.includes("activate") ||
+      href.includes("activate") ||
+      dataAction.includes("activate")
+    ) {
+      showActivateCaseLoading();
+    }
+  }, true);
+
+  if (!window.__activateCaseFetchWrapped) {
+    window.__activateCaseFetchWrapped = true;
+    var originalFetch = window.fetch;
+
+    window.fetch = function (input, init) {
+      var activateRequest = isActivateRequest(input);
+
+      if (activateRequest) {
+        showActivateCaseLoading();
+      }
+
+      return originalFetch(input, init)
+        .then(function (response) {
+          if (activateRequest) {
+            // The activation + diagnostics pipeline is complete when the response returns.
+            // Hide overlay shortly after success so the UI can update or navigate.
+            setTimeout(function () {
+              hideActivateCaseLoading();
+            }, response.ok ? 500 : 0);
+          }
+
+          return response;
+        })
+        .catch(function (error) {
+          if (activateRequest) {
+            hideActivateCaseLoading();
+          }
+          throw error;
+        });
+    };
+  }
+
+  // Extra safety: if the user returns to the page from browser cache, do not show stale overlay.
+  window.addEventListener("pageshow", function () {
+    hideActivateCaseLoading();
+  });
+
+  window.showActivateCaseLoading = showActivateCaseLoading;
+  window.hideActivateCaseLoading = hideActivateCaseLoading;
+})();
+</script>
+
+
+</body>
+</html>
+

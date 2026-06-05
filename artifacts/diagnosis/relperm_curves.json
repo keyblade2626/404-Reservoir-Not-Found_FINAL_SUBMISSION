@@ -1,0 +1,3800 @@
+{
+  "models": {
+    "Model_01": {
+      "tables": {
+        "Krg_v_Sg": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.15313979025,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.2562795805,
+              "relperm": 0.225
+            },
+            {
+              "saturation": 0.35941937075,
+              "relperm": 0.3375
+            },
+            {
+              "saturation": 0.462559161,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.56569895125,
+              "relperm": 0.5625
+            },
+            {
+              "saturation": 0.6688387415,
+              "relperm": 0.675
+            },
+            {
+              "saturation": 0.77197853175,
+              "relperm": 0.7875
+            },
+            {
+              "saturation": 0.875118322,
+              "relperm": 0.9
+            },
+            {
+              "saturation": 0.975118322,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krog_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.20313979025,
+              "relperm": 0.00163711203758
+            },
+            {
+              "saturation": 0.3062795805,
+              "relperm": 0.0130968963006
+            },
+            {
+              "saturation": 0.40941937075,
+              "relperm": 0.0442020250145
+            },
+            {
+              "saturation": 0.512559161,
+              "relperm": 0.104775170405
+            },
+            {
+              "saturation": 0.61569895125,
+              "relperm": 0.204639004697
+            },
+            {
+              "saturation": 0.7188387415,
+              "relperm": 0.353616200116
+            },
+            {
+              "saturation": 0.82197853175,
+              "relperm": 0.561529428888
+            },
+            {
+              "saturation": 0.925118322,
+              "relperm": 0.838201363239
+            },
+            {
+              "saturation": 0.975118322,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krw_v_Sw": {
+          "rows": [
+            {
+              "saturation": 0.024881678,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.026125762,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.027188722,
+              "relperm": 0.00013735565132
+            },
+            {
+              "saturation": 0.030504118,
+              "relperm": 0.000565770998052
+            },
+            {
+              "saturation": 0.035267796,
+              "relperm": 0.00118133329049
+            },
+            {
+              "saturation": 0.042091805,
+              "relperm": 0.00206313147744
+            },
+            {
+              "saturation": 0.05185651,
+              "relperm": 0.00332492629119
+            },
+            {
+              "saturation": 0.065754961,
+              "relperm": 0.00512088360796
+            },
+            {
+              "saturation": 0.085443203,
+              "relperm": 0.00766499750054
+            },
+            {
+              "saturation": 0.113089636,
+              "relperm": 0.0112374685356
+            },
+            {
+              "saturation": 0.12286004175,
+              "relperm": 0.0125
+            },
+            {
+              "saturation": 0.151557932,
+              "relperm": 0.0236250209042
+            },
+            {
+              "saturation": 0.203985435,
+              "relperm": 0.0439490608163
+            },
+            {
+              "saturation": 0.2195943215,
+              "relperm": 0.05
+            },
+            {
+              "saturation": 0.27411173,
+              "relperm": 0.0852236874049
+            },
+            {
+              "saturation": 0.31632860125,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.364298901,
+              "relperm": 0.155891042338
+            },
+            {
+              "saturation": 0.413062881,
+              "relperm": 0.2
+            },
+            {
+              "saturation": 0.475048939,
+              "relperm": 0.272088524802
+            },
+            {
+              "saturation": 0.50979716075,
+              "relperm": 0.3125
+            },
+            {
+              "saturation": 0.601698797,
+              "relperm": 0.443130785871
+            },
+            {
+              "saturation": 0.6065314405,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.70326572025,
+              "relperm": 0.6125
+            },
+            {
+              "saturation": 0.732386139,
+              "relperm": 0.668944091275
+            },
+            {
+              "saturation": 0.8,
+              "relperm": 0.8
+            },
+            {
+              "saturation": 0.849178201,
+              "relperm": 0.849178201
+            },
+            {
+              "saturation": 0.934093539,
+              "relperm": 0.934093539
+            },
+            {
+              "saturation": 0.979887735,
+              "relperm": 0.979887735
+            },
+            {
+              "saturation": 0.996363774,
+              "relperm": 0.996363774
+            },
+            {
+              "saturation": 0.999696534,
+              "relperm": 0.999696534
+            },
+            {
+              "saturation": 0.999991419,
+              "relperm": 0.999991419
+            },
+            {
+              "saturation": 1.0,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krow_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 8.58100000001e-06,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.000303466,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.003636226,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.020112265,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.065906461,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.150821799,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.2,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.267613861,
+              "relperm": 0.046723078898
+            },
+            {
+              "saturation": 0.29673427975,
+              "relperm": 0.0668461069677
+            },
+            {
+              "saturation": 0.3934685595,
+              "relperm": 0.164594422294
+            },
+            {
+              "saturation": 0.398301203,
+              "relperm": 0.17030120989
+            },
+            {
+              "saturation": 0.49020283925,
+              "relperm": 0.278826309617
+            },
+            {
+              "saturation": 0.524951061,
+              "relperm": 0.324249776657
+            },
+            {
+              "saturation": 0.586937119,
+              "relperm": 0.40527900695
+            },
+            {
+              "saturation": 0.635701099,
+              "relperm": 0.474035502776
+            },
+            {
+              "saturation": 0.68367139875,
+              "relperm": 0.541672921102
+            },
+            {
+              "saturation": 0.72588827,
+              "relperm": 0.6049007167
+            },
+            {
+              "saturation": 0.7804056785,
+              "relperm": 0.686550906757
+            },
+            {
+              "saturation": 0.796014565,
+              "relperm": 0.711131645148
+            },
+            {
+              "saturation": 0.848442068,
+              "relperm": 0.793694019842
+            },
+            {
+              "saturation": 0.87713995825,
+              "relperm": 0.838887207237
+            },
+            {
+              "saturation": 0.886910364,
+              "relperm": 0.854949310622
+            },
+            {
+              "saturation": 0.914556797,
+              "relperm": 0.900398791068
+            },
+            {
+              "saturation": 0.934245039,
+              "relperm": 0.932765366886
+            },
+            {
+              "saturation": 0.94814349,
+              "relperm": 0.95561378921
+            },
+            {
+              "saturation": 0.957908195,
+              "relperm": 0.971666520822
+            },
+            {
+              "saturation": 0.964732204,
+              "relperm": 0.982884881744
+            },
+            {
+              "saturation": 0.969495882,
+              "relperm": 0.99071615206
+            },
+            {
+              "saturation": 0.972811278,
+              "relperm": 0.996166512534
+            },
+            {
+              "saturation": 0.973874238,
+              "relperm": 0.997913970506
+            },
+            {
+              "saturation": 0.975118322,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        }
+      },
+      "summary": {
+        "table_count": 4,
+        "tables": [
+          "Krg_v_Sg",
+          "Krog_v_So",
+          "Krow_v_So",
+          "Krw_v_Sw"
+        ]
+      }
+    },
+    "Model_02": {
+      "tables": {
+        "Krg_v_Sg": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.14617675225,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.2423535045,
+              "relperm": 0.225
+            },
+            {
+              "saturation": 0.33853025675,
+              "relperm": 0.3375
+            },
+            {
+              "saturation": 0.434707009,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.53088376125,
+              "relperm": 0.5625
+            },
+            {
+              "saturation": 0.6270605135,
+              "relperm": 0.675
+            },
+            {
+              "saturation": 0.72323726575,
+              "relperm": 0.7875
+            },
+            {
+              "saturation": 0.819414018,
+              "relperm": 0.9
+            },
+            {
+              "saturation": 0.919414018,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krog_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.19617675225,
+              "relperm": 0.00161696326891
+            },
+            {
+              "saturation": 0.2923535045,
+              "relperm": 0.0129357061512
+            },
+            {
+              "saturation": 0.38853025675,
+              "relperm": 0.0436580082604
+            },
+            {
+              "saturation": 0.484707009,
+              "relperm": 0.10348564921
+            },
+            {
+              "saturation": 0.58088376125,
+              "relperm": 0.202120408613
+            },
+            {
+              "saturation": 0.6770605135,
+              "relperm": 0.349264066084
+            },
+            {
+              "saturation": 0.77323726575,
+              "relperm": 0.554618401235
+            },
+            {
+              "saturation": 0.869414018,
+              "relperm": 0.82788519368
+            },
+            {
+              "saturation": 0.919414018,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krw_v_Sw": {
+          "rows": [
+            {
+              "saturation": 0.080585982,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.080787739,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.081090405,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.081544938,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.082226671,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.083250593,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.084615281,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.08478569,
+              "relperm": 2.38206094531e-05
+            },
+            {
+              "saturation": 0.087087687,
+              "relperm": 0.000345605089728
+            },
+            {
+              "saturation": 0.090533933,
+              "relperm": 0.000827338331782
+            },
+            {
+              "saturation": 0.095698535,
+              "relperm": 0.00154927184012
+            },
+            {
+              "saturation": 0.103389061,
+              "relperm": 0.00262429144786
+            },
+            {
+              "saturation": 0.114862053,
+              "relperm": 0.00422804278547
+            },
+            {
+              "saturation": 0.131806248,
+              "relperm": 0.00659658582951
+            },
+            {
+              "saturation": 0.156712435,
+              "relperm": 0.010078095336
+            },
+            {
+              "saturation": 0.174038370875,
+              "relperm": 0.0125
+            },
+            {
+              "saturation": 0.192880792,
+              "relperm": 0.0204016593273
+            },
+            {
+              "saturation": 0.244401657,
+              "relperm": 0.0420071802303
+            },
+            {
+              "saturation": 0.26346146075,
+              "relperm": 0.05
+            },
+            {
+              "saturation": 0.315917766,
+              "relperm": 0.0866630037355
+            },
+            {
+              "saturation": 0.352884550625,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.411302213,
+              "relperm": 0.169661360281
+            },
+            {
+              "saturation": 0.4423076405,
+              "relperm": 0.2
+            },
+            {
+              "saturation": 0.53009248,
+              "relperm": 0.310438975633
+            },
+            {
+              "saturation": 0.531730730375,
+              "relperm": 0.3125
+            },
+            {
+              "saturation": 0.62115382025,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.665626921,
+              "relperm": 0.53081669826
+            },
+            {
+              "saturation": 0.710576910125,
+              "relperm": 0.6125
+            },
+            {
+              "saturation": 0.8,
+              "relperm": 0.8
+            },
+            {
+              "saturation": 0.800872272,
+              "relperm": 0.800872272
+            },
+            {
+              "saturation": 0.908870707,
+              "relperm": 0.908870707
+            },
+            {
+              "saturation": 0.972060342,
+              "relperm": 0.972060342
+            },
+            {
+              "saturation": 0.995309845,
+              "relperm": 0.995309845
+            },
+            {
+              "saturation": 0.999695526,
+              "relperm": 0.999695526
+            },
+            {
+              "saturation": 0.99999504,
+              "relperm": 0.99999504
+            },
+            {
+              "saturation": 1.0,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krow_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 4.96000000005e-06,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.000304474,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.004690155,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.027939658,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.091129293,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.199127728,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.2,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.289423089875,
+              "relperm": 0.0664985245031
+            },
+            {
+              "saturation": 0.334373079,
+              "relperm": 0.115377837082
+            },
+            {
+              "saturation": 0.37884617975,
+              "relperm": 0.163738573875
+            },
+            {
+              "saturation": 0.468269269625,
+              "relperm": 0.277376484933
+            },
+            {
+              "saturation": 0.46990752,
+              "relperm": 0.279681079804
+            },
+            {
+              "saturation": 0.5576923595,
+              "relperm": 0.403171660951
+            },
+            {
+              "saturation": 0.588697787,
+              "relperm": 0.45021725251
+            },
+            {
+              "saturation": 0.647115449375,
+              "relperm": 0.538856362031
+            },
+            {
+              "saturation": 0.684082234,
+              "relperm": 0.598436333874
+            },
+            {
+              "saturation": 0.73653853925,
+              "relperm": 0.682981019637
+            },
+            {
+              "saturation": 0.755598343,
+              "relperm": 0.715281430486
+            },
+            {
+              "saturation": 0.807119208,
+              "relperm": 0.802593195527
+            },
+            {
+              "saturation": 0.825961629125,
+              "relperm": 0.834525210761
+            },
+            {
+              "saturation": 0.843287565,
+              "relperm": 0.865176810078
+            },
+            {
+              "saturation": 0.868193752,
+              "relperm": 0.909238756858
+            },
+            {
+              "saturation": 0.885137947,
+              "relperm": 0.939215012088
+            },
+            {
+              "saturation": 0.896610939,
+              "relperm": 0.959512071727
+            },
+            {
+              "saturation": 0.904301465,
+              "relperm": 0.973117508292
+            },
+            {
+              "saturation": 0.909466067,
+              "relperm": 0.982254290991
+            },
+            {
+              "saturation": 0.912912313,
+              "relperm": 0.988351101709
+            },
+            {
+              "saturation": 0.91521431,
+              "relperm": 0.992423602622
+            },
+            {
+              "saturation": 0.915384719,
+              "relperm": 0.992725075998
+            },
+            {
+              "saturation": 0.916749407,
+              "relperm": 0.995189028533
+            },
+            {
+              "saturation": 0.917773329,
+              "relperm": 0.99703772597
+            },
+            {
+              "saturation": 0.918455062,
+              "relperm": 0.998268599074
+            },
+            {
+              "saturation": 0.918909595,
+              "relperm": 0.999089261187
+            },
+            {
+              "saturation": 0.919212261,
+              "relperm": 0.999635726502
+            },
+            {
+              "saturation": 0.919414018,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        }
+      },
+      "summary": {
+        "table_count": 4,
+        "tables": [
+          "Krg_v_Sg",
+          "Krog_v_So",
+          "Krow_v_So",
+          "Krw_v_Sw"
+        ]
+      }
+    },
+    "Model_03": {
+      "tables": {
+        "Krg_v_Sg": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1472903255,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.244580651,
+              "relperm": 0.225
+            },
+            {
+              "saturation": 0.3418709765,
+              "relperm": 0.3375
+            },
+            {
+              "saturation": 0.439161302,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.5364516275,
+              "relperm": 0.5625
+            },
+            {
+              "saturation": 0.633741953,
+              "relperm": 0.675
+            },
+            {
+              "saturation": 0.7310322785,
+              "relperm": 0.7875
+            },
+            {
+              "saturation": 0.828322604,
+              "relperm": 0.9
+            },
+            {
+              "saturation": 0.928322604,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krog_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1972903255,
+              "relperm": 0.00162035595813
+            },
+            {
+              "saturation": 0.294580651,
+              "relperm": 0.012962847665
+            },
+            {
+              "saturation": 0.3918709765,
+              "relperm": 0.0437496108694
+            },
+            {
+              "saturation": 0.489161302,
+              "relperm": 0.10370278132
+            },
+            {
+              "saturation": 0.5864516275,
+              "relperm": 0.202544494766
+            },
+            {
+              "saturation": 0.683741953,
+              "relperm": 0.349996886955
+            },
+            {
+              "saturation": 0.7810322785,
+              "relperm": 0.555782093637
+            },
+            {
+              "saturation": 0.878322604,
+              "relperm": 0.829622250561
+            },
+            {
+              "saturation": 0.928322604,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krw_v_Sw": {
+          "rows": [
+            {
+              "saturation": 0.071677396,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.07325845,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.075198687,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.075261265,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.077580944,
+              "relperm": 0.000320071066713
+            },
+            {
+              "saturation": 0.080500596,
+              "relperm": 0.00072292686274
+            },
+            {
+              "saturation": 0.08408079,
+              "relperm": 0.00121692474461
+            },
+            {
+              "saturation": 0.088462742,
+              "relperm": 0.00182154980305
+            },
+            {
+              "saturation": 0.093829373,
+              "relperm": 0.00256204161628
+            },
+            {
+              "saturation": 0.100384775,
+              "relperm": 0.00346656095317
+            },
+            {
+              "saturation": 0.108387511,
+              "relperm": 0.00457078453244
+            },
+            {
+              "saturation": 0.118132734,
+              "relperm": 0.00591543778876
+            },
+            {
+              "saturation": 0.130001288,
+              "relperm": 0.00755306986593
+            },
+            {
+              "saturation": 0.144358159,
+              "relperm": 0.00953404180887
+            },
+            {
+              "saturation": 0.161756059,
+              "relperm": 0.0119346172383
+            },
+            {
+              "saturation": 0.165853606875,
+              "relperm": 0.0125
+            },
+            {
+              "saturation": 0.182649074,
+              "relperm": 0.0194523538541
+            },
+            {
+              "saturation": 0.207691429,
+              "relperm": 0.0298184432284
+            },
+            {
+              "saturation": 0.237507184,
+              "relperm": 0.0421604446532
+            },
+            {
+              "saturation": 0.25644594875,
+              "relperm": 0.05
+            },
+            {
+              "saturation": 0.272687621,
+              "relperm": 0.0612051912404
+            },
+            {
+              "saturation": 0.313856382,
+              "relperm": 0.0896076754818
+            },
+            {
+              "saturation": 0.347038290625,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.361512796,
+              "relperm": 0.126480422562
+            },
+            {
+              "saturation": 0.415530379,
+              "relperm": 0.178654131892
+            },
+            {
+              "saturation": 0.4376306325,
+              "relperm": 0.2
+            },
+            {
+              "saturation": 0.475996849,
+              "relperm": 0.247644196705
+            },
+            {
+              "saturation": 0.528222974375,
+              "relperm": 0.3125
+            },
+            {
+              "saturation": 0.54260693,
+              "relperm": 0.3343318001
+            },
+            {
+              "saturation": 0.613146339,
+              "relperm": 0.441395692442
+            },
+            {
+              "saturation": 0.61881531625,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.685478189,
+              "relperm": 0.569576518254
+            },
+            {
+              "saturation": 0.709407658125,
+              "relperm": 0.6125
+            },
+            {
+              "saturation": 0.756355165,
+              "relperm": 0.709667788765
+            },
+            {
+              "saturation": 0.8,
+              "relperm": 0.8
+            },
+            {
+              "saturation": 0.822973204,
+              "relperm": 0.822973204
+            },
+            {
+              "saturation": 0.880442668,
+              "relperm": 0.880442668
+            },
+            {
+              "saturation": 0.926983897,
+              "relperm": 0.926983897
+            },
+            {
+              "saturation": 0.960312579,
+              "relperm": 0.960312579
+            },
+            {
+              "saturation": 0.981572523,
+              "relperm": 0.981572523
+            },
+            {
+              "saturation": 0.993402974,
+              "relperm": 0.993402974
+            },
+            {
+              "saturation": 0.997872506,
+              "relperm": 0.997872506
+            },
+            {
+              "saturation": 0.999512533,
+              "relperm": 0.999512533
+            },
+            {
+              "saturation": 0.999929855,
+              "relperm": 0.999929855
+            },
+            {
+              "saturation": 0.999993278,
+              "relperm": 0.999993278
+            },
+            {
+              "saturation": 1.0,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krow_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 6.72199999996e-06,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 7.0145e-05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.000487467,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.002127494,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.006597026,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.018427477,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.039687421,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.073016103,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.119557332,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.177026796,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.2,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.243644835,
+              "relperm": 0.0320656004307
+            },
+            {
+              "saturation": 0.290592341875,
+              "relperm": 0.0665576542252
+            },
+            {
+              "saturation": 0.314521811,
+              "relperm": 0.0922659179272
+            },
+            {
+              "saturation": 0.38118468375,
+              "relperm": 0.16388416833
+            },
+            {
+              "saturation": 0.386853661,
+              "relperm": 0.171001586247
+            },
+            {
+              "saturation": 0.45739307,
+              "relperm": 0.259564025537
+            },
+            {
+              "saturation": 0.471777025625,
+              "relperm": 0.277623124909
+            },
+            {
+              "saturation": 0.524003151,
+              "relperm": 0.350208028709
+            },
+            {
+              "saturation": 0.5623693675,
+              "relperm": 0.403530156549
+            },
+            {
+              "saturation": 0.584469621,
+              "relperm": 0.436660249086
+            },
+            {
+              "saturation": 0.638487204,
+              "relperm": 0.517637036227
+            },
+            {
+              "saturation": 0.652961709375,
+              "relperm": 0.539335506903
+            },
+            {
+              "saturation": 0.686143618,
+              "relperm": 0.592172021713
+            },
+            {
+              "saturation": 0.727312379,
+              "relperm": 0.657726233041
+            },
+            {
+              "saturation": 0.74355405125,
+              "relperm": 0.683588318495
+            },
+            {
+              "saturation": 0.762492816,
+              "relperm": 0.71529753088
+            },
+            {
+              "saturation": 0.792308571,
+              "relperm": 0.76521811019
+            },
+            {
+              "saturation": 0.817350926,
+              "relperm": 0.80714657616
+            },
+            {
+              "saturation": 0.834146393125,
+              "relperm": 0.835267260968
+            },
+            {
+              "saturation": 0.838243941,
+              "relperm": 0.842429101673
+            },
+            {
+              "saturation": 0.855641841,
+              "relperm": 0.872837773447
+            },
+            {
+              "saturation": 0.869998712,
+              "relperm": 0.897931225986
+            },
+            {
+              "saturation": 0.881867266,
+              "relperm": 0.91867550909
+            },
+            {
+              "saturation": 0.891612489,
+              "relperm": 0.935708558341
+            },
+            {
+              "saturation": 0.899615225,
+              "relperm": 0.949696026502
+            },
+            {
+              "saturation": 0.906170627,
+              "relperm": 0.96115379254
+            },
+            {
+              "saturation": 0.911537258,
+              "relperm": 0.970533782114
+            },
+            {
+              "saturation": 0.91591921,
+              "relperm": 0.97819271452
+            },
+            {
+              "saturation": 0.919499404,
+              "relperm": 0.984450305622
+            },
+            {
+              "saturation": 0.922419056,
+              "relperm": 0.989553377795
+            },
+            {
+              "saturation": 0.924738735,
+              "relperm": 0.993607795703
+            },
+            {
+              "saturation": 0.924801313,
+              "relperm": 0.993719410096
+            },
+            {
+              "saturation": 0.92674155,
+              "relperm": 0.997180025226
+            },
+            {
+              "saturation": 0.928322604,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        }
+      },
+      "summary": {
+        "table_count": 4,
+        "tables": [
+          "Krg_v_Sg",
+          "Krog_v_So",
+          "Krow_v_So",
+          "Krw_v_Sw"
+        ]
+      }
+    },
+    "Model_04": {
+      "tables": {
+        "Krg_v_Sg": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.141300911625,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.23260182325,
+              "relperm": 0.225
+            },
+            {
+              "saturation": 0.323902734875,
+              "relperm": 0.3375
+            },
+            {
+              "saturation": 0.4152036465,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.506504558125,
+              "relperm": 0.5625
+            },
+            {
+              "saturation": 0.59780546975,
+              "relperm": 0.675
+            },
+            {
+              "saturation": 0.689106381375,
+              "relperm": 0.7875
+            },
+            {
+              "saturation": 0.780407293,
+              "relperm": 0.9
+            },
+            {
+              "saturation": 0.880407293,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krog_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.191300911625,
+              "relperm": 0.00160125826325
+            },
+            {
+              "saturation": 0.28260182325,
+              "relperm": 0.012810066106
+            },
+            {
+              "saturation": 0.373902734875,
+              "relperm": 0.0432339731078
+            },
+            {
+              "saturation": 0.4652036465,
+              "relperm": 0.102480528848
+            },
+            {
+              "saturation": 0.556504558125,
+              "relperm": 0.200157282906
+            },
+            {
+              "saturation": 0.64780546975,
+              "relperm": 0.345871784862
+            },
+            {
+              "saturation": 0.739106381375,
+              "relperm": 0.549231584295
+            },
+            {
+              "saturation": 0.830407293,
+              "relperm": 0.819844230785
+            },
+            {
+              "saturation": 0.880407293,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krw_v_Sw": {
+          "rows": [
+            {
+              "saturation": 0.119592707,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.121014452,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.122647775,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.124526609,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.125572343,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.126685829,
+              "relperm": 0.000165100880494
+            },
+            {
+              "saturation": 0.129171623,
+              "relperm": 0.000533679181546
+            },
+            {
+              "saturation": 0.132029828,
+              "relperm": 0.000957476303496
+            },
+            {
+              "saturation": 0.135319851,
+              "relperm": 0.00144530075225
+            },
+            {
+              "saturation": 0.139105277,
+              "relperm": 0.00200658052195
+            },
+            {
+              "saturation": 0.143472034,
+              "relperm": 0.00265405648986
+            },
+            {
+              "saturation": 0.148490879,
+              "relperm": 0.00339822007033
+            },
+            {
+              "saturation": 0.154291173,
+              "relperm": 0.00425825211969
+            },
+            {
+              "saturation": 0.160964784,
+              "relperm": 0.00524777426202
+            },
+            {
+              "saturation": 0.168672038,
+              "relperm": 0.00639055865409
+            },
+            {
+              "saturation": 0.177574812,
+              "relperm": 0.00771060742546
+            },
+            {
+              "saturation": 0.187853062,
+              "relperm": 0.00923460334901
+            },
+            {
+              "saturation": 0.199744684,
+              "relperm": 0.0109978201858
+            },
+            {
+              "saturation": 0.209875800125,
+              "relperm": 0.0125
+            },
+            {
+              "saturation": 0.213529421,
+              "relperm": 0.0141252095405
+            },
+            {
+              "saturation": 0.22942287,
+              "relperm": 0.0211949592023
+            },
+            {
+              "saturation": 0.247870184,
+              "relperm": 0.0294007232195
+            },
+            {
+              "saturation": 0.269451708,
+              "relperm": 0.0390006515925
+            },
+            {
+              "saturation": 0.29417925725,
+              "relperm": 0.05
+            },
+            {
+              "saturation": 0.294447514,
+              "relperm": 0.0501988773349
+            },
+            {
+              "saturation": 0.323501113,
+              "relperm": 0.0717383254124
+            },
+            {
+              "saturation": 0.357217346,
+              "relperm": 0.0967345074714
+            },
+            {
+              "saturation": 0.378482714375,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.396870056,
+              "relperm": 0.131584536353
+            },
+            {
+              "saturation": 0.442626508,
+              "relperm": 0.179075940461
+            },
+            {
+              "saturation": 0.4627861715,
+              "relperm": 0.2
+            },
+            {
+              "saturation": 0.496453595,
+              "relperm": 0.244927993144
+            },
+            {
+              "saturation": 0.547089628625,
+              "relperm": 0.3125
+            },
+            {
+              "saturation": 0.558420854,
+              "relperm": 0.330981371253
+            },
+            {
+              "saturation": 0.630273148,
+              "relperm": 0.448173367429
+            },
+            {
+              "saturation": 0.63139308575,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.715696542875,
+              "relperm": 0.6125
+            },
+            {
+              "saturation": 0.716771624,
+              "relperm": 0.614891096615
+            },
+            {
+              "saturation": 0.799420006,
+              "relperm": 0.798710030659
+            },
+            {
+              "saturation": 0.8,
+              "relperm": 0.8
+            },
+            {
+              "saturation": 0.886077201,
+              "relperm": 0.886077201
+            },
+            {
+              "saturation": 0.96113698,
+              "relperm": 0.96113698
+            },
+            {
+              "saturation": 0.996449716,
+              "relperm": 0.996449716
+            },
+            {
+              "saturation": 1.0,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krow_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.003550284,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.03886302,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.113922799,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.2,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.200579994,
+              "relperm": 0.0004555934464
+            },
+            {
+              "saturation": 0.283228376,
+              "relperm": 0.0653770602111
+            },
+            {
+              "saturation": 0.284303457125,
+              "relperm": 0.0662215515591
+            },
+            {
+              "saturation": 0.36860691425,
+              "relperm": 0.16305658649
+            },
+            {
+              "saturation": 0.369726852,
+              "relperm": 0.164559932966
+            },
+            {
+              "saturation": 0.441579146,
+              "relperm": 0.261010733868
+            },
+            {
+              "saturation": 0.452910371375,
+              "relperm": 0.276221184388
+            },
+            {
+              "saturation": 0.503546405,
+              "relperm": 0.351464101594
+            },
+            {
+              "saturation": 0.5372138285,
+              "relperm": 0.401492411033
+            },
+            {
+              "saturation": 0.557373492,
+              "relperm": 0.43380383659
+            },
+            {
+              "saturation": 0.603129944,
+              "relperm": 0.50714118136
+            },
+            {
+              "saturation": 0.621517285625,
+              "relperm": 0.536611971887
+            },
+            {
+              "saturation": 0.642782654,
+              "relperm": 0.572815688532
+            },
+            {
+              "saturation": 0.676498887,
+              "relperm": 0.630216666702
+            },
+            {
+              "saturation": 0.705552486,
+              "relperm": 0.679679636125
+            },
+            {
+              "saturation": 0.70582074275,
+              "relperm": 0.680136336013
+            },
+            {
+              "saturation": 0.730548292,
+              "relperm": 0.724401525514
+            },
+            {
+              "saturation": 0.752129816,
+              "relperm": 0.763034963868
+            },
+            {
+              "saturation": 0.77057713,
+              "relperm": 0.796057801745
+            },
+            {
+              "saturation": 0.786470579,
+              "relperm": 0.824508924204
+            },
+            {
+              "saturation": 0.790124199875,
+              "relperm": 0.831049330564
+            },
+            {
+              "saturation": 0.800255316,
+              "relperm": 0.849981717019
+            },
+            {
+              "saturation": 0.812146938,
+              "relperm": 0.872204025054
+            },
+            {
+              "saturation": 0.822425188,
+              "relperm": 0.891411365951
+            },
+            {
+              "saturation": 0.831327962,
+              "relperm": 0.908048304646
+            },
+            {
+              "saturation": 0.839035216,
+              "relperm": 0.922451131485
+            },
+            {
+              "saturation": 0.845708827,
+              "relperm": 0.934922351925
+            },
+            {
+              "saturation": 0.851509121,
+              "relperm": 0.945761573014
+            },
+            {
+              "saturation": 0.856527966,
+              "relperm": 0.955140471836
+            },
+            {
+              "saturation": 0.860894723,
+              "relperm": 0.963300790014
+            },
+            {
+              "saturation": 0.864680149,
+              "relperm": 0.970374753736
+            },
+            {
+              "saturation": 0.867970172,
+              "relperm": 0.97652293979
+            },
+            {
+              "saturation": 0.870828377,
+              "relperm": 0.981864171789
+            },
+            {
+              "saturation": 0.873314171,
+              "relperm": 0.98650946576
+            },
+            {
+              "saturation": 0.874427657,
+              "relperm": 0.988590277686
+            },
+            {
+              "saturation": 0.875473391,
+              "relperm": 0.990585639035
+            },
+            {
+              "saturation": 0.877352225,
+              "relperm": 0.994170635549
+            },
+            {
+              "saturation": 0.878985548,
+              "relperm": 0.997287173391
+            },
+            {
+              "saturation": 0.880407293,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        }
+      },
+      "summary": {
+        "table_count": 4,
+        "tables": [
+          "Krg_v_Sg",
+          "Krog_v_So",
+          "Krow_v_So",
+          "Krw_v_Sw"
+        ]
+      }
+    },
+    "Model_05": {
+      "tables": {
+        "Krg_v_Sg": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.144000654375,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.23800130875,
+              "relperm": 0.225
+            },
+            {
+              "saturation": 0.332001963125,
+              "relperm": 0.3375
+            },
+            {
+              "saturation": 0.4260026175,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.520003271875,
+              "relperm": 0.5625
+            },
+            {
+              "saturation": 0.61400392625,
+              "relperm": 0.675
+            },
+            {
+              "saturation": 0.708004580625,
+              "relperm": 0.7875
+            },
+            {
+              "saturation": 0.802005235,
+              "relperm": 0.9
+            },
+            {
+              "saturation": 0.902005235,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krog_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.194000654375,
+              "relperm": 0.00161013029485
+            },
+            {
+              "saturation": 0.28800130875,
+              "relperm": 0.0128810423588
+            },
+            {
+              "saturation": 0.382001963125,
+              "relperm": 0.0434735179609
+            },
+            {
+              "saturation": 0.4760026175,
+              "relperm": 0.10304833887
+            },
+            {
+              "saturation": 0.570003271875,
+              "relperm": 0.201266286856
+            },
+            {
+              "saturation": 0.66400392625,
+              "relperm": 0.347788143687
+            },
+            {
+              "saturation": 0.758004580625,
+              "relperm": 0.552274691132
+            },
+            {
+              "saturation": 0.852005235,
+              "relperm": 0.824386710962
+            },
+            {
+              "saturation": 0.902005235,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krw_v_Sw": {
+          "rows": [
+            {
+              "saturation": 0.097994765,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.098679767,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.099442521,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.100288915,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.100736815,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.101230402,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.102280093,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.102894503,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1034439,
+              "relperm": 7.8811170241e-05
+            },
+            {
+              "saturation": 0.104734527,
+              "relperm": 0.000263952014138
+            },
+            {
+              "saturation": 0.106182497,
+              "relperm": 0.000471663760241
+            },
+            {
+              "saturation": 0.107781258,
+              "relperm": 0.000701006522116
+            },
+            {
+              "saturation": 0.10955741,
+              "relperm": 0.000955796078022
+            },
+            {
+              "saturation": 0.111535755,
+              "relperm": 0.00123959028256
+            },
+            {
+              "saturation": 0.113689843,
+              "relperm": 0.00154859487502
+            },
+            {
+              "saturation": 0.116152689,
+              "relperm": 0.00190189089844
+            },
+            {
+              "saturation": 0.118817989,
+              "relperm": 0.00228422901104
+            },
+            {
+              "saturation": 0.121868038,
+              "relperm": 0.00272175948714
+            },
+            {
+              "saturation": 0.125198643,
+              "relperm": 0.00319953580857
+            },
+            {
+              "saturation": 0.128858382,
+              "relperm": 0.00372452650449
+            },
+            {
+              "saturation": 0.132884513,
+              "relperm": 0.00430207624657
+            },
+            {
+              "saturation": 0.137491138,
+              "relperm": 0.00496289803321
+            },
+            {
+              "saturation": 0.142414656,
+              "relperm": 0.00566917821909
+            },
+            {
+              "saturation": 0.147991782,
+              "relperm": 0.00646921867552
+            },
+            {
+              "saturation": 0.154311252,
+              "relperm": 0.00737574860925
+            },
+            {
+              "saturation": 0.161238815,
+              "relperm": 0.00836950967265
+            },
+            {
+              "saturation": 0.168646476,
+              "relperm": 0.00943214094322
+            },
+            {
+              "saturation": 0.176997123,
+              "relperm": 0.0106300438483
+            },
+            {
+              "saturation": 0.186607747,
+              "relperm": 0.0120086908453
+            },
+            {
+              "saturation": 0.190032690125,
+              "relperm": 0.0125
+            },
+            {
+              "saturation": 0.196236386,
+              "relperm": 0.0151697662987
+            },
+            {
+              "saturation": 0.207409075,
+              "relperm": 0.0199779434174
+            },
+            {
+              "saturation": 0.219734053,
+              "relperm": 0.0252820091806
+            },
+            {
+              "saturation": 0.233253891,
+              "relperm": 0.0311002840579
+            },
+            {
+              "saturation": 0.249255683,
+              "relperm": 0.037986670151
+            },
+            {
+              "saturation": 0.264676072,
+              "relperm": 0.0446228489215
+            },
+            {
+              "saturation": 0.27717087725,
+              "relperm": 0.05
+            },
+            {
+              "saturation": 0.282191882,
+              "relperm": 0.0536013234522
+            },
+            {
+              "saturation": 0.301940545,
+              "relperm": 0.0677660826493
+            },
+            {
+              "saturation": 0.323259281,
+              "relperm": 0.0830569791433
+            },
+            {
+              "saturation": 0.34521646,
+              "relperm": 0.0988057998702
+            },
+            {
+              "saturation": 0.364309064375,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.37062805,
+              "relperm": 0.11884522315
+            },
+            {
+              "saturation": 0.395020868,
+              "relperm": 0.143339324363
+            },
+            {
+              "saturation": 0.42449491,
+              "relperm": 0.172935747701
+            },
+            {
+              "saturation": 0.4514472515,
+              "relperm": 0.2
+            },
+            {
+              "saturation": 0.456281714,
+              "relperm": 0.206241546321
+            },
+            {
+              "saturation": 0.490772058,
+              "relperm": 0.250770401327
+            },
+            {
+              "saturation": 0.519908961,
+              "relperm": 0.28838768137
+            },
+            {
+              "saturation": 0.538585438625,
+              "relperm": 0.3125
+            },
+            {
+              "saturation": 0.567749308,
+              "relperm": 0.358519227291
+            },
+            {
+              "saturation": 0.599091222,
+              "relperm": 0.407975307538
+            },
+            {
+              "saturation": 0.62572362575,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.641852265,
+              "relperm": 0.48007755801
+            },
+            {
+              "saturation": 0.664583618,
+              "relperm": 0.522468213409
+            },
+            {
+              "saturation": 0.688638379,
+              "relperm": 0.567326831558
+            },
+            {
+              "saturation": 0.712861812875,
+              "relperm": 0.6125
+            },
+            {
+              "saturation": 0.725773882,
+              "relperm": 0.640283604879
+            },
+            {
+              "saturation": 0.762282958,
+              "relperm": 0.718842179206
+            },
+            {
+              "saturation": 0.798743595,
+              "relperm": 0.797296524689
+            },
+            {
+              "saturation": 0.8,
+              "relperm": 0.8
+            },
+            {
+              "saturation": 0.863527859,
+              "relperm": 0.863527859
+            },
+            {
+              "saturation": 0.891847481,
+              "relperm": 0.891847481
+            },
+            {
+              "saturation": 0.9169832,
+              "relperm": 0.9169832
+            },
+            {
+              "saturation": 0.938542886,
+              "relperm": 0.938542886
+            },
+            {
+              "saturation": 0.956258353,
+              "relperm": 0.956258353
+            },
+            {
+              "saturation": 0.970520688,
+              "relperm": 0.970520688
+            },
+            {
+              "saturation": 0.981002131,
+              "relperm": 0.981002131
+            },
+            {
+              "saturation": 0.988609705,
+              "relperm": 0.988609705
+            },
+            {
+              "saturation": 0.993699471,
+              "relperm": 0.993699471
+            },
+            {
+              "saturation": 0.996777906,
+              "relperm": 0.996777906
+            },
+            {
+              "saturation": 0.998503766,
+              "relperm": 0.998503766
+            },
+            {
+              "saturation": 0.999410659,
+              "relperm": 0.999410659
+            },
+            {
+              "saturation": 0.999803651,
+              "relperm": 0.999803651
+            },
+            {
+              "saturation": 0.999944533,
+              "relperm": 0.999944533
+            },
+            {
+              "saturation": 0.999987346,
+              "relperm": 0.999987346
+            },
+            {
+              "saturation": 0.999997919,
+              "relperm": 0.999997919
+            },
+            {
+              "saturation": 1.0,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krow_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 2.08099999999e-06,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 1.26539999999e-05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 5.5467e-05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.000196349,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.000589341,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.001496234,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.003222094,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.006300529,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.011390295,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.018997869,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.029479312,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.043741647,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.061457114,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.0830168,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.108152519,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.136472141,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.2,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.201256405,
+              "relperm": 0.000957083339246
+            },
+            {
+              "saturation": 0.237717042,
+              "relperm": 0.0287314619918
+            },
+            {
+              "saturation": 0.274226118,
+              "relperm": 0.0565427397016
+            },
+            {
+              "saturation": 0.287138187125,
+              "relperm": 0.0663786813245
+            },
+            {
+              "saturation": 0.311361621,
+              "relperm": 0.0933616028152
+            },
+            {
+              "saturation": 0.335416382,
+              "relperm": 0.120156636537
+            },
+            {
+              "saturation": 0.358147735,
+              "relperm": 0.145477502131
+            },
+            {
+              "saturation": 0.37427637425,
+              "relperm": 0.163443485356
+            },
+            {
+              "saturation": 0.400908778,
+              "relperm": 0.198112516005
+            },
+            {
+              "saturation": 0.432250692,
+              "relperm": 0.238912204507
+            },
+            {
+              "saturation": 0.461414561375,
+              "relperm": 0.27687659896
+            },
+            {
+              "saturation": 0.480091039,
+              "relperm": 0.303789905007
+            },
+            {
+              "saturation": 0.509227942,
+              "relperm": 0.345776965063
+            },
+            {
+              "saturation": 0.543718286,
+              "relperm": 0.395478477434
+            },
+            {
+              "saturation": 0.5485527485,
+              "relperm": 0.402445067786
+            },
+            {
+              "saturation": 0.57550509,
+              "relperm": 0.444337490197
+            },
+            {
+              "saturation": 0.604979132,
+              "relperm": 0.490149428933
+            },
+            {
+              "saturation": 0.62937195,
+              "relperm": 0.528063546169
+            },
+            {
+              "saturation": 0.635690935625,
+              "relperm": 0.537885238841
+            },
+            {
+              "saturation": 0.65478354,
+              "relperm": 0.569407078315
+            },
+            {
+              "saturation": 0.676740719,
+              "relperm": 0.605658322941
+            },
+            {
+              "saturation": 0.698059455,
+              "relperm": 0.640855499857
+            },
+            {
+              "saturation": 0.717808118,
+              "relperm": 0.67346049039
+            },
+            {
+              "saturation": 0.72282912275,
+              "relperm": 0.681750155992
+            },
+            {
+              "saturation": 0.735323928,
+              "relperm": 0.703441021241
+            },
+            {
+              "saturation": 0.750744317,
+              "relperm": 0.730210672564
+            },
+            {
+              "saturation": 0.766746109,
+              "relperm": 0.757989634067
+            },
+            {
+              "saturation": 0.780265947,
+              "relperm": 0.781459946599
+            },
+            {
+              "saturation": 0.792590925,
+              "relperm": 0.802855993328
+            },
+            {
+              "saturation": 0.803763614,
+              "relperm": 0.822251677112
+            },
+            {
+              "saturation": 0.809967309875,
+              "relperm": 0.833021235227
+            },
+            {
+              "saturation": 0.813392253,
+              "relperm": 0.83922803255
+            },
+            {
+              "saturation": 0.823002877,
+              "relperm": 0.856644729161
+            },
+            {
+              "saturation": 0.831353524,
+              "relperm": 0.871778053002
+            },
+            {
+              "saturation": 0.838761185,
+              "relperm": 0.885202465843
+            },
+            {
+              "saturation": 0.845688748,
+              "relperm": 0.897756828913
+            },
+            {
+              "saturation": 0.852008218,
+              "relperm": 0.90920918536
+            },
+            {
+              "saturation": 0.857585344,
+              "relperm": 0.919316241
+            },
+            {
+              "saturation": 0.862508862,
+              "relperm": 0.928238806201
+            },
+            {
+              "saturation": 0.867115487,
+              "relperm": 0.936587087231
+            },
+            {
+              "saturation": 0.871141618,
+              "relperm": 0.943883377476
+            },
+            {
+              "saturation": 0.874801357,
+              "relperm": 0.950515679795
+            },
+            {
+              "saturation": 0.878131962,
+              "relperm": 0.95655151439
+            },
+            {
+              "saturation": 0.881182011,
+              "relperm": 0.962078915949
+            },
+            {
+              "saturation": 0.883847311,
+              "relperm": 0.966909062407
+            },
+            {
+              "saturation": 0.886310157,
+              "relperm": 0.971372314906
+            },
+            {
+              "saturation": 0.888464245,
+              "relperm": 0.975276025754
+            },
+            {
+              "saturation": 0.89044259,
+              "relperm": 0.978861249217
+            },
+            {
+              "saturation": 0.892218742,
+              "relperm": 0.982080051713
+            },
+            {
+              "saturation": 0.893817503,
+              "relperm": 0.984977380262
+            },
+            {
+              "saturation": 0.895265473,
+              "relperm": 0.987601440281
+            },
+            {
+              "saturation": 0.8965561,
+              "relperm": 0.989940358013
+            },
+            {
+              "saturation": 0.897105497,
+              "relperm": 0.990935993767
+            },
+            {
+              "saturation": 0.897719907,
+              "relperm": 0.992072588432
+            },
+            {
+              "saturation": 0.898769598,
+              "relperm": 0.994014407722
+            },
+            {
+              "saturation": 0.899263185,
+              "relperm": 0.99492749239
+            },
+            {
+              "saturation": 0.899711085,
+              "relperm": 0.995756060855
+            },
+            {
+              "saturation": 0.900557479,
+              "relperm": 0.997321801817
+            },
+            {
+              "saturation": 0.901320233,
+              "relperm": 0.998732817469
+            },
+            {
+              "saturation": 0.902005235,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        }
+      },
+      "summary": {
+        "table_count": 4,
+        "tables": [
+          "Krg_v_Sg",
+          "Krog_v_So",
+          "Krow_v_So",
+          "Krw_v_Sw"
+        ]
+      }
+    },
+    "Model_06": {
+      "tables": {
+        "Krg_v_Sg": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.15212441975,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.2542488395,
+              "relperm": 0.225
+            },
+            {
+              "saturation": 0.35637325925,
+              "relperm": 0.3375
+            },
+            {
+              "saturation": 0.458497679,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.56062209875,
+              "relperm": 0.5625
+            },
+            {
+              "saturation": 0.6627465185,
+              "relperm": 0.675
+            },
+            {
+              "saturation": 0.76487093825,
+              "relperm": 0.7875
+            },
+            {
+              "saturation": 0.866995358,
+              "relperm": 0.9
+            },
+            {
+              "saturation": 0.966995358,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krog_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.20212441975,
+              "relperm": 0.00163432524532
+            },
+            {
+              "saturation": 0.3042488395,
+              "relperm": 0.0130746019625
+            },
+            {
+              "saturation": 0.40637325925,
+              "relperm": 0.0441267816235
+            },
+            {
+              "saturation": 0.508497679,
+              "relperm": 0.1045968157
+            },
+            {
+              "saturation": 0.61062209875,
+              "relperm": 0.204290655665
+            },
+            {
+              "saturation": 0.7127465185,
+              "relperm": 0.353014252988
+            },
+            {
+              "saturation": 0.81487093825,
+              "relperm": 0.560573559144
+            },
+            {
+              "saturation": 0.916995358,
+              "relperm": 0.836774525602
+            },
+            {
+              "saturation": 0.966995358,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krw_v_Sw": {
+          "rows": [
+            {
+              "saturation": 0.033004642,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033006014,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.0330086,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033011328,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033015936,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033023683,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033036749,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033058785,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033095911,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033158559,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.03326446,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033442274,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.033742462,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.034253761,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.034654874,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.035115526,
+              "relperm": 6.01887938331e-05
+            },
+            {
+              "saturation": 0.036570457,
+              "relperm": 0.000250290089389
+            },
+            {
+              "saturation": 0.039018198,
+              "relperm": 0.000570111947117
+            },
+            {
+              "saturation": 0.043192071,
+              "relperm": 0.00111547022513
+            },
+            {
+              "saturation": 0.050162157,
+              "relperm": 0.00202618171504
+            },
+            {
+              "saturation": 0.062016855,
+              "relperm": 0.00357511664613
+            },
+            {
+              "saturation": 0.081718876,
+              "relperm": 0.00614938286025
+            },
+            {
+              "saturation": 0.114657533,
+              "relperm": 0.0104531480351
+            },
+            {
+              "saturation": 0.13032301475,
+              "relperm": 0.0125
+            },
+            {
+              "saturation": 0.172586114,
+              "relperm": 0.029066290611
+            },
+            {
+              "saturation": 0.2259911555,
+              "relperm": 0.05
+            },
+            {
+              "saturation": 0.252547054,
+              "relperm": 0.0673489695027
+            },
+            {
+              "saturation": 0.32165929625,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.374727782,
+              "relperm": 0.16103750127
+            },
+            {
+              "saturation": 0.417327437,
+              "relperm": 0.2
+            },
+            {
+              "saturation": 0.51299557775,
+              "relperm": 0.3125
+            },
+            {
+              "saturation": 0.546282117,
+              "relperm": 0.360341414195
+            },
+            {
+              "saturation": 0.6086637185,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.70433185925,
+              "relperm": 0.6125
+            },
+            {
+              "saturation": 0.732456138,
+              "relperm": 0.667620777139
+            },
+            {
+              "saturation": 0.8,
+              "relperm": 0.8
+            },
+            {
+              "saturation": 0.898484754,
+              "relperm": 0.898484754
+            },
+            {
+              "saturation": 0.979491839,
+              "relperm": 0.979491839
+            },
+            {
+              "saturation": 0.998812385,
+              "relperm": 0.998812385
+            },
+            {
+              "saturation": 0.999992735,
+              "relperm": 0.999992735
+            },
+            {
+              "saturation": 1.0,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krow_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 7.26500000003e-06,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.001187615,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.020508161,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.101515246,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.2,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.267543862,
+              "relperm": 0.0471612744814
+            },
+            {
+              "saturation": 0.29566814075,
+              "relperm": 0.066798541147
+            },
+            {
+              "saturation": 0.3913362815,
+              "relperm": 0.164477301505
+            },
+            {
+              "saturation": 0.453717883,
+              "relperm": 0.238910622547
+            },
+            {
+              "saturation": 0.48700442225,
+              "relperm": 0.278627904611
+            },
+            {
+              "saturation": 0.582672563,
+              "relperm": 0.404990621741
+            },
+            {
+              "saturation": 0.625272218,
+              "relperm": 0.465681664448
+            },
+            {
+              "saturation": 0.67834070375,
+              "relperm": 0.541287481797
+            },
+            {
+              "saturation": 0.747452946,
+              "relperm": 0.645875252648
+            },
+            {
+              "saturation": 0.7740088445,
+              "relperm": 0.686062376328
+            },
+            {
+              "saturation": 0.827413886,
+              "relperm": 0.771040900758
+            },
+            {
+              "saturation": 0.86967698525,
+              "relperm": 0.838290278556
+            },
+            {
+              "saturation": 0.885342467,
+              "relperm": 0.864312088408
+            },
+            {
+              "saturation": 0.918281124,
+              "relperm": 0.919026235278
+            },
+            {
+              "saturation": 0.937983145,
+              "relperm": 0.951753109073
+            },
+            {
+              "saturation": 0.949837843,
+              "relperm": 0.971444855687
+            },
+            {
+              "saturation": 0.956807929,
+              "relperm": 0.983022811312
+            },
+            {
+              "saturation": 0.960981802,
+              "relperm": 0.989955999279
+            },
+            {
+              "saturation": 0.963429543,
+              "relperm": 0.994021922809
+            },
+            {
+              "saturation": 0.964884474,
+              "relperm": 0.996438697374
+            },
+            {
+              "saturation": 0.965345126,
+              "relperm": 0.997203882827
+            },
+            {
+              "saturation": 0.965746239,
+              "relperm": 0.997883519961
+            },
+            {
+              "saturation": 0.966257538,
+              "relperm": 0.998749853855
+            },
+            {
+              "saturation": 0.966557726,
+              "relperm": 0.999258485867
+            },
+            {
+              "saturation": 0.96673554,
+              "relperm": 0.999559770037
+            },
+            {
+              "saturation": 0.966841441,
+              "relperm": 0.999739206386
+            },
+            {
+              "saturation": 0.966904089,
+              "relperm": 0.999845355793
+            },
+            {
+              "saturation": 0.966941215,
+              "relperm": 0.99990826128
+            },
+            {
+              "saturation": 0.966963251,
+              "relperm": 0.999945598598
+            },
+            {
+              "saturation": 0.966976317,
+              "relperm": 0.999967737344
+            },
+            {
+              "saturation": 0.966984064,
+              "relperm": 0.999980863692
+            },
+            {
+              "saturation": 0.966988672,
+              "relperm": 0.999988671387
+            },
+            {
+              "saturation": 0.9669914,
+              "relperm": 0.999993293651
+            },
+            {
+              "saturation": 0.966993986,
+              "relperm": 0.999997675313
+            },
+            {
+              "saturation": 0.966995358,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        }
+      },
+      "summary": {
+        "table_count": 4,
+        "tables": [
+          "Krg_v_Sg",
+          "Krog_v_So",
+          "Krow_v_So",
+          "Krw_v_Sw"
+        ]
+      }
+    },
+    "Model_07": {
+      "tables": {
+        "Krg_v_Sg": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.154538393375,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.25907678675,
+              "relperm": 0.225
+            },
+            {
+              "saturation": 0.363615180125,
+              "relperm": 0.3375
+            },
+            {
+              "saturation": 0.4681535735,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.572691966875,
+              "relperm": 0.5625
+            },
+            {
+              "saturation": 0.67723036025,
+              "relperm": 0.675
+            },
+            {
+              "saturation": 0.781768753625,
+              "relperm": 0.7875
+            },
+            {
+              "saturation": 0.886307147,
+              "relperm": 0.9
+            },
+            {
+              "saturation": 0.986307147,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krog_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.1,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.204538393375,
+              "relperm": 0.00164087202028
+            },
+            {
+              "saturation": 0.30907678675,
+              "relperm": 0.0131269761622
+            },
+            {
+              "saturation": 0.413615180125,
+              "relperm": 0.0443035445476
+            },
+            {
+              "saturation": 0.5181535735,
+              "relperm": 0.105015809298
+            },
+            {
+              "saturation": 0.622691966875,
+              "relperm": 0.205109002535
+            },
+            {
+              "saturation": 0.72723036025,
+              "relperm": 0.35442835638
+            },
+            {
+              "saturation": 0.831768753625,
+              "relperm": 0.562819102956
+            },
+            {
+              "saturation": 0.936307147,
+              "relperm": 0.840126474383
+            },
+            {
+              "saturation": 0.986307147,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krw_v_Sw": {
+          "rows": [
+            {
+              "saturation": 0.013692853,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.013744524,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.013803549,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.013871108,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.013907277,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.013947901,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.014035808,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.01413653,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.014250807,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.014377496,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.014382329,
+              "relperm": 6.15180952097e-07
+            },
+            {
+              "saturation": 0.014531569,
+              "relperm": 1.96115817986e-05
+            },
+            {
+              "saturation": 0.014701507,
+              "relperm": 4.12425813098e-05
+            },
+            {
+              "saturation": 0.014897934,
+              "relperm": 6.62453019548e-05
+            },
+            {
+              "saturation": 0.015120474,
+              "relperm": 9.45718835977e-05
+            },
+            {
+              "saturation": 0.015373094,
+              "relperm": 0.000126727276132
+            },
+            {
+              "saturation": 0.015664904,
+              "relperm": 0.000163871069559
+            },
+            {
+              "saturation": 0.015997598,
+              "relperm": 0.000206218889066
+            },
+            {
+              "saturation": 0.01637073,
+              "relperm": 0.000253713964385
+            },
+            {
+              "saturation": 0.01680852,
+              "relperm": 0.000309439201095
+            },
+            {
+              "saturation": 0.017302654,
+              "relperm": 0.000372336330121
+            },
+            {
+              "saturation": 0.017862592,
+              "relperm": 0.000443609492123
+            },
+            {
+              "saturation": 0.018500007,
+              "relperm": 0.000524744515211
+            },
+            {
+              "saturation": 0.019255574,
+              "relperm": 0.000620918822356
+            },
+            {
+              "saturation": 0.02008414,
+              "relperm": 0.000726384996731
+            },
+            {
+              "saturation": 0.021033877,
+              "relperm": 0.000847274736417
+            },
+            {
+              "saturation": 0.022135213,
+              "relperm": 0.000987461148389
+            },
+            {
+              "saturation": 0.023371739,
+              "relperm": 0.00114485557048
+            },
+            {
+              "saturation": 0.024818441,
+              "relperm": 0.00132900279038
+            },
+            {
+              "saturation": 0.026464092,
+              "relperm": 0.00153847375024
+            },
+            {
+              "saturation": 0.028311136,
+              "relperm": 0.00177357954094
+            },
+            {
+              "saturation": 0.03035844,
+              "relperm": 0.00203417594565
+            },
+            {
+              "saturation": 0.032766285,
+              "relperm": 0.00234066474756
+            },
+            {
+              "saturation": 0.035469862,
+              "relperm": 0.00268479656484
+            },
+            {
+              "saturation": 0.038426627,
+              "relperm": 0.00306115607401
+            },
+            {
+              "saturation": 0.042073472,
+              "relperm": 0.00352535420752
+            },
+            {
+              "saturation": 0.046413087,
+              "relperm": 0.004077733369
+            },
+            {
+              "saturation": 0.050973753,
+              "relperm": 0.0046582495809
+            },
+            {
+              "saturation": 0.056378881,
+              "relperm": 0.00534625533079
+            },
+            {
+              "saturation": 0.062052557,
+              "relperm": 0.00606844391005
+            },
+            {
+              "saturation": 0.068614455,
+              "relperm": 0.00690369213253
+            },
+            {
+              "saturation": 0.076892277,
+              "relperm": 0.0079573561961
+            },
+            {
+              "saturation": 0.08521097,
+              "relperm": 0.00901622263102
+            },
+            {
+              "saturation": 0.09618879,
+              "relperm": 0.0104135629496
+            },
+            {
+              "saturation": 0.106339274,
+              "relperm": 0.0117055936575
+            },
+            {
+              "saturation": 0.112580309,
+              "relperm": 0.0125
+            },
+            {
+              "saturation": 0.121129263,
+              "relperm": 0.0157645274123
+            },
+            {
+              "saturation": 0.145138667,
+              "relperm": 0.0249328253713
+            },
+            {
+              "saturation": 0.149528145,
+              "relperm": 0.02660900368
+            },
+            {
+              "saturation": 0.167614028,
+              "relperm": 0.0335153293929
+            },
+            {
+              "saturation": 0.187862014,
+              "relperm": 0.0412472817861
+            },
+            {
+              "saturation": 0.210553473,
+              "relperm": 0.0499123055925
+            },
+            {
+              "saturation": 0.210783122,
+              "relperm": 0.05
+            },
+            {
+              "saturation": 0.235858846,
+              "relperm": 0.0659591431459
+            },
+            {
+              "saturation": 0.248965615,
+              "relperm": 0.0743007887412
+            },
+            {
+              "saturation": 0.26371218,
+              "relperm": 0.0836860627913
+            },
+            {
+              "saturation": 0.294561596,
+              "relperm": 0.103319802815
+            },
+            {
+              "saturation": 0.308985935,
+              "relperm": 0.1125
+            },
+            {
+              "saturation": 0.328337575,
+              "relperm": 0.129742566157
+            },
+            {
+              "saturation": 0.366018157,
+              "relperm": 0.163316461082
+            },
+            {
+              "saturation": 0.406170225,
+              "relperm": 0.19909248259
+            },
+            {
+              "saturation": 0.407188748,
+              "relperm": 0.2
+            },
+            {
+              "saturation": 0.449379245,
+              "relperm": 0.248332942484
+            },
+            {
+              "saturation": 0.495264713,
+              "relperm": 0.300898800755
+            },
+            {
+              "saturation": 0.505391561,
+              "relperm": 0.3125
+            },
+            {
+              "saturation": 0.543630277,
+              "relperm": 0.366040456626
+            },
+            {
+              "saturation": 0.593831319,
+              "relperm": 0.43633012618
+            },
+            {
+              "saturation": 0.603594374,
+              "relperm": 0.45
+            },
+            {
+              "saturation": 0.64598499,
+              "relperm": 0.520145394919
+            },
+            {
+              "saturation": 0.696768485,
+              "relperm": 0.60417881194
+            },
+            {
+              "saturation": 0.701797187,
+              "relperm": 0.6125
+            },
+            {
+              "saturation": 0.747099492,
+              "relperm": 0.698996322539
+            },
+            {
+              "saturation": 0.796400471,
+              "relperm": 0.793127369096
+            },
+            {
+              "saturation": 0.8,
+              "relperm": 0.8
+            },
+            {
+              "saturation": 0.840733407,
+              "relperm": 0.840733407
+            },
+            {
+              "saturation": 0.880025517,
+              "relperm": 0.880025517
+            },
+            {
+              "saturation": 0.914864976,
+              "relperm": 0.914864976
+            },
+            {
+              "saturation": 0.943140796,
+              "relperm": 0.943140796
+            },
+            {
+              "saturation": 0.964460449,
+              "relperm": 0.964460449
+            },
+            {
+              "saturation": 0.980100899,
+              "relperm": 0.980100899
+            },
+            {
+              "saturation": 0.989963615,
+              "relperm": 0.989963615
+            },
+            {
+              "saturation": 0.995419355,
+              "relperm": 0.995419355
+            },
+            {
+              "saturation": 0.998291939,
+              "relperm": 0.998291939
+            },
+            {
+              "saturation": 0.999478904,
+              "relperm": 0.999478904
+            },
+            {
+              "saturation": 0.999875899,
+              "relperm": 0.999875899
+            },
+            {
+              "saturation": 0.99997978,
+              "relperm": 0.99997978
+            },
+            {
+              "saturation": 0.999997986,
+              "relperm": 0.999997986
+            },
+            {
+              "saturation": 1.0,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        },
+        "Krow_v_So": {
+          "rows": [
+            {
+              "saturation": 0.0,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 2.01399999999e-06,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 2.022e-05,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.000124101,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.000521096,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.001708061,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.004580645,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.010036385,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.019899101,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.035539551,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.056859204,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.085135024,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.119974483,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.159266593,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.2,
+              "relperm": 0.0
+            },
+            {
+              "saturation": 0.203599529,
+              "relperm": 0.00245252230165
+            },
+            {
+              "saturation": 0.252900508,
+              "relperm": 0.0360435144817
+            },
+            {
+              "saturation": 0.298202813,
+              "relperm": 0.0669100287753
+            },
+            {
+              "saturation": 0.303231515,
+              "relperm": 0.0719202436287
+            },
+            {
+              "saturation": 0.35401501,
+              "relperm": 0.122517041959
+            },
+            {
+              "saturation": 0.396405626,
+              "relperm": 0.164751816247
+            },
+            {
+              "saturation": 0.406168681,
+              "relperm": 0.176119297769
+            },
+            {
+              "saturation": 0.456369723,
+              "relperm": 0.234570204514
+            },
+            {
+              "saturation": 0.494608439,
+              "relperm": 0.279092938184
+            },
+            {
+              "saturation": 0.504735287,
+              "relperm": 0.292145433856
+            },
+            {
+              "saturation": 0.550620755,
+              "relperm": 0.351287219384
+            },
+            {
+              "saturation": 0.592811252,
+              "relperm": 0.405666556321
+            },
+            {
+              "saturation": 0.593829775,
+              "relperm": 0.40708253594
+            },
+            {
+              "saturation": 0.633981843,
+              "relperm": 0.46290308188
+            },
+            {
+              "saturation": 0.671662425,
+              "relperm": 0.515287697751
+            },
+            {
+              "saturation": 0.691014065,
+              "relperm": 0.542190897598
+            },
+            {
+              "saturation": 0.705438404,
+              "relperm": 0.563491382415
+            },
+            {
+              "saturation": 0.73628782,
+              "relperm": 0.60904685065
+            },
+            {
+              "saturation": 0.751034385,
+              "relperm": 0.630823168018
+            },
+            {
+              "saturation": 0.764141154,
+              "relperm": 0.650177991424
+            },
+            {
+              "saturation": 0.789216878,
+              "relperm": 0.687207423298
+            },
+            {
+              "saturation": 0.789446527,
+              "relperm": 0.687564005065
+            },
+            {
+              "saturation": 0.812137986,
+              "relperm": 0.722797602993
+            },
+            {
+              "saturation": 0.832385972,
+              "relperm": 0.754237159065
+            },
+            {
+              "saturation": 0.850471855,
+              "relperm": 0.782319563541
+            },
+            {
+              "saturation": 0.854861333,
+              "relperm": 0.789135216205
+            },
+            {
+              "saturation": 0.878870737,
+              "relperm": 0.826415220414
+            },
+            {
+              "saturation": 0.887419691,
+              "relperm": 0.839689395862
+            },
+            {
+              "saturation": 0.893660726,
+              "relperm": 0.849805609833
+            },
+            {
+              "saturation": 0.90381121,
+              "relperm": 0.866258725069
+            },
+            {
+              "saturation": 0.91478903,
+              "relperm": 0.88405288518
+            },
+            {
+              "saturation": 0.923107723,
+              "relperm": 0.897536815064
+            },
+            {
+              "saturation": 0.931385545,
+              "relperm": 0.910954496357
+            },
+            {
+              "saturation": 0.937947443,
+              "relperm": 0.921590803351
+            },
+            {
+              "saturation": 0.943621119,
+              "relperm": 0.930787374178
+            },
+            {
+              "saturation": 0.949026247,
+              "relperm": 0.939548650375
+            },
+            {
+              "saturation": 0.953586913,
+              "relperm": 0.946941121833
+            },
+            {
+              "saturation": 0.957926528,
+              "relperm": 0.953975287462
+            },
+            {
+              "saturation": 0.961573373,
+              "relperm": 0.959886528841
+            },
+            {
+              "saturation": 0.964530138,
+              "relperm": 0.964679206241
+            },
+            {
+              "saturation": 0.967233715,
+              "relperm": 0.969061486331
+            },
+            {
+              "saturation": 0.96964156,
+              "relperm": 0.972964408719
+            },
+            {
+              "saturation": 0.971688864,
+              "relperm": 0.976282923249
+            },
+            {
+              "saturation": 0.973535908,
+              "relperm": 0.979276832483
+            },
+            {
+              "saturation": 0.975181559,
+              "relperm": 0.98194429992
+            },
+            {
+              "saturation": 0.976628261,
+              "relperm": 0.984289287087
+            },
+            {
+              "saturation": 0.977864787,
+              "relperm": 0.986293595923
+            },
+            {
+              "saturation": 0.978966123,
+              "relperm": 0.988078772681
+            },
+            {
+              "saturation": 0.97991586,
+              "relperm": 0.989618219697
+            },
+            {
+              "saturation": 0.980744426,
+              "relperm": 0.990961258303
+            },
+            {
+              "saturation": 0.981499993,
+              "relperm": 0.992185971422
+            },
+            {
+              "saturation": 0.982137408,
+              "relperm": 0.993219169686
+            },
+            {
+              "saturation": 0.982697346,
+              "relperm": 0.994126783987
+            },
+            {
+              "saturation": 0.98319148,
+              "relperm": 0.994927735316
+            },
+            {
+              "saturation": 0.98362927,
+              "relperm": 0.995637357568
+            },
+            {
+              "saturation": 0.984002402,
+              "relperm": 0.996242174422
+            },
+            {
+              "saturation": 0.984335096,
+              "relperm": 0.996781444541
+            },
+            {
+              "saturation": 0.984626906,
+              "relperm": 0.997254444997
+            },
+            {
+              "saturation": 0.984879526,
+              "relperm": 0.997663921626
+            },
+            {
+              "saturation": 0.985102066,
+              "relperm": 0.998024641003
+            },
+            {
+              "saturation": 0.985298493,
+              "relperm": 0.998343033315
+            },
+            {
+              "saturation": 0.985468431,
+              "relperm": 0.998618489096
+            },
+            {
+              "saturation": 0.985617671,
+              "relperm": 0.998860395089
+            },
+            {
+              "saturation": 0.985622504,
+              "relperm": 0.998868228992
+            },
+            {
+              "saturation": 0.985749193,
+              "relperm": 0.999077656295
+            },
+            {
+              "saturation": 0.98586347,
+              "relperm": 0.999266565545
+            },
+            {
+              "saturation": 0.985964192,
+              "relperm": 0.999433067269
+            },
+            {
+              "saturation": 0.986052099,
+              "relperm": 0.999578384746
+            },
+            {
+              "saturation": 0.986092723,
+              "relperm": 0.999645539549
+            },
+            {
+              "saturation": 0.986128892,
+              "relperm": 0.999705329871
+            },
+            {
+              "saturation": 0.986196451,
+              "relperm": 0.999817010437
+            },
+            {
+              "saturation": 0.986255476,
+              "relperm": 0.999914583601
+            },
+            {
+              "saturation": 0.986307147,
+              "relperm": 1.0
+            }
+          ],
+          "x_column": "Saturation",
+          "y_column": "RelPerm"
+        }
+      },
+      "summary": {
+        "table_count": 4,
+        "tables": [
+          "Krg_v_Sg",
+          "Krog_v_So",
+          "Krow_v_So",
+          "Krw_v_Sw"
+        ]
+      }
+    }
+  },
+  "source": "C:/Users/gianluca.scutiero/404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128/data/sample_model/RELPERM.ixf"
+}

@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "ixf_models": 7,
+  "prt_regions": 7,
+  "property_name": "FILEUNIT",
+  "property_unique_values": 16,
+  "mapping_count": 7,
+  "mapping_strategy": "property_value_equals_prt_index",
+  "outputs": {
+    "relperm_curves": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\relperm\\relperm_curves.json",
+    "prt_region_mapping": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\relperm\\prt_region_mapping.json",
+    "fipnum_summary": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\relperm\\fipnum_property_summary.json",
+    "mapping_json": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\relperm\\relperm_region_mapping_proposed.json",
+    "mapping_csv": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\relperm\\relperm_region_mapping_proposed.csv"
+  }
+}

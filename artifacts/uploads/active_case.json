@@ -1,0 +1,140 @@
+{
+  "ok": true,
+  "active_case_type": "completed_run_import_v320",
+  "import_id": "COSTA_FINALHMSTREAMLINES_0614e1fd",
+  "standardized_case_dir": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\completed_run_imports\\COSTA_FINALHMSTREAMLINES_0614e1fd\\standardized_case",
+  "sample_model_dir": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\data\\sample_model",
+  "manifest": {
+    "ok": true,
+    "import_id": "COSTA_FINALHMSTREAMLINES_0614e1fd",
+    "source_folder": "C:\\Users\\gianluca.scutiero\\OneDrive - G42\\Desktop\\AR360\\Model\\CostaSimulationModel.sim\\COSTA_FINALHMSTREAMLINES",
+    "extracted_dir": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\completed_run_imports\\COSTA_FINALHMSTREAMLINES_0614e1fd\\standardized_case",
+    "files": [
+      {
+        "name": "404_RNF_EXTRACTION_REPORT.json",
+        "bytes": 33014
+      },
+      {
+        "name": "CASE.SMSPEC",
+        "bytes": 55752
+      },
+      {
+        "name": "CASE.UNSMRY",
+        "bytes": 1218492
+      },
+      {
+        "name": "FIPNUM.GRDECL",
+        "bytes": 138711
+      },
+      {
+        "name": "grid_dimensions.json",
+        "bytes": 44
+      },
+      {
+        "name": "MULTX.GRDECL",
+        "bytes": 135289
+      },
+      {
+        "name": "MULTY.GRDECL",
+        "bytes": 135289
+      },
+      {
+        "name": "MULTZ.GRDECL",
+        "bytes": 135289
+      },
+      {
+        "name": "PERM_X.GRDECL",
+        "bytes": 16405746
+      },
+      {
+        "name": "PERM_Y.GRDECL",
+        "bytes": 16405746
+      },
+      {
+        "name": "PERM_Z.GRDECL",
+        "bytes": 16405746
+      },
+      {
+        "name": "PORO.GRDECL",
+        "bytes": 17947258
+      },
+      {
+        "name": "PORO_MULT.GRDECL",
+        "bytes": 135297
+      },
+      {
+        "name": "PRESSURE_EOH.GRDECL",
+        "bytes": 17164778
+      },
+      {
+        "name": "PRESSURE_INIT.GRDECL",
+        "bytes": 17158307
+      },
+      {
+        "name": "RELPERM.ixf",
+        "bytes": 63554
+      },
+      {
+        "name": "SATNUM.GRDECL",
+        "bytes": 816296
+      },
+      {
+        "name": "SGAS_EOH.GRDECL",
+        "bytes": 342
+      },
+      {
+        "name": "SGAS_INIT.GRDECL",
+        "bytes": 322
+      },
+      {
+        "name": "SIMULATION.PRT",
+        "bytes": 2217948
+      },
+      {
+        "name": "SOIL_EOH.GRDECL",
+        "bytes": 12015410
+      },
+      {
+        "name": "SOIL_INIT.GRDECL",
+        "bytes": 11968677
+      },
+      {
+        "name": "STREAMLINES_EOH.SLN0359",
+        "bytes": 2627276
+      },
+      {
+        "name": "STREAMLINES_INIT.SLN0001",
+        "bytes": 1171260
+      },
+      {
+        "name": "SWAT_EOH.GRDECL",
+        "bytes": 12269581
+      },
+      {
+        "name": "SWAT_INIT.GRDECL",
+        "bytes": 12278759
+      },
+      {
+        "name": "TRANX.GRDECL",
+        "bytes": 20684279
+      },
+      {
+        "name": "TRANY.GRDECL",
+        "bytes": 20691982
+      },
+      {
+        "name": "TRANZ.GRDECL",
+        "bytes": 16896344
+      },
+      {
+        "name": "WELL_CONNECTIONS.ixf",
+        "bytes": 226526
+      }
+    ],
+    "missing_core_files": [],
+    "has_streamlines": true,
+    "message": "Completed run imported successfully. You can activate the case.",
+    "stdout": "\n404 RNF GRDECL extraction V4 completed.\nRun folder:        C:\\Users\\gianluca.scutiero\\OneDrive - G42\\Desktop\\AR360\\Model\\CostaSimulationModel.sim\\COSTA_FINALHMSTREAMLINES\nOutput folder:     C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\completed_run_imports\\COSTA_FINALHMSTREAMLINES_0614e1fd\\standardized_case\nExtraction report: C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\completed_run_imports\\COSTA_FINALHMSTREAMLINES_0614e1fd\\standardized_case\\404_RNF_EXTRACTION_REPORT.json\n\nGrid mask:\n  method:         GSG_DEFINED_CELLS\n  source:         C:\\Users\\gianluca.scutiero\\OneDrive - G42\\Desktop\\AR360\\Model\\CostaSimulationModel.sim\\COSTA_FINALHMSTREAMLINES\\COSTA_FINALHMSTREAMLINES.GSG\n  cells:          2,132,180\n  active cells:   1,409,818\n  inactive cells: 722,362\n\nGenerated GRDECL files:\n  - FIPNUM.GRDECL\n  - PERM_X.GRDECL\n  - PERM_Y.GRDECL\n  - PERM_Z.GRDECL\n  - PORO.GRDECL\n  - PRESSURE_EOH.GRDECL\n  - PRESSURE_INIT.GRDECL\n  - SATNUM.GRDECL\n  - SGAS_EOH.GRDECL\n  - SGAS_INIT.GRDECL\n  - SOIL_EOH.GRDECL\n  - SOIL_INIT.GRDECL\n  - SWAT_EOH.GRDECL\n  - SWAT_INIT.GRDECL\n  - TRANX.GRDECL\n  - TRANY.GRDECL\n  - TRANZ.GRDECL\n",
+    "stderr": ""
+  }
+}

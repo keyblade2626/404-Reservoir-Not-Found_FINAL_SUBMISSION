@@ -1,0 +1,172 @@
+# ==============================================================================
+# 404 Reservoir Not Found - Controlled Output Request for INTERSECT
+# Generated automatically.
+# ==============================================================================
+START MODEL_DEFINITION
+
+FieldManagement {
+  VerbosityLevel = 0
+}
+
+ReportMgr {
+  Output3DReports = TRUE
+}
+
+Initial3DReport "*" [
+  SelectedProperties ReportLabels
+  POROSITY "PORO"
+  PERM_I "PERMX"
+  PERM_J "PERMY"
+  PERM_K "PERMZ"
+  TRANSMISSIBILITY_I "TRANX"
+  TRANSMISSIBILITY_J "TRANY"
+  TRANSMISSIBILITY_K "TRANZ"
+  TRANSMISSIBILITY_MULTIPLIER_I "MULTX"
+  TRANSMISSIBILITY_MULTIPLIER_J "MULTY"
+  TRANSMISSIBILITY_MULTIPLIER_K "MULTZ"
+  POROSITY_MULTIPLIER "PORO_MULT"
+  SATURATION_FUNCTION_DRAINAGE_TABLE_NO "SATNUM"
+  FLUID_IN_PLACE_REGION "FIPNUM"
+]
+
+# Streamline report.
+# Period = 1 intentionally generates streamlines at each target time.
+# The downstream extractor will use the first and last generated SLN files.
+StreamlineReport "404_RNF_Streamlines_DEBUG" {
+  Streamlines = 300
+  Frequency = TARGET_TIMES
+  Period = 1
+  OutputFlows = TRUE
+  OutputAllocations = TRUE
+}
+
+XYPlotSummaryReport "*" {
+  On = TRUE
+  FileFormat = BINARY
+  Unified = TRUE
+  OutputRSM = FALSE
+
+  WellProperties "*" {
+    WellNames = ["*"]
+
+    add_property(BOTTOM_HOLE_PRESSURE WBHP)
+
+    add_property(OIL_PRODUCTION_RATE WOPR)
+    add_property(OIL_PRODUCTION_CUML WOPT)
+    add_property(WATER_PRODUCTION_RATE WWPR)
+    add_property(WATER_PRODUCTION_CUML WWPT)
+    add_property(GAS_PRODUCTION_RATE WGPR)
+    add_property(GAS_PRODUCTION_CUML WGPT)
+
+    add_property(WATER_CUT WWCT)
+    add_property(GAS_OIL_RATIO WGOR)
+
+    add_property(WATER_INJECTION_RATE WWIR)
+    add_property(WATER_INJECTION_CUML WWIT)
+    add_property(GAS_INJECTION_RATE WGIR)
+    add_property(GAS_INJECTION_CUML WGIT)
+    add_property(OIL_INJECTION_RATE WOIR)
+    add_property(OIL_INJECTION_CUML WOIT)
+
+    add_property(HISTORICAL_BOTTOM_HOLE_PRESSURE WBHPH)
+
+    add_property(HISTORICAL_OIL_PRODUCTION_RATE WOPRH)
+    add_property(HISTORICAL_OIL_PRODUCTION_CUML WOPTH)
+    add_property(HISTORICAL_WATER_PRODUCTION_RATE WWPRH)
+    add_property(HISTORICAL_WATER_PRODUCTION_CUML WWPTH)
+    add_property(HISTORICAL_GAS_PRODUCTION_RATE WGPRH)
+    add_property(HISTORICAL_GAS_PRODUCTION_CUML WGPTH)
+
+    add_property(HISTORICAL_WATER_CUT WWCTH)
+    add_property(HISTORICAL_GAS_OIL_RATIO WGORH)
+
+    add_property(HISTORICAL_WATER_INJECTION_RATE WWIRH)
+    add_property(HISTORICAL_WATER_INJECTION_CUML WWITH)
+    add_property(HISTORICAL_GAS_INJECTION_RATE WGIRH)
+    add_property(HISTORICAL_GAS_INJECTION_CUML WGITH)
+  }
+
+  FieldProperties "*" {
+    add_property(PRESSURE FPR)
+
+    add_property(OIL_PRODUCTION_RATE FOPR)
+    add_property(OIL_PRODUCTION_CUML FOPT)
+    add_property(WATER_PRODUCTION_RATE FWPR)
+    add_property(WATER_PRODUCTION_CUML FWPT)
+    add_property(GAS_PRODUCTION_RATE FGPR)
+    add_property(GAS_PRODUCTION_CUML FGPT)
+
+    add_property(WATER_CUT FWCT)
+    add_property(GAS_OIL_RATIO FGOR)
+
+    add_property(WATER_INJECTION_RATE FWIR)
+    add_property(WATER_INJECTION_CUML FWIT)
+    add_property(GAS_INJECTION_RATE FGIR)
+    add_property(GAS_INJECTION_CUML FGIT)
+    add_property(OIL_INJECTION_RATE FOIR)
+    add_property(OIL_INJECTION_CUML FOIT)
+
+    add_property(HISTORICAL_OIL_PRODUCTION_RATE FOPRH)
+    add_property(HISTORICAL_OIL_PRODUCTION_CUML FOPTH)
+    add_property(HISTORICAL_WATER_PRODUCTION_RATE FWPRH)
+    add_property(HISTORICAL_WATER_PRODUCTION_CUML FWPTH)
+    add_property(HISTORICAL_GAS_PRODUCTION_RATE FGPRH)
+    add_property(HISTORICAL_GAS_PRODUCTION_CUML FGPTH)
+    add_property(HISTORICAL_WATER_INJECTION_RATE FWIRH)
+    add_property(HISTORICAL_WATER_INJECTION_CUML FWITH)
+    add_property(HISTORICAL_GAS_INJECTION_RATE FGIRH)
+    add_property(HISTORICAL_GAS_INJECTION_CUML FGITH)
+  }
+}
+
+END_INPUT
+
+START
+
+# ------------------------------------------------------------------------------
+# Controlled recurrent 3D output at INIT: 01-Feb-1996
+# Recurrent3D uses ONE_TARGET_TIME and is limited to this selected date.
+# ------------------------------------------------------------------------------
+DATE "01-Feb-1996"
+
+Recurrent3DReport "404_RNF_Recurrent3D_INIT" {
+  On = TRUE
+  FileName = "404_RNF_INIT_3D"
+  FileFormat = BINARY
+  Unified = TRUE
+  Frequency = ONE_TARGET_TIME
+  Period = 1
+}
+
+Recurrent3DReport "404_RNF_Recurrent3D_INIT" [
+  SelectedProperties ReportLabels
+  PRESSURE "PRESSURE"
+  OIL_SATURATION "SOIL"
+  WATER_SATURATION "SWAT"
+  GAS_SATURATION "SGAS"
+]
+
+# ------------------------------------------------------------------------------
+# Controlled recurrent 3D output at EOH: 01-Jan-2026
+# Recurrent3D uses ONE_TARGET_TIME and is limited to this selected date.
+# ------------------------------------------------------------------------------
+DATE "01-Jan-2026"
+
+Recurrent3DReport "404_RNF_Recurrent3D_EOH" {
+  On = TRUE
+  FileName = "404_RNF_EOH_3D"
+  FileFormat = BINARY
+  Unified = TRUE
+  Frequency = ONE_TARGET_TIME
+  Period = 1
+}
+
+Recurrent3DReport "404_RNF_Recurrent3D_EOH" [
+  SelectedProperties ReportLabels
+  PRESSURE "PRESSURE"
+  OIL_SATURATION "SOIL"
+  WATER_SATURATION "SWAT"
+  GAS_SATURATION "SGAS"
+]
+
+END_INPUT

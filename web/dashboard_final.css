@@ -1,0 +1,872 @@
+:root {
+  --bg0: #050816;
+  --bg1: #081328;
+  --panel: rgba(13, 27, 56, 0.94);
+  --panel2: rgba(17, 38, 78, 0.96);
+  --line: rgba(160, 190, 255, 0.18);
+  --text: #f8fafc;
+  --muted: #9fb2d0;
+  --green: #39ff6b;
+  --yellow: #ffd84d;
+  --red: #ff5757;
+  --cyan: #35d7ff;
+  --shadow: 0 22px 55px rgba(0, 0, 0, 0.34);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(53, 215, 255, 0.13), transparent 25%),
+    radial-gradient(circle at 85% 8%, rgba(57, 255, 107, 0.10), transparent 22%),
+    linear-gradient(180deg, var(--bg0), var(--bg1) 48%, #061022 100%);
+}
+
+.app-shell {
+  width: min(1800px, calc(100vw - 54px));
+  margin: 0 auto;
+  padding: 28px 0 34px;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 18px;
+}
+
+.top-header h1 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+}
+
+.top-header p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+button {
+  font-family: inherit;
+}
+
+.header-actions button,
+#askBtn {
+  border: none;
+  border-radius: 14px;
+  padding: 11px 17px;
+  color: white;
+  font-weight: 850;
+  cursor: pointer;
+  background: linear-gradient(135deg, #12c8ff, #36ddb9);
+  box-shadow: 0 12px 28px rgba(32, 207, 220, 0.24);
+}
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.kpi-card {
+  min-height: 132px;
+  padding: 18px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at top right, rgba(53, 215, 255, 0.16), transparent 32%),
+    linear-gradient(180deg, rgba(19, 43, 89, 0.96), rgba(11, 27, 58, 0.96));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.kpi-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.kpi-value {
+  margin-top: 12px;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.score-good { color: var(--green); }
+.score-fair { color: var(--yellow); }
+.score-poor { color: var(--red); }
+.score-na { color: #e2e8f0; }
+
+.kpi-class {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.kpi-sub {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(340px, 0.78fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 16px;
+}
+
+.panel {
+  background:
+    radial-gradient(circle at top right, rgba(53, 215, 255, 0.10), transparent 30%),
+    linear-gradient(180deg, rgba(13, 27, 56, 0.96), rgba(8, 21, 45, 0.97));
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.panel-header {
+  min-height: 74px;
+  padding: 16px 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  border-bottom: 1px solid rgba(160, 190, 255, 0.13);
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 950;
+}
+
+.panel-header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.panel-body {
+  padding: 16px;
+}
+
+.map-panel {
+  min-height: 715px;
+}
+
+.insight-panel {
+  min-height: 715px;
+}
+
+.map-canvas {
+  height: 640px;
+  margin: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(160, 190, 255, 0.16);
+  background:
+    radial-gradient(circle at 22% 18%, rgba(53, 215, 255, 0.08), transparent 26%),
+    rgba(3, 10, 24, 0.42);
+  overflow: hidden;
+}
+
+.map-canvas svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.map-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.map-controls label {
+  color: #dbeafe;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.map-controls input {
+  transform: scale(1.1);
+}
+
+.map-controls select {
+  border-radius: 12px;
+  padding: 8px 10px;
+  color: white;
+  background: #10244b;
+  border: 1px solid rgba(160, 190, 255, 0.22);
+  font-weight: 800;
+}
+
+.empty-state,
+.loading {
+  color: var(--muted);
+  font-weight: 700;
+  padding: 20px;
+}
+
+.well-title {
+  font-size: 28px;
+  font-weight: 950;
+  margin-bottom: 4px;
+}
+
+.well-sub {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.well-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.well-kpi {
+  padding: 12px;
+  border-radius: 15px;
+  border: 1px solid rgba(160, 190, 255, 0.15);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.well-kpi-label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.well-kpi-value {
+  margin-top: 7px;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.well-kpi-class {
+  margin-top: 5px;
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.section-title {
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.insight-list {
+  margin: 0 0 0 18px;
+  padding: 0;
+  color: #d8e5ff;
+  line-height: 1.45;
+  font-size: 14px;
+}
+
+.insight-text {
+  color: #d8e5ff;
+  line-height: 1.48;
+  margin: 0;
+  font-size: 14px;
+}
+
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.quick-actions button {
+  border: 1px solid rgba(53, 215, 255, 0.26);
+  background: rgba(53, 215, 255, 0.10);
+  color: #c9f6ff;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.quick-actions button:hover {
+  background: rgba(53, 215, 255, 0.17);
+}
+
+.chat-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+#chatInput {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(160, 190, 255, 0.18);
+  background: rgba(2, 8, 20, 0.82);
+  color: white;
+  padding: 13px 14px;
+  font-size: 15px;
+  outline: none;
+}
+
+.chat-answer {
+  margin-top: 14px;
+  color: #d8e5ff;
+  line-height: 1.45;
+}
+
+.evidence-body {
+  min-height: 230px;
+  max-height: 520px;
+  overflow: auto;
+}
+
+.evidence-body pre {
+  color: #cbd5e1;
+  white-space: pre-wrap;
+  font-size: 12px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0 16px 14px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+@media (max-width: 1250px) {
+  .kpi-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-panel,
+  .insight-panel {
+    min-height: auto;
+  }
+}
+
+
+/* ==========================================================
+   AGENT COLLABORATION TRACE PANEL V010
+   Collapsible audit panel for contest/demo.
+   ========================================================== */
+
+.agent-trace-panel {
+  grid-column: 1 / -1;
+}
+
+.agent-trace-header {
+  align-items: center;
+}
+
+#toggleAgentTraceBtn,
+#refreshAgentTraceBtn {
+  border: 1px solid rgba(160,190,255,.25);
+  background: rgba(80,120,255,.12);
+  color: #d8e5ff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#toggleAgentTraceBtn:hover,
+#refreshAgentTraceBtn:hover {
+  background: rgba(80,120,255,.22);
+}
+
+.agent-trace-body {
+  display: grid;
+  gap: 10px;
+  max-height: 460px;
+  overflow: auto;
+}
+
+.agent-trace-record {
+  border: 1px solid rgba(160,190,255,.14);
+  background: rgba(6,16,34,.72);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.agent-trace-record-title {
+  color: #e8f0ff;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.agent-trace-record-sub {
+  color: #9fb3d9;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.agent-trace-path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.agent-trace-chip {
+  border: 1px solid rgba(160,190,255,.18);
+  background: rgba(70,110,220,.12);
+  color: #cfe0ff;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.agent-trace-critic {
+  margin-top: 8px;
+  border-left: 3px solid rgba(255,216,77,.9);
+  padding-left: 10px;
+  color: #ffd84d;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.agent-trace-preview {
+  color: #c7d7f2;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+
+/* ==========================================================
+   PATTERN-AWARE NO-FLICKER HARD CSS V012
+   Prevents the smart recommendation card from flashing in the right panel.
+   It is visible only inside the fixed Pattern-Aware slot.
+   ========================================================== */
+
+body .smart-well-recommendation-v41 {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+body #patternAwareContentV311 .smart-well-recommendation-v41 {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#patternAwareSlotV311 {
+  min-height: 120px;
+}
+
+#patternAwareContentV311 {
+  min-height: 80px;
+}
+
+
+/* ==========================================================
+   FRIENDLY TRACE ARROWS V018
+   ========================================================== */
+
+.agent-trace-arrow {
+  color: #7f93bd;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2px;
+  font-size: 13px;
+}
+
+.current-agent-trace-record-v018 .agent-trace-path {
+  align-items: center;
+}
+
+
+
+/* ==========================================================
+   V311 CASE FOLDER IMPORT UI RESTYLE
+   Dark blue AI dashboard style. No harsh green borders.
+   ========================================================== */
+
+.case-import-v311,
+.case-import-v311 * {
+  box-sizing: border-box;
+}
+
+.case-import-v311 {
+  margin: 18px 0 22px 0;
+  padding: 22px;
+  border-radius: 28px;
+  border: 1px solid rgba(120, 190, 255, 0.22);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(70, 190, 255, 0.16), transparent 35%),
+    radial-gradient(circle at 90% 10%, rgba(0, 120, 255, 0.10), transparent 35%),
+    linear-gradient(180deg, rgba(6, 32, 76, 0.94), rgba(3, 14, 36, 0.98));
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.28),
+    inset 0 0 38px rgba(80, 190, 255, 0.035);
+  color: #e8f1ff;
+}
+
+.case-import-v311-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.case-import-v311-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(95, 210, 255, 0.28);
+  background: rgba(20, 115, 210, 0.22);
+  color: #8fe6ff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .45px;
+  text-transform: uppercase;
+}
+
+.case-import-v311-title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.12;
+  font-weight: 950;
+  color: #fff4e8;
+  letter-spacing: -0.25px;
+}
+
+.case-import-v311-subtitle {
+  margin-top: 9px;
+  color: #a9bedf;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 980px;
+}
+
+.case-import-v311-flow {
+  display: grid;
+  grid-template-columns: minmax(230px, 1.1fr) auto minmax(230px, 1.1fr) auto minmax(230px, 1.1fr);
+  gap: 14px;
+  align-items: stretch;
+  margin: 16px 0 20px 0;
+}
+
+.case-import-v311-step {
+  padding: 15px 16px;
+  min-height: 106px;
+  border-radius: 20px;
+  border: 1px solid rgba(120, 190, 255, 0.18);
+  background:
+    linear-gradient(180deg, rgba(10, 44, 96, 0.78), rgba(4, 18, 44, 0.80));
+  box-shadow: inset 0 0 24px rgba(80, 190, 255, 0.035);
+}
+
+.case-import-v311-step-title {
+  color: #e8f1ff;
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 7px;
+}
+
+.case-import-v311-step-text {
+  color: #9fb3d9;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.case-import-v311-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #45d8ff;
+  font-size: 24px;
+  opacity: 0.85;
+}
+
+.case-import-v311-main {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) 280px;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.case-import-v311-drop {
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px dashed rgba(120, 210, 255, 0.36);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(85, 210, 255, 0.11), transparent 32%),
+    rgba(3, 12, 32, 0.56);
+}
+
+.case-import-v311-label {
+  display: block;
+  color: #e8f1ff;
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.case-import-v311-hint {
+  color: #8fa6cc;
+  font-size: 12px;
+  line-height: 1.45;
+  margin-bottom: 13px;
+}
+
+.case-import-v311 input[type="file"],
+.case-import-v311 input[type="text"] {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 15px;
+  border: 1px solid rgba(160, 190, 255, 0.22);
+  background: rgba(1, 8, 24, 0.64);
+  color: #e8f1ff;
+  outline: none;
+}
+
+.case-import-v311-actions {
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(85, 190, 255, 0.22);
+  background: linear-gradient(180deg, rgba(10, 60, 120, 0.52), rgba(4, 18, 44, 0.76));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 13px;
+}
+
+.case-import-v311-button {
+  cursor: pointer;
+  border: 1px solid rgba(95, 220, 255, 0.42);
+  background:
+    linear-gradient(135deg, rgba(64, 225, 255, 0.92), rgba(78, 135, 255, 0.88));
+  color: #041225;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-weight: 950;
+  letter-spacing: .1px;
+  box-shadow: 0 12px 30px rgba(45, 170, 255, 0.18);
+}
+
+.case-import-v311-secondary {
+  color: #9fb3d9;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.case-import-v311-status {
+  margin-top: 14px;
+  padding: 12px 13px;
+  border-radius: 16px;
+  border: 1px solid rgba(120, 190, 255, 0.15);
+  background: rgba(4, 18, 44, 0.62);
+  color: #9fb3d9;
+  font-size: 12px;
+  line-height: 1.45;
+  display: none;
+}
+
+.case-import-v311-status.show {
+  display: block;
+}
+
+.case-import-v311-manual {
+  margin-top: 14px;
+  padding: 15px 17px;
+  border-radius: 22px;
+  border: 1px solid rgba(120, 190, 255, 0.16);
+  background: rgba(3, 14, 36, 0.64);
+  color: #9fb3d9;
+}
+
+.case-import-v311-manual summary {
+  cursor: pointer;
+  color: #d8e5ff;
+  font-weight: 900;
+}
+
+@media (max-width: 1100px) {
+  .case-import-v311-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .case-import-v311-arrow {
+    display: none;
+  }
+
+  .case-import-v311-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================
+   V400 FIXED PATTERN-AWARE PANEL HEIGHT
+   Final video/demo stability fix.
+   Purpose: prevent page reflow when chat/trace scripts briefly
+   refresh Pattern-Aware Recommendation content.
+   No JS. No observers. No DOM restore.
+   ========================================================== */
+
+body #patternAwareSlotV311,
+body .pattern-aware-panel-v311 {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  height: 760px !important;
+  min-height: 760px !important;
+  max-height: 760px !important;
+
+  overflow: hidden !important;
+  transition: none !important;
+  animation: none !important;
+  flex: 0 0 760px !important;
+}
+
+body #patternAwareContentV311 {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  height: 650px !important;
+  min-height: 650px !important;
+  max-height: 650px !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+
+  transition: none !important;
+  animation: none !important;
+}
+
+body #patternAwareContentV311 .smart-well-recommendation-v41 {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+body #patternAwareSlotV311 *,
+body #patternAwareContentV311 * {
+  transition-property: none !important;
+  animation: none !important;
+}
+
+
+/* ==========================================================
+   V402 Pattern-Aware snapshot stability
+   Snapshot is shown during Ask / Trace updates so live content
+   can be refreshed without leaving an empty recommendation box.
+   ========================================================== */
+
+body #patternAwareSnapshotV402.pattern-aware-snapshot-v402,
+body #patternAwareSnapshotV402 {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  height: 650px;
+  min-height: 650px;
+  max-height: 650px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+}
+
+body #patternAwareSnapshotV402 .pattern-aware-snapshot-card-v402 {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+body #patternAwareSnapshotV402 * {
+  transition-property: none !important;
+  animation: none !important;
+}
+
+
+/* V806 chat answer readability fix */
+.assistant-message,
+.assistant-content,
+.assistant-response,
+.chat-message,
+.chat-message-content,
+.chat-answer,
+.chat-response,
+.answer,
+.answer-text,
+.response-text,
+.copilot-answer,
+.ai-response,
+.message-body,
+.markdown-body {
+  white-space: pre-line;
+}
+
+
+
+

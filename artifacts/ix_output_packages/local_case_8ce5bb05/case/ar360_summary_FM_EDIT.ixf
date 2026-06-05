@@ -1,0 +1,140 @@
+######################################
+# IXFVERSION: 2023.4 Petrel
+######################################
+
+MODEL_DEFINITION
+# Add user edit IXF here ...
+
+XYPlotSummaryReport "SummaryReport" {
+    Unified=TRUE
+    WellProperties "AllWellProperties" {
+        WellNames=[ "*" ]
+        add_property(property_name=OIL_PRODUCTION_RATE    report_label="WOPR")
+        add_property(property_name=GAS_PRODUCTION_RATE    report_label="WGPR")
+        add_property(property_name=LIQUID_PRODUCTION_RATE report_label="WLPR")
+        add_property(property_name=WATER_PRODUCTION_RATE  report_label="WWPR")
+        add_property(property_name=WATER_INJECTION_RATE   report_label="WWIR")
+        add_property(property_name=GAS_INJECTION_RATE     report_label="WGIR")
+        add_property(property_name=GAS_OIL_RATIO          report_label="WGOR")
+        add_property(property_name=WATER_CUT              report_label="WWCT")
+        add_property(property_name=BOTTOM_HOLE_PRESSURE   report_label="WBHP")
+
+        add_property(property_name=OIL_PRODUCTION_CUML    report_label="WOPT")
+        add_property(property_name=GAS_PRODUCTION_CUML    report_label="WGPT")
+        add_property(property_name=LIQUID_PRODUCTION_CUML report_label="WLPT")
+        add_property(property_name=WATER_PRODUCTION_CUML  report_label="WWPT")
+        add_property(property_name=WATER_INJECTION_CUML   report_label="WWIT")
+        add_property(property_name=GAS_INJECTION_CUML     report_label="WGIT")
+
+		add_property(property_name=HISTORICAL_OIL_PRODUCTION_RATE    report_label="WOPRH")
+        add_property(property_name=HISTORICAL_GAS_PRODUCTION_RATE    report_label="WGPRH")
+        add_property(property_name=HISTORICAL_LIQUID_PRODUCTION_RATE report_label="WLPRH")
+        add_property(property_name=HISTORICAL_WATER_PRODUCTION_RATE  report_label="WWPRH")
+        add_property(property_name=HISTORICAL_WATER_INJECTION_RATE   report_label="WWIRH")
+        add_property(property_name=HISTORICAL_GAS_INJECTION_RATE     report_label="WGIRH")
+        add_property(property_name=HISTORICAL_GAS_OIL_RATIO          report_label="WGORH")
+        add_property(property_name=HISTORICAL_WATER_CUT              report_label="WWCTH")
+        add_property(property_name=HISTORICAL_BOTTOM_HOLE_PRESSURE   report_label="WBHPH")
+
+        add_property(property_name=HISTORICAL_OIL_PRODUCTION_CUML    report_label="WOPTH")
+        add_property(property_name=HISTORICAL_GAS_PRODUCTION_CUML    report_label="WGPTH")
+        add_property(property_name=HISTORICAL_LIQUID_PRODUCTION_CUML report_label="WLPTH")
+        add_property(property_name=HISTORICAL_WATER_PRODUCTION_CUML  report_label="WWPTH")
+        add_property(property_name=HISTORICAL_WATER_INJECTION_CUML   report_label="WWITH")
+        add_property(property_name=HISTORICAL_GAS_INJECTION_CUML     report_label="WGITH")
+        
+        add_property(property_name=LIFT_GAS_INJECTION_RATE report_label="WGLIR")
+        add_property(property_name=LIFT_GAS_INJECTION_CUML report_label="WGLIT")
+        
+        add_property(property_name=WELL_BLOCK_AVERAGE_PRESSURE[1] report_label="WBPC")
+        add_property(property_name=WELL_BLOCK_AVERAGE_PRESSURE[3] report_label="WBPC")
+        add_property(property_name=WELL_BLOCK_AVERAGE_PRESSURE[5] report_label="WBPC")  
+        
+    }
+    
+    GroupProperties "AllGroupProperties" {
+        GroupNames=[ "*" ]
+        add_property(property_name=OIL_PRODUCTION_RATE    report_label="GOPR")
+        add_property(property_name=GAS_PRODUCTION_RATE    report_label="GGPR")
+        add_property(property_name=LIQUID_PRODUCTION_RATE report_label="GLPR")
+        add_property(property_name=WATER_PRODUCTION_RATE  report_label="GWPR")
+        add_property(property_name=WATER_INJECTION_RATE   report_label="GWIR")
+        add_property(property_name=GAS_INJECTION_RATE     report_label="GGIR")
+        add_property(property_name=GAS_OIL_RATIO          report_label="GGOR")
+        add_property(property_name=WATER_CUT              report_label="GWCT")
+
+        add_property(property_name=OIL_PRODUCTION_CUML    report_label="GOPT")
+        add_property(property_name=GAS_PRODUCTION_CUML    report_label="GGPT")
+        add_property(property_name=LIQUID_PRODUCTION_CUML report_label="GLPT")
+        add_property(property_name=WATER_PRODUCTION_CUML  report_label="GWPT")
+        add_property(property_name=WATER_INJECTION_CUML   report_label="GWIT")
+        add_property(property_name=GAS_INJECTION_CUML     report_label="GGIT")
+
+		add_property(property_name=HISTORICAL_OIL_PRODUCTION_RATE    report_label="GOPRH")
+        add_property(property_name=HISTORICAL_GAS_PRODUCTION_RATE    report_label="GGPRH")
+        add_property(property_name=HISTORICAL_LIQUID_PRODUCTION_RATE report_label="GLPRH")
+        add_property(property_name=HISTORICAL_WATER_PRODUCTION_RATE  report_label="GWPRH")
+        add_property(property_name=HISTORICAL_WATER_INJECTION_RATE   report_label="GWIRH")
+        add_property(property_name=HISTORICAL_GAS_INJECTION_RATE     report_label="GGIRH")
+        add_property(property_name=HISTORICAL_GAS_OIL_RATIO          report_label="GGORH")
+        add_property(property_name=HISTORICAL_WATER_CUT              report_label="GWCTH")
+
+        add_property(property_name=HISTORICAL_OIL_PRODUCTION_CUML    report_label="GOPTH")
+        add_property(property_name=HISTORICAL_GAS_PRODUCTION_CUML    report_label="GGPTH")
+        add_property(property_name=HISTORICAL_LIQUID_PRODUCTION_CUML report_label="GLPTH")
+        add_property(property_name=HISTORICAL_WATER_PRODUCTION_CUML  report_label="GWPTH")
+        add_property(property_name=HISTORICAL_WATER_INJECTION_CUML   report_label="GWITH")
+        add_property(property_name=HISTORICAL_GAS_INJECTION_CUML     report_label="GGITH")  
+        
+        add_property(property_name=LIFT_GAS_INJECTION_RATE report_label="GGLIR")
+        add_property(property_name=LIFT_GAS_INJECTION_CUML report_label="GGLIT")
+        
+        add_property(property_name=RES_VOLUME_INJECTION_CUML report_label="GVIT" )
+        add_property(property_name=RES_VOLUME_INJECTION_RATE report_label="GVIR" )
+        add_property(property_name=RES_VOLUME_PRODUCTION_CUML report_label="GVPT" )
+        add_property(property_name=RES_VOLUME_PRODUCTION_RATE report_label="GVPR" )
+    }
+    
+        FieldProperties "RESERVOIR" {
+        add_property(property_name=OIL_PRODUCTION_RATE    report_label="FOPR")
+        add_property(property_name=GAS_PRODUCTION_RATE    report_label="FGPR")
+        add_property(property_name=LIQUID_PRODUCTION_RATE report_label="FLPR")
+        add_property(property_name=WATER_PRODUCTION_RATE  report_label="FWPR")
+        add_property(property_name=WATER_INJECTION_RATE   report_label="FWIR")
+        add_property(property_name=GAS_INJECTION_RATE     report_label="FGIR")
+        add_property(property_name=GAS_OIL_RATIO          report_label="FGOR")
+        add_property(property_name=WATER_CUT              report_label="FWCT")
+
+        add_property(property_name=OIL_PRODUCTION_CUML    report_label="FOPT")
+        add_property(property_name=GAS_PRODUCTION_CUML    report_label="FGPT")
+        add_property(property_name=LIQUID_PRODUCTION_CUML report_label="FLPT")
+        add_property(property_name=WATER_PRODUCTION_CUML  report_label="FWPT")
+        add_property(property_name=WATER_INJECTION_CUML   report_label="FWIT")
+        add_property(property_name=GAS_INJECTION_CUML     report_label="FGIT")
+
+		add_property(property_name=HISTORICAL_OIL_PRODUCTION_RATE    report_label="FOPRH")
+        add_property(property_name=HISTORICAL_GAS_PRODUCTION_RATE    report_label="FGPRH")
+        add_property(property_name=HISTORICAL_LIQUID_PRODUCTION_RATE report_label="FLPRH")
+        add_property(property_name=HISTORICAL_WATER_PRODUCTION_RATE  report_label="FWPRH")
+        add_property(property_name=HISTORICAL_WATER_INJECTION_RATE   report_label="FWIRH")
+        add_property(property_name=HISTORICAL_GAS_INJECTION_RATE     report_label="FGIRH")
+        add_property(property_name=HISTORICAL_GAS_OIL_RATIO          report_label="FGORH")
+        add_property(property_name=HISTORICAL_WATER_CUT              report_label="FWCTH")
+
+        add_property(property_name=HISTORICAL_OIL_PRODUCTION_CUML    report_label="FOPTH")
+        add_property(property_name=HISTORICAL_GAS_PRODUCTION_CUML    report_label="FGPTH")
+        add_property(property_name=HISTORICAL_LIQUID_PRODUCTION_CUML report_label="FLPTH")
+        add_property(property_name=HISTORICAL_WATER_PRODUCTION_CUML  report_label="FWPTH")
+        add_property(property_name=HISTORICAL_WATER_INJECTION_CUML   report_label="FWITH")
+        add_property(property_name=HISTORICAL_GAS_INJECTION_CUML     report_label="FGITH")  
+        
+        add_property(property_name=LIFT_GAS_INJECTION_RATE report_label="FGLIR")
+        add_property(property_name=LIFT_GAS_INJECTION_CUML report_label="FGLIT")
+        
+        add_property(property_name=RES_VOLUME_INJECTION_CUML report_label="FVIT" )
+        add_property(property_name=RES_VOLUME_INJECTION_RATE report_label="FVIR" )
+        add_property(property_name=RES_VOLUME_PRODUCTION_CUML report_label="FVPT" )
+        add_property(property_name=RES_VOLUME_PRODUCTION_RATE report_label="FVPR" )
+    }
+
+}

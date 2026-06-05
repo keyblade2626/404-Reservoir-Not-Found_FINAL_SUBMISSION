@@ -1,0 +1,15 @@
+######################################
+# IXFVERSION: 2023.4 Petrel
+######################################
+
+MODEL_DEFINITION
+
+TimeStepSolution {
+    TimeDiscretizationMethod=FULLY_IMPLICIT
+}
+
+
+START
+DATE "1-Feb-1996"
+#TIME 0.0
+

@@ -1,0 +1,588 @@
+{
+  "source": "generated_from_prt_ixf_completed_cells",
+  "grid_dimensions": {
+    "nx": 181,
+    "ny": 190,
+    "nz": 62
+  },
+  "region_property": "SATNUM",
+  "region_property_file": "C:/Users/gianluca.scutiero/404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128/data/sample_model/SATNUM.GRDECL",
+  "prt_file": "C:/Users/gianluca.scutiero/404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128/data/sample_model/SIMULATION.PRT",
+  "relperm_ixf": "C:/Users/gianluca.scutiero/404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128/data/sample_model/RELPERM.ixf",
+  "well_connections": "C:/Users/gianluca.scutiero/404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128/data/sample_model/WELL_CONNECTIONS.ixf",
+  "prt_region_model_mapping": {
+    "1": "ROCKNUM_1_RRT_01",
+    "2": "ROCKNUM_1_RRT_02",
+    "3": "ROCKNUM_1_RRT_03",
+    "4": "ROCKNUM_1_RRT_04",
+    "5": "ROCKNUM_1_RRT_05",
+    "6": "ROCKNUM_1_RRT_06",
+    "7": "ROCKNUM_1_RRT_07"
+  },
+  "by_well": {
+    "HW-10": {
+      "well": "HW-10",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.2895,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.018592422660884,
+        "2": 0.28143658871633004,
+        "3": 0.0907424273118,
+        "4": 0.4107609660074,
+        "6": 0.380931756895,
+        "7": 0.236463815581
+      }
+    },
+    "HW-24": {
+      "well": "HW-24",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.5181,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.006269068767554,
+        "2": 0.36803739136890906,
+        "3": 0.36448302543451,
+        "4": 0.7942333569131999
+      }
+    },
+    "HW-25": {
+      "well": "HW-25",
+      "region_property": "SATNUM",
+      "region_property_value": 2,
+      "relperm_region": "RRT_02",
+      "saturation_model": "Model_02",
+      "relperm_model": "Model_02",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.5118,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.0037975764318599996,
+        "2": 0.3761144420176139,
+        "3": 0.2117466221324,
+        "4": 0.1432831946056
+      }
+    },
+    "HW-26": {
+      "well": "HW-26",
+      "region_property": "SATNUM",
+      "region_property_value": 2,
+      "relperm_region": "RRT_02",
+      "saturation_model": "Model_02",
+      "relperm_model": "Model_02",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.5557,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.031860962123916,
+        "2": 0.062588569980916,
+        "3": 0.00992057473018,
+        "5": 0.00825242458922
+      }
+    },
+    "HW-28": {
+      "well": "HW-28",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.328,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.016689712307945,
+        "2": 0.20741250395159,
+        "3": 0.22836214534500002,
+        "4": 0.7522255769168998,
+        "6": 0.513944193515,
+        "7": 0.57472483155
+      }
+    },
+    "HW-29": {
+      "well": "HW-29",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3323,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.0028672945824540002,
+        "2": 0.27881002306211,
+        "3": 0.8759518047111999,
+        "4": 1.1187378860931,
+        "5": 0.863893356389,
+        "6": 0.9104713024890001,
+        "7": 2.016008902051
+      }
+    },
+    "HW-3": {
+      "well": "HW-3",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3609,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.006158337803197999,
+        "2": 0.3115495496386299,
+        "3": 0.5650064464432,
+        "4": 1.1847431065605,
+        "6": 0.46383749301699995,
+        "7": 1.429378045
+      }
+    },
+    "HW-30": {
+      "well": "HW-30",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3431,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.00119943489158,
+        "2": 0.54067333861818,
+        "3": 0.37320417452660004,
+        "4": 1.6215964334647,
+        "5": 0.210122462261,
+        "6": 1.4693156020470002,
+        "7": 0.510482723215
+      }
+    },
+    "HW-31": {
+      "well": "HW-31",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3548,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.0036497616838270003,
+        "2": 0.26006799110899703,
+        "3": 0.28875833632903,
+        "4": 0.9998209374726,
+        "5": 0.29727293432900004,
+        "6": 0.253940208864,
+        "7": 1.156651980045
+      }
+    },
+    "HW-32": {
+      "well": "HW-32",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.4954,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.0054491952911910006,
+        "2": 0.21166532705128002,
+        "3": 0.5153980934798,
+        "4": 4.167356077265599,
+        "6": 0.357230938648,
+        "7": 3.1552878183780004
+      }
+    },
+    "HW-5": {
+      "well": "HW-5",
+      "region_property": "SATNUM",
+      "region_property_value": 2,
+      "relperm_region": "RRT_02",
+      "saturation_model": "Model_02",
+      "relperm_model": "Model_02",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.381,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.021119891763466996,
+        "2": 0.021586287472024,
+        "4": 0.00332027791825,
+        "6": 0.0106339192812
+      }
+    },
+    "HW-6": {
+      "well": "HW-6",
+      "region_property": "SATNUM",
+      "region_property_value": 6,
+      "relperm_region": "RRT_06",
+      "saturation_model": "Model_06",
+      "relperm_model": "Model_06",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3347,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.004460242602386,
+        "2": 0.09392226794157099,
+        "3": 0.42876669975201004,
+        "4": 0.6347254870509,
+        "5": 0.41459143172479995,
+        "6": 1.2109122298946,
+        "7": 0.8306729480446
+      }
+    },
+    "HW-7": {
+      "well": "HW-7",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3362,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.049716611195035,
+        "2": 0.07748662126272998,
+        "3": 0.06732601921379,
+        "4": 0.0581615696416,
+        "6": 0.193760567325,
+        "7": 0.226148170336
+      }
+    },
+    "HW-8": {
+      "well": "HW-8",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.5126,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.02416953656333,
+        "2": 0.13686138405169998,
+        "3": 0.06478611643189999,
+        "4": 0.3164001274045,
+        "5": 0.0749815203096
+      }
+    },
+    "HW-9": {
+      "well": "HW-9",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.4637,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.020132410658336,
+        "2": 0.20899082818996004,
+        "3": 0.03679478133842,
+        "4": 0.2538866193225,
+        "5": 0.13950808681,
+        "6": 0.225247902487,
+        "7": 0.764713899231
+      }
+    }
+  },
+  "table": [
+    {
+      "well": "HW-10",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.2895,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.018592422660884,
+        "2": 0.28143658871633004,
+        "3": 0.0907424273118,
+        "4": 0.4107609660074,
+        "6": 0.380931756895,
+        "7": 0.236463815581
+      }
+    },
+    {
+      "well": "HW-24",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.5181,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.006269068767554,
+        "2": 0.36803739136890906,
+        "3": 0.36448302543451,
+        "4": 0.7942333569131999
+      }
+    },
+    {
+      "well": "HW-25",
+      "region_property": "SATNUM",
+      "region_property_value": 2,
+      "relperm_region": "RRT_02",
+      "saturation_model": "Model_02",
+      "relperm_model": "Model_02",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.5118,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.0037975764318599996,
+        "2": 0.3761144420176139,
+        "3": 0.2117466221324,
+        "4": 0.1432831946056
+      }
+    },
+    {
+      "well": "HW-26",
+      "region_property": "SATNUM",
+      "region_property_value": 2,
+      "relperm_region": "RRT_02",
+      "saturation_model": "Model_02",
+      "relperm_model": "Model_02",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.5557,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.031860962123916,
+        "2": 0.062588569980916,
+        "3": 0.00992057473018,
+        "5": 0.00825242458922
+      }
+    },
+    {
+      "well": "HW-28",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.328,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.016689712307945,
+        "2": 0.20741250395159,
+        "3": 0.22836214534500002,
+        "4": 0.7522255769168998,
+        "6": 0.513944193515,
+        "7": 0.57472483155
+      }
+    },
+    {
+      "well": "HW-29",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3323,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.0028672945824540002,
+        "2": 0.27881002306211,
+        "3": 0.8759518047111999,
+        "4": 1.1187378860931,
+        "5": 0.863893356389,
+        "6": 0.9104713024890001,
+        "7": 2.016008902051
+      }
+    },
+    {
+      "well": "HW-3",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3609,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.006158337803197999,
+        "2": 0.3115495496386299,
+        "3": 0.5650064464432,
+        "4": 1.1847431065605,
+        "6": 0.46383749301699995,
+        "7": 1.429378045
+      }
+    },
+    {
+      "well": "HW-30",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3431,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.00119943489158,
+        "2": 0.54067333861818,
+        "3": 0.37320417452660004,
+        "4": 1.6215964334647,
+        "5": 0.210122462261,
+        "6": 1.4693156020470002,
+        "7": 0.510482723215
+      }
+    },
+    {
+      "well": "HW-31",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3548,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.0036497616838270003,
+        "2": 0.26006799110899703,
+        "3": 0.28875833632903,
+        "4": 0.9998209374726,
+        "5": 0.29727293432900004,
+        "6": 0.253940208864,
+        "7": 1.156651980045
+      }
+    },
+    {
+      "well": "HW-32",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.4954,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.0054491952911910006,
+        "2": 0.21166532705128002,
+        "3": 0.5153980934798,
+        "4": 4.167356077265599,
+        "6": 0.357230938648,
+        "7": 3.1552878183780004
+      }
+    },
+    {
+      "well": "HW-5",
+      "region_property": "SATNUM",
+      "region_property_value": 2,
+      "relperm_region": "RRT_02",
+      "saturation_model": "Model_02",
+      "relperm_model": "Model_02",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.381,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.021119891763466996,
+        "2": 0.021586287472024,
+        "4": 0.00332027791825,
+        "6": 0.0106339192812
+      }
+    },
+    {
+      "well": "HW-6",
+      "region_property": "SATNUM",
+      "region_property_value": 6,
+      "relperm_region": "RRT_06",
+      "saturation_model": "Model_06",
+      "relperm_model": "Model_06",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3347,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.004460242602386,
+        "2": 0.09392226794157099,
+        "3": 0.42876669975201004,
+        "4": 0.6347254870509,
+        "5": 0.41459143172479995,
+        "6": 1.2109122298946,
+        "7": 0.8306729480446
+      }
+    },
+    {
+      "well": "HW-7",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.3362,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.049716611195035,
+        "2": 0.07748662126272998,
+        "3": 0.06732601921379,
+        "4": 0.0581615696416,
+        "6": 0.193760567325,
+        "7": 0.226148170336
+      }
+    },
+    {
+      "well": "HW-8",
+      "region_property": "SATNUM",
+      "region_property_value": 4,
+      "relperm_region": "RRT_04",
+      "saturation_model": "Model_04",
+      "relperm_model": "Model_04",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.5126,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.02416953656333,
+        "2": 0.13686138405169998,
+        "3": 0.06478611643189999,
+        "4": 0.3164001274045,
+        "5": 0.0749815203096
+      }
+    },
+    {
+      "well": "HW-9",
+      "region_property": "SATNUM",
+      "region_property_value": 7,
+      "relperm_region": "RRT_07",
+      "saturation_model": "Model_07",
+      "relperm_model": "Model_07",
+      "mapping_source": "WELL_CONNECTIONS.ixf + SATNUM.GRDECL + SIMULATION.PRT RockRegionMapping",
+      "mapping_confidence": 0.4637,
+      "completed_cells_used": 62,
+      "region_weight_distribution": {
+        "1": 0.020132410658336,
+        "2": 0.20899082818996004,
+        "3": 0.03679478133842,
+        "4": 0.2538866193225,
+        "5": 0.13950808681,
+        "6": 0.225247902487,
+        "7": 0.764713899231
+      }
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+######################################
+# IXFVERSION: 2023.4 Petrel
+######################################
+
+MODEL_DEFINITION
+
+RegionFamily "PVT_REGION" [
+    RegionNames    RegionIndices
+     "PVTNUM_1"                1
+]
+
+RegionFamily "EQUILIBRATION_REGION" [
+    RegionNames    RegionIndices
+     "EQLNUM_1"                1
+]
+
+RegionFamily "ROCK_COMPACTION_REGION" [
+    RegionNames    RegionIndices
+    "ROCKNUM_1"                1
+]
+
+RegionFamily "SATURATION_FUNCTION_DRAINAGE_TABLE_NO" [
+    RegionNames    RegionIndices
+       "RRT_01"                1
+       "RRT_02"                2
+       "RRT_03"                3
+       "RRT_04"                4
+       "RRT_05"                5
+       "RRT_06"                6
+       "RRT_07"                7
+]
+
+RegionFamily "FLUID_IN_PLACE_REGION" [
+    RegionNames    RegionIndices
+     "Region 1"                1
+     "Region 2"                2
+     "Region 3"                3
+     "Region 4"                4
+     "Region 5"                5
+     "Region 6"                6
+     "Region 7"                7
+     "Region 8"                8
+     "Region 9"                9
+    "Region 10"               10
+      "Code 11"               11
+      "Code 12"               12
+      "Code 13"               13
+      "Code 14"               14
+      "Code 15"               15
+]
+
+EquilibriumRegionMapping [
+          ModelNames             MappingTypes         RegionFamilyNames    RegionNames
+    "BlackOil_final"    EQUILIBRIUM_EQL_MODEL    "EQUILIBRATION_REGION"     "EQLNUM_1"
+]
+
+FluidRegionMapping [
+          ModelNames       MappingTypes    RegionFamilyNames    RegionNames
+    "BlackOil_final"    FLUID_PVT_MODEL         "PVT_REGION"     "PVTNUM_1"
+]
+
+RockRegionMapping [
+          ModelNames                    MappingTypes                          RegionFamilyNames    RegionNames
+    "Model_BlackOil"                  ROCK_MECHANICS                   "ROCK_COMPACTION_REGION"    "ROCKNUM_1"
+          "Model_01"    DRAINAGE_SATURATION_FUNCTION    "SATURATION_FUNCTION_DRAINAGE_TABLE_NO"       "RRT_01"
+          "Model_02"    DRAINAGE_SATURATION_FUNCTION    "SATURATION_FUNCTION_DRAINAGE_TABLE_NO"       "RRT_02"
+          "Model_03"    DRAINAGE_SATURATION_FUNCTION    "SATURATION_FUNCTION_DRAINAGE_TABLE_NO"       "RRT_03"
+          "Model_04"    DRAINAGE_SATURATION_FUNCTION    "SATURATION_FUNCTION_DRAINAGE_TABLE_NO"       "RRT_04"
+          "Model_05"    DRAINAGE_SATURATION_FUNCTION    "SATURATION_FUNCTION_DRAINAGE_TABLE_NO"       "RRT_05"
+          "Model_06"    DRAINAGE_SATURATION_FUNCTION    "SATURATION_FUNCTION_DRAINAGE_TABLE_NO"       "RRT_06"
+          "Model_07"    DRAINAGE_SATURATION_FUNCTION    "SATURATION_FUNCTION_DRAINAGE_TABLE_NO"       "RRT_07"
+]
+
+
+START
+DATE "1-Feb-1996"
+#TIME 0.0
+

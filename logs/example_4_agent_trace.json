@@ -1,0 +1,197 @@
+{
+  "log_type": "official_example_agent_trace",
+  "example": "example_4",
+  "purpose": "Invalid well guard and safe fallback behaviour",
+  "expected_mode": "guard",
+  "status": "success",
+  "pass": true,
+  "type": "reasoning_response",
+  "task_type": "invalid_well_name_final_v601",
+  "input_message": "Show me HW-250 oil production. If this well does not exist, do not silently use another well.",
+  "agent_count": 7,
+  "interaction_edge_count": 7,
+  "tools_called": [
+    "LLMCopilotBrainV800",
+    "WellValidationGuardAgent",
+    "ClosestWellSuggestionAgent",
+    "ReservoirGuardResponseAgent",
+    "FinalAnswerSynthesizerV800",
+    "VisualEvidenceStabilizerV806"
+  ],
+  "tool_count": 6,
+  "ui_block_types": [
+    "suggestions"
+  ],
+  "collaboration_summary": {
+    "mode": "v800_reservoir_single_tool",
+    "llm_planner_used": true,
+    "tools_called": [
+      "DynamicProfileAgentToolV800"
+    ],
+    "agent_count": 6,
+    "edge_count": 7,
+    "real_edges": true,
+    "visual_blocks_stabilized_v806": true,
+    "ui_block_count_after_v806": 1,
+    "final_visual_selector_v810": {
+      "decision": "explicit_profile_visual",
+      "selected_ui_block_count": 1
+    }
+  },
+  "agent_trace": {
+    "LLMCopilotBrainV800": {
+      "status": "completed",
+      "decision": "reservoir_single_tool",
+      "reason": "User requested oil production data for a specific well (HW-250), which is a model-specific query requiring access to the reservoir model.",
+      "primary_well": "HW-250",
+      "llm_planner_used": true
+    },
+    "EvidencePlannerV800": {
+      "status": "completed",
+      "tool_plan": [
+        {
+          "tool_label": "DynamicProfileAgentToolV800",
+          "subquery": "Show oil production profile for well HW-250. If HW-250 does not exist, do not substitute another well."
+        }
+      ]
+    },
+    "DynamicProfileAgentToolV800": {
+      "status": "completed",
+      "subquery": "Show oil production profile for well HW-250. If HW-250 does not exist, do not substitute another well.",
+      "response_type": "reasoning_response",
+      "intent": "invalid_well_name_final_v601",
+      "task_type": "invalid_well_name_final_v601",
+      "ui_block_types": [
+        "suggestions"
+      ],
+      "exposed_runtime_trace_keys": [
+        "FinalInvalidWellGuardV601"
+      ]
+    },
+    "ReservoirCriticAgentV800": {
+      "status": "completed",
+      "review": "Single reservoir tool selected by LLM planner and returned evidence."
+    },
+    "FinalAnswerSynthesizerV800": {
+      "status": "completed",
+      "mode": "single_tool_synthesis"
+    },
+    "SpecialistRuntimeTraceV501": {
+      "status": "completed",
+      "trace": {
+        "FinalInvalidWellGuardV601": {
+          "status": "blocked_before_routing",
+          "reason": "Prevented invalid well from reaching profile/diagnosis agents.",
+          "invalid": [
+            {
+              "raw": "HW-250",
+              "compact": "HW250",
+              "reason": "Well not found in active reservoir well registry.",
+              "suggestions": [
+                "HW-25",
+                "HW-5",
+                "HW-32",
+                "HW-30",
+                "HW-29",
+                "HW-28"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "VisualEvidenceStabilizerV806": {
+      "status": "completed",
+      "action": "deduplicated_and_ranked_ui_blocks",
+      "ui_block_count": 1,
+      "note": "No reservoir evidence was invented; duplicate/unstable blocks were removed from display payload."
+    },
+    "FinalVisualSelectorV810": {
+      "status": "completed",
+      "decision": "explicit_profile_visual",
+      "original_ui_block_types": [
+        "suggestions"
+      ],
+      "selected_ui_block_types": [
+        "suggestions"
+      ],
+      "policy": "show_final_decision_visual_not_all_supporting_visuals"
+    }
+  },
+  "interaction_edges": [
+    {
+      "source": "LLMCopilotBrainV800",
+      "target": "EvidencePlannerV800",
+      "relation": "semantic_plan_created",
+      "reason": "User requested oil production data for a specific well (HW-250), which is a model-specific query requiring access to the reservoir model.",
+      "timestamp": "2026-06-05T11:48:37Z"
+    },
+    {
+      "source": "EvidencePlannerV800",
+      "target": "DynamicProfileAgentToolV800",
+      "relation": "selected_tool_from_llm_plan",
+      "reason": "Show oil production profile for well HW-250. If HW-250 does not exist, do not substitute another well.",
+      "timestamp": "2026-06-05T11:48:37Z"
+    },
+    {
+      "source": "ReservoirCopilotBrainV700",
+      "target": "DynamicProfileAgentToolV800",
+      "relation": "tool_call_requested",
+      "reason": "Show oil production profile for well HW-250. If HW-250 does not exist, do not substitute another well.",
+      "timestamp": "2026-06-05T11:48:37Z"
+    },
+    {
+      "source": "DynamicProfileAgentToolV800",
+      "target": "FinalInvalidWellGuardV601",
+      "relation": "runtime_exposed_specialist",
+      "reason": "Specialist observed in returned agent_trace.",
+      "timestamp": "2026-06-05T11:48:39Z"
+    },
+    {
+      "source": "FinalInvalidWellGuardV601",
+      "target": "ReservoirCopilotBrainV700",
+      "relation": "returned_evidence",
+      "evidence_preview": "I found an explicit well name that is invalid or ambiguous for the active reservoir. I did not run the request on another well or on a default well because that would be misleading. HW-250 is not a valid well in the active dataset. Well not found in active reservoir well registry. Closest available wells: HW-25, HW-5, HW-32, HW-30, HW-29, HW-28.",
+      "ui_block_types": [
+        "suggestions"
+      ],
+      "timestamp": "2026-06-05T11:48:39Z"
+    },
+    {
+      "source": "DynamicProfileAgentToolV800",
+      "target": "ReservoirCriticAgentV800",
+      "relation": "single_tool_output_reviewed",
+      "timestamp": "2026-06-05T11:48:39Z"
+    },
+    {
+      "source": "ReservoirCriticAgentV800",
+      "target": "FinalAnswerSynthesizerV800",
+      "relation": "reviewed_answer_sent_to_user",
+      "timestamp": "2026-06-05T11:48:39Z"
+    }
+  ],
+  "answer_preview": "I found an explicit well name that is invalid or ambiguous for the active reservoir. I did not run the request on another well or on a default well because that would be misleading. HW-250 is not a valid well in the active dataset. Well not found in active reservoir well registry. Closest available wells: HW-25, HW-5, HW-32, HW-30, HW-29, HW-28.",
+  "llm_final_answer_writer": {
+    "enabled": true,
+    "purpose": "Polish validated specialist evidence into clear user-facing reservoir-engineering language.",
+    "fallback_safe": true
+  },
+  "red_flags": [],
+  "output_file": "output_examples/example_4_output.json",
+  "generated_at": "2026-06-05T11:48:41Z",
+  "source_files": {
+    "input": "input_examples/example_4.json",
+    "output": "output_examples/example_4_output.json"
+  },
+  "guard_detected": true,
+  "safe_fallback": true,
+  "silent_substitution_avoided": true,
+  "valid_well_suggestions": [
+    "HW-25",
+    "HW-5",
+    "HW-32",
+    "HW-30",
+    "HW-29",
+    "HW-28"
+  ]
+}

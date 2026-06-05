@@ -1,0 +1,3853 @@
+﻿
+FILE: web\dashboard_final_v79.js
+LINE: 30
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+async function getJson(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+  return r.json();
+}
+
+async function postJson(url, body) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body),
+  });
+
+FILE: web\dashboard_final_v79.js
+LINE: 36
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+  return r.json();
+}
+
+async function postJson(url, body) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body),
+  });
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+  return r.json();
+}
+
+async function loadKpis() {
+  const data = await getJson("/api/dashboard/kpi-summary?t=" + Date.now());
+
+FILE: web\dashboard_final_v79.js
+LINE: 1136
+    </div>
+  `;
+}
+
+function renderVisualResponse(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${escapeHtml(data.answer || "")}</p>`;
+
+  const blocks = data.ui_blocks || [];
+  let visualHtml = "";
+
+  for (const block of blocks) {
+    if (block.type === "cell_property_map") {
+      renderCellPropertyMapV20(block);
+
+FILE: web\dashboard_final_v79.js
+LINE: 1224
+
+  visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+}
+
+async function askChat(prompt) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = prompt || input.value.trim();
+  if (!msg) return;
+
+  input.value = msg;
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing visual evidence...</div>`;
+
+
+FILE: web\dashboard_final_v79.js
+LINE: 1225
+  visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+}
+
+async function askChat(prompt) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = prompt || input.value.trim();
+  if (!msg) return;
+
+  input.value = msg;
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing visual evidence...</div>`;
+
+  try {
+
+FILE: web\dashboard_final_v79.js
+LINE: 1236
+  input.value = msg;
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing visual evidence...</div>`;
+
+  try {
+    const data = await postJson("/api/chat", {message: msg});
+    if (data.type === "visual_response") renderVisualResponse(data);
+    else {
+      answer.innerHTML = `<p>${escapeHtml(data.answer || "No answer.")}</p>`;
+      visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+    }
+  } catch (e) {
+    answer.innerHTML = `<p style="color:#ff5757">Chat request failed: ${escapeHtml(e.message)}</p>`;
+    visual.innerHTML = `<div class="empty-state">No visual output generated.</div>`;
+  }
+}
+
+FILE: web\dashboard_final_v79.js
+LINE: 1252
+
+window.askQuick = askChat;
+
+async function runDiagnostics() {
+  try {
+    await postJson("/run", {});
+    await refreshAll();
+  } catch (e) {
+    alert("Run failed: " + e.message);
+  }
+}
+
+async function refreshAll() {
+  await Promise.all([loadKpis(), loadMap()]);
+}
+
+
+FILE: web\dashboard_final_v79.js
+LINE: 1279
+  document.getElementById("showInactive")?.addEventListener("change", e => {
+    state.showInactive = e.target.checked;
+    renderMap();
+  });
+
+  document.getElementById("askBtn")?.addEventListener("click", () => askChat());
+  document.getElementById("chatInput")?.addEventListener("keydown", e => {
+    if (e.key === "Enter") askChat();
+  });
+
+  document.querySelectorAll(".quick-actions button").forEach(btn => {
+    btn.addEventListener("click", () => askChat(btn.dataset.prompt));
+  });
+
+  document.getElementById("refreshBtn")?.addEventListener("click", refreshAll);
+  document.getElementById("runBtn")?.addEventListener("click", runDiagnostics);
+
+FILE: web\dashboard_final_v79.js
+LINE: 1280
+    state.showInactive = e.target.checked;
+    renderMap();
+  });
+
+  document.getElementById("askBtn")?.addEventListener("click", () => askChat());
+  document.getElementById("chatInput")?.addEventListener("keydown", e => {
+    if (e.key === "Enter") askChat();
+  });
+
+  document.querySelectorAll(".quick-actions button").forEach(btn => {
+    btn.addEventListener("click", () => askChat(btn.dataset.prompt));
+  });
+
+  document.getElementById("refreshBtn")?.addEventListener("click", refreshAll);
+  document.getElementById("runBtn")?.addEventListener("click", runDiagnostics);
+}
+
+FILE: web\dashboard_final_v79.js
+LINE: 1373
+    </div>
+  `;
+}
+
+function renderVisualResponseV9(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${escapeHtml(data.answer || "")}</p>`;
+
+  const blocks = data.ui_blocks || [];
+  let visualHtml = "";
+
+  // Prefer real visual blocks first.
+  for (const block of blocks) {
+    if (block.type === "cell_property_map") {
+
+FILE: web\dashboard_final_v79.js
+LINE: 1461
+
+  visual.innerHTML = `<div class="empty-state">No visual evidence was returned for this question.</div>`;
+}
+
+async function askChatV9(prompt = null) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = String(prompt || input.value || "").trim();
+  if (!msg) return;
+
+  input.value = msg;
+
+  const requestId = ++chatRequestSeqV9;
+
+
+FILE: web\dashboard_final_v79.js
+LINE: 1462
+  visual.innerHTML = `<div class="empty-state">No visual evidence was returned for this question.</div>`;
+}
+
+async function askChatV9(prompt = null) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = String(prompt || input.value || "").trim();
+  if (!msg) return;
+
+  input.value = msg;
+
+  const requestId = ++chatRequestSeqV9;
+
+  answer.innerHTML = `<p>Investigating: <b>${escapeHtml(msg)}</b>...</p>`;
+
+FILE: web\dashboard_final_v79.js
+LINE: 1476
+
+  answer.innerHTML = `<p>Investigating: <b>${escapeHtml(msg)}</b>...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing new visual evidence...</div>`;
+
+  try {
+    const data = await postJson("/api/chat?t=" + Date.now(), {message: msg});
+
+    // V52: force visual block rendering immediately after chat response.
+    try {
+      console.log("[V52] Chat response received", {
+        intent: data && data.intent,
+        blocks: data && data.ui_blocks ? data.ui_blocks.map(b => b.type) : []
+      });
+
+      setTimeout(() => {
+        try {
+
+FILE: web\dashboard_final_v79.js
+LINE: 1480
+  try {
+    const data = await postJson("/api/chat?t=" + Date.now(), {message: msg});
+
+    // V52: force visual block rendering immediately after chat response.
+    try {
+      console.log("[V52] Chat response received", {
+        intent: data && data.intent,
+        blocks: data && data.ui_blocks ? data.ui_blocks.map(b => b.type) : []
+      });
+
+      setTimeout(() => {
+        try {
+          if (typeof tryRenderFirstSupportedVisualBlockV51 === "function") {
+            const ok = forceRenderChatVisualsV52(data);
+            console.log("[V52] Forced visual render result:", ok);
+          } else {
+
+FILE: web\dashboard_final_v79.js
+LINE: 1488
+      });
+
+      setTimeout(() => {
+        try {
+          if (typeof tryRenderFirstSupportedVisualBlockV51 === "function") {
+            const ok = forceRenderChatVisualsV52(data);
+            console.log("[V52] Forced visual render result:", ok);
+          } else {
+            console.warn("[V52] tryRenderFirstSupportedVisualBlockV51 is not available");
+          }
+        } catch (e) {
+          console.error("[V52] Forced visual render failed", e);
+        }
+      }, 120);
+
+      setTimeout(() => {
+
+FILE: web\dashboard_final_v79.js
+LINE: 1501
+      }, 120);
+
+      setTimeout(() => {
+        try {
+          if (typeof tryRenderFirstSupportedVisualBlockV51 === "function") {
+            forceRenderChatVisualsV52(data);
+          }
+        } catch (e) {}
+      }, 700);
+
+    } catch (e) {
+      console.error("[V52] Chat visual auto-render hook failed", e);
+    }
+
+    // Ignore stale responses if the user clicked another suggestion quickly.
+    if (requestId !== chatRequestSeqV9) return;
+
+FILE: web\dashboard_final_v79.js
+LINE: 1550
+  if (prompt) askChatV9(prompt);
+});
+
+// Re-bind Ask button safely after page load.
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+
+FILE: web\dashboard_final_v79.js
+LINE: 1551
+});
+
+// Re-bind Ask button safely after page load.
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+    input.onkeydown = function(ev) {
+
+FILE: web\dashboard_final_v79.js
+LINE: 1553
+// Re-bind Ask button safely after page load.
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+    input.onkeydown = function(ev) {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+
+FILE: web\dashboard_final_v79.js
+LINE: 1554
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+    input.onkeydown = function(ev) {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        askChatV9();
+
+FILE: web\dashboard_final_v79.js
+LINE: 3236
+
+async function loadSmartWellRecommendationsV40() {
+  if (window.__smartWellRecommendationsV40) return window.__smartWellRecommendationsV40;
+
+  try {
+    const res = await fetch("/api/smart-well-recommendations?ts=" + Date.now());
+    if (!res.ok) throw new Error("smart recommendations not found");
+    window.__smartWellRecommendationsV40 = await res.json();
+  } catch (e) {
+    console.warn("[V40] Smart well recommendations unavailable", e);
+    window.__smartWellRecommendationsV40 = {};
+  }
+
+  return window.__smartWellRecommendationsV40;
+}
+
+
+FILE: web\dashboard_final_v79.js
+LINE: 3360
+
+async function loadSmartWellRecommendationsV41() {
+  if (window.__smartWellRecommendationsV41) return window.__smartWellRecommendationsV41;
+
+  try {
+    const res = await fetch("/api/smart-well-recommendations?ts=" + Date.now());
+    const data = await res.json();
+    window.__smartWellRecommendationsV41 = data.recommendations || {};
+  } catch (e) {
+    console.warn("[V41] Could not load smart well recommendations", e);
+    window.__smartWellRecommendationsV41 = {};
+  }
+
+  return window.__smartWellRecommendationsV41;
+}
+
+
+FILE: web\dashboard_final_v79.js
+LINE: 3949
+  if (card.querySelector(".tran-corridor-export-v44")) return;
+
+  let candidate = null;
+
+  try {
+    const res = await fetch(`/api/tran-corridor-candidate/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    candidate = await res.json();
+  } catch (e) {
+    console.warn("[V44] Could not evaluate TRAN corridor candidate", e);
+    return;
+  }
+
+  if (!candidate || !candidate.eligible) {
+    return;
+  }
+
+
+FILE: web\dashboard_final_v79.js
+LINE: 3998
+  btn.addEventListener("click", async () => {
+    btn.disabled = true;
+    btn.innerText = "Generating IXF...";
+
+    try {
+      const res = await fetch(`/api/export-tran-corridor-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+      const data = await res.json();
+
+      if (!data.ok || !data.content) {
+        alert(data.message || "Could not generate IXF.");
+        btn.disabled = false;
+        btn.innerText = "Export candidate IXF";
+        return;
+      }
+
+      const blob = new Blob([data.content], {type: "text/plain;charset=utf-8"});
+
+FILE: web\dashboard_final_v79.js
+LINE: 4090
+
+  button.disabled = true;
+  button.innerText = "Evaluating candidate...";
+
+  try {
+    const candidateRes = await fetch(`/api/tran-corridor-candidate/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const candidate = await candidateRes.json();
+
+    if (!candidate || !candidate.eligible) {
+      if (status) {
+        status.innerHTML = `
+          TRAN corridor export is <b>not recommended</b> for ${escapeHtml(well)} as a first action.
+          ${candidate && candidate.reasons ? `<br>${escapeHtml(candidate.reasons.join("; "))}` : ""}
+        `;
+      }
+      button.disabled = false;
+
+FILE: web\dashboard_final_v79.js
+LINE: 4115
+      `;
+    }
+
+    button.innerText = "Generating IXF...";
+
+    const res = await fetch(`/api/export-tran-corridor-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const data = await res.json();
+
+    if (!data.ok || !data.content) {
+      alert(data.message || "Could not generate IXF.");
+      button.disabled = false;
+      button.innerText = "Evaluate / Export IXF";
+      return;
+    }
+
+    const blob = new Blob([data.content], { type: "text/plain;charset=utf-8" });
+
+FILE: web\dashboard_final_v79.js
+LINE: 5148
+// ==========================================================
+// GENERIC VISUAL AUTORENDER HARD FIX V52
+// Explicitly renders generic_property_map/profile_ensemble blocks.
+// ==========================================================
+
+function forceRenderChatVisualsV52(data) {
+  try {
+    const blocks = data?.ui_blocks || [];
+    console.log("[V52] forceRenderChatVisualsV52 blocks:", blocks.map(b => b.type));
+
+    if (!Array.isArray(blocks) || !blocks.length) return false;
+
+    const preferredOrder = [
+      "generic_property_map",
+      "profile_ensemble",
+      "tran_corridor_map",
+
+FILE: web\dashboard_final_v79.js
+LINE: 5151
+// ==========================================================
+
+function forceRenderChatVisualsV52(data) {
+  try {
+    const blocks = data?.ui_blocks || [];
+    console.log("[V52] forceRenderChatVisualsV52 blocks:", blocks.map(b => b.type));
+
+    if (!Array.isArray(blocks) || !blocks.length) return false;
+
+    const preferredOrder = [
+      "generic_property_map",
+      "profile_ensemble",
+      "tran_corridor_map",
+      "wct_bias_cluster_map",
+      "cluster_map",
+      "cell_property_map",
+
+FILE: web\dashboard_final_v79.js
+LINE: 5216
+    }
+
+    return false;
+
+  } catch (e) {
+    console.error("[V52] forceRenderChatVisualsV52 failed", e);
+    const panel = document.getElementById("visualPanel");
+    if (panel) {
+      panel.innerHTML = `
+        <div class="section-title">Visual rendering failed</div>
+        <div class="empty-state">${escapeHtml(String(e && e.stack ? e.stack : e))}</div>
+      `;
+    }
+    return false;
+  }
+}
+
+FILE: web\dashboard_final_v79.js
+LINE: 6458
+    btn.addEventListener("click", async () => {
+      btn.disabled = true;
+      btn.innerText = "Generating IXF...";
+
+      try {
+        const res = await fetch(`/api/relperm/export-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+        const data = await res.json();
+
+        if (!data.ok || !data.content) {
+          alert(data.message || "Could not export RelPerm IXF.");
+          btn.disabled = false;
+          btn.innerText = "Export RelPerm IXF";
+          return;
+        }
+
+        const blob = new Blob([data.content], { type: "text/plain;charset=utf-8" });
+
+FILE: web\dashboard_final_v79.js
+LINE: 6528
+// CLEAN RELPERM BUTTON HANDLER V95
+// Single handler only. No observers, no wrappers, no automatic DOM loops.
+// ==========================================================
+
+async function fetchRelPermCandidateV95(well) {
+  const res = await fetch(`/api/relperm/sensitivity/${encodeURIComponent(well)}?ts=${Date.now()}`);
+  if (!res.ok) return null;
+  return await res.json();
+}
+
+async function exportRelPermIXFV95(well, button, status) {
+  if (button) {
+    button.disabled = true;
+    button.innerText = "Evaluating...";
+  }
+
+
+FILE: web\dashboard_final_v79.js
+LINE: 6554
+      return false;
+    }
+
+    if (button) button.innerText = "Generating IXF...";
+
+    const res = await fetch(`/api/relperm/export-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const data = await res.json();
+
+    if (!data.ok || !data.content) {
+      alert(data.message || "RelPerm IXF export is not available for this well.");
+      return false;
+    }
+
+    const blob = new Blob([data.content], {type: "text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+
+
+FILE: web\dashboard_final_v79.js
+LINE: 6827
+    button.disabled = true;
+    button.innerText = "Generating IXF...";
+  }
+
+  try {
+    const res = await fetch(`/api/relperm/export-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const data = await res.json();
+
+    if (!data.ok || !data.content) {
+      if (status) {
+        status.innerHTML = `
+          RelPerm IXF export is <b>not available</b> for ${escapeHtml(well)}.
+          ${data && data.message ? `<br>${escapeHtml(data.message)}` : ""}
+        `;
+      } else {
+        alert(data.message || "RelPerm IXF export is not available for this well.");
+
+FILE: web\dashboard_final_v79.js
+LINE: 7186
+      Generating modified RelPerm IXF for <b>${escapeHtml(well)}</b>...
+    `;
+  }
+
+  try {
+    const res = await fetch(`/api/relperm/export-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const data = await res.json();
+
+    if (!data.ok || !data.content) {
+      const msg = data && data.message ? data.message : "RelPerm IXF export is not available for this well.";
+
+      if (status) {
+        status.innerHTML = `
+          RelPerm IXF export is <b>not available</b> for ${escapeHtml(well)}.
+          <br>${escapeHtml(msg)}
+        `;
+
+FILE: web\dashboard_final_v79.js
+LINE: 7381
+  };
+}
+
+async function fetchTranCandidateV101(well) {
+  try {
+    const res = await fetch(`/api/tran-corridor-candidate/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    console.warn("[V101] TRAN candidate fetch failed", e);
+    return null;
+  }
+}
+
+function decideFirstTrialV101(relpermCandidate, tranCandidate, impact) {
+  const same = relpermCandidate?.impacted_wells_summary?.same_direction || [];
+
+FILE: web\dashboard_final_v79.js
+LINE: 7974
+  if (!panel) return;
+
+  try {
+    panel.innerHTML = `<div class="empty-state">Loading agent collaboration trace...</div>`;
+
+    const res = await fetch("/api/agent-collaboration-log?limit=1&t=" + Date.now());
+    const data = await res.json();
+
+    const records = data.records || [];
+
+    if (!records.length) {
+      panel.innerHTML = `<div class="empty-state">No collaboration trace yet. Ask a question first.</div>`;
+      return;
+    }
+
+    panel.innerHTML = records.slice().reverse().map((rec, idx) => {
+
+FILE: web\dashboard_final_v79.js
+LINE: 8073
+
+
+
+// ==========================================================
+// AGENT TRACE AUTO-REFRESH V011
+// Refreshes the collapsible trace panel after each /api/chat response.
+// ==========================================================
+
+function installAgentTraceAutoRefreshV011() {
+  if (window.__agentTraceAutoRefreshV011) return;
+
+  const originalFetch = window.fetch;
+
+  window.fetch = async function(...args) {
+    const url = String(args[0] || "");
+    const isChatCall = url.includes("/api/chat");
+
+FILE: web\dashboard_final_v79.js
+LINE: 8083
+
+  const originalFetch = window.fetch;
+
+  window.fetch = async function(...args) {
+    const url = String(args[0] || "");
+    const isChatCall = url.includes("/api/chat");
+
+    const result = await originalFetch.apply(this, args);
+
+    if (isChatCall) {
+      setTimeout(() => {
+        const panel = document.getElementById("agentTracePanel");
+        const isOpen = panel && panel.style.display !== "none" && panel.style.display !== "";
+
+        if (isOpen && typeof loadAgentCollaborationTraceV010 === "function") {
+          loadAgentCollaborationTraceV010();
+
+FILE: web\dashboard_final_v79.js
+LINE: 8317
+
+  const previousFetch = window.fetch;
+
+  window.fetch = async function(...args) {
+    const url = String(args[0] || "");
+    const isChatCall = url.includes("/api/chat");
+
+    const result = await previousFetch.apply(this, args);
+
+    if (isChatCall) {
+      try {
+        const clone = result.clone();
+        const data = await clone.json();
+
+        let message = "";
+        try {
+
+FILE: web\dashboard_final_v79.js
+LINE: 8617
+
+  const previousFetch = window.fetch;
+
+  window.fetch = async function(...args) {
+    const url = String(args[0] || "");
+    const isChatCall = url.includes("/api/chat");
+
+    const result = await previousFetch.apply(this, args);
+
+    if (isChatCall) {
+      try {
+        const clone = result.clone();
+        const data = await clone.json();
+
+        let message = "";
+        try {
+
+FILE: web\dashboard_final_v79.js
+LINE: 8949
+
+
+
+// ==========================================================
+// V375 SINGLE CLEAN VISUAL PANEL PLOT RENDERER
+// One renderer only. One render per latest /api/chat response.
+// Target: #visualPanel.
+// Observed: dark red solid. Simulated: cyan solid.
+// ==========================================================
+(function installSingleCleanVisualPanelRendererV375() {
+  if (window.__singleCleanVisualPanelRendererV375Installed) return;
+  window.__singleCleanVisualPanelRendererV375Installed = true;
+
+  console.log("[V375] Single clean visualPanel renderer installed");
+
+  window.__lastPlotlyChartV375 = null;
+
+FILE: web\dashboard_final_v79.js
+LINE: 9243
+
+    try {
+      const url = typeof input === "string" ? input : (input && input.url) || "";
+      const method = (init && init.method ? init.method : "GET").toUpperCase();
+
+      if (url.includes("/api/chat") && method === "POST") {
+        const clone = response.clone();
+        clone.json().then(data => {
+          const chart =
+            data?.plotly_chart ||
+            data?.plot?.plotly_chart ||
+            data?.visual?.plotly_chart ||
+            data?.visual_evidence?.plotly_chart;
+
+          if (chart) scheduleV375(chart);
+        }).catch(() => {});
+
+FILE: web\dashboard_final_v79.js
+LINE: 9432
+  async function renderFallbackWellDetail(wellName) {
+    const panel = document.getElementById("wellInsight");
+    if (!panel) return;
+
+    try {
+      const r = await fetch("/api/dashboard/well/" + encodeURIComponent(wellName) + "?t=" + Date.now());
+      const d = await r.json();
+      const data = d.data || d || {};
+      const scores = data.scores || {};
+
+      panel.innerHTML = `
+        <div class="section-title">${esc(wellName)}</div>
+        <div class="empty-state" style="text-align:left">
+          <b>Well KPI detail</b><br><br>
+          Overall: ${fmt(scores.overall ?? data.overall_score)}<br>
+          Oil: ${fmt(scores.oil ?? data.oil_score)}<br>
+
+FILE: web\dashboard_final_v79.js
+LINE: 9471
+
+    const variable = document.getElementById("hmVariable")?.value || "overall";
+
+    let payload = null;
+    try {
+      const r = await fetch("/api/dashboard/hm-map?t=" + Date.now());
+      payload = await r.json();
+    } catch (err) {
+      console.warn("[V393] Could not load /api/dashboard/hm-map", err);
+      return;
+    }
+
+    const wells = (payload?.wells || []).filter(w =>
+      Number.isFinite(Number(w.i)) &&
+      Number.isFinite(Number(w.j))
+    );
+
+FILE: web\dashboard_final.js
+LINE: 30
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+async function getJson(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+  return r.json();
+}
+
+async function postJson(url, body) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body),
+  });
+
+FILE: web\dashboard_final.js
+LINE: 36
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+  return r.json();
+}
+
+async function postJson(url, body) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body),
+  });
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+  return r.json();
+}
+
+async function loadKpis() {
+  const data = await getJson("/api/dashboard/kpi-summary?t=" + Date.now());
+
+FILE: web\dashboard_final.js
+LINE: 1136
+    </div>
+  `;
+}
+
+function renderVisualResponse(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${escapeHtml(data.answer || "")}</p>`;
+
+  const blocks = data.ui_blocks || [];
+  let visualHtml = "";
+
+  for (const block of blocks) {
+    if (block.type === "cell_property_map") {
+      renderCellPropertyMapV20(block);
+
+FILE: web\dashboard_final.js
+LINE: 1224
+
+  visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+}
+
+async function askChat(prompt) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = prompt || input.value.trim();
+  if (!msg) return;
+
+  input.value = msg;
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing visual evidence...</div>`;
+
+
+FILE: web\dashboard_final.js
+LINE: 1225
+  visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+}
+
+async function askChat(prompt) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = prompt || input.value.trim();
+  if (!msg) return;
+
+  input.value = msg;
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing visual evidence...</div>`;
+
+  try {
+
+FILE: web\dashboard_final.js
+LINE: 1236
+  input.value = msg;
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing visual evidence...</div>`;
+
+  try {
+    const data = await postJson("/api/chat", {message: msg});
+    if (data.type === "visual_response") renderVisualResponse(data);
+    else {
+      answer.innerHTML = `<p>${escapeHtml(data.answer || "No answer.")}</p>`;
+      visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+    }
+  } catch (e) {
+    answer.innerHTML = `<p style="color:#ff5757">Chat request failed: ${escapeHtml(e.message)}</p>`;
+    visual.innerHTML = `<div class="empty-state">No visual output generated.</div>`;
+  }
+}
+
+FILE: web\dashboard_final.js
+LINE: 1252
+
+window.askQuick = askChat;
+
+async function runDiagnostics() {
+  try {
+    await postJson("/run", {});
+    await refreshAll();
+  } catch (e) {
+    alert("Run failed: " + e.message);
+  }
+}
+
+async function refreshAll() {
+  await Promise.all([loadKpis(), loadMap()]);
+}
+
+
+FILE: web\dashboard_final.js
+LINE: 1279
+  document.getElementById("showInactive").addEventListener("change", e => {
+    state.showInactive = e.target.checked;
+    renderMap();
+  });
+
+  document.getElementById("askBtn").addEventListener("click", () => askChat());
+  document.getElementById("chatInput").addEventListener("keydown", e => {
+    if (e.key === "Enter") askChat();
+  });
+
+  document.querySelectorAll(".quick-actions button").forEach(btn => {
+    btn.addEventListener("click", () => askChat(btn.dataset.prompt));
+  });
+
+  document.getElementById("refreshBtn").addEventListener("click", refreshAll);
+  document.getElementById("runBtn").addEventListener("click", runDiagnostics);
+
+FILE: web\dashboard_final.js
+LINE: 1280
+    state.showInactive = e.target.checked;
+    renderMap();
+  });
+
+  document.getElementById("askBtn").addEventListener("click", () => askChat());
+  document.getElementById("chatInput").addEventListener("keydown", e => {
+    if (e.key === "Enter") askChat();
+  });
+
+  document.querySelectorAll(".quick-actions button").forEach(btn => {
+    btn.addEventListener("click", () => askChat(btn.dataset.prompt));
+  });
+
+  document.getElementById("refreshBtn").addEventListener("click", refreshAll);
+  document.getElementById("runBtn").addEventListener("click", runDiagnostics);
+}
+
+FILE: web\dashboard_final.js
+LINE: 1373
+    </div>
+  `;
+}
+
+function renderVisualResponseV9(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${escapeHtml(data.answer || "")}</p>`;
+
+  const blocks = data.ui_blocks || [];
+  let visualHtml = "";
+
+  // Prefer real visual blocks first.
+  for (const block of blocks) {
+    if (block.type === "cell_property_map") {
+
+FILE: web\dashboard_final.js
+LINE: 1461
+
+  visual.innerHTML = `<div class="empty-state">No visual evidence was returned for this question.</div>`;
+}
+
+async function askChatV9(prompt = null) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = String(prompt || input.value || "").trim();
+  if (!msg) return;
+
+  input.value = msg;
+
+  const requestId = ++chatRequestSeqV9;
+
+
+FILE: web\dashboard_final.js
+LINE: 1462
+  visual.innerHTML = `<div class="empty-state">No visual evidence was returned for this question.</div>`;
+}
+
+async function askChatV9(prompt = null) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = String(prompt || input.value || "").trim();
+  if (!msg) return;
+
+  input.value = msg;
+
+  const requestId = ++chatRequestSeqV9;
+
+  answer.innerHTML = `<p>Investigating: <b>${escapeHtml(msg)}</b>...</p>`;
+
+FILE: web\dashboard_final.js
+LINE: 1476
+
+  answer.innerHTML = `<p>Investigating: <b>${escapeHtml(msg)}</b>...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing new visual evidence...</div>`;
+
+  try {
+    const data = await postJson("/api/chat?t=" + Date.now(), {message: msg});
+
+    // V52: force visual block rendering immediately after chat response.
+    try {
+      console.log("[V52] Chat response received", {
+        intent: data && data.intent,
+        blocks: data && data.ui_blocks ? data.ui_blocks.map(b => b.type) : []
+      });
+
+      setTimeout(() => {
+        try {
+
+FILE: web\dashboard_final.js
+LINE: 1480
+  try {
+    const data = await postJson("/api/chat?t=" + Date.now(), {message: msg});
+
+    // V52: force visual block rendering immediately after chat response.
+    try {
+      console.log("[V52] Chat response received", {
+        intent: data && data.intent,
+        blocks: data && data.ui_blocks ? data.ui_blocks.map(b => b.type) : []
+      });
+
+      setTimeout(() => {
+        try {
+          if (typeof tryRenderFirstSupportedVisualBlockV51 === "function") {
+            const ok = forceRenderChatVisualsV52(data);
+            console.log("[V52] Forced visual render result:", ok);
+          } else {
+
+FILE: web\dashboard_final.js
+LINE: 1488
+      });
+
+      setTimeout(() => {
+        try {
+          if (typeof tryRenderFirstSupportedVisualBlockV51 === "function") {
+            const ok = forceRenderChatVisualsV52(data);
+            console.log("[V52] Forced visual render result:", ok);
+          } else {
+            console.warn("[V52] tryRenderFirstSupportedVisualBlockV51 is not available");
+          }
+        } catch (e) {
+          console.error("[V52] Forced visual render failed", e);
+        }
+      }, 120);
+
+      setTimeout(() => {
+
+FILE: web\dashboard_final.js
+LINE: 1501
+      }, 120);
+
+      setTimeout(() => {
+        try {
+          if (typeof tryRenderFirstSupportedVisualBlockV51 === "function") {
+            forceRenderChatVisualsV52(data);
+          }
+        } catch (e) {}
+      }, 700);
+
+    } catch (e) {
+      console.error("[V52] Chat visual auto-render hook failed", e);
+    }
+
+    // Ignore stale responses if the user clicked another suggestion quickly.
+    if (requestId !== chatRequestSeqV9) return;
+
+FILE: web\dashboard_final.js
+LINE: 1550
+  if (prompt) askChatV9(prompt);
+});
+
+// Re-bind Ask button safely after page load.
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+
+FILE: web\dashboard_final.js
+LINE: 1551
+});
+
+// Re-bind Ask button safely after page load.
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+    input.onkeydown = function(ev) {
+
+FILE: web\dashboard_final.js
+LINE: 1553
+// Re-bind Ask button safely after page load.
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+    input.onkeydown = function(ev) {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+
+FILE: web\dashboard_final.js
+LINE: 1554
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+    input.onkeydown = function(ev) {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        askChatV9();
+
+FILE: web\dashboard_final.js
+LINE: 3236
+
+async function loadSmartWellRecommendationsV40() {
+  if (window.__smartWellRecommendationsV40) return window.__smartWellRecommendationsV40;
+
+  try {
+    const res = await fetch("/artifacts/diagnosis/smart_well_recommendations.json?ts=" + Date.now());
+    if (!res.ok) throw new Error("smart recommendations not found");
+    window.__smartWellRecommendationsV40 = await res.json();
+  } catch (e) {
+    console.warn("[V40] Smart well recommendations unavailable", e);
+    window.__smartWellRecommendationsV40 = {};
+  }
+
+  return window.__smartWellRecommendationsV40;
+}
+
+
+FILE: web\dashboard_final.js
+LINE: 3359
+
+async function loadSmartWellRecommendationsV41() {
+  if (window.__smartWellRecommendationsV41) return window.__smartWellRecommendationsV41;
+
+  try {
+    const res = await fetch("/api/smart-well-recommendations?ts=" + Date.now());
+    const data = await res.json();
+    window.__smartWellRecommendationsV41 = data.recommendations || {};
+  } catch (e) {
+    console.warn("[V41] Could not load smart well recommendations", e);
+    window.__smartWellRecommendationsV41 = {};
+  }
+
+  return window.__smartWellRecommendationsV41;
+}
+
+
+FILE: web\dashboard_final.js
+LINE: 3806
+  if (card.querySelector(".tran-corridor-export-v44")) return;
+
+  let candidate = null;
+
+  try {
+    const res = await fetch(`/api/tran-corridor-candidate/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    candidate = await res.json();
+  } catch (e) {
+    console.warn("[V44] Could not evaluate TRAN corridor candidate", e);
+    return;
+  }
+
+  if (!candidate || !candidate.eligible) {
+    return;
+  }
+
+
+FILE: web\dashboard_final.js
+LINE: 3855
+  btn.addEventListener("click", async () => {
+    btn.disabled = true;
+    btn.innerText = "Generating IXF...";
+
+    try {
+      const res = await fetch(`/api/export-tran-corridor-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+      const data = await res.json();
+
+      if (!data.ok || !data.content) {
+        alert(data.message || "Could not generate IXF.");
+        btn.disabled = false;
+        btn.innerText = "Export candidate IXF";
+        return;
+      }
+
+      const blob = new Blob([data.content], {type: "text/plain;charset=utf-8"});
+
+FILE: web\dashboard_final.js
+LINE: 3947
+
+  button.disabled = true;
+  button.innerText = "Evaluating candidate...";
+
+  try {
+    const candidateRes = await fetch(`/api/tran-corridor-candidate/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const candidate = await candidateRes.json();
+
+    if (!candidate || !candidate.eligible) {
+      if (status) {
+        status.innerHTML = `
+          TRAN corridor export is <b>not recommended</b> for ${escapeHtml(well)} as a first action.
+          ${candidate && candidate.reasons ? `<br>${escapeHtml(candidate.reasons.join("; "))}` : ""}
+        `;
+      }
+      button.disabled = false;
+
+FILE: web\dashboard_final.js
+LINE: 3972
+      `;
+    }
+
+    button.innerText = "Generating IXF...";
+
+    const res = await fetch(`/api/export-tran-corridor-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const data = await res.json();
+
+    if (!data.ok || !data.content) {
+      alert(data.message || "Could not generate IXF.");
+      button.disabled = false;
+      button.innerText = "Evaluate / Export IXF";
+      return;
+    }
+
+    const blob = new Blob([data.content], { type: "text/plain;charset=utf-8" });
+
+FILE: web\dashboard_final.js
+LINE: 5005
+// ==========================================================
+// GENERIC VISUAL AUTORENDER HARD FIX V52
+// Explicitly renders generic_property_map/profile_ensemble blocks.
+// ==========================================================
+
+function forceRenderChatVisualsV52(data) {
+  try {
+    const blocks = data?.ui_blocks || [];
+    console.log("[V52] forceRenderChatVisualsV52 blocks:", blocks.map(b => b.type));
+
+    if (!Array.isArray(blocks) || !blocks.length) return false;
+
+    const preferredOrder = [
+      "generic_property_map",
+      "profile_ensemble",
+      "tran_corridor_map",
+
+FILE: web\dashboard_final.js
+LINE: 5008
+// ==========================================================
+
+function forceRenderChatVisualsV52(data) {
+  try {
+    const blocks = data?.ui_blocks || [];
+    console.log("[V52] forceRenderChatVisualsV52 blocks:", blocks.map(b => b.type));
+
+    if (!Array.isArray(blocks) || !blocks.length) return false;
+
+    const preferredOrder = [
+      "generic_property_map",
+      "profile_ensemble",
+      "tran_corridor_map",
+      "wct_bias_cluster_map",
+      "cluster_map",
+      "cell_property_map",
+
+FILE: web\dashboard_final.js
+LINE: 5073
+    }
+
+    return false;
+
+  } catch (e) {
+    console.error("[V52] forceRenderChatVisualsV52 failed", e);
+    const panel = document.getElementById("visualPanel");
+    if (panel) {
+      panel.innerHTML = `
+        <div class="section-title">Visual rendering failed</div>
+        <div class="empty-state">${escapeHtml(String(e && e.stack ? e.stack : e))}</div>
+      `;
+    }
+    return false;
+  }
+}
+
+FILE: web\dashboard_final.js
+LINE: 5143
+  async function renderFallbackWellDetail(wellName) {
+    const panel = document.getElementById("wellInsight");
+    if (!panel) return;
+
+    try {
+      const r = await fetch("/api/dashboard/well/" + encodeURIComponent(wellName) + "?t=" + Date.now());
+      const d = await r.json();
+      const data = d.data || d || {};
+      const scores = data.scores || {};
+
+      panel.innerHTML = `
+        <div class="section-title">${esc(wellName)}</div>
+        <div class="empty-state" style="text-align:left">
+          <b>Well KPI detail</b><br><br>
+          Overall: ${fmt(scores.overall ?? data.overall_score)}<br>
+          Oil: ${fmt(scores.oil ?? data.oil_score)}<br>
+
+FILE: web\dashboard_final.js
+LINE: 5182
+
+    const variable = document.getElementById("hmVariable")?.value || "overall";
+
+    let payload = null;
+    try {
+      const r = await fetch("/api/dashboard/hm-map?t=" + Date.now());
+      payload = await r.json();
+    } catch (err) {
+      console.warn("[V393] Could not load /api/dashboard/hm-map", err);
+      return;
+    }
+
+    const wells = (payload?.wells || []).filter(w =>
+      Number.isFinite(Number(w.i)) &&
+      Number.isFinite(Number(w.j))
+    );
+
+FILE: web\app.js
+LINE: 2
+async function getJson(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(await r.text());
+  return await r.json();
+}
+
+async function postJson(url, payload) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload)
+  });
+
+FILE: web\app.js
+LINE: 8
+  if (!r.ok) throw new Error(await r.text());
+  return await r.json();
+}
+
+async function postJson(url, payload) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload)
+  });
+  if (!r.ok) throw new Error(await r.text());
+  return await r.json();
+}
+
+function fmt(v) {
+  if (v === null || v === undefined || v === "") return "N/A";
+
+FILE: web\app.js
+LINE: 161
+  html += `</tbody></table>`;
+  return html;
+}
+
+async function sendChat() {
+  const input = document.getElementById("chatInput");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const data = await postJson("/api/chat", {message: msg});
+
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${data.answer}</p>`;
+
+
+FILE: web\app.js
+LINE: 165
+async function sendChat() {
+  const input = document.getElementById("chatInput");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const data = await postJson("/api/chat", {message: msg});
+
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${data.answer}</p>`;
+
+  if (data.type === "summary") {
+    renderCards(data.data);
+    visual.innerHTML = `<p>Summary cards updated.</p>`;
+  }
+
+FILE: web\app.js
+LINE: 167
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const data = await postJson("/api/chat", {message: msg});
+
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${data.answer}</p>`;
+
+  if (data.type === "summary") {
+    renderCards(data.data);
+    visual.innerHTML = `<p>Summary cards updated.</p>`;
+  }
+
+  else if (data.type === "ranking") {
+
+FILE: web\app.js
+LINE: 240
+    visual.innerHTML = `<p>Try a specific question about HM quality, WCT mismatch, transmissibility corridors, area south, or a well name.</p>`;
+  }
+}
+
+async function runDiagnostics() {
+  const answer = document.getElementById("chatAnswer");
+  answer.innerHTML = "<p>Running diagnostics... this can take a bit depending on the case.</p>";
+
+  const data = await postJson("/api/run-diagnostics", {});
+  answer.innerHTML = `<p>Pipeline status: <b>${data.status}</b>. Runtime: ${data.seconds}s</p>`;
+
+  await 
+function renderProfileSeries(series) {
+  const visual = document.getElementById("visualPanel");
+
+  if (!series.ok) {
+
+FILE: web\app.js
+LINE: 243
+
+async function runDiagnostics() {
+  const answer = document.getElementById("chatAnswer");
+  answer.innerHTML = "<p>Running diagnostics... this can take a bit depending on the case.</p>";
+
+  const data = await postJson("/api/run-diagnostics", {});
+  answer.innerHTML = `<p>Pipeline status: <b>${data.status}</b>. Runtime: ${data.seconds}s</p>`;
+
+  await 
+function renderProfileSeries(series) {
+  const visual = document.getElementById("visualPanel");
+
+  if (!series.ok) {
+    visual.innerHTML = `<p>${series.message || "Profile series not available."}</p>`;
+    return;
+  }
+
+FILE: web\app.js
+LINE: 1260
+  return n.toFixed(1);
+}
+
+async function loadHmMapPayload() {
+  try {
+    const resp = await fetch("/api/dashboard/hm-map");
+    hmMapPayload = await resp.json();
+    renderHmMap();
+  } catch (err) {
+    const panel = document.getElementById("map");
+    if (panel) {
+      panel.innerHTML = `<p style="padding:20px;color:#fca5a5">Failed to load HM map payload: ${err}</p>`;
+    }
+  }
+}
+
+
+FILE: web\app.js
+LINE: 1447
+async function loadAgentFlow() {
+  const el = document.getElementById("agentFlow");
+  if (!el) return;
+
+  try {
+    const resp = await fetch("/api/agents/logs?limit=200");
+    const data = await resp.json();
+    const logs = data.logs || [];
+
+    if (logs.length === 0) {
+      el.innerHTML = `<p style="color:#94a3b8">No agent logs available yet. Run diagnostics first.</p>`;
+      return;
+    }
+
+    const agentOrder = [
+      "Agent Orchestrator",
+
+FILE: web\app.js
+LINE: 1571
+
+async function loadHmMapPayload() {
+  const panel = document.getElementById("map");
+
+  try {
+    const resp = await fetch("/api/dashboard/hm-map?t=" + Date.now());
+    hmMapPayloadV4 = await resp.json();
+    renderHmMap();
+  } catch (err) {
+    if (panel) {
+      panel.innerHTML = `<p style="padding:20px;color:#fca5a5">Failed to load HM map payload: ${err}</p>`;
+    }
+  }
+}
+
+async function loadMap() {
+
+FILE: web\app.js
+LINE: 1787
+// ==========================================================
+// VISUAL COPILOT CHAT V1
+// ==========================================================
+
+function askQuick(text) {
+  const input = document.getElementById("chatInput");
+  input.value = text;
+  sendChat();
+}
+
+function vfmt(v) {
+  if (v === null || v === undefined || v === "") return "N/A";
+  if (typeof v === "number") return Number(v).toFixed(2);
+  const n = Number(v);
+  if (!isNaN(n) && isFinite(n)) return n.toFixed(2);
+  return String(v);
+
+FILE: web\app.js
+LINE: 2072
+    </div>
+  `;
+}
+
+function renderVisualResponse(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const blocks = data.ui_blocks || [];
+  let answerHtml = `<p>${data.answer || ""}</p>`;
+
+  visual.innerHTML = `<p style="color:#94a3b8">Select a visual action or ask a reservoir question.</p>`;
+
+  let visualRendered = false;
+
+  blocks.forEach(block => {
+
+FILE: web\app.js
+LINE: 2122
+
+  answer.innerHTML = answerHtml;
+}
+
+async function sendChat() {
+  const input = document.getElementById("chatInput");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+
+FILE: web\app.js
+LINE: 2126
+async function sendChat() {
+  const input = document.getElementById("chatInput");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+    const data = await postJson("/api/chat", {message: msg});
+
+    if (data.type === "visual_response") {
+      renderVisualResponse(data);
+
+FILE: web\app.js
+LINE: 2133
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+    const data = await postJson("/api/chat", {message: msg});
+
+    if (data.type === "visual_response") {
+      renderVisualResponse(data);
+      await loadAgentFlow();
+      return;
+    }
+
+    // fallback to previous handlers if an old response appears
+    answer.innerHTML = `<p>${data.answer || "No answer."}</p>`;
+
+
+FILE: web\app.js
+LINE: 2808
+    showVisualError("Cell map setup failed", err, JSON.stringify(block || {}, null, 2).slice(0, 3000));
+  }
+}
+
+async function sendChat() {
+  const input = document.getElementById("chatInput");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+
+FILE: web\app.js
+LINE: 2812
+async function sendChat() {
+  const input = document.getElementById("chatInput");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+    const resp = await fetch("/api/chat", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: msg})
+
+FILE: web\app.js
+LINE: 2819
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+    const resp = await fetch("/api/chat", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: msg})
+    });
+
+    if (!resp.ok) {
+      const txt = await resp.text();
+      throw new Error(`HTTP ${resp.status}: ${txt}`);
+    }
+
+
+FILE: web\app.js
+LINE: 3194
+    window.v200ShowError("Cell map setup failed", err);
+  }
+};
+
+window.renderVisualResponse = function(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!answer || !visual) {
+    alert("chatAnswer or visualPanel not found in DOM");
+    return;
+  }
+
+  console.log("V200 renderVisualResponse:", data);
+
+  const blocks = data.ui_blocks || [];
+
+FILE: web\app.js
+LINE: 3198
+window.renderVisualResponse = function(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!answer || !visual) {
+    alert("chatAnswer or visualPanel not found in DOM");
+    return;
+  }
+
+  console.log("V200 renderVisualResponse:", data);
+
+  const blocks = data.ui_blocks || [];
+  let answerHtml = `<p>${data.answer || ""}</p>`;
+
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual output...</p>`;
+
+
+FILE: web\app.js
+LINE: 3247
+
+  answer.innerHTML = answerHtml;
+};
+
+window.sendChat = async function() {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+FILE: web\app.js
+LINE: 3248
+  answer.innerHTML = answerHtml;
+};
+
+window.sendChat = async function() {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+
+FILE: web\app.js
+LINE: 3252
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+
+FILE: web\app.js
+LINE: 3263
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+    const resp = await fetch("/api/chat", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: msg})
+    });
+
+    if (!resp.ok) {
+      const txt = await resp.text();
+      throw new Error(`HTTP ${resp.status}: ${txt}`);
+    }
+
+
+FILE: web\app.js
+LINE: 3292
+    window.v200ShowError("Chat request failed", err);
+  }
+};
+
+window.askQuick = function(text) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found");
+    return;
+  }
+  input.value = text;
+  window.sendChat();
+};
+
+console.log("V200 visual override ready. Test with: window.__visualPatchVersion");
+
+
+FILE: web\app.js
+LINE: 3294
+};
+
+window.askQuick = function(text) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found");
+    return;
+  }
+  input.value = text;
+  window.sendChat();
+};
+
+console.log("V200 visual override ready. Test with: window.__visualPatchVersion");
+
+
+
+
+FILE: web\app.js
+LINE: 3369
+    </div>
+  `;
+};
+
+window.selectWell = function(well) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found.");
+    return;
+  }
+
+  input.value = `Show ${well}`;
+  window.sendChat();
+};
+
+window.renderWellCardsV210 = function(block) {
+
+FILE: web\app.js
+LINE: 3371
+};
+
+window.selectWell = function(well) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found.");
+    return;
+  }
+
+  input.value = `Show ${well}`;
+  window.sendChat();
+};
+
+window.renderWellCardsV210 = function(block) {
+  const d = block.data || {};
+  const scores = d.scores || d.hm_scores || {};
+
+FILE: web\app.js
+LINE: 3797
+    window.v210ShowError("Cell map setup failed", err);
+  }
+};
+
+window.renderVisualResponse = function(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!answer || !visual) {
+    alert("chatAnswer or visualPanel not found in DOM");
+    return;
+  }
+
+  console.log("V210 renderVisualResponse:", data);
+
+  const blocks = data.ui_blocks || [];
+
+FILE: web\app.js
+LINE: 3801
+window.renderVisualResponse = function(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!answer || !visual) {
+    alert("chatAnswer or visualPanel not found in DOM");
+    return;
+  }
+
+  console.log("V210 renderVisualResponse:", data);
+
+  const blocks = data.ui_blocks || [];
+  let answerHtml = `<p>${data.answer || ""}</p>`;
+
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual output...</p>`;
+
+
+FILE: web\app.js
+LINE: 3854
+
+  answer.innerHTML = answerHtml;
+};
+
+window.sendChat = async function() {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+FILE: web\app.js
+LINE: 3855
+  answer.innerHTML = answerHtml;
+};
+
+window.sendChat = async function() {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+
+FILE: web\app.js
+LINE: 3859
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+
+FILE: web\app.js
+LINE: 3870
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+    const resp = await fetch("/api/chat", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: msg})
+    });
+
+    if (!resp.ok) {
+      const txt = await resp.text();
+      throw new Error(`HTTP ${resp.status}: ${txt}`);
+    }
+
+
+FILE: web\app.js
+LINE: 3899
+    window.v210ShowError("Chat request failed", err);
+  }
+};
+
+window.askQuick = function(text) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found");
+    return;
+  }
+  input.value = text;
+  window.sendChat();
+};
+
+console.log("V210 zoom/pan/click override ready. Test with: window.__visualPatchVersion");
+
+
+FILE: web\app.js
+LINE: 3901
+};
+
+window.askQuick = function(text) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found");
+    return;
+  }
+  input.value = text;
+  window.sendChat();
+};
+
+console.log("V210 zoom/pan/click override ready. Test with: window.__visualPatchVersion");
+
+
+
+
+FILE: web\app.js
+LINE: 4370
+    window.v220ShowError("Cell map setup failed", err);
+  }
+};
+
+window.renderVisualResponse = function(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!answer || !visual) {
+    alert("chatAnswer or visualPanel not found in DOM");
+    return;
+  }
+
+  console.log("V220 renderVisualResponse:", data);
+
+  const blocks = data.ui_blocks || [];
+
+FILE: web\app.js
+LINE: 4374
+window.renderVisualResponse = function(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!answer || !visual) {
+    alert("chatAnswer or visualPanel not found in DOM");
+    return;
+  }
+
+  console.log("V220 renderVisualResponse:", data);
+
+  const blocks = data.ui_blocks || [];
+  let answerHtml = `<p>${data.answer || ""}</p>`;
+
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual output...</p>`;
+
+
+FILE: web\app.js
+LINE: 4427
+
+  answer.innerHTML = answerHtml;
+};
+
+window.sendChat = async function() {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+FILE: web\app.js
+LINE: 4428
+  answer.innerHTML = answerHtml;
+};
+
+window.sendChat = async function() {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+
+FILE: web\app.js
+LINE: 4432
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+
+FILE: web\app.js
+LINE: 4443
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+    const resp = await fetch("/api/chat", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: msg})
+    });
+
+    if (!resp.ok) {
+      const txt = await resp.text();
+      throw new Error(`HTTP ${resp.status}: ${txt}`);
+    }
+
+
+FILE: web\app.js
+LINE: 4472
+    window.v220ShowError("Chat request failed", err);
+  }
+};
+
+window.askQuick = function(text) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found");
+    return;
+  }
+  input.value = text;
+  window.sendChat();
+};
+
+console.log("V220 streamline overlay override ready. Test with: window.__visualPatchVersion");
+
+
+FILE: web\app.js
+LINE: 4474
+};
+
+window.askQuick = function(text) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found");
+    return;
+  }
+  input.value = text;
+  window.sendChat();
+};
+
+console.log("V220 streamline overlay override ready. Test with: window.__visualPatchVersion");
+
+
+
+
+FILE: web\app.js
+LINE: 4549
+    </div>
+  `;
+};
+
+window.selectWell = function(well) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found.");
+    return;
+  }
+
+  input.value = `Show ${well}`;
+  window.sendChat();
+};
+
+window.renderWellCardsV210 = function(block) {
+
+FILE: web\app.js
+LINE: 4551
+};
+
+window.selectWell = function(well) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found.");
+    return;
+  }
+
+  input.value = `Show ${well}`;
+  window.sendChat();
+};
+
+window.renderWellCardsV210 = function(block) {
+  const d = block.data || {};
+  const scores = d.scores || d.hm_scores || {};
+
+FILE: web\app.js
+LINE: 4977
+    window.v210ShowError("Cell map setup failed", err);
+  }
+};
+
+window.renderVisualResponse = function(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!answer || !visual) {
+    alert("chatAnswer or visualPanel not found in DOM");
+    return;
+  }
+
+  console.log("V210 renderVisualResponse:", data);
+
+  const blocks = data.ui_blocks || [];
+
+FILE: web\app.js
+LINE: 4981
+window.renderVisualResponse = function(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!answer || !visual) {
+    alert("chatAnswer or visualPanel not found in DOM");
+    return;
+  }
+
+  console.log("V210 renderVisualResponse:", data);
+
+  const blocks = data.ui_blocks || [];
+  let answerHtml = `<p>${data.answer || ""}</p>`;
+
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual output...</p>`;
+
+
+FILE: web\app.js
+LINE: 5034
+
+  answer.innerHTML = answerHtml;
+};
+
+window.sendChat = async function() {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+FILE: web\app.js
+LINE: 5035
+  answer.innerHTML = answerHtml;
+};
+
+window.sendChat = async function() {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+
+FILE: web\app.js
+LINE: 5039
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (!input || !answer || !visual) {
+    alert("Missing chatInput/chatAnswer/visualPanel elements.");
+    return;
+  }
+
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+
+FILE: web\app.js
+LINE: 5050
+
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<p style="color:#94a3b8">Preparing visual evidence...</p>`;
+
+  try {
+    const resp = await fetch("/api/chat", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: msg})
+    });
+
+    if (!resp.ok) {
+      const txt = await resp.text();
+      throw new Error(`HTTP ${resp.status}: ${txt}`);
+    }
+
+
+FILE: web\app.js
+LINE: 5079
+    window.v210ShowError("Chat request failed", err);
+  }
+};
+
+window.askQuick = function(text) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found");
+    return;
+  }
+  input.value = text;
+  window.sendChat();
+};
+
+console.log("V210 zoom/pan/click override ready. Test with: window.__visualPatchVersion");
+
+
+FILE: web\app.js
+LINE: 5081
+};
+
+window.askQuick = function(text) {
+  const input = document.getElementById("chatInput");
+  if (!input) {
+    alert("chatInput not found");
+    return;
+  }
+  input.value = text;
+  window.sendChat();
+};
+
+console.log("V210 zoom/pan/click override ready. Test with: window.__visualPatchVersion");
+
+
+
+
+FILE: web\app.js
+LINE: 5188
+  window.hideOldInactiveAndCorridorCardsV230();
+};
+
+window.loadTopKpisV230 = async function() {
+  try {
+    const resp = await fetch("/api/dashboard/kpi-summary?t=" + Date.now());
+
+    if (!resp.ok) {
+      throw new Error("HTTP " + resp.status + " while loading KPI summary.");
+    }
+
+    const payload = await resp.json();
+    window.renderTopKpisV230(payload);
+  } catch (err) {
+    console.error("Failed to load V230 KPI summary:", err);
+  }
+
+FILE: web\app.js
+LINE: 5277
+    </div>
+  `;
+};
+
+window.selectWell = async function(well) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  if (answer) {
+    answer.innerHTML = `<p>Selected well <b>${well}</b>. Loading diagnostic insight...</p>`;
+  }
+
+  if (visual) {
+    visual.innerHTML = `<p style="color:#94a3b8">Loading well insight for ${well}...</p>`;
+  }
+
+
+FILE: web\app.js
+LINE: 5289
+  if (visual) {
+    visual.innerHTML = `<p style="color:#94a3b8">Loading well insight for ${well}...</p>`;
+  }
+
+  try {
+    const resp = await fetch("/api/dashboard/well-insight?well=" + encodeURIComponent(well) + "&t=" + Date.now());
+
+    if (!resp.ok) {
+      const txt = await resp.text();
+      throw new Error("HTTP " + resp.status + ": " + txt);
+    }
+
+    const payload = await resp.json();
+
+    if (answer) {
+      answer.innerHTML = `<p>Well <b>${well}</b> selected. The right panel shows the HM KPIs, criticalities and recommended action.</p>`;
+
+FILE: web\index.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_cache_bump_after_v394_remove_20260602_124713.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_cache_bump_after_v394_remove_20260602_124713.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_cache_bump_after_v394_remove_20260602_124713.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_clean_v409_v410_v411_20260602_141650.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_clean_v409_v410_v411_20260602_141650.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_clean_v409_v410_v411_20260602_141650.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_debug_clean_20260602_130718.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_debug_clean_20260602_130718.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_debug_clean_20260602_130718.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_debug_path_fix_20260602_131006.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_debug_path_fix_20260602_131006.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_debug_path_fix_20260602_131006.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_pattern_debug_v403_20260602_130734.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_pattern_debug_v403_20260602_130734.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_pattern_debug_v403_20260602_130734.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_remove_v405_20260602_134431.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_remove_v405_20260602_134431.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_remove_v405_20260602_134431.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v395_pattern_guard_20260602_123702.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v395_pattern_guard_20260602_123702.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v395_pattern_guard_20260602_123702.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v397_pattern_event_guard_20260602_125210.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v397_pattern_event_guard_20260602_125210.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v397_pattern_event_guard_20260602_125210.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v399_pattern_freeze_20260602_125801.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v399_pattern_freeze_20260602_125801.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v399_pattern_freeze_20260602_125801.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v401_pattern_freeze_20260602_130256.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v401_pattern_freeze_20260602_130256.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v401_pattern_freeze_20260602_130256.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v402_pattern_snapshot_20260602_130527.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v402_pattern_snapshot_20260602_130527.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v402_pattern_snapshot_20260602_130527.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v404b_regex_patch_20260602_131802.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v404b_regex_patch_20260602_131802.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v404b_regex_patch_20260602_131802.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v405_pattern_reanchor_20260602_132242.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v405_pattern_reanchor_20260602_132242.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v405_pattern_reanchor_20260602_132242.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v406_pattern_cleanup_20260602_134728.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v406_pattern_cleanup_20260602_134728.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v406_pattern_cleanup_20260602_134728.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v407_first_hm_click_attach_20260602_135000.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v407_first_hm_click_attach_20260602_135000.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v407_first_hm_click_attach_20260602_135000.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v408_first_click_apply_20260602_135446.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v408_first_click_apply_20260602_135446.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v408_first_click_apply_20260602_135446.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v409_holistic_router_20260602_140403.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v409_holistic_router_20260602_140403.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v409_holistic_router_20260602_140403.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v410_clean_holistic_router_20260602_140922.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v410_clean_holistic_router_20260602_140922.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v410_clean_holistic_router_20260602_140922.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v411_short_hidden_router_20260602_141149.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v411_short_hidden_router_20260602_141149.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v411_short_hidden_router_20260602_141149.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\index_before_v412_diag_priority_20260602_141400.html
+LINE: 114
+            <button data-prompt="Show streamlines and explain connectivity.">Connectivity</button>
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+
+FILE: web\index_before_v412_diag_priority_20260602_141400.html
+LINE: 115
+            <button data-prompt="Compare this issue with similar wells.">Similar Wells</button>
+          </div>
+
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+
+FILE: web\index_before_v412_diag_priority_20260602_141400.html
+LINE: 118
+          <div class="chat-row">
+            <input id="chatInput" placeholder="English-only contest mode: ask naturally, e.g. Why is HW-6 not matching water? What about pressure? Compare with similar wells..." />
+            <button id="askBtn">Ask</button>
+          </div>
+
+          <div id="chatAnswer" class="chat-answer"></div>
+        </div>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Visual / Evidence</h2>
+            <p>Generated maps, profiles and supporting evidence.</p>
+          </div>
+        </div>
+
+FILE: web\landing.html
+LINE: 1319
+
+    async function refreshActiveCaseStatus() {
+      const btn = document.getElementById("runGlobalBtn");
+
+      try {
+        const res = await fetch("/api/active-case-status");
+        const data = await res.json();
+
+        activeCaseReady = !!data.active;
+
+        if (btn) {
+          btn.disabled = !activeCaseReady;
+          btn.style.opacity = activeCaseReady ? "1" : "0.45";
+          btn.style.cursor = activeCaseReady ? "pointer" : "not-allowed";
+          btn.title = activeCaseReady
+            ? "Run screening on the active uploaded case."
+
+FILE: web\landing.html
+LINE: 1419
+      supportSlots.forEach(([id]) => addFile(form, id));
+
+      status.textContent = "Importing and standardizing uploaded reservoir case...";
+
+      try {
+        const res = await fetch("/api/import-case", {
+          method: "POST",
+          body: form
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || data.status !== "success") {
+          status.textContent = "Import failed:\n" + JSON.stringify(data, null, 2);
+          return;
+        }
+
+FILE: web\landing.html
+LINE: 1454
+      }
+
+      status.textContent = "Activating uploaded case into data/sample_model...";
+
+      try {
+        const res = await fetch("/api/activate-uploaded-case/" + lastUploadId, {
+          method: "POST"
+        });
+
+        const data = await res.json();
+
+        if (data.status === "success") {
+          activeCaseReady = true;
+          refreshActiveCaseStatus();
+
+          status.textContent =
+
+FILE: web\landing.html
+LINE: 1501
+        mode: "demo",
+        upload_id: lastUploadId
+      };
+
+      try {
+        const res = await fetch("/run", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(body)
+        });
+
+        const data = await res.json();
+
+        status.textContent =
+          "Global agent screening completed.\n\n" +
+          "Detected workflow: " + data.intent + "\n\n" +
+
+FILE: web\landing.html
+LINE: 1524
+    async function resetActiveCase() {
+      const status = document.getElementById("status");
+      status.textContent = "Resetting active case marker...";
+
+      try {
+        const res = await fetch("/api/reset-active-case", { method: "POST" });
+        const data = await res.json();
+
+        activeCaseReady = false;
+        refreshActiveCaseStatus();
+
+        status.textContent =
+          "Active case has been reset.\n\n" +
+          "The dashboard is locked until another imported case is activated.\n" +
+          "Uploaded folders were not deleted.";
+
+
+FILE: web\landing.html
+LINE: 1650
+    }
+
+    setStatus("Generating INTERSECT output package...");
+
+    try {
+      const res = await fetch("/api/generate-ix-output-package", {
+        method: "POST",
+        body: form
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.status === "error") {
+        if (resultBox) {
+          resultBox.style.display = "block";
+          resultBox.innerHTML = `
+
+FILE: web\landing.html
+LINE: 1856
+          form.append("files", file, relPath(file));
+        }
+
+        form.append("main_afi_path", selectedAfi);
+
+        const res = await fetch("/api/intersect/import-case-folder-v317", {
+          method: "POST",
+          body: form
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || data.ok === false) {
+          setStatus("Package generation failed:<br>" + (data.message || data.error || "Unknown error"), "error");
+          generateBtn.disabled = false;
+          generateBtn.innerText = "Generate Output Package";
+
+FILE: web\landing.html
+LINE: 2104
+  function byId(id) {
+    return document.getElementById(id);
+  }
+
+  async function postJsonV337(url, payload = {}) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok || data.ok === false || data.status === "error") {
+      throw new Error(data.message || data.detail || "Request failed.");
+    }

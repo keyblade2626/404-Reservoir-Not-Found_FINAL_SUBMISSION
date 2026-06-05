@@ -1,0 +1,76 @@
+######################################
+# IXFVERSION: 2023.4 Petrel
+######################################
+
+MODEL_DEFINITION
+# Add user edit IXF here ...
+
+Initial3DReport "InitialReport" {
+	On="True"
+    FileFormat=BINARY
+    Units=ECLIPSE_FIELD
+    
+    add_property(property_name=POROSITY                                    report_label="PORO")
+    add_property(property_name=PERM_I                                      report_label="PERMX")
+    add_property(property_name=PERM_J                                      report_label="PERMY")
+    add_property(property_name=PERM_K                                      report_label="PERMZ")
+    add_property(property_name=NET_TO_GROSS_RATIO                          report_label="NTG")
+    add_property(property_name=PORE_VOLUME                                 report_label="PORV")
+    add_property(property_name=TRANSMISSIBILITY_I                          report_label="TRANX")
+    add_property(property_name=TRANSMISSIBILITY_J                          report_label="TRANY")
+    add_property(property_name=TRANSMISSIBILITY_K                          report_label="TRANZ")
+    add_property(property_name=CELL_TOP_DEPTH                              report_label="TOPS")
+    add_property(property_name=CELL_CENTER_DEPTH                           report_label="DEPTH")
+    add_property(property_name=SATURATION_FUNCTION_DRAINAGE_TABLE_NO       report_label="SATNUM")
+    add_property(property_name=SATURATION_FUNCTION_IMBIBITION_TABLE_NO     report_label="IMBNUM")
+    add_property(property_name=PVT_REGION                                  report_label="PVTNUM")
+    add_property(property_name=ROCK_COMPACTION_REGION                      report_label="ROCKNUM")
+    add_property(property_name=EQUILIBRATION_REGION                        report_label="EQLNUM")
+    add_property(property_name=EQUATION_OF_STATE_REGION                    report_label="EOSNUM")
+    add_property(property_name=FLUID_IN_PLACE_REGION                       report_label="FIPNUM")
+    add_property(property_name=USER_REGION                                 report_label="FIPXXXXX")
+    add_property(property_name=RESIDUAL_OIL_SATURATION_TO_WATER            report_label="SOWCR")
+    add_property(property_name=RESIDUAL_OIL_SATURATION_TO_WATER_IMBIBITION report_label="ISOWCR")
+}
+
+Recurrent3DReport "RestartReport" {
+    Frequency=YEARLY
+    Period=1
+    On="True"
+    FileFormat=BINARY
+    Units=ECLIPSE_FIELD
+    
+    add_property(property_name=PRESSURE                                    report_label="PRESSURE")
+    add_property(property_name=WATER_SATURATION                            report_label="SWAT")
+    add_property(property_name=OIL_SATURATION                              report_label="SOIL")
+    add_property(property_name=GAS_SATURATION                              report_label="SGAS")
+    add_property(property_name=SOLUTION_GAS_OIL_RATIO                      report_label="RS")
+    add_property(property_name=VAPOR_OIL_GAS_RATIO                         report_label="RV")
+    add_property(property_name=GAS_RES_VOLUME_IN_PLACE                     report_label="RFIPGAS")
+    add_property(property_name=OIL_RES_VOLUME_IN_PLACE                     report_label="RFIPOIL")
+    add_property(property_name=WATER_RES_VOLUME_IN_PLACE                   report_label="RFIPWAT")
+    add_property(property_name=SATURATION_PRESSURE                         report_label="PSAT")
+    add_property(property_name=OIL_WATER_CAPILLARY_PRESSURE                report_label="PCOW")
+    add_property(property_name=OIL_RELATIVE_PERM                           report_label="OILKR")
+    add_property(property_name=WATER_RELATIVE_PERM                         report_label="WATKR")
+    add_property(property_name=GAS_RELATIVE_PERM                           report_label="GASKR")
+    add_property(property_name=OIL_RESERVOIR_DENSITY                       report_label="DENO")
+    add_property(property_name=WATER_RESERVOIR_DENSITY                     report_label="DENW")
+    add_property(property_name=GAS_RESERVOIR_DENSITY                       report_label="DENG")
+#    add_property(property_name=OIL_VISCOSITY                      		   report_label="OIL_VISC")
+#    add_property(property_name=WATER_VISCOSITY                             report_label="WAT_VISC")
+#    add_property(property_name=GAS_VISCOSITY                               report_label="GAS_VISC")
+    add_property(property_name=OIL_VISCOSITY                      		   report_label="VOIL")
+    add_property(property_name=WATER_VISCOSITY                             report_label="VWAT")
+    add_property(property_name=GAS_VISCOSITY                               report_label="VGAS")
+    add_property(property_name=BRINE_MASS_CONC                             report_label="SALT")
+    add_property(property_name=PORE_VOLUME_COMPRESSIBILITY                 report_label="PVCOMPR")
+    add_property(property_name=RESIDUAL_OIL_SATURATION_TO_WATER            report_label="SOWCR")
+    add_property(property_name=RESIDUAL_OIL_SATURATION_TO_WATER_IMBIBITION report_label="ISOWCR")
+    add_property(property_name=GAS_FORMATION_VOLUME_FACTOR                 report_label="BG")
+    add_property(property_name=OIL_FORMATION_VOLUME_FACTOR                 report_label="BO")
+    add_property(property_name=WATER_FORMATION_VOLUME_FACTOR               report_label="BW")
+    add_property(property_name=RESIDUAL_OIL_SATURATION_TO_GAS              report_label="SOGCR")
+    add_property(property_name=RESIDUAL_OIL_SATURATION_TO_GAS_IMBIBITION   report_label="ISOGCR")
+
+}

@@ -1,0 +1,251 @@
+######################################
+# IXFVERSION: 2023.4 Petrel
+######################################
+
+MODEL_DEFINITION
+
+
+START
+DATE "1-Feb-1996"
+#TIME 0.0
+
+WellDef "HW-10" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-24" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-25" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-26" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-28" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-29" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-3" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-30" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-31" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-32" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-5" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-6" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-7" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-8" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+
+WellDef "HW-9" {
+    HeadDensityCalculation=SEGMENTED
+    AllowCrossFlow="True"
+    PseudoPressureModel=NONE
+    Friction="True"
+    Acceleration="True"
+    Undefined="False"
+    WellToCellConnections {
+    }
+    
+    ResVolConditions {
+        Method=RESERVOIR
+    }
+    
+}
+

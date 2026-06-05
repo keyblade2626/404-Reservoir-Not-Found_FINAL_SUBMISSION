@@ -1,0 +1,1779 @@
+{
+  "status": "success",
+  "input": {
+    "message": "What model updates would you prioritize to improve the history match?"
+  },
+  "output": {
+    "answer": "Recommended model-update priorities based on the integrated evidence:\n1. **Start with water/WCT behaviour**, because oil and gas matches are generally strong while water/WCT is the weakest dimension. This points to water movement, breakthrough timing, water mobility or local connectivity rather than a field-wide hydrocarbon volumetric issue.\n2. **Separate connectivity/TRAN candidates from RelPerm/water-mobility candidates.** Wells where TRAN/PERM/corridor evidence is material should be tested with transmissibility or connectivity sensitivities before applying RelPerm-only tuning.\n3. **Use pressure/BHP as a consistency check.** If water mismatch and BHP mismatch appear together, connectivity, pressure support or boundary/aquifer representation should be reviewed before changing only saturation functions.\n4. **Prioritize local, evidence-backed edits.** Avoid broad global multipliers unless the mismatch is clearly systematic across the field. The safest workflow is to test targeted TRAN/corridor edits and RelPerm sensitivities separately, then compare impact on water, BHP, oil and gas.\n5. **Preserve the good oil/gas match.** Any update that improves water but degrades oil or gas should be rejected or constrained.\n\nSupporting integrated evidence is summarized below.\n\nThis is a model-specific reservoir diagnosis. I compared the available profile, WCT-bias, TRAN/connectivity and property evidence before ranking the most likely causes.\n\nMain evidence:\n- History-match summary evidence: Executive summary: the history match is strong for oil and gas, but materially weaker for water/WCT and pressure. Average scores are Oil=99.9, Gas=98.5, Water=64.8, BHP=45.7 where available. The main model risk is not hydrocarbon production capacity; it is water movement and pressure/connectivity calibration. Water direction evidence after profile/numeric overrides: final value close: 2, negligible matched: 4, simulated WCT too high: 5, simulated...\n- Integrated diagnosis: I found an explicit well name that is invalid or ambiguous for the active reservoir. I did not run the request on another well or on a default well because that would be misleading. top 5 is not a valid well in the active dataset. Well not found in active reservoir well registry. Closest available wells: HW-5, HW-6, HW-3, HW-7, HW-8, HW-9.\n- Water-cut / spatial bias evidence: The dominant WCT bias is underestimation: 7 wells show simulated WCT lower/later than observed. This points toward insufficient water movement or delayed water breakthrough in those areas. Largest group: 'Model underestimates WCT' with 4 wells. Weakest examples: HW-10, HW-28, HW-9, HW-26.\n- Integrated diagnosis: I found 8 wells where RelPerm-only tuning may be risky because connectivity, TRAN or BHP evidence is material. These wells should be checked with TRAN/connectivity sensitivities before applying RelPerm-only edits.\n- TRAN / connectivity evidence: I checked whether WCT mismatch aligns spatially with TRAN/PERM corridor evidence. Correlation WCT mismatch vs TRAN percentile: -0.05. Correlation WCT mismatch vs PERM percentile: -0.01. 2 wells show WCT mismatch aligned with high TRAN/PERM corridor evidence; 3 wells show WCT mismatch in low TRAN/PERM areas. This is a diagnostic alignment view, not the TRAN multiplier corridor visual.\n\nHypothesis ranking:\n- local connectivity / TRAN: support score 6 — Supported when TRAN/connectivity/corridor evidence is present.\n- profile level / timing mismatch: support score 5 — Supported by direct simulated-vs-observed water/WCT profile evidence.\n- relative permeability / water mobility: support score 4 — Supported when timing/shape suggest mobility/endpoints rather than only connectivity.\n- pressure / BHP support or connectivity: support score 2 — Supported when BHP/pressure evidence is part of the mismatch.\n\nMost likely explanation: local connectivity / TRAN.",
+    "type": "visual_response",
+    "intent": "v800_llm_planned_reservoir_multi_agent",
+    "task_type": "v804_model_update_action_plan",
+    "ui_blocks_count": 5,
+    "ui_block_types": [
+      "compact_table",
+      "compact_table",
+      "compact_table",
+      "compact_table",
+      "wct_bias_cluster_map"
+    ],
+    "agent_trace": {
+      "LLMCopilotBrainV800": {
+        "status": "completed",
+        "decision": "reservoir_multi_agent",
+        "reason": "The user asks for model-update priorities, which requires integrated evidence across HM summary, water/WCT, pressure/BHP, TRAN/connectivity and relperm/water mobility.",
+        "primary_well": null,
+        "llm_planner_used": true
+      },
+      "EvidencePlannerV800": {
+        "status": "completed",
+        "tool_plan": [
+          {
+            "tool_label": "ExecutiveHMSummaryAgentToolV800",
+            "subquery": "Give me an executive summary of the history match quality."
+          },
+          {
+            "tool_label": "IntegratedReservoirDiagnosisToolV800",
+            "subquery": "Give me the top 5 wells requiring model review and explain the main driver for each."
+          },
+          {
+            "tool_label": "WCTBiasDiagnosticAgentToolV800",
+            "subquery": "Show me WCT bias cluster map and explain it."
+          },
+          {
+            "tool_label": "IntegratedReservoirDiagnosisToolV800",
+            "subquery": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger."
+          },
+          {
+            "tool_label": "TRANCorridorVisualAgentToolV800",
+            "subquery": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors."
+          }
+        ]
+      },
+      "ExecutiveHMSummaryAgentToolV800": {
+        "status": "completed",
+        "subquery": "Give me an executive summary of the history match quality.",
+        "response_type": "visual_response",
+        "intent": "executive_history_match_summary_v525",
+        "task_type": "executive_history_match_summary_v525",
+        "ui_block_types": [
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "suggestions"
+        ],
+        "exposed_runtime_trace_keys": [
+          "IntentRouterAgent",
+          "ExecutiveHistoryMatchSummaryAgent",
+          "ReservoirCriticAgent",
+          "TracePresentationCleanerV526",
+          "NumericFormatterV528"
+        ]
+      },
+      "IntegratedReservoirDiagnosisToolV800": {
+        "status": "completed",
+        "subquery": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger.",
+        "response_type": "visual_response",
+        "intent": "integrated_parallel_diagnosis_v514",
+        "task_type": "integrated_parallel_diagnosis_v514",
+        "ui_block_types": [
+          "compact_table"
+        ],
+        "exposed_runtime_trace_keys": [
+          "IntentRouterAgent",
+          "ProfileEvidenceAgent",
+          "PropertyEvidenceAgent",
+          "HypothesisRankingAgent",
+          "ReservoirCriticAgent",
+          "TracePresentationCleanerV526",
+          "NumericFormatterV528"
+        ]
+      },
+      "WCTBiasDiagnosticAgentToolV800": {
+        "status": "completed",
+        "subquery": "Show me WCT bias cluster map and explain it.",
+        "response_type": "visual_response",
+        "intent": "wct_bias_cluster_map",
+        "task_type": "diagnostic_cluster",
+        "ui_block_types": [
+          "wct_bias_cluster_map",
+          "compact_table",
+          "suggestions"
+        ],
+        "exposed_runtime_trace_keys": [
+          "AbsoluteWCTBiasRouterV37",
+          "ExplicitBiasClusterPriorityGuardV516B",
+          "NumericFormatterV528"
+        ]
+      },
+      "TRANCorridorVisualAgentToolV800": {
+        "status": "completed",
+        "subquery": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors.",
+        "response_type": "visual_response",
+        "intent": "wct_tran_perm_alignment_v522",
+        "task_type": "wct_tran_perm_alignment_v522",
+        "ui_block_types": [
+          "plotly_chart",
+          "compact_table",
+          "suggestions"
+        ],
+        "exposed_runtime_trace_keys": [
+          "WCTTranPermAlignmentAgentV522",
+          "NumericFormatterV528"
+        ]
+      },
+      "ReservoirCriticAgentV800": {
+        "status": "completed",
+        "critic": "ReservoirCriticAgentV700",
+        "method": "evidence_weighting_from_real_tool_outputs",
+        "leading_hypothesis": {
+          "hypothesis": "local_connectivity_or_TRAN",
+          "score": 6,
+          "interpretation": "Supported when TRAN/connectivity/corridor evidence is present."
+        },
+        "ranked_hypotheses": [
+          {
+            "hypothesis": "local_connectivity_or_TRAN",
+            "score": 6,
+            "interpretation": "Supported when TRAN/connectivity/corridor evidence is present."
+          },
+          {
+            "hypothesis": "profile_level_or_timing_mismatch",
+            "score": 5,
+            "interpretation": "Supported by direct simulated-vs-observed water/WCT profile evidence."
+          },
+          {
+            "hypothesis": "relative_permeability_or_water_mobility",
+            "score": 4,
+            "interpretation": "Supported when timing/shape suggest mobility/endpoints rather than only connectivity."
+          },
+          {
+            "hypothesis": "pressure_support_or_BHP_connectivity",
+            "score": 2,
+            "interpretation": "Supported when BHP/pressure evidence is part of the mismatch."
+          }
+        ],
+        "note": "Scores are computed from evidence returned by real specialist calls, not from a hard-coded final answer. Structured hypothesis scores were not available."
+      },
+      "FinalAnswerSynthesizerV800": {
+        "status": "completed",
+        "mode": "multi_tool_synthesis"
+      },
+      "StrategicActionPlanPlannerV804": {
+        "status": "completed",
+        "action": "expanded_model_update_priority_question_into_multi_agent_plan",
+        "tools_requested": [
+          "ExecutiveHMSummaryAgentToolV800",
+          "IntegratedReservoirDiagnosisToolV800",
+          "WCTBiasDiagnosticAgentToolV800",
+          "IntegratedReservoirDiagnosisToolV800",
+          "TRANCorridorVisualAgentToolV800"
+        ]
+      },
+      "UserFacingAnswerPolisherV803": {
+        "status": "completed",
+        "action": "removed_internal_agent_names_from_main_answer",
+        "note": "agent_trace and interaction_edges remain available for debug/audit."
+      },
+      "VisualEvidenceStabilizerV806": {
+        "status": "completed",
+        "action": "deduplicated_and_ranked_ui_blocks",
+        "ui_block_count": 5,
+        "note": "No reservoir evidence was invented; duplicate/unstable blocks were removed from display payload."
+      },
+      "LightAnswerLayoutV806": {
+        "status": "completed",
+        "action": "light_linebreak_layout_only",
+        "note": "V805 heavy formatter is bypassed; this only adds safe line breaks."
+      },
+      "FinalVisualSelectorV810": {
+        "status": "completed",
+        "decision": "default_keep_final_blocks",
+        "original_ui_block_types": [
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "wct_bias_cluster_map"
+        ],
+        "selected_ui_block_types": [
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "wct_bias_cluster_map"
+        ],
+        "policy": "show_final_decision_visual_not_all_supporting_visuals"
+      }
+    },
+    "interaction_edges": [
+      {
+        "source": "LLMCopilotBrainV800",
+        "target": "EvidencePlannerV800",
+        "relation": "semantic_plan_created",
+        "reason": "The user asks for model-update priorities, which requires integrated evidence across HM summary, water/WCT, pressure/BHP, TRAN/connectivity and relperm/water mobility.",
+        "timestamp": "2026-06-05T11:48:22Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "ExecutiveHMSummaryAgentToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Give me an executive summary of the history match quality.",
+        "timestamp": "2026-06-05T11:48:22Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "ExecutiveHMSummaryAgentToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Give me an executive summary of the history match quality.",
+        "timestamp": "2026-06-05T11:48:22Z"
+      },
+      {
+        "source": "ExecutiveHMSummaryAgentToolV800",
+        "target": "ExecutiveHistoryMatchSummaryAgent",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ExecutiveHistoryMatchSummaryAgent",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "Executive summary: the history match is strong for oil and gas, but materially weaker for water/WCT and pressure. Average scores are Oil=99.9, Gas=98.5, Water=64.8, BHP=45.7 where available. The main model risk is not hydrocarbon production capacity; it is water movement and pressure/connectivity calibration. Water direction evidence after profile/...",
+        "ui_block_types": [
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "suggestions"
+        ],
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "IntegratedReservoirDiagnosisToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Give me the top 5 wells requiring model review and explain the main driver for each.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "IntegratedReservoirDiagnosisToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Give me the top 5 wells requiring model review and explain the main driver for each.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "IntegratedReservoirDiagnosisToolV800",
+        "target": "FinalInvalidWellGuardV601",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "FinalInvalidWellGuardV601",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "I found an explicit well name that is invalid or ambiguous for the active reservoir. I did not run the request on another well or on a default well because that would be misleading. top 5 is not a valid well in the active dataset. Well not found in active reservoir well registry. Closest available wells: HW-5, HW-6, HW-3, HW-7, HW-8, HW-9.",
+        "ui_block_types": [
+          "suggestions"
+        ],
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "WCTBiasDiagnosticAgentToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Show me WCT bias cluster map and explain it.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "WCTBiasDiagnosticAgentToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Show me WCT bias cluster map and explain it.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "WCTBiasDiagnosticAgentToolV800",
+        "target": "ExplicitBiasClusterPriorityGuardV516B",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ExplicitBiasClusterPriorityGuardV516B",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "The dominant WCT bias is underestimation: 7 wells show simulated WCT lower/later than observed. This points toward insufficient water movement or delayed water breakthrough in those areas. Largest group: 'Model underestimates WCT' with 4 wells. Weakest examples: HW-10, HW-28, HW-9, HW-26.",
+        "ui_block_types": [
+          "wct_bias_cluster_map",
+          "compact_table",
+          "suggestions"
+        ],
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "IntegratedReservoirDiagnosisToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "IntegratedReservoirDiagnosisToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "IntegratedReservoirDiagnosisToolV800",
+        "target": "ProfileEvidenceAgent",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:26Z"
+      },
+      {
+        "source": "ProfileEvidenceAgent",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "I found 8 wells where RelPerm-only tuning may be risky because connectivity, TRAN or BHP evidence is material. These wells should be checked with TRAN/connectivity sensitivities before applying RelPerm-only edits.",
+        "ui_block_types": [
+          "compact_table"
+        ],
+        "timestamp": "2026-06-05T11:48:26Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "TRANCorridorVisualAgentToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors.",
+        "timestamp": "2026-06-05T11:48:26Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "TRANCorridorVisualAgentToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors.",
+        "timestamp": "2026-06-05T11:48:26Z"
+      },
+      {
+        "source": "TRANCorridorVisualAgentToolV800",
+        "target": "WCTTranPermAlignmentAgentV522",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "WCTTranPermAlignmentAgentV522",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "I checked whether WCT mismatch aligns spatially with TRAN/PERM corridor evidence. Correlation WCT mismatch vs TRAN percentile: -0.05. Correlation WCT mismatch vs PERM percentile: -0.01. 2 wells show WCT mismatch aligned with high TRAN/PERM corridor evidence; 3 wells show WCT mismatch in low TRAN/PERM areas. This is a diagnostic alignment view, not ...",
+        "ui_block_types": [
+          "plotly_chart",
+          "compact_table",
+          "suggestions"
+        ],
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "ExecutiveHMSummaryAgentToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Give me an executive summary of the history match quality.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "IntegratedReservoirDiagnosisToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Give me the top 5 wells requiring model review and explain the main driver for each.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "WCTBiasDiagnosticAgentToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Show me WCT bias cluster map and explain it.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "IntegratedReservoirDiagnosisToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "TRANCorridorVisualAgentToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "ReservoirCriticAgentV800",
+        "target": "FinalAnswerSynthesizerV800",
+        "relation": "ranked_hypotheses_sent_to_synthesizer",
+        "timestamp": "2026-06-05T11:48:27Z"
+      }
+    ],
+    "collaboration_summary": {
+      "mode": "v804_model_update_action_plan",
+      "llm_planner_used": true,
+      "tools_called": [
+        "ExecutiveHMSummaryAgentToolV800",
+        "IntegratedReservoirDiagnosisToolV800",
+        "WCTBiasDiagnosticAgentToolV800",
+        "IntegratedReservoirDiagnosisToolV800",
+        "TRANCorridorVisualAgentToolV800"
+      ],
+      "agent_count": 8,
+      "edge_count": 27,
+      "real_edges": true,
+      "leading_hypothesis": {
+        "hypothesis": "local_connectivity_or_TRAN",
+        "score": 6,
+        "interpretation": "Supported when TRAN/connectivity/corridor evidence is present."
+      },
+      "v804_action_plan_expanded": true,
+      "user_facing_answer_polished": true,
+      "visual_blocks_stabilized_v806": true,
+      "ui_block_count_after_v806": 5,
+      "final_visual_selector_v810": {
+        "decision": "default_keep_final_blocks",
+        "selected_ui_block_count": 5
+      }
+    }
+  },
+  "raw_response": {
+    "type": "visual_response",
+    "intent": "v800_llm_planned_reservoir_multi_agent",
+    "answer": "Recommended model-update priorities based on the integrated evidence:\n1. **Start with water/WCT behaviour**, because oil and gas matches are generally strong while water/WCT is the weakest dimension. This points to water movement, breakthrough timing, water mobility or local connectivity rather than a field-wide hydrocarbon volumetric issue.\n2. **Separate connectivity/TRAN candidates from RelPerm/water-mobility candidates.** Wells where TRAN/PERM/corridor evidence is material should be tested with transmissibility or connectivity sensitivities before applying RelPerm-only tuning.\n3. **Use pressure/BHP as a consistency check.** If water mismatch and BHP mismatch appear together, connectivity, pressure support or boundary/aquifer representation should be reviewed before changing only saturation functions.\n4. **Prioritize local, evidence-backed edits.** Avoid broad global multipliers unless the mismatch is clearly systematic across the field. The safest workflow is to test targeted TRAN/corridor edits and RelPerm sensitivities separately, then compare impact on water, BHP, oil and gas.\n5. **Preserve the good oil/gas match.** Any update that improves water but degrades oil or gas should be rejected or constrained.\n\nSupporting integrated evidence is summarized below.\n\nThis is a model-specific reservoir diagnosis. I compared the available profile, WCT-bias, TRAN/connectivity and property evidence before ranking the most likely causes.\n\nMain evidence:\n- History-match summary evidence: Executive summary: the history match is strong for oil and gas, but materially weaker for water/WCT and pressure. Average scores are Oil=99.9, Gas=98.5, Water=64.8, BHP=45.7 where available. The main model risk is not hydrocarbon production capacity; it is water movement and pressure/connectivity calibration. Water direction evidence after profile/numeric overrides: final value close: 2, negligible matched: 4, simulated WCT too high: 5, simulated...\n- Integrated diagnosis: I found an explicit well name that is invalid or ambiguous for the active reservoir. I did not run the request on another well or on a default well because that would be misleading. top 5 is not a valid well in the active dataset. Well not found in active reservoir well registry. Closest available wells: HW-5, HW-6, HW-3, HW-7, HW-8, HW-9.\n- Water-cut / spatial bias evidence: The dominant WCT bias is underestimation: 7 wells show simulated WCT lower/later than observed. This points toward insufficient water movement or delayed water breakthrough in those areas. Largest group: 'Model underestimates WCT' with 4 wells. Weakest examples: HW-10, HW-28, HW-9, HW-26.\n- Integrated diagnosis: I found 8 wells where RelPerm-only tuning may be risky because connectivity, TRAN or BHP evidence is material. These wells should be checked with TRAN/connectivity sensitivities before applying RelPerm-only edits.\n- TRAN / connectivity evidence: I checked whether WCT mismatch aligns spatially with TRAN/PERM corridor evidence. Correlation WCT mismatch vs TRAN percentile: -0.05. Correlation WCT mismatch vs PERM percentile: -0.01. 2 wells show WCT mismatch aligned with high TRAN/PERM corridor evidence; 3 wells show WCT mismatch in low TRAN/PERM areas. This is a diagnostic alignment view, not the TRAN multiplier corridor visual.\n\nHypothesis ranking:\n- local connectivity / TRAN: support score 6 — Supported when TRAN/connectivity/corridor evidence is present.\n- profile level / timing mismatch: support score 5 — Supported by direct simulated-vs-observed water/WCT profile evidence.\n- relative permeability / water mobility: support score 4 — Supported when timing/shape suggest mobility/endpoints rather than only connectivity.\n- pressure / BHP support or connectivity: support score 2 — Supported when BHP/pressure evidence is part of the mismatch.\n\nMost likely explanation: local connectivity / TRAN.",
+    "ui_blocks": [
+      {
+        "type": "compact_table",
+        "title": "Executive HM quality summary",
+        "columns": [
+          "Area",
+          "Avg score",
+          "Quality",
+          "Executive readout"
+        ],
+        "rows": [
+          {
+            "Area": "Overall",
+            "Avg score": 77.23,
+            "Quality": "Fair",
+            "Executive readout": "Model is usable, but water/pressure require focused calibration."
+          },
+          {
+            "Area": "Oil",
+            "Avg score": 99.9,
+            "Quality": "Good",
+            "Executive readout": "Oil match is robust across the active wells."
+          },
+          {
+            "Area": "Gas/GOR",
+            "Avg score": 98.51,
+            "Quality": "Good",
+            "Executive readout": "Gas match is generally strong; gas is not the main mismatch driver."
+          },
+          {
+            "Area": "Water/WCT",
+            "Avg score": 64.76,
+            "Quality": "Weak",
+            "Executive readout": "Water/WCT is the weakest match area and drives most reservoir uncertainty."
+          },
+          {
+            "Area": "BHP/Pressure",
+            "Avg score": 45.74,
+            "Quality": "Poor",
+            "Executive readout": "Pressure match is secondary concern; review connectivity, support and constraints."
+          }
+        ]
+      },
+      {
+        "type": "compact_table",
+        "title": "Weakest water/WCT evidence",
+        "columns": [
+          "Well",
+          "Water score",
+          "Water direction",
+          "Water timing",
+          "Oil",
+          "Gas",
+          "BHP",
+          "TRAN pct",
+          "PERM pct",
+          "Note"
+        ],
+        "rows": [
+          {
+            "Well": "HW-25",
+            "Water score": 0,
+            "Water direction": "simulated WCT too high",
+            "Water timing": "no breakthrough detected",
+            "Oil": 100,
+            "Gas": 95.43,
+            "BHP": 65.48,
+            "TRAN pct": 20,
+            "PERM pct": 26.67,
+            "Note": "Profile/numeric override used"
+          },
+          {
+            "Well": "HW-6",
+            "Water score": 0,
+            "Water direction": "simulated WCT too high",
+            "Water timing": "no breakthrough detected",
+            "Oil": 100,
+            "Gas": 98.45,
+            "BHP": 43.62,
+            "TRAN pct": 80,
+            "PERM pct": 73.33,
+            "Note": "Profile/numeric override used"
+          },
+          {
+            "Well": "HW-10",
+            "Water score": 13.12,
+            "Water direction": "simulated too low",
+            "Water timing": "breakthrough timing close",
+            "Oil": 100,
+            "Gas": 98.45,
+            "BHP": 66.75,
+            "TRAN pct": 46.67,
+            "PERM pct": 46.67,
+            "Note": "Profile/numeric override used"
+          },
+          {
+            "Well": "HW-28",
+            "Water score": 20.23,
+            "Water direction": "simulated too low",
+            "Water timing": "breakthrough timing close",
+            "Oil": 100,
+            "Gas": 98.45,
+            "BHP": 70.69,
+            "TRAN pct": 53.33,
+            "PERM pct": 60,
+            "Note": "Profile/numeric override used"
+          },
+          {
+            "Well": "HW-32",
+            "Water score": 49.18,
+            "Water direction": "final value close",
+            "Water timing": "no breakthrough detected",
+            "Oil": 100,
+            "Gas": 98.45,
+            "BHP": 57.8,
+            "TRAN pct": 100,
+            "PERM pct": 100,
+            "Note": "Profile/numeric override used"
+          }
+        ]
+      },
+      {
+        "type": "compact_table",
+        "title": "Weakest BHP/pressure evidence",
+        "columns": [
+          "Well",
+          "BHP score",
+          "Pressure delta",
+          "Water score",
+          "Gas score",
+          "TRAN pct",
+          "Interpretation"
+        ],
+        "rows": [
+          {
+            "Well": "HW-31",
+            "BHP score": 0,
+            "Pressure delta": -402.46,
+            "Water score": 100,
+            "Gas score": 100,
+            "TRAN pct": 86.67,
+            "Interpretation": "Check pressure support/connectivity/constraints before phase tuning."
+          },
+          {
+            "Well": "HW-5",
+            "BHP score": 0,
+            "Pressure delta": -19.93,
+            "Water score": 100,
+            "Gas score": 100,
+            "TRAN pct": 6.67,
+            "Interpretation": "Check pressure support/connectivity/constraints before phase tuning."
+          },
+          {
+            "Well": "HW-7",
+            "BHP score": 0,
+            "Pressure delta": -47.31,
+            "Water score": 100,
+            "Gas score": 100,
+            "TRAN pct": 40,
+            "Interpretation": "Check pressure support/connectivity/constraints before phase tuning."
+          },
+          {
+            "Well": "HW-8",
+            "BHP score": 0,
+            "Pressure delta": -59.08,
+            "Water score": 100,
+            "Gas score": 100,
+            "TRAN pct": 26.67,
+            "Interpretation": "Check pressure support/connectivity/constraints before phase tuning."
+          },
+          {
+            "Well": "HW-6",
+            "BHP score": 43.62,
+            "Pressure delta": -564.23,
+            "Water score": 0,
+            "Gas score": 98.45,
+            "TRAN pct": 80,
+            "Interpretation": "Check pressure support/connectivity/constraints before phase tuning."
+          }
+        ]
+      },
+      {
+        "type": "compact_table",
+        "title": "WCT bias groups",
+        "columns": [
+          "bias",
+          "count",
+          "avg_water_score",
+          "avg_delta_swat_percentile",
+          "avg_tran_percentile",
+          "weakest_wells"
+        ],
+        "rows": [
+          {
+            "bias": "Model underestimates WCT",
+            "count": 4,
+            "avg_i": 88.75,
+            "avg_j": 123.25,
+            "avg_water_score": 40.63,
+            "avg_delta_swat_percentile": 61.67,
+            "avg_tran_percentile": 43.33,
+            "avg_perm_percentile": 43.33,
+            "wells": [
+              "HW-10",
+              "HW-26",
+              "HW-28",
+              "HW-9"
+            ],
+            "weakest_wells": [
+              "HW-10",
+              "HW-28",
+              "HW-9",
+              "HW-26"
+            ]
+          },
+          {
+            "bias": "Inactive / excluded",
+            "count": 4,
+            "avg_i": 87.75,
+            "avg_j": 83,
+            "avg_water_score": 100,
+            "avg_delta_swat_percentile": 28.34,
+            "avg_tran_percentile": 40,
+            "avg_perm_percentile": 31.67,
+            "wells": [
+              "HW-31",
+              "HW-5",
+              "HW-7",
+              "HW-8"
+            ],
+            "weakest_wells": [
+              "HW-31",
+              "HW-5",
+              "HW-7",
+              "HW-8"
+            ]
+          },
+          {
+            "bias": "Model underestimates WCT / late water",
+            "count": 3,
+            "avg_i": 129.67,
+            "avg_j": 66.67,
+            "avg_water_score": 16.39,
+            "avg_delta_swat_percentile": 82.22,
+            "avg_tran_percentile": 66.67,
+            "avg_perm_percentile": 66.67,
+            "wells": [
+              "HW-25",
+              "HW-32",
+              "HW-6"
+            ],
+            "weakest_wells": [
+              "HW-25",
+              "HW-6",
+              "HW-32"
+            ]
+          },
+          {
+            "bias": "Negligible WCT / no material issue",
+            "count": 3,
+            "avg_i": 98.33,
+            "avg_j": 110.67,
+            "avg_water_score": 100,
+            "avg_delta_swat_percentile": 42.22,
+            "avg_tran_percentile": 77.78,
+            "avg_perm_percentile": 86.67,
+            "wells": [
+              "HW-29",
+              "HW-3",
+              "HW-30"
+            ],
+            "weakest_wells": [
+              "HW-29",
+              "HW-3",
+              "HW-30"
+            ]
+          },
+          {
+            "bias": "Model overestimates WCT / early water",
+            "count": 1,
+            "avg_i": 149,
+            "avg_j": 71,
+            "avg_water_score": 59.75,
+            "avg_delta_swat_percentile": 73.33,
+            "avg_tran_percentile": 33.33,
+            "avg_perm_percentile": 40,
+            "wells": [
+              "HW-24"
+            ],
+            "weakest_wells": [
+              "HW-24"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "wct_bias_cluster_map",
+        "title": "WCT Bias Pattern Map",
+        "payload": {
+          "mode": "wct_bias_cluster_map",
+          "variable": "water",
+          "wells": [
+            {
+              "well": "HW-10",
+              "i": 29.0,
+              "j": 143.0,
+              "bias": "Model underestimates WCT",
+              "bias_code": 1,
+              "water_score": 13.12,
+              "overall_score": 69.58,
+              "oil_score": 100.0,
+              "gas_score": 98.45,
+              "bhp_score": 66.75,
+              "water_direction": "simulated too low",
+              "water_timing": "breakthrough timing close",
+              "sim_wct": null,
+              "obs_wct": null,
+              "delta_swat": 0.0029290371064515375,
+              "delta_swat_percentile": 80.0,
+              "mean_swat_eoh_percentile": 53.33,
+              "delta_pressure": -148.57630977419421,
+              "delta_pressure_percentile": 80.0,
+              "tran_percentile": 46.67,
+              "perm_percentile": 46.67,
+              "poro_percentile": 73.33
+            },
+            {
+              "well": "HW-24",
+              "i": 149.0,
+              "j": 71.0,
+              "bias": "Model overestimates WCT / early water",
+              "bias_code": 2,
+              "water_score": 59.75,
+              "overall_score": 83.45,
+              "oil_score": 100.0,
+              "gas_score": 98.45,
+              "bhp_score": 75.6,
+              "water_direction": "final value close",
+              "water_timing": "early breakthrough",
+              "sim_wct": null,
+              "obs_wct": null,
+              "delta_swat": 0.0025252138629032195,
+              "delta_swat_percentile": 73.33,
+              "mean_swat_eoh_percentile": 46.67,
+              "delta_pressure": -635.6435664193546,
+              "delta_pressure_percentile": 13.33,
+              "tran_percentile": 33.33,
+              "perm_percentile": 40.0,
+              "poro_percentile": 53.33
+            },
+            {
+              "well": "HW-25",
+              "i": 147.0,
+              "j": 54.0,
+              "bias": "Model underestimates WCT / late water",
+              "bias_code": 1,
+              "water_score": 0.0,
+              "overall_score": 65.23,
+              "oil_score": 100.0,
+              "gas_score": 95.43,
+              "bhp_score": 65.48,
+              "water_direction": "unknown",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": 16.603647232055664,
+              "obs_wct": 1.8968030214309692,
+              "delta_swat": 0.0014337151025806405,
+              "delta_swat_percentile": 66.67,
+              "mean_swat_eoh_percentile": 26.67,
+              "delta_pressure": -600.2348790645156,
+              "delta_pressure_percentile": 20.0,
+              "tran_percentile": 20.0,
+              "perm_percentile": 26.67,
+              "poro_percentile": 40.0
+            },
+            {
+              "well": "HW-26",
+              "i": 169.00000000000003,
+              "j": 40.0,
+              "bias": "Model underestimates WCT",
+              "bias_code": 1,
+              "water_score": 66.45,
+              "overall_score": 84.83,
+              "oil_score": 98.51,
+              "gas_score": 96.18,
+              "bhp_score": 78.19,
+              "water_direction": "simulated too low",
+              "water_timing": "breakthrough timing close",
+              "sim_wct": null,
+              "obs_wct": null,
+              "delta_swat": -0.004085724395161194,
+              "delta_swat_percentile": 6.67,
+              "mean_swat_eoh_percentile": 73.33,
+              "delta_pressure": -429.048276903226,
+              "delta_pressure_percentile": 46.67,
+              "tran_percentile": 13.33,
+              "perm_percentile": 13.33,
+              "poro_percentile": 13.33
+            },
+            {
+              "well": "HW-28",
+              "i": 135.0,
+              "j": 128.0,
+              "bias": "Model underestimates WCT",
+              "bias_code": 1,
+              "water_score": 20.23,
+              "overall_score": 72.34,
+              "oil_score": 100.0,
+              "gas_score": 98.45,
+              "bhp_score": 70.69,
+              "water_direction": "simulated too low",
+              "water_timing": "breakthrough timing close",
+              "sim_wct": null,
+              "obs_wct": null,
+              "delta_swat": 0.01822480616822586,
+              "delta_swat_percentile": 100.0,
+              "mean_swat_eoh_percentile": 60.0,
+              "delta_pressure": -376.90939230645154,
+              "delta_pressure_percentile": 66.67,
+              "tran_percentile": 53.33,
+              "perm_percentile": 60.0,
+              "poro_percentile": 60.0
+            },
+            {
+              "well": "HW-29",
+              "i": 96.99999999999999,
+              "j": 121.0,
+              "bias": "Negligible WCT / no material issue",
+              "bias_code": 4,
+              "water_score": 100.0,
+              "overall_score": 89.31,
+              "oil_score": 100.0,
+              "gas_score": 98.45,
+              "bhp_score": 58.77,
+              "water_direction": "negligible matched",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": 6.231936454772949,
+              "obs_wct": 0.06025028973817825,
+              "delta_swat": 0.00028035746193548483,
+              "delta_swat_percentile": 33.33,
+              "mean_swat_eoh_percentile": 13.33,
+              "delta_pressure": -675.893790951613,
+              "delta_pressure_percentile": 6.67,
+              "tran_percentile": 93.33,
+              "perm_percentile": 93.33,
+              "poro_percentile": 100.0
+            },
+            {
+              "well": "HW-3",
+              "i": 108.0,
+              "j": 71.0,
+              "bias": "Negligible WCT / no material issue",
+              "bias_code": 4,
+              "water_score": 100.0,
+              "overall_score": 85.69,
+              "oil_score": 100.0,
+              "gas_score": 98.45,
+              "bhp_score": 44.31,
+              "water_direction": "negligible matched",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": 3.4933571815490723,
+              "obs_wct": 0.014859264716506004,
+              "delta_swat": 0.0004517543274193403,
+              "delta_swat_percentile": 40.0,
+              "mean_swat_eoh_percentile": 6.67,
+              "delta_pressure": -399.6762499032261,
+              "delta_pressure_percentile": 60.0,
+              "tran_percentile": 73.33,
+              "perm_percentile": 80.0,
+              "poro_percentile": 80.0
+            },
+            {
+              "well": "HW-30",
+              "i": 90.0,
+              "j": 139.99999999999997,
+              "bias": "Negligible WCT / no material issue",
+              "bias_code": 4,
+              "water_score": 100.0,
+              "overall_score": 87.82,
+              "oil_score": 100.0,
+              "gas_score": 98.45,
+              "bhp_score": 52.84,
+              "water_direction": "negligible matched",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": 5.968727111816406,
+              "obs_wct": 0.09783928096294403,
+              "delta_swat": 0.0007232814224193557,
+              "delta_swat_percentile": 53.33,
+              "mean_swat_eoh_percentile": 20.0,
+              "delta_pressure": -560.2941225161289,
+              "delta_pressure_percentile": 33.33,
+              "tran_percentile": 66.67,
+              "perm_percentile": 86.67,
+              "poro_percentile": 93.33
+            },
+            {
+              "well": "HW-31",
+              "i": 139.0,
+              "j": 114.00000000000001,
+              "bias": "Inactive / excluded",
+              "bias_code": 6,
+              "water_score": 100.0,
+              "overall_score": 75.0,
+              "oil_score": 100.0,
+              "gas_score": 100.0,
+              "bhp_score": 0.0,
+              "water_direction": "negligible matched",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": 0.0,
+              "obs_wct": 7.316879815520618e-15,
+              "delta_swat": 0.0,
+              "delta_swat_percentile": 20.0,
+              "mean_swat_eoh_percentile": 100.0,
+              "delta_pressure": -402.4619337419349,
+              "delta_pressure_percentile": 53.33,
+              "tran_percentile": 86.67,
+              "perm_percentile": 66.67,
+              "poro_percentile": 46.67
+            },
+            {
+              "well": "HW-32",
+              "i": 122.00000000000001,
+              "j": 106.00000000000001,
+              "bias": "Model underestimates WCT / late water",
+              "bias_code": 1,
+              "water_score": 49.18,
+              "overall_score": 76.36,
+              "oil_score": 100.0,
+              "gas_score": 98.45,
+              "bhp_score": 57.8,
+              "water_direction": "final value close",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": null,
+              "obs_wct": null,
+              "delta_swat": 0.0035100772135484015,
+              "delta_swat_percentile": 86.67,
+              "mean_swat_eoh_percentile": 40.0,
+              "delta_pressure": -550.9716285322584,
+              "delta_pressure_percentile": 40.0,
+              "tran_percentile": 100.0,
+              "perm_percentile": 100.0,
+              "poro_percentile": 86.67
+            },
+            {
+              "well": "HW-5",
+              "i": 167.00000000000003,
+              "j": 12.000000000000002,
+              "bias": "Inactive / excluded",
+              "bias_code": 6,
+              "water_score": 100.0,
+              "overall_score": 75.0,
+              "oil_score": 100.0,
+              "gas_score": 100.0,
+              "bhp_score": 0.0,
+              "water_direction": "negligible matched",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": 0.0,
+              "obs_wct": 8.656759836046899e-16,
+              "delta_swat": 0.00021233169177425903,
+              "delta_swat_percentile": 26.67,
+              "mean_swat_eoh_percentile": 86.67,
+              "delta_pressure": -19.934932548387224,
+              "delta_pressure_percentile": 100.0,
+              "tran_percentile": 6.67,
+              "perm_percentile": 6.67,
+              "poro_percentile": 6.67
+            },
+            {
+              "well": "HW-6",
+              "i": 120.0,
+              "j": 40.0,
+              "bias": "Model underestimates WCT / late water",
+              "bias_code": 1,
+              "water_score": 0.0,
+              "overall_score": 60.52,
+              "oil_score": 100.0,
+              "gas_score": 98.45,
+              "bhp_score": 43.62,
+              "water_direction": "unknown",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": 15.839263916015625,
+              "obs_wct": 2.40523099899292,
+              "delta_swat": 0.006632857089999972,
+              "delta_swat_percentile": 93.33,
+              "mean_swat_eoh_percentile": 33.33,
+              "delta_pressure": -564.2265427741941,
+              "delta_pressure_percentile": 26.67,
+              "tran_percentile": 80.0,
+              "perm_percentile": 73.33,
+              "poro_percentile": 66.67
+            },
+            {
+              "well": "HW-7",
+              "i": 37.99999999999999,
+              "j": 88.0,
+              "bias": "Inactive / excluded",
+              "bias_code": 6,
+              "water_score": 100.0,
+              "overall_score": 75.0,
+              "oil_score": 100.0,
+              "gas_score": 100.0,
+              "bhp_score": 0.0,
+              "water_direction": "negligible matched",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": 0.0,
+              "obs_wct": 1.5135200277079585e-16,
+              "delta_swat": 0.0006804600845161657,
+              "delta_swat_percentile": 46.67,
+              "mean_swat_eoh_percentile": 80.0,
+              "delta_pressure": -47.306672177420296,
+              "delta_pressure_percentile": 93.33,
+              "tran_percentile": 40.0,
+              "perm_percentile": 33.33,
+              "poro_percentile": 20.0
+            },
+            {
+              "well": "HW-8",
+              "i": 7.0,
+              "j": 118.0,
+              "bias": "Inactive / excluded",
+              "bias_code": 6,
+              "water_score": 100.0,
+              "overall_score": 75.0,
+              "oil_score": 100.0,
+              "gas_score": 100.0,
+              "bhp_score": 0.0,
+              "water_direction": "negligible matched",
+              "water_timing": "no breakthrough detected",
+              "sim_wct": 0.0,
+              "obs_wct": 1.4737800476194245e-15,
+              "delta_swat": 0.0,
+              "delta_swat_percentile": 20.0,
+              "mean_swat_eoh_percentile": 100.0,
+              "delta_pressure": -59.08280301612831,
+              "delta_pressure_percentile": 86.67,
+              "tran_percentile": 26.67,
+              "perm_percentile": 20.0,
+              "poro_percentile": 26.67
+            },
+            {
+              "well": "HW-9",
+              "i": 22.0,
+              "j": 181.99999999999997,
+              "bias": "Model underestimates WCT",
+              "bias_code": 1,
+              "water_score": 62.73,
+              "overall_score": 83.32,
+              "oil_score": 100.0,
+              "gas_score": 98.45,
+              "bhp_score": 72.09,
+              "water_direction": "simulated too low",
+              "water_timing": "breakthrough timing close",
+              "sim_wct": null,
+              "obs_wct": null,
+              "delta_swat": 0.0013792644017741607,
+              "delta_swat_percentile": 60.0,
+              "mean_swat_eoh_percentile": 66.67,
+              "delta_pressure": -364.4324241290319,
+              "delta_pressure_percentile": 73.33,
+              "tran_percentile": 60.0,
+              "perm_percentile": 53.33,
+              "poro_percentile": 33.33
+            }
+          ],
+          "summary": {
+            "Model underestimates WCT": 4,
+            "Model overestimates WCT / early water": 1,
+            "Model underestimates WCT / late water": 3,
+            "Negligible WCT / no material issue": 3,
+            "Inactive / excluded": 4
+          },
+          "bias_groups": [
+            {
+              "bias": "Model underestimates WCT",
+              "count": 4,
+              "avg_i": 88.75,
+              "avg_j": 123.25,
+              "avg_water_score": 40.6325,
+              "avg_delta_swat_percentile": 61.6675,
+              "avg_tran_percentile": 43.3325,
+              "avg_perm_percentile": 43.3325,
+              "wells": [
+                "HW-10",
+                "HW-26",
+                "HW-28",
+                "HW-9"
+              ],
+              "weakest_wells": [
+                "HW-10",
+                "HW-28",
+                "HW-9",
+                "HW-26"
+              ]
+            },
+            {
+              "bias": "Inactive / excluded",
+              "count": 4,
+              "avg_i": 87.75,
+              "avg_j": 83.0,
+              "avg_water_score": 100.0,
+              "avg_delta_swat_percentile": 28.335,
+              "avg_tran_percentile": 40.0025,
+              "avg_perm_percentile": 31.6675,
+              "wells": [
+                "HW-31",
+                "HW-5",
+                "HW-7",
+                "HW-8"
+              ],
+              "weakest_wells": [
+                "HW-31",
+                "HW-5",
+                "HW-7",
+                "HW-8"
+              ]
+            },
+            {
+              "bias": "Model underestimates WCT / late water",
+              "count": 3,
+              "avg_i": 129.66666666666666,
+              "avg_j": 66.66666666666667,
+              "avg_water_score": 16.393333333333334,
+              "avg_delta_swat_percentile": 82.22333333333334,
+              "avg_tran_percentile": 66.66666666666667,
+              "avg_perm_percentile": 66.66666666666667,
+              "wells": [
+                "HW-25",
+                "HW-32",
+                "HW-6"
+              ],
+              "weakest_wells": [
+                "HW-25",
+                "HW-6",
+                "HW-32"
+              ]
+            },
+            {
+              "bias": "Negligible WCT / no material issue",
+              "count": 3,
+              "avg_i": 98.33333333333333,
+              "avg_j": 110.66666666666667,
+              "avg_water_score": 100.0,
+              "avg_delta_swat_percentile": 42.22,
+              "avg_tran_percentile": 77.77666666666666,
+              "avg_perm_percentile": 86.66666666666667,
+              "wells": [
+                "HW-29",
+                "HW-3",
+                "HW-30"
+              ],
+              "weakest_wells": [
+                "HW-29",
+                "HW-3",
+                "HW-30"
+              ]
+            },
+            {
+              "bias": "Model overestimates WCT / early water",
+              "count": 1,
+              "avg_i": 149.0,
+              "avg_j": 71.0,
+              "avg_water_score": 59.75,
+              "avg_delta_swat_percentile": 73.33,
+              "avg_tran_percentile": 33.33,
+              "avg_perm_percentile": 40.0,
+              "wells": [
+                "HW-24"
+              ],
+              "weakest_wells": [
+                "HW-24"
+              ]
+            }
+          ],
+          "interpretation": "The dominant WCT bias is underestimation: 7 wells show simulated WCT lower/later than observed. This points toward insufficient water movement or delayed water breakthrough in those areas."
+        }
+      }
+    ],
+    "agent_trace": {
+      "LLMCopilotBrainV800": {
+        "status": "completed",
+        "decision": "reservoir_multi_agent",
+        "reason": "The user asks for model-update priorities, which requires integrated evidence across HM summary, water/WCT, pressure/BHP, TRAN/connectivity and relperm/water mobility.",
+        "primary_well": null,
+        "llm_planner_used": true
+      },
+      "EvidencePlannerV800": {
+        "status": "completed",
+        "tool_plan": [
+          {
+            "tool_label": "ExecutiveHMSummaryAgentToolV800",
+            "subquery": "Give me an executive summary of the history match quality."
+          },
+          {
+            "tool_label": "IntegratedReservoirDiagnosisToolV800",
+            "subquery": "Give me the top 5 wells requiring model review and explain the main driver for each."
+          },
+          {
+            "tool_label": "WCTBiasDiagnosticAgentToolV800",
+            "subquery": "Show me WCT bias cluster map and explain it."
+          },
+          {
+            "tool_label": "IntegratedReservoirDiagnosisToolV800",
+            "subquery": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger."
+          },
+          {
+            "tool_label": "TRANCorridorVisualAgentToolV800",
+            "subquery": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors."
+          }
+        ]
+      },
+      "ExecutiveHMSummaryAgentToolV800": {
+        "status": "completed",
+        "subquery": "Give me an executive summary of the history match quality.",
+        "response_type": "visual_response",
+        "intent": "executive_history_match_summary_v525",
+        "task_type": "executive_history_match_summary_v525",
+        "ui_block_types": [
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "suggestions"
+        ],
+        "exposed_runtime_trace_keys": [
+          "IntentRouterAgent",
+          "ExecutiveHistoryMatchSummaryAgent",
+          "ReservoirCriticAgent",
+          "TracePresentationCleanerV526",
+          "NumericFormatterV528"
+        ]
+      },
+      "IntegratedReservoirDiagnosisToolV800": {
+        "status": "completed",
+        "subquery": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger.",
+        "response_type": "visual_response",
+        "intent": "integrated_parallel_diagnosis_v514",
+        "task_type": "integrated_parallel_diagnosis_v514",
+        "ui_block_types": [
+          "compact_table"
+        ],
+        "exposed_runtime_trace_keys": [
+          "IntentRouterAgent",
+          "ProfileEvidenceAgent",
+          "PropertyEvidenceAgent",
+          "HypothesisRankingAgent",
+          "ReservoirCriticAgent",
+          "TracePresentationCleanerV526",
+          "NumericFormatterV528"
+        ]
+      },
+      "WCTBiasDiagnosticAgentToolV800": {
+        "status": "completed",
+        "subquery": "Show me WCT bias cluster map and explain it.",
+        "response_type": "visual_response",
+        "intent": "wct_bias_cluster_map",
+        "task_type": "diagnostic_cluster",
+        "ui_block_types": [
+          "wct_bias_cluster_map",
+          "compact_table",
+          "suggestions"
+        ],
+        "exposed_runtime_trace_keys": [
+          "AbsoluteWCTBiasRouterV37",
+          "ExplicitBiasClusterPriorityGuardV516B",
+          "NumericFormatterV528"
+        ]
+      },
+      "TRANCorridorVisualAgentToolV800": {
+        "status": "completed",
+        "subquery": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors.",
+        "response_type": "visual_response",
+        "intent": "wct_tran_perm_alignment_v522",
+        "task_type": "wct_tran_perm_alignment_v522",
+        "ui_block_types": [
+          "plotly_chart",
+          "compact_table",
+          "suggestions"
+        ],
+        "exposed_runtime_trace_keys": [
+          "WCTTranPermAlignmentAgentV522",
+          "NumericFormatterV528"
+        ]
+      },
+      "ReservoirCriticAgentV800": {
+        "status": "completed",
+        "critic": "ReservoirCriticAgentV700",
+        "method": "evidence_weighting_from_real_tool_outputs",
+        "leading_hypothesis": {
+          "hypothesis": "local_connectivity_or_TRAN",
+          "score": 6,
+          "interpretation": "Supported when TRAN/connectivity/corridor evidence is present."
+        },
+        "ranked_hypotheses": [
+          {
+            "hypothesis": "local_connectivity_or_TRAN",
+            "score": 6,
+            "interpretation": "Supported when TRAN/connectivity/corridor evidence is present."
+          },
+          {
+            "hypothesis": "profile_level_or_timing_mismatch",
+            "score": 5,
+            "interpretation": "Supported by direct simulated-vs-observed water/WCT profile evidence."
+          },
+          {
+            "hypothesis": "relative_permeability_or_water_mobility",
+            "score": 4,
+            "interpretation": "Supported when timing/shape suggest mobility/endpoints rather than only connectivity."
+          },
+          {
+            "hypothesis": "pressure_support_or_BHP_connectivity",
+            "score": 2,
+            "interpretation": "Supported when BHP/pressure evidence is part of the mismatch."
+          }
+        ],
+        "note": "Scores are computed from evidence returned by real specialist calls, not from a hard-coded final answer. Structured hypothesis scores were not available."
+      },
+      "FinalAnswerSynthesizerV800": {
+        "status": "completed",
+        "mode": "multi_tool_synthesis"
+      },
+      "StrategicActionPlanPlannerV804": {
+        "status": "completed",
+        "action": "expanded_model_update_priority_question_into_multi_agent_plan",
+        "tools_requested": [
+          "ExecutiveHMSummaryAgentToolV800",
+          "IntegratedReservoirDiagnosisToolV800",
+          "WCTBiasDiagnosticAgentToolV800",
+          "IntegratedReservoirDiagnosisToolV800",
+          "TRANCorridorVisualAgentToolV800"
+        ]
+      },
+      "UserFacingAnswerPolisherV803": {
+        "status": "completed",
+        "action": "removed_internal_agent_names_from_main_answer",
+        "note": "agent_trace and interaction_edges remain available for debug/audit."
+      },
+      "VisualEvidenceStabilizerV806": {
+        "status": "completed",
+        "action": "deduplicated_and_ranked_ui_blocks",
+        "ui_block_count": 5,
+        "note": "No reservoir evidence was invented; duplicate/unstable blocks were removed from display payload."
+      },
+      "LightAnswerLayoutV806": {
+        "status": "completed",
+        "action": "light_linebreak_layout_only",
+        "note": "V805 heavy formatter is bypassed; this only adds safe line breaks."
+      },
+      "FinalVisualSelectorV810": {
+        "status": "completed",
+        "decision": "default_keep_final_blocks",
+        "original_ui_block_types": [
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "wct_bias_cluster_map"
+        ],
+        "selected_ui_block_types": [
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "wct_bias_cluster_map"
+        ],
+        "policy": "show_final_decision_visual_not_all_supporting_visuals"
+      }
+    },
+    "interaction_edges": [
+      {
+        "source": "LLMCopilotBrainV800",
+        "target": "EvidencePlannerV800",
+        "relation": "semantic_plan_created",
+        "reason": "The user asks for model-update priorities, which requires integrated evidence across HM summary, water/WCT, pressure/BHP, TRAN/connectivity and relperm/water mobility.",
+        "timestamp": "2026-06-05T11:48:22Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "ExecutiveHMSummaryAgentToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Give me an executive summary of the history match quality.",
+        "timestamp": "2026-06-05T11:48:22Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "ExecutiveHMSummaryAgentToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Give me an executive summary of the history match quality.",
+        "timestamp": "2026-06-05T11:48:22Z"
+      },
+      {
+        "source": "ExecutiveHMSummaryAgentToolV800",
+        "target": "ExecutiveHistoryMatchSummaryAgent",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ExecutiveHistoryMatchSummaryAgent",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "Executive summary: the history match is strong for oil and gas, but materially weaker for water/WCT and pressure. Average scores are Oil=99.9, Gas=98.5, Water=64.8, BHP=45.7 where available. The main model risk is not hydrocarbon production capacity; it is water movement and pressure/connectivity calibration. Water direction evidence after profile/...",
+        "ui_block_types": [
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "suggestions"
+        ],
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "IntegratedReservoirDiagnosisToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Give me the top 5 wells requiring model review and explain the main driver for each.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "IntegratedReservoirDiagnosisToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Give me the top 5 wells requiring model review and explain the main driver for each.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "IntegratedReservoirDiagnosisToolV800",
+        "target": "FinalInvalidWellGuardV601",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "FinalInvalidWellGuardV601",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "I found an explicit well name that is invalid or ambiguous for the active reservoir. I did not run the request on another well or on a default well because that would be misleading. top 5 is not a valid well in the active dataset. Well not found in active reservoir well registry. Closest available wells: HW-5, HW-6, HW-3, HW-7, HW-8, HW-9.",
+        "ui_block_types": [
+          "suggestions"
+        ],
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "WCTBiasDiagnosticAgentToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Show me WCT bias cluster map and explain it.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "WCTBiasDiagnosticAgentToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Show me WCT bias cluster map and explain it.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "WCTBiasDiagnosticAgentToolV800",
+        "target": "ExplicitBiasClusterPriorityGuardV516B",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ExplicitBiasClusterPriorityGuardV516B",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "The dominant WCT bias is underestimation: 7 wells show simulated WCT lower/later than observed. This points toward insufficient water movement or delayed water breakthrough in those areas. Largest group: 'Model underestimates WCT' with 4 wells. Weakest examples: HW-10, HW-28, HW-9, HW-26.",
+        "ui_block_types": [
+          "wct_bias_cluster_map",
+          "compact_table",
+          "suggestions"
+        ],
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "IntegratedReservoirDiagnosisToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "IntegratedReservoirDiagnosisToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger.",
+        "timestamp": "2026-06-05T11:48:25Z"
+      },
+      {
+        "source": "IntegratedReservoirDiagnosisToolV800",
+        "target": "ProfileEvidenceAgent",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:26Z"
+      },
+      {
+        "source": "ProfileEvidenceAgent",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "I found 8 wells where RelPerm-only tuning may be risky because connectivity, TRAN or BHP evidence is material. These wells should be checked with TRAN/connectivity sensitivities before applying RelPerm-only edits.",
+        "ui_block_types": [
+          "compact_table"
+        ],
+        "timestamp": "2026-06-05T11:48:26Z"
+      },
+      {
+        "source": "EvidencePlannerV800",
+        "target": "TRANCorridorVisualAgentToolV800",
+        "relation": "selected_tool_from_llm_plan",
+        "reason": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors.",
+        "timestamp": "2026-06-05T11:48:26Z"
+      },
+      {
+        "source": "ReservoirCopilotBrainV700",
+        "target": "TRANCorridorVisualAgentToolV800",
+        "relation": "tool_call_requested",
+        "reason": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors.",
+        "timestamp": "2026-06-05T11:48:26Z"
+      },
+      {
+        "source": "TRANCorridorVisualAgentToolV800",
+        "target": "WCTTranPermAlignmentAgentV522",
+        "relation": "runtime_exposed_specialist",
+        "reason": "Specialist observed in returned agent_trace.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "WCTTranPermAlignmentAgentV522",
+        "target": "ReservoirCopilotBrainV700",
+        "relation": "returned_evidence",
+        "evidence_preview": "I checked whether WCT mismatch aligns spatially with TRAN/PERM corridor evidence. Correlation WCT mismatch vs TRAN percentile: -0.05. Correlation WCT mismatch vs PERM percentile: -0.01. 2 wells show WCT mismatch aligned with high TRAN/PERM corridor evidence; 3 wells show WCT mismatch in low TRAN/PERM areas. This is a diagnostic alignment view, not ...",
+        "ui_block_types": [
+          "plotly_chart",
+          "compact_table",
+          "suggestions"
+        ],
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "ExecutiveHMSummaryAgentToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Give me an executive summary of the history match quality.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "IntegratedReservoirDiagnosisToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Give me the top 5 wells requiring model review and explain the main driver for each.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "WCTBiasDiagnosticAgentToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Show me WCT bias cluster map and explain it.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "IntegratedReservoirDiagnosisToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "TRANCorridorVisualAgentToolV800",
+        "target": "ReservoirCriticAgentV800",
+        "relation": "submitted_evidence_for_hypothesis_review",
+        "subquery": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors.",
+        "timestamp": "2026-06-05T11:48:27Z"
+      },
+      {
+        "source": "ReservoirCriticAgentV800",
+        "target": "FinalAnswerSynthesizerV800",
+        "relation": "ranked_hypotheses_sent_to_synthesizer",
+        "timestamp": "2026-06-05T11:48:27Z"
+      }
+    ],
+    "collaboration_summary": {
+      "mode": "v804_model_update_action_plan",
+      "llm_planner_used": true,
+      "tools_called": [
+        "ExecutiveHMSummaryAgentToolV800",
+        "IntegratedReservoirDiagnosisToolV800",
+        "WCTBiasDiagnosticAgentToolV800",
+        "IntegratedReservoirDiagnosisToolV800",
+        "TRANCorridorVisualAgentToolV800"
+      ],
+      "agent_count": 8,
+      "edge_count": 27,
+      "real_edges": true,
+      "leading_hypothesis": {
+        "hypothesis": "local_connectivity_or_TRAN",
+        "score": 6,
+        "interpretation": "Supported when TRAN/connectivity/corridor evidence is present."
+      },
+      "v804_action_plan_expanded": true,
+      "user_facing_answer_polished": true,
+      "visual_blocks_stabilized_v806": true,
+      "ui_block_count_after_v806": 5,
+      "final_visual_selector_v810": {
+        "decision": "default_keep_final_blocks",
+        "selected_ui_block_count": 5
+      }
+    },
+    "universal_intent_v500": {
+      "task_type": "v804_model_update_action_plan",
+      "v800_mode": "reservoir_multi_agent",
+      "llm_planner_used": true,
+      "primary_well": null,
+      "v804_action_plan_expanded": true
+    },
+    "data": {
+      "llm_plan": {
+        "mode": "reservoir_multi_agent",
+        "reason": "The user asks for model-update priorities, which requires integrated evidence across HM summary, water/WCT, pressure/BHP, TRAN/connectivity and relperm/water mobility.",
+        "primary_well": null,
+        "tool_plan": [
+          {
+            "tool_label": "ExecutiveHMSummaryAgentToolV800",
+            "subquery": "Give me an executive summary of the history match quality."
+          },
+          {
+            "tool_label": "IntegratedReservoirDiagnosisToolV800",
+            "subquery": "Give me the top 5 wells requiring model review and explain the main driver for each."
+          },
+          {
+            "tool_label": "WCTBiasDiagnosticAgentToolV800",
+            "subquery": "Show me WCT bias cluster map and explain it."
+          },
+          {
+            "tool_label": "IntegratedReservoirDiagnosisToolV800",
+            "subquery": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger."
+          },
+          {
+            "tool_label": "TRANCorridorVisualAgentToolV800",
+            "subquery": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors."
+          }
+        ]
+      },
+      "critic": {
+        "critic": "ReservoirCriticAgentV700",
+        "method": "evidence_weighting_from_real_tool_outputs",
+        "leading_hypothesis": {
+          "hypothesis": "local_connectivity_or_TRAN",
+          "score": 6,
+          "interpretation": "Supported when TRAN/connectivity/corridor evidence is present."
+        },
+        "ranked_hypotheses": [
+          {
+            "hypothesis": "local_connectivity_or_TRAN",
+            "score": 6,
+            "interpretation": "Supported when TRAN/connectivity/corridor evidence is present."
+          },
+          {
+            "hypothesis": "profile_level_or_timing_mismatch",
+            "score": 5,
+            "interpretation": "Supported by direct simulated-vs-observed water/WCT profile evidence."
+          },
+          {
+            "hypothesis": "relative_permeability_or_water_mobility",
+            "score": 4,
+            "interpretation": "Supported when timing/shape suggest mobility/endpoints rather than only connectivity."
+          },
+          {
+            "hypothesis": "pressure_support_or_BHP_connectivity",
+            "score": 2,
+            "interpretation": "Supported when BHP/pressure evidence is part of the mismatch."
+          }
+        ],
+        "note": "Scores are computed from evidence returned by real specialist calls, not from a hard-coded final answer. Structured hypothesis scores were not available."
+      },
+      "tool_outputs_summary": [
+        {
+          "tool_label": "ExecutiveHMSummaryAgentToolV800",
+          "subquery": "Give me an executive summary of the history match quality.",
+          "response_type": "visual_response",
+          "task_type": "executive_history_match_summary_v525",
+          "ui_block_types": [
+            "compact_table",
+            "compact_table",
+            "compact_table",
+            "suggestions"
+          ]
+        },
+        {
+          "tool_label": "IntegratedReservoirDiagnosisToolV800",
+          "subquery": "Give me the top 5 wells requiring model review and explain the main driver for each.",
+          "response_type": "reasoning_response",
+          "task_type": "invalid_well_name_final_v601",
+          "ui_block_types": [
+            "suggestions"
+          ]
+        },
+        {
+          "tool_label": "WCTBiasDiagnosticAgentToolV800",
+          "subquery": "Show me WCT bias cluster map and explain it.",
+          "response_type": "visual_response",
+          "task_type": "diagnostic_cluster",
+          "ui_block_types": [
+            "wct_bias_cluster_map",
+            "compact_table",
+            "suggestions"
+          ]
+        },
+        {
+          "tool_label": "IntegratedReservoirDiagnosisToolV800",
+          "subquery": "Identify wells where RelPerm tuning would be risky because connectivity evidence is stronger.",
+          "response_type": "visual_response",
+          "task_type": "integrated_parallel_diagnosis_v514",
+          "ui_block_types": [
+            "compact_table"
+          ]
+        },
+        {
+          "tool_label": "TRANCorridorVisualAgentToolV800",
+          "subquery": "Check if WCT mismatch aligns spatially with TRAN/PERM corridors.",
+          "response_type": "visual_response",
+          "task_type": "wct_tran_perm_alignment_v522",
+          "ui_block_types": [
+            "plotly_chart",
+            "compact_table",
+            "suggestions"
+          ]
+        }
+      ]
+    }
+  }
+}

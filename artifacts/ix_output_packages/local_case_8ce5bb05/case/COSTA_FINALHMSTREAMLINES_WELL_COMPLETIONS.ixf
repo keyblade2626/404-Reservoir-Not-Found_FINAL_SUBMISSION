@@ -1,0 +1,144 @@
+######################################
+# IXFVERSION: 2023.4 Petrel
+######################################
+
+
+START
+DATE "1-Feb-1996"
+#TIME 0.0
+
+
+Well "HW-10" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-24" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-25" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-26" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-28" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-29" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-3" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-30" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-31" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-32" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-5" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-6" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-7" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-8" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+
+
+Well "HW-9" {
+    
+    Completion "OPENHOLE" {
+        Status=OPEN
+    }
+    
+}
+

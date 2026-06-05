@@ -1,0 +1,682 @@
+{
+  "schema_version": "7.4",
+  "project_name": "404 Reservoir Not Found",
+  "submission_name": "404 Reservoir Not Found",
+  "version": "1.0.0",
+  "description": "404 Reservoir Not Found is an interactive reservoir-engineering copilot built for the G42 Agentathon. It provides a preloaded local demo dashboard, natural-language reservoir chat, specialist tools for profiles, WCT, pressure, TRAN/connectivity and integrated diagnosis, critic-based hypothesis ranking, an LLM-backed final answer writer for cleaner user-facing explanations, and auditable agent interaction traces.",
+  "runtime": {
+    "type": "local_server_and_cli",
+    "server_command": "python run.py",
+    "cli_command": "python run.py --input input_examples/example_1.json --output output_examples/example_1_output.json",
+    "host": "0.0.0.0",
+    "port": 8000,
+    "landing_page": "http://127.0.0.1:8000",
+    "dashboard": "http://127.0.0.1:8000/demo-dashboard",
+    "requires_manual_data_import_for_demo": false,
+    "demo_data_preloaded": true,
+    "recommended_judge_url": "http://127.0.0.1:8000/demo-dashboard",
+    "full_import_workflow_url": "http://127.0.0.1:8000"
+  },
+  "environment_variables": [
+    {
+      "name": "COMPASS_API_KEY",
+      "required": true,
+      "description": "Compass API key provided by the evaluation environment, if required by the hosted evaluator."
+    },
+    {
+      "name": "OPENAI_API_KEY",
+      "required": false,
+      "description": "Optional local OpenAI API key if external LLM-backed reasoning is enabled."
+    },
+    {
+      "name": "HOST",
+      "required": false,
+      "description": "Server host. Default is 127.0.0.1."
+    },
+    {
+      "name": "PORT",
+      "required": false,
+      "description": "Server port. Default is 8000."
+    },
+    {
+      "name": "SAMPLE_MODE",
+      "required": false,
+      "description": "Optional flag for sample/demo mode."
+    },
+    {
+      "name": "OPENAI_MODEL",
+      "required": false,
+      "description": "Optional model name for the V800 LLM Copilot Planner."
+    },
+    {
+      "name": "V800_LLM_MODEL",
+      "required": false,
+      "description": "Optional override model for the V800 planner."
+    },
+    {
+      "name": "COMPASS_BASE_URL",
+      "required": false,
+      "description": "Optional OpenAI-compatible Compass/Gateway base URL."
+    },
+    {
+      "name": "COMPASS_MODEL",
+      "required": false,
+      "description": "Optional Compass/Gateway model name."
+    },
+    {
+      "name": "V800_DISABLE_LLM",
+      "required": false,
+      "description": "Set to 1 to force deterministic fallback without LLM planner."
+    }
+  ],
+  "input_schema": {
+    "type": "object",
+    "required": [],
+    "properties": {
+      "question": {
+        "type": "string",
+        "description": "Reservoir-engineering question."
+      },
+      "message": {
+        "type": "string",
+        "description": "Alternative field for the reservoir-engineering question."
+      }
+    },
+    "additionalProperties": true
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "input": {
+        "type": "object"
+      },
+      "output": {
+        "type": "object"
+      },
+      "raw_response": {
+        "type": "object"
+      }
+    }
+  },
+  "agents": [
+    {
+      "name": "LLMCopilotBrainV800",
+      "role": "Semantic planner for general chat, reservoir routing and tool-plan generation."
+    },
+    {
+      "name": "EvidencePlannerV800",
+      "role": "Builds the reservoir evidence plan for specialist tools."
+    },
+    {
+      "name": "DynamicProfileAgentToolV800",
+      "role": "Generates simulated-vs-observed production and pressure profile evidence."
+    },
+    {
+      "name": "WCTBiasDiagnosticAgentToolV800",
+      "role": "Analyses water-cut bias, water mismatch and spatial water behaviour."
+    },
+    {
+      "name": "TRANCorridorVisualAgentToolV800",
+      "role": "Generates TRAN/connectivity corridor evidence."
+    },
+    {
+      "name": "StreamlineTimesliceVisualAgentToolV800",
+      "role": "Provides streamline and communication evidence."
+    },
+    {
+      "name": "IntegratedReservoirDiagnosisToolV800",
+      "role": "Combines profile, pressure, WCT and property evidence into integrated diagnosis."
+    },
+    {
+      "name": "ReservoirCriticAgentV807",
+      "role": "Ranks hypotheses using structured numeric scores when available; otherwise falls back to evidence weighting."
+    },
+    {
+      "name": "FinalAnswerSynthesizerV800",
+      "role": "Produces final user-facing reservoir-engineering explanation."
+    },
+    {
+      "name": "UserFacingAnswerPolisherV803",
+      "role": "Removes internal tool names from the main answer while preserving audit traces."
+    },
+    {
+      "name": "VisualEvidenceStabilizerV806",
+      "role": "Deduplicates and stabilizes visual evidence blocks."
+    },
+    {
+      "name": "FinalVisualSelectorV810",
+      "role": "Selects the most appropriate final visual evidence for the question."
+    },
+    {
+      "name": "LLMFinalAnswerWriter",
+      "role": "Uses the configured Compass/OpenAI-compatible LLM endpoint to rewrite validated diagnostic evidence into a concise user-facing reservoir-engineering answer."
+    }
+  ],
+  "capabilities": [
+    "Preloaded local reservoir demo dashboard",
+    "Natural-language Ask Reservoir AI chatbox",
+    "General direct-answer mode when LLM is configured",
+    "Simple local calculation handling",
+    "Dynamic routing between direct answer, single specialist tool and multi-agent diagnosis",
+    "Simulated-vs-observed well profile plotting",
+    "Cumulative production profile plotting",
+    "Oil, gas, water, WCT and BHP history-match review",
+    "Executive history-match quality summary",
+    "Water and WCT mismatch diagnosis",
+    "Pressure/BHP mismatch diagnosis",
+    "TRAN/connectivity corridor analysis",
+    "Streamline/connectivity interpretation",
+    "Production-behaviour clustering",
+    "Integrated root-cause diagnosis",
+    "Connectivity-vs-RelPerm hypothesis comparison",
+    "Ranked model-update prioritization",
+    "Invalid well guard and closest-well suggestions",
+    "Visual evidence generation",
+    "Final visual selection based on user intent",
+    "Agent collaboration trace",
+    "Runtime interaction edge logging",
+    "LLM-backed final answer writing for cleaner reservoir-engineering explanations",
+    "User-facing language cleanup without modifying diagnostic evidence",
+    "Separation between specialist tool evidence, visual panels and final written synthesis"
+  ],
+  "example_inputs": [
+    "input_examples/example_1.json",
+    "input_examples/example_2.json",
+    "input_examples/example_3.json",
+    "input_examples/example_4.json"
+  ],
+  "example_outputs": [
+    "output_examples/example_1_output.json",
+    "output_examples/example_2_output.json",
+    "output_examples/example_3_output.json",
+    "output_examples/example_4_output.json"
+  ],
+  "logs": [
+    "logs/submission_agent_interaction_summary.md",
+    "logs/official_examples_interaction_summary.json",
+    "logs/v700_official_examples_summary.json",
+    "logs/example_1_agent_trace.json",
+    "logs/example_2_agent_trace.json",
+    "logs/example_3_agent_trace.json",
+    "logs/example_4_agent_trace.json",
+    "logs/trace-example-001.jsonl",
+    "logs/trace-example-002.jsonl",
+    "logs/trace-example-003.jsonl",
+    "logs/trace-example-004.jsonl"
+  ],
+  "notes": {
+    "demo_data": "The repository includes precomputed demo artifacts under artifacts/ and bundled sample data where present. The evaluator does not need to import reservoir input data before running the demo.",
+    "demo_startup": "Run python run.py, then open /demo-dashboard or use POST /run.",
+    "import_required": false,
+    "artifacts_included": true,
+    "official_examples": "Four official examples are included: three diagnostic multi-agent runs and one invalid-well guard/fallback run.",
+    "v700_copilot_brain": "V700 Copilot Brain handles general chat/direct answers and reservoir tool orchestration. For reservoir questions it calls real specialist runtime tools and records interaction_edges at runtime.",
+    "general_chat": "Simple general inputs such as 5+7 are answered directly and not forced into reservoir workflows.",
+    "real_interaction_edges": "Official examples include V700 runtime interaction_edges generated during tool calls.",
+    "v800_llm_copilot_planner": "V800 uses an LLM planner when configured to answer general questions directly and route imported-model reservoir questions to specialist tools.",
+    "general_chat_requires_llm": "Arbitrary general questions require OPENAI_API_KEY or COMPASS_API_KEY plus COMPASS_BASE_URL. Without an LLM key, deterministic fallback is used.",
+    "llm_final_answer_writer": "The app includes app/final_answer_synthesizer_llm.py. It uses the configured Compass/OpenAI-compatible endpoint to polish final answers after specialist tools and critic validation. If no LLM key is available, fallback behaviour preserves app stability."
+  },
+  "name": "404 Reservoir Not Found",
+  "display_name": "404 Reservoir Not Found - Reservoir AI Copilot",
+  "submission_status": "final_demo_ready",
+  "last_updated": "2026-06-05",
+  "short_description": "Reservoir AI copilot for history-match diagnosis, visual model review and multi-agent root-cause analysis.",
+  "entrypoint": "python run.py",
+  "local_demo_url": "http://127.0.0.1:8000",
+  "direct_dashboard_url": "http://127.0.0.1:8000/demo-dashboard",
+  "api_endpoint": "POST /run",
+  "language": "python",
+  "environment": {
+    "env_file": ".env.example",
+    "sample_mode_default": false,
+    "llm_provider_support": [
+      "Compass/Core42 OpenAI-compatible API",
+      "OpenAI-compatible API"
+    ],
+    "required_for_full_llm_behaviour": [
+      "COMPASS_API_KEY or OPENAI_API_KEY",
+      "COMPASS_BASE_URL or COMPASS_API_BASE_URL or OPENAI_BASE_URL",
+      "COMPASS_MODEL or CHAT_MODEL"
+    ],
+    "optional_models": [
+      "COMPASS_REASONING_MODEL",
+      "REASONING_MODEL",
+      "EMBEDDING_MODEL"
+    ],
+    "notes": [
+      "Do not commit real API keys.",
+      "General-purpose chat requires a reachable LLM endpoint.",
+      "Reservoir demo workflows use the preloaded local demo case.",
+      "The system avoids fabricating arbitrary general knowledge if no LLM is configured.",
+      "Python 3.13 or higher is recommended.",
+      "If using an older Python version, resdata==6.2.9 may require a different compatible version.",
+      "For judging, open the ready demo dashboard directly at /demo-dashboard.",
+      "The full INTERSECT / IX import workflow is supported from the landing page but is not required for evaluating the bundled demo.",
+      "Activating a newly imported completed run triggers the deterministic diagnostics pipeline and may take a few minutes depending on model size.",
+      "The LLM final answer writer improves the readability of Ask Reservoir AI responses while keeping evidence boards, visuals and logs auditable."
+    ],
+    "python_recommended_version": ">=3.13",
+    "requirements_install_command": "pip install -r requirements.txt"
+  },
+  "agentic_architecture": {
+    "summary": "The system uses a semantic copilot planner that dynamically chooses whether a request should be answered directly, routed to one specialist reservoir tool, or expanded into a multi-agent diagnostic workflow. Specialist agents generate evidence, a critic ranks hypotheses, and a final synthesizer produces the user-facing answer.",
+    "not_a_fixed_pipeline": true,
+    "routing_modes": [
+      {
+        "mode": "direct_answer",
+        "used_for": [
+          "general questions",
+          "simple calculations",
+          "conceptual explanations"
+        ],
+        "example": "Where is Rome?"
+      },
+      {
+        "mode": "single_specialist_tool",
+        "used_for": [
+          "profile plots",
+          "cumulative plots",
+          "TRAN maps",
+          "WCT maps",
+          "streamline visuals"
+        ],
+        "example": "Show me HW-25 oil production"
+      },
+      {
+        "mode": "multi_agent_diagnosis",
+        "used_for": [
+          "why questions",
+          "root-cause diagnosis",
+          "connectivity versus RelPerm comparisons",
+          "pressure/BHP diagnosis",
+          "model update prioritization"
+        ],
+        "example": "Is the HW-28 water issue more likely caused by connectivity or relative permeability?"
+      },
+      {
+        "mode": "guard",
+        "used_for": [
+          "invalid well names",
+          "typo well names",
+          "ambiguous requests"
+        ],
+        "example": "Show me HW-250 oil production"
+      }
+    ]
+  },
+  "visual_evidence_policy": {
+    "summary": "The dashboard selects the visual evidence that best matches the user intent.",
+    "examples": [
+      {
+        "question": "Show me HW-25 oil production",
+        "visual": "profile plot"
+      },
+      {
+        "question": "Show TRAN multiplier corridor for HW-28",
+        "visual": "TRAN corridor map"
+      },
+      {
+        "question": "Show WCT bias cluster map",
+        "visual": "WCT bias map"
+      },
+      {
+        "question": "Is HW-28 water issue more likely caused by connectivity or relative permeability?",
+        "visual": "evidence board and hypothesis ranking table"
+      }
+    ]
+  },
+  "interaction_logging": {
+    "supports_interaction_edges": true,
+    "supports_agent_trace": true,
+    "supports_collaboration_summary": true,
+    "purpose": "Auditability of routing, tool calls, evidence flow, critic validation and final synthesis.",
+    "typical_edge_counts": {
+      "direct_answer": "2-3",
+      "single_specialist_visual": "5-7",
+      "multi_agent_diagnosis": "12-27"
+    }
+  },
+  "demo": {
+    "preloaded_case": true,
+    "manual_import_required": false,
+    "landing_page": "http://127.0.0.1:8000",
+    "dashboard": "http://127.0.0.1:8000/demo-dashboard",
+    "recommended_questions": [
+      "Give me an executive summary of the history match quality.",
+      "Show me HW-25 oil production.",
+      "Plot gas cumulative for HW-25.",
+      "Why is HW-28 water mismatch happening?",
+      "Is the HW-28 water issue more likely caused by connectivity or relative permeability?",
+      "Show TRAN multiplier corridor for HW-28.",
+      "Which wells have the weakest pressure match and what do they have in common?",
+      "What model updates would you prioritize to improve the history match?",
+      "Show me HW-250 oil production."
+    ],
+    "recommended_judge_url": "http://127.0.0.1:8000/demo-dashboard",
+    "full_import_workflow_supported": true,
+    "full_import_workflow_url": "http://127.0.0.1:8000",
+    "judge_note": "Judges are encouraged to open /demo-dashboard directly because the submitted demo case has already completed import and diagnostic post-processing."
+  },
+  "input_output_contract": {
+    "input_format": {
+      "message": "string"
+    },
+    "output_contains": [
+      "status",
+      "answer",
+      "type",
+      "task_type",
+      "ui_block_types",
+      "agent_trace",
+      "interaction_edges",
+      "collaboration_summary",
+      "raw_response"
+    ],
+    "example_cli": "python run.py --input input_examples/example_1.json --output output_examples/example_1_output.json"
+  },
+  "required_files": [
+    "run.py",
+    "metadata.json",
+    ".env.example",
+    "README.md",
+    "ARCHITECTURE.md",
+    "input_examples/",
+    "output_examples/",
+    "logs/"
+  ],
+  "validation": {
+    "command": "python scripts/validate_submission_files.py",
+    "official_examples_command": "python scripts/create_stronger_official_examples.py",
+    "stress_test_command": "python scripts/v800_agent_interaction_stress_test.py"
+  },
+  "submission_notes": [
+    "The dashboard demo can be used directly after running python run.py.",
+    "Judges do not need to manually import reservoir data for the demo case.",
+    "The LLM planner enables general chat and semantic routing when Compass/OpenAI-compatible credentials are configured.",
+    "Reservoir-specific questions use specialist tools and local demo evidence.",
+    "Multi-agent diagnosis is used only when the question requires causal reasoning or hypothesis comparison.",
+    "Simple visual requests intentionally use fewer agents because over-routing would add noise rather than value.",
+    "The final official examples are diagnostic and designed to show real runtime interaction edges.",
+    "Example 4 demonstrates invalid-well guard/fallback behaviour with a required JSONL trace."
+  ],
+  "tags": [
+    "reservoir-engineering",
+    "history-match",
+    "oil-and-gas",
+    "multi-agent",
+    "diagnostic-copilot",
+    "visual-evidence",
+    "Compass",
+    "Core42",
+    "G42-Agentathon"
+  ],
+  "summary": "Reservoir AI copilot that diagnoses history-match quality using specialist agents, visual evidence, critic-based synthesis and runtime interaction traces.",
+  "authoring_team": "404 Reservoir Not Found",
+  "license": "Internal hackathon submission",
+  "repository_type": "local_demo_submission",
+  "official_examples": {
+    "description": "Four final official examples regenerated after enabling the LLM final answer writer for cleaner user-facing synthesis.",
+    "passed": 4,
+    "failed": 0,
+    "examples": [
+      {
+        "example": "example_1",
+        "purpose": "Integrated HW-28 water mismatch root-cause diagnosis",
+        "status": "success",
+        "pass": true,
+        "task_type": "v800_llm_planned_reservoir_multi_agent",
+        "type": "visual_response",
+        "tools_called": [
+          "LLMCopilotBrainV800",
+          "EvidencePlannerV800",
+          "IntegratedReservoirDiagnosisToolV800",
+          "WCTBiasDiagnosticAgentToolV800",
+          "DynamicProfileAgentToolV800",
+          "TRANCorridorVisualAgentToolV800",
+          "ReservoirCriticAgentV807",
+          "FinalAnswerSynthesizerV800",
+          "LLMFinalAnswerWriter",
+          "VisualEvidenceStabilizerV806",
+          "FinalVisualSelectorV810"
+        ],
+        "tool_count": 11,
+        "interaction_edge_count": 17,
+        "agent_count": 12,
+        "ui_block_types": [
+          "compact_table",
+          "compact_table"
+        ],
+        "answer_preview": "This is a model-specific reservoir diagnosis. I compared the available profile, WCT-bias, TRAN/connectivity and property evidence before ranking the most likely causes. Main evidence: - Integrated diagnosis: For HW-28, the strongest current hypothesis is **RelPerm / endpoint saturation issue** (score 85.0). The second hypothesis is **Connectivity / TRAN issue** (score 46.7). Evidence summary: oil score 100.0, water/WCT score 20.23, gas score 98.45, BHP score 70.69. WCT pattern: Model underestimates WCT; timing/direction: breakthrough timing close / simulated too low. Profile evidence override: water-profile totals sim=6.2e+04, obs=6.96e+05. This is a... - Water-cut / spatial bias evidence: I built an interactive WCT profile for HW-28. WCT is computed as water rate divided by oil plus water rate. - Profile evidence: I loaded the relative permeability and capillary-pressure curves for HW-28 in relperm model Model_04. Select the curve group to inspect. A Krw water-mobility sensitivity is available for this well; use the Evaluate/Export button if you want to generate the modified curve candidate. Reservoir Technical review review: HW-28 also has TRAN / connectivity evidence in the smart recommendation. Do not apply a RelPerm curve change blindly if the main issue may be ... Hypothesis ranking: - Relative permeability / water mobility: support score 85.0 — oil match is good while...",
+        "llm_final_answer_writer": {
+          "enabled": true,
+          "purpose": "Polish validated specialist evidence into clear user-facing reservoir-engineering language.",
+          "fallback_safe": true
+        },
+        "red_flags": [],
+        "output_file": "output_examples/example_1_output.json"
+      },
+      {
+        "example": "example_2",
+        "purpose": "Ranked model-update action plan across the demo case",
+        "status": "success",
+        "pass": true,
+        "task_type": "v804_model_update_action_plan",
+        "type": "visual_response",
+        "tools_called": [
+          "LLMCopilotBrainV800",
+          "EvidencePlannerV800",
+          "ExecutiveHMSummaryAgentToolV800",
+          "IntegratedReservoirDiagnosisToolV800",
+          "WCTBiasDiagnosticAgentToolV800",
+          "TRANCorridorVisualAgentToolV800",
+          "ReservoirCriticAgentV807",
+          "FinalAnswerSynthesizerV800",
+          "LLMFinalAnswerWriter",
+          "VisualEvidenceStabilizerV806",
+          "FinalVisualSelectorV810"
+        ],
+        "tool_count": 11,
+        "interaction_edge_count": 27,
+        "agent_count": 13,
+        "ui_block_types": [
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "compact_table",
+          "wct_bias_cluster_map"
+        ],
+        "answer_preview": "Recommended model-update priorities based on the integrated evidence: 1. **Start with water/WCT behaviour**, because oil and gas matches are generally strong while water/WCT is the weakest dimension. This points to water movement, breakthrough timing, water mobility or local connectivity rather than a field-wide hydrocarbon volumetric issue. 2. **Separate connectivity/TRAN candidates from RelPerm/water-mobility candidates.** Wells where TRAN/PERM/corridor evidence is material should be tested with transmissibility or connectivity sensitivities before applying RelPerm-only tuning. 3. **Use pressure/BHP as a consistency check.** If water mismatch and BHP mismatch appear together, connectivity, pressure support or boundary/aquifer representation should be reviewed before changing only saturation functions. 4. **Prioritize local, evidence-backed edits.** Avoid broad global multipliers unless the mismatch is clearly systematic across the field. The safest workflow is to test targeted TRAN/corridor edits and RelPerm sensitivities separately, then compare impact on water, BHP, oil and gas. 5. **Preserve the good oil/gas match.** Any update that improves water but degrades oil or gas should be rejected or constrained. Supporting integrated evidence is summarized below. This is a model-specific reservoir diagnosis. I compared the available profile, WCT-bias, TRAN/connectivity and pro...",
+        "llm_final_answer_writer": {
+          "enabled": true,
+          "purpose": "Polish validated specialist evidence into clear user-facing reservoir-engineering language.",
+          "fallback_safe": true
+        },
+        "red_flags": [],
+        "output_file": "output_examples/example_2_output.json"
+      },
+      {
+        "example": "example_3",
+        "purpose": "Integrated pressure/BHP weakness diagnosis",
+        "status": "success",
+        "pass": true,
+        "task_type": "v800_llm_planned_reservoir_multi_agent",
+        "type": "visual_response",
+        "tools_called": [
+          "LLMCopilotBrainV800",
+          "EvidencePlannerV800",
+          "ExecutiveHMSummaryAgentToolV800",
+          "IntegratedReservoirDiagnosisToolV800",
+          "WCTBiasDiagnosticAgentToolV800",
+          "TRANCorridorVisualAgentToolV800",
+          "ReservoirCriticAgentV807",
+          "FinalAnswerSynthesizerV800",
+          "LLMFinalAnswerWriter",
+          "VisualEvidenceStabilizerV806",
+          "FinalVisualSelectorV810"
+        ],
+        "tool_count": 11,
+        "interaction_edge_count": 12,
+        "agent_count": 11,
+        "ui_block_types": [
+          "compact_table",
+          "plotly_chart"
+        ],
+        "answer_preview": "This is a model-specific reservoir diagnosis. I compared the available profile, WCT-bias, TRAN/connectivity and property evidence before ranking the most likely causes. Main evidence: - History-match summary evidence: Created interactive distribution plot for PRESSURE from 34390 map-cell values. - Integrated diagnosis: I ranked the top 5 wells requiring model review using integrated water/WCT, BHP/pressure, gas/GOR and oil evidence. Hypothesis ranking: - profile level / timing mismatch: support score 2 — Supported by direct simulated-vs-observed water/WCT profile evidence. - pressure / BHP support or connectivity: support score 2 — Supported when BHP/pressure evidence is part of the mismatch. - local connectivity / TRAN: support score 0 — Supported when TRAN/connectivity/corridor evidence is present. - relative permeability / water mobility: support score 0 — Supported when timing/shape suggest mobility/endpoints rather than only connectivity. Most likely explanation: profile level / timing mismatch.",
+        "llm_final_answer_writer": {
+          "enabled": true,
+          "purpose": "Polish validated specialist evidence into clear user-facing reservoir-engineering language.",
+          "fallback_safe": true
+        },
+        "red_flags": [],
+        "output_file": "output_examples/example_3_output.json"
+      },
+      {
+        "example": "example_4",
+        "purpose": "Invalid well guard and safe fallback behaviour",
+        "status": "success",
+        "pass": true,
+        "task_type": "invalid_well_name_final_v601",
+        "type": "reasoning_response",
+        "tools_called": [
+          "LLMCopilotBrainV800",
+          "WellValidationGuardAgent",
+          "ClosestWellSuggestionAgent",
+          "ReservoirGuardResponseAgent",
+          "FinalAnswerSynthesizerV800",
+          "VisualEvidenceStabilizerV806"
+        ],
+        "tool_count": 6,
+        "interaction_edge_count": 7,
+        "agent_count": 7,
+        "ui_block_types": [
+          "suggestions"
+        ],
+        "answer_preview": "I found an explicit well name that is invalid or ambiguous for the active reservoir. I did not run the request on another well or on a default well because that would be misleading. HW-250 is not a valid well in the active dataset. Well not found in active reservoir well registry. Closest available wells: HW-25, HW-5, HW-32, HW-30, HW-29, HW-28.",
+        "llm_final_answer_writer": {
+          "enabled": true,
+          "purpose": "Polish validated specialist evidence into clear user-facing reservoir-engineering language.",
+          "fallback_safe": true
+        },
+        "red_flags": [],
+        "output_file": "output_examples/example_4_output.json"
+      }
+    ],
+    "input_files": [
+      "input_examples/example_1.json",
+      "input_examples/example_2.json",
+      "input_examples/example_3.json",
+      "input_examples/example_4.json"
+    ],
+    "output_files": [
+      "output_examples/example_1_output.json",
+      "output_examples/example_2_output.json",
+      "output_examples/example_3_output.json",
+      "output_examples/example_4_output.json"
+    ]
+  },
+  "final_logs": {
+    "description": "Clean final logs retained for submission after regenerating official examples with the LLM final answer writer enabled.",
+    "files": [
+      "logs/submission_agent_interaction_summary.md",
+      "logs/official_examples_interaction_summary.json",
+      "logs/v700_official_examples_summary.json",
+      "logs/example_1_agent_trace.json",
+      "logs/example_2_agent_trace.json",
+      "logs/example_3_agent_trace.json",
+      "logs/example_4_agent_trace.json",
+      "logs/trace-example-001.jsonl",
+      "logs/trace-example-002.jsonl",
+      "logs/trace-example-003.jsonl",
+      "logs/trace-example-004.jsonl"
+    ]
+  },
+  "use_case_id": "4",
+  "output_type": "dashboard",
+  "tools_used": [
+    "custom-python",
+    "fastapi",
+    "compass-api",
+    "openai-compatible-api",
+    "pandas",
+    "numpy",
+    "plotly",
+    "langgraph-compatible-orchestration"
+  ],
+  "data_sources": [
+    "data/",
+    "preloaded local reservoir demo case",
+    "input_examples/",
+    "output_examples/",
+    "logs/"
+  ],
+  "compass": {
+    "required": true,
+    "openai_compatible": true,
+    "official_checklist_base_url": "https://compass.core42.ai/v1",
+    "working_generation_gateway_observed": "https://api.core42.ai/v1",
+    "env_vars": [
+      "OPENAI_API_KEY",
+      "OPENAI_BASE_URL",
+      "COMPASS_API_KEY",
+      "COMPASS_BASE_URL",
+      "COMPASS_API_BASE_URL"
+    ],
+    "models": [
+      "gpt-4.1",
+      "gpt-5.1",
+      "text-embedding-3-large",
+      "whisper"
+    ],
+    "note": "The app reads the Compass/OpenAI-compatible endpoint from environment variables. The official checklist references https://compass.core42.ai/v1; during local testing, generation calls worked through the Compass-compatible gateway https://api.core42.ai/v1."
+  },
+  "diagnostics_pipeline": {
+    "type": "deterministic_post_processing",
+    "trigger": "Activate case after completed-run import",
+    "not_llm_generated": true,
+    "typical_runtime": "A few minutes; local tests ranged from a few minutes to approximately 5-6 minutes depending on model size.",
+    "modules": [
+      "app.driver_diagnosis",
+      "app.export_oil_profile_diagnostics",
+      "app.export_gas_profile_diagnostics",
+      "app.export_bhp_profile_diagnostics",
+      "app.bhp_observed_filter",
+      "app.well_activity_classifier",
+      "app.smart_well_recommendation_agent"
+    ],
+    "outputs": [
+      "artifacts/diagnosis/well_property_driver_context.csv",
+      "artifacts/diagnosis/water_driver_diagnosis.json",
+      "artifacts/diagnosis/driver_diagnosis_summary.json",
+      "artifacts/diagnosis/oil_profile_diagnostics.json",
+      "artifacts/diagnosis/gas_profile_diagnostics.json",
+      "artifacts/diagnosis/bhp_profile_diagnostics.json",
+      "artifacts/diagnosis/bhp_observed_filter_report.json",
+      "artifacts/diagnosis/well_activity_classification.json",
+      "artifacts/diagnosis/well_activity_classification.csv",
+      "artifacts/diagnosis/smart_well_recommendations.json",
+      "artifacts/diagnosis/smart_well_recommendations.csv"
+    ]
+  },
+  "logging_compliance": {
+    "jsonl_trace_per_run": true,
+    "trace_filename_pattern": "logs/trace-<run_id>.jsonl",
+    "stdout_logging": true,
+    "stdout_format_example": "[INFO] run_id=<run_id> Starting /run request",
+    "required_schema_fields": [
+      "timestamp",
+      "run_id",
+      "agent_name",
+      "action",
+      "input_summary",
+      "output_summary",
+      "target_agent",
+      "confidence",
+      "retry_count",
+      "status"
+    ]
+  }
+}

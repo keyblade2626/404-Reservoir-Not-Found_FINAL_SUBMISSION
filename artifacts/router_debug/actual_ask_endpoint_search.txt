@@ -1,0 +1,1508 @@
+﻿    .replaceAll('"', "&quot;");
+}
+
+async function getJson(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+  return r.json();
+}
+
+async function postJson(url, body) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+  return r.json();
+}
+
+async function postJson(url, body) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body),
+  });
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+  return r.json();
+}
+
+  return r.json();
+}
+
+async function loadKpis() {
+  const data = await getJson("/api/dashboard/kpi-summary?t=" + Date.now());
+  const row = document.getElementById("kpiRow");
+
+  row.innerHTML = (data.cards || []).map(card => `
+    <div class="kpi-card">
+      <div class="kpi-label">${escapeHtml(card.label)}</div>
+      <div class="kpi-value ${cls(card.score, card.class)}">${fmt(card.score)}</div>
+      <div class="kpi-class">${escapeHtml(card.class || "Not Evaluated")}</div>
+      <div class="kpi-sub">${escapeHtml(card.subtext || "")}</div>
+  `;
+}
+
+async function loadMap() {
+  state.mapPayload = await getJson("/api/dashboard/hm-map?t=" + Date.now());
+  renderMap();
+}
+
+function renderWellInsight(data) {
+  const mount = document.getElementById("wellInsight");
+
+  if (!data || !data.found) {
+    mount.innerHTML = `<div class="empty-state">${escapeHtml(data?.message || "Well not found.")}</div>`;
+  `;
+}
+
+async function selectWell(well) {
+  const data = await getJson("/api/dashboard/well-insight?well=" + encodeURIComponent(well) + "&t=" + Date.now());
+  renderWellInsight(data);
+}
+
+window.selectWell = selectWell;
+
+
+function heatColorForProperty(v, minV, maxV) {
+  v = Number(v);
+  `;
+}
+
+function renderVisualResponse(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${escapeHtml(data.answer || "")}</p>`;
+
+  const blocks = data.ui_blocks || [];
+  let visualHtml = "";
+
+  for (const block of blocks) {
+function renderVisualResponse(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${escapeHtml(data.answer || "")}</p>`;
+
+  const blocks = data.ui_blocks || [];
+  let visualHtml = "";
+
+  for (const block of blocks) {
+    if (block.type === "cell_property_map") {
+      renderCellPropertyMapV20(block);
+      return;
+
+  visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+}
+
+async function askChat(prompt) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = prompt || input.value.trim();
+  if (!msg) return;
+
+  input.value = msg;
+  visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+}
+
+async function askChat(prompt) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = prompt || input.value.trim();
+  if (!msg) return;
+
+  input.value = msg;
+  answer.innerHTML = `<p>Thinking...</p>`;
+}
+
+async function askChat(prompt) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = prompt || input.value.trim();
+  if (!msg) return;
+
+  input.value = msg;
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing visual evidence...</div>`;
+  const msg = prompt || input.value.trim();
+  if (!msg) return;
+
+  input.value = msg;
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing visual evidence...</div>`;
+
+  try {
+    const data = await postJson("/api/chat", {message: msg});
+    if (data.type === "visual_response") renderVisualResponse(data);
+    else {
+      answer.innerHTML = `<p>${escapeHtml(data.answer || "No answer.")}</p>`;
+      visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+  answer.innerHTML = `<p>Thinking...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing visual evidence...</div>`;
+
+  try {
+    const data = await postJson("/api/chat", {message: msg});
+    if (data.type === "visual_response") renderVisualResponse(data);
+    else {
+      answer.innerHTML = `<p>${escapeHtml(data.answer || "No answer.")}</p>`;
+      visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+    }
+  } catch (e) {
+    answer.innerHTML = `<p style="color:#ff5757">Chat request failed: ${escapeHtml(e.message)}</p>`;
+    visual.innerHTML = `<div class="empty-state">No visual output generated.</div>`;
+  try {
+    const data = await postJson("/api/chat", {message: msg});
+    if (data.type === "visual_response") renderVisualResponse(data);
+    else {
+      answer.innerHTML = `<p>${escapeHtml(data.answer || "No answer.")}</p>`;
+      visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+    }
+  } catch (e) {
+    answer.innerHTML = `<p style="color:#ff5757">Chat request failed: ${escapeHtml(e.message)}</p>`;
+    visual.innerHTML = `<div class="empty-state">No visual output generated.</div>`;
+  }
+}
+
+      answer.innerHTML = `<p>${escapeHtml(data.answer || "No answer.")}</p>`;
+      visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+    }
+  } catch (e) {
+    answer.innerHTML = `<p style="color:#ff5757">Chat request failed: ${escapeHtml(e.message)}</p>`;
+    visual.innerHTML = `<div class="empty-state">No visual output generated.</div>`;
+  }
+}
+
+window.askQuick = askChat;
+
+async function runDiagnostics() {
+  try {
+    visual.innerHTML = `<div class="empty-state">No visual output generated.</div>`;
+  }
+}
+
+window.askQuick = askChat;
+
+async function runDiagnostics() {
+  try {
+    await postJson("/run", {});
+    await refreshAll();
+  } catch (e) {
+    alert("Run failed: " + e.message);
+  }
+window.askQuick = askChat;
+
+async function runDiagnostics() {
+  try {
+    await postJson("/run", {});
+    await refreshAll();
+  } catch (e) {
+    alert("Run failed: " + e.message);
+  }
+}
+
+async function refreshAll() {
+  await Promise.all([loadKpis(), loadMap()]);
+    state.showInactive = e.target.checked;
+    renderMap();
+  });
+
+  document.getElementById("askBtn")?.addEventListener("click", () => askChat());
+  document.getElementById("chatInput")?.addEventListener("keydown", e => {
+    if (e.key === "Enter") askChat();
+  });
+
+  document.querySelectorAll(".quick-actions button").forEach(btn => {
+    btn.addEventListener("click", () => askChat(btn.dataset.prompt));
+  });
+
+    renderMap();
+  });
+
+  document.getElementById("askBtn")?.addEventListener("click", () => askChat());
+  document.getElementById("chatInput")?.addEventListener("keydown", e => {
+    if (e.key === "Enter") askChat();
+  });
+
+  document.querySelectorAll(".quick-actions button").forEach(btn => {
+    btn.addEventListener("click", () => askChat(btn.dataset.prompt));
+  });
+
+  document.getElementById("refreshBtn")?.addEventListener("click", refreshAll);
+  });
+
+  document.getElementById("askBtn")?.addEventListener("click", () => askChat());
+  document.getElementById("chatInput")?.addEventListener("keydown", e => {
+    if (e.key === "Enter") askChat();
+  });
+
+  document.querySelectorAll(".quick-actions button").forEach(btn => {
+    btn.addEventListener("click", () => askChat(btn.dataset.prompt));
+  });
+
+  document.getElementById("refreshBtn")?.addEventListener("click", refreshAll);
+  document.getElementById("runBtn")?.addEventListener("click", runDiagnostics);
+    if (e.key === "Enter") askChat();
+  });
+
+  document.querySelectorAll(".quick-actions button").forEach(btn => {
+    btn.addEventListener("click", () => askChat(btn.dataset.prompt));
+  });
+
+  document.getElementById("refreshBtn")?.addEventListener("click", refreshAll);
+  document.getElementById("runBtn")?.addEventListener("click", runDiagnostics);
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  bindEvents();
+
+
+
+// ==========================================================
+// CHAT UX FIX V9
+// - Suggestions trigger a real new request immediately
+// - Ask button always uses current input
+// - Visual panel is cleared on every request
+// - Late responses are ignored
+// ==========================================================
+
+let chatRequestSeqV9 = 0;
+
+// - Visual panel is cleared on every request
+// - Late responses are ignored
+// ==========================================================
+
+let chatRequestSeqV9 = 0;
+
+function attrEscape(s) {
+  return String(s ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+  `;
+}
+
+function renderVisualResponseV9(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${escapeHtml(data.answer || "")}</p>`;
+
+  const blocks = data.ui_blocks || [];
+  let visualHtml = "";
+
+  // Prefer real visual blocks first.
+function renderVisualResponseV9(data) {
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  answer.innerHTML = `<p>${escapeHtml(data.answer || "")}</p>`;
+
+  const blocks = data.ui_blocks || [];
+  let visualHtml = "";
+
+  // Prefer real visual blocks first.
+  for (const block of blocks) {
+    if (block.type === "cell_property_map") {
+      renderCellPropertyMapV20(block);
+    });
+    return;
+  }
+
+  visual.innerHTML = `<div class="empty-state">No visual evidence was returned for this question.</div>`;
+}
+
+async function askChatV9(prompt = null) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = String(prompt || input.value || "").trim();
+
+  visual.innerHTML = `<div class="empty-state">No visual evidence was returned for this question.</div>`;
+}
+
+async function askChatV9(prompt = null) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = String(prompt || input.value || "").trim();
+  if (!msg) return;
+
+  input.value = msg;
+  visual.innerHTML = `<div class="empty-state">No visual evidence was returned for this question.</div>`;
+}
+
+async function askChatV9(prompt = null) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = String(prompt || input.value || "").trim();
+  if (!msg) return;
+
+  input.value = msg;
+
+}
+
+async function askChatV9(prompt = null) {
+  const input = document.getElementById("chatInput");
+  const answer = document.getElementById("chatAnswer");
+  const visual = document.getElementById("visualPanel");
+
+  const msg = String(prompt || input.value || "").trim();
+  if (!msg) return;
+
+  input.value = msg;
+
+  const requestId = ++chatRequestSeqV9;
+  if (!msg) return;
+
+  input.value = msg;
+
+  const requestId = ++chatRequestSeqV9;
+
+  answer.innerHTML = `<p>Investigating: <b>${escapeHtml(msg)}</b>...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing new visual evidence...</div>`;
+
+  try {
+    const data = await postJson("/api/chat?t=" + Date.now(), {message: msg});
+
+    // V52: force visual block rendering immediately after chat response.
+  input.value = msg;
+
+  const requestId = ++chatRequestSeqV9;
+
+  answer.innerHTML = `<p>Investigating: <b>${escapeHtml(msg)}</b>...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing new visual evidence...</div>`;
+
+  try {
+    const data = await postJson("/api/chat?t=" + Date.now(), {message: msg});
+
+    // V52: force visual block rendering immediately after chat response.
+    try {
+      console.log("[V52] Chat response received", {
+  answer.innerHTML = `<p>Investigating: <b>${escapeHtml(msg)}</b>...</p>`;
+  visual.innerHTML = `<div class="empty-state">Preparing new visual evidence...</div>`;
+
+  try {
+    const data = await postJson("/api/chat?t=" + Date.now(), {message: msg});
+
+    // V52: force visual block rendering immediately after chat response.
+    try {
+      console.log("[V52] Chat response received", {
+        intent: data && data.intent,
+        blocks: data && data.ui_blocks ? data.ui_blocks.map(b => b.type) : []
+      });
+
+
+  try {
+    const data = await postJson("/api/chat?t=" + Date.now(), {message: msg});
+
+    // V52: force visual block rendering immediately after chat response.
+    try {
+      console.log("[V52] Chat response received", {
+        intent: data && data.intent,
+        blocks: data && data.ui_blocks ? data.ui_blocks.map(b => b.type) : []
+      });
+
+      setTimeout(() => {
+        try {
+    const data = await postJson("/api/chat?t=" + Date.now(), {message: msg});
+
+    // V52: force visual block rendering immediately after chat response.
+    try {
+      console.log("[V52] Chat response received", {
+        intent: data && data.intent,
+        blocks: data && data.ui_blocks ? data.ui_blocks.map(b => b.type) : []
+      });
+
+      setTimeout(() => {
+        try {
+          if (typeof tryRenderFirstSupportedVisualBlockV51 === "function") {
+            const ok = forceRenderChatVisualsV52(data);
+
+      setTimeout(() => {
+        try {
+          if (typeof tryRenderFirstSupportedVisualBlockV51 === "function") {
+            const ok = forceRenderChatVisualsV52(data);
+            console.log("[V52] Forced visual render result:", ok);
+          } else {
+            console.warn("[V52] tryRenderFirstSupportedVisualBlockV51 is not available");
+          }
+        } catch (e) {
+          console.error("[V52] Forced visual render failed", e);
+        }
+      }, 120);
+
+      setTimeout(() => {
+        try {
+          if (typeof tryRenderFirstSupportedVisualBlockV51 === "function") {
+            forceRenderChatVisualsV52(data);
+          }
+        } catch (e) {}
+      }, 700);
+
+    } catch (e) {
+      console.error("[V52] Chat visual auto-render hook failed", e);
+    }
+
+        } catch (e) {}
+      }, 700);
+
+    } catch (e) {
+      console.error("[V52] Chat visual auto-render hook failed", e);
+    }
+
+    // Ignore stale responses if the user clicked another suggestion quickly.
+    if (requestId !== chatRequestSeqV9) return;
+
+    if (data.type === "visual_response") {
+      renderVisualResponseV9(data);
+    } else {
+      console.error("[V52] Chat visual auto-render hook failed", e);
+    }
+
+    // Ignore stale responses if the user clicked another suggestion quickly.
+    if (requestId !== chatRequestSeqV9) return;
+
+    if (data.type === "visual_response") {
+      renderVisualResponseV9(data);
+    } else {
+      answer.innerHTML = `<p>${escapeHtml(data.answer || "No answer.")}</p>`;
+      visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+    }
+
+
+    if (data.type === "visual_response") {
+      renderVisualResponseV9(data);
+    } else {
+      answer.innerHTML = `<p>${escapeHtml(data.answer || "No answer.")}</p>`;
+      visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+    }
+
+  } catch (e) {
+    if (requestId !== chatRequestSeqV9) return;
+
+    answer.innerHTML = `<p style="color:#ff5757">Chat request failed: ${escapeHtml(e.message)}</p>`;
+    visual.innerHTML = `<div class="empty-state">No visual output generated.</div>`;
+      visual.innerHTML = `<pre>${escapeHtml(JSON.stringify(data.data || {}, null, 2).slice(0, 5000))}</pre>`;
+    }
+
+  } catch (e) {
+    if (requestId !== chatRequestSeqV9) return;
+
+    answer.innerHTML = `<p style="color:#ff5757">Chat request failed: ${escapeHtml(e.message)}</p>`;
+    visual.innerHTML = `<div class="empty-state">No visual output generated.</div>`;
+  }
+}
+
+// Override global quick action behavior.
+window.askQuick = function(prompt) {
+
+  } catch (e) {
+    if (requestId !== chatRequestSeqV9) return;
+
+    answer.innerHTML = `<p style="color:#ff5757">Chat request failed: ${escapeHtml(e.message)}</p>`;
+    visual.innerHTML = `<div class="empty-state">No visual output generated.</div>`;
+  }
+}
+
+// Override global quick action behavior.
+window.askQuick = function(prompt) {
+  return askChatV9(prompt);
+};
+}
+
+// Override global quick action behavior.
+window.askQuick = function(prompt) {
+  return askChatV9(prompt);
+};
+
+// Override main ask behavior.
+window.askChat = askChatV9;
+
+// Event delegation for any future suggestion button.
+document.addEventListener("click", function(ev) {
+  const btn = ev.target.closest("button[data-prompt]");
+  return askChatV9(prompt);
+};
+
+// Override main ask behavior.
+window.askChat = askChatV9;
+
+// Event delegation for any future suggestion button.
+document.addEventListener("click", function(ev) {
+  const btn = ev.target.closest("button[data-prompt]");
+  if (!btn) return;
+
+  ev.preventDefault();
+  ev.stopPropagation();
+  ev.preventDefault();
+  ev.stopPropagation();
+
+  const prompt = btn.getAttribute("data-prompt");
+  if (prompt) askChatV9(prompt);
+});
+
+// Re-bind Ask button safely after page load.
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+});
+
+// Re-bind Ask button safely after page load.
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+// Re-bind Ask button safely after page load.
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+setTimeout(() => {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+    input.onkeydown = function(ev) {
+  const askBtn = document.getElementById("askBtn");
+  const input = document.getElementById("chatInput");
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+    input.onkeydown = function(ev) {
+      if (ev.key === "Enter") {
+
+  if (askBtn) {
+    askBtn.onclick = function(ev) {
+      ev.preventDefault();
+      askChatV9();
+    };
+  }
+
+  if (input) {
+    input.onkeydown = function(ev) {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        askChatV9();
+  if (input) {
+    input.onkeydown = function(ev) {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        askChatV9();
+      }
+    };
+  }
+}, 500);
+
+
+
+// ==========================================================
+async function loadSmartWellRecommendationsV40() {
+  if (window.__smartWellRecommendationsV40) return window.__smartWellRecommendationsV40;
+
+  try {
+    const res = await fetch("/api/smart-well-recommendations?ts=" + Date.now());
+    if (!res.ok) throw new Error("smart recommendations not found");
+    window.__smartWellRecommendationsV40 = await res.json();
+  } catch (e) {
+    console.warn("[V40] Smart well recommendations unavailable", e);
+    window.__smartWellRecommendationsV40 = {};
+  }
+
+  return window.__smartWellRecommendationsV40;
+async function loadSmartWellRecommendationsV41() {
+  if (window.__smartWellRecommendationsV41) return window.__smartWellRecommendationsV41;
+
+  try {
+    const res = await fetch("/api/smart-well-recommendations?ts=" + Date.now());
+    const data = await res.json();
+    window.__smartWellRecommendationsV41 = data.recommendations || {};
+  } catch (e) {
+    console.warn("[V41] Could not load smart well recommendations", e);
+    window.__smartWellRecommendationsV41 = {};
+  }
+
+  return window.__smartWellRecommendationsV41;
+      return;
+    }
+
+    // Remove cards elsewhere before inserting a fresh one.
+    // V404: keep the Pattern-Aware fixed-slot card stable during chat/trace refresh.
+    document.querySelectorAll(".smart-well-recommendation-v41, .smart-well-card-v40")
+      .forEach(el => {
+        if (el.closest && el.closest("#patternAwareContentV311")) return;
+        el.remove();
+      });
+
+    // Make old generic recommendations less prominent, but do it once.
+    if (!panel.dataset.smartRawDimmedV42) {
+
+  let candidate = null;
+
+  try {
+    const res = await fetch(`/api/tran-corridor-candidate/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    candidate = await res.json();
+  } catch (e) {
+    console.warn("[V44] Could not evaluate TRAN corridor candidate", e);
+    return;
+  }
+
+  if (!candidate || !candidate.eligible) {
+    return;
+    btn.disabled = true;
+    btn.innerText = "Generating IXF...";
+
+    try {
+      const res = await fetch(`/api/export-tran-corridor-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+      const data = await res.json();
+
+      if (!data.ok || !data.content) {
+        alert(data.message || "Could not generate IXF.");
+        btn.disabled = false;
+        btn.innerText = "Export candidate IXF";
+        return;
+      }
+  button.disabled = true;
+  button.innerText = "Evaluating candidate...";
+
+  try {
+    const candidateRes = await fetch(`/api/tran-corridor-candidate/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const candidate = await candidateRes.json();
+
+    if (!candidate || !candidate.eligible) {
+      if (status) {
+        status.innerHTML = `
+          TRAN corridor export is <b>not recommended</b> for ${escapeHtml(well)} as a first action.
+          ${candidate && candidate.reasons ? `<br>${escapeHtml(candidate.reasons.join("; "))}` : ""}
+        `;
+    }
+
+    button.innerText = "Generating IXF...";
+
+    const res = await fetch(`/api/export-tran-corridor-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const data = await res.json();
+
+    if (!data.ok || !data.content) {
+      alert(data.message || "Could not generate IXF.");
+      button.disabled = false;
+      button.innerText = "Evaluate / Export IXF";
+      return;
+    }
+// GENERIC VISUAL AUTORENDER HARD FIX V52
+// Explicitly renders generic_property_map/profile_ensemble blocks.
+// ==========================================================
+
+function forceRenderChatVisualsV52(data) {
+  try {
+    const blocks = data?.ui_blocks || [];
+    console.log("[V52] forceRenderChatVisualsV52 blocks:", blocks.map(b => b.type));
+
+    if (!Array.isArray(blocks) || !blocks.length) return false;
+
+    const preferredOrder = [
+      "generic_property_map",
+
+function forceRenderChatVisualsV52(data) {
+  try {
+    const blocks = data?.ui_blocks || [];
+    console.log("[V52] forceRenderChatVisualsV52 blocks:", blocks.map(b => b.type));
+
+    if (!Array.isArray(blocks) || !blocks.length) return false;
+
+    const preferredOrder = [
+      "generic_property_map",
+      "profile_ensemble",
+      "tran_corridor_map",
+      "wct_bias_cluster_map",
+
+    return false;
+
+  } catch (e) {
+    console.error("[V52] forceRenderChatVisualsV52 failed", e);
+    const panel = document.getElementById("visualPanel");
+    if (panel) {
+      panel.innerHTML = `
+        <div class="section-title">Visual rendering failed</div>
+        <div class="empty-state">${escapeHtml(String(e && e.stack ? e.stack : e))}</div>
+      `;
+    }
+    return false;
+      btn.disabled = true;
+      btn.innerText = "Generating IXF...";
+
+      try {
+        const res = await fetch(`/api/relperm/export-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+        const data = await res.json();
+
+        if (!data.ok || !data.content) {
+          alert(data.message || "Could not export RelPerm IXF.");
+          btn.disabled = false;
+          btn.innerText = "Export RelPerm IXF";
+          return;
+        }
+
+  console.log("[V60] relperm curve sensitivity rendered", {well, model, factor});
+}
+
+if (typeof directRenderChatVisualV55 === "function" && !window.__relpermRendererV60Patched) {
+  const oldDirectRenderChatVisualV55 = directRenderChatVisualV55;
+
+  directRenderChatVisualV55 = function(data) {
+    try {
+      const blocks = data?.ui_blocks || [];
+      const block = blocks.find(b => b && b.type === "relperm_curve_sensitivity");
+
+      if (block) {
+  console.log("[V60] relperm curve sensitivity rendered", {well, model, factor});
+}
+
+if (typeof directRenderChatVisualV55 === "function" && !window.__relpermRendererV60Patched) {
+  const oldDirectRenderChatVisualV55 = directRenderChatVisualV55;
+
+  directRenderChatVisualV55 = function(data) {
+    try {
+      const blocks = data?.ui_blocks || [];
+      const block = blocks.find(b => b && b.type === "relperm_curve_sensitivity");
+
+      if (block) {
+        renderRelPermCurveSensitivityV60(block);
+
+if (typeof directRenderChatVisualV55 === "function" && !window.__relpermRendererV60Patched) {
+  const oldDirectRenderChatVisualV55 = directRenderChatVisualV55;
+
+  directRenderChatVisualV55 = function(data) {
+    try {
+      const blocks = data?.ui_blocks || [];
+      const block = blocks.find(b => b && b.type === "relperm_curve_sensitivity");
+
+      if (block) {
+        renderRelPermCurveSensitivityV60(block);
+        return true;
+      }
+    } catch (e) {
+      console.error("[V60] relperm direct render failed", e);
+    }
+
+    return oldDirectRenderChatVisualV55(data);
+  };
+
+  window.__relpermRendererV60Patched = true;
+  console.log("[V60] RelPerm renderer attached to direct chat visual router");
+}
+
+
+
+    return oldDirectRenderChatVisualV55(data);
+  };
+
+  window.__relpermRendererV60Patched = true;
+  console.log("[V60] RelPerm renderer attached to direct chat visual router");
+}
+
+
+
+// ==========================================================
+
+
+
+// Single handler only. No observers, no wrappers, no automatic DOM loops.
+// ==========================================================
+
+async function fetchRelPermCandidateV95(well) {
+  const res = await fetch(`/api/relperm/sensitivity/${encodeURIComponent(well)}?ts=${Date.now()}`);
+  if (!res.ok) return null;
+  return await res.json();
+}
+
+async function exportRelPermIXFV95(well, button, status) {
+  if (button) {
+    button.disabled = true;
+    button.innerText = "Evaluating...";
+    }
+
+    if (button) button.innerText = "Generating IXF...";
+
+    const res = await fetch(`/api/relperm/export-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const data = await res.json();
+
+    if (!data.ok || !data.content) {
+      alert(data.message || "RelPerm IXF export is not available for this well.");
+      return false;
+    }
+
+    const blob = new Blob([data.content], {type: "text/plain;charset=utf-8"});
+    button.innerText = "Generating IXF...";
+  }
+
+  try {
+    const res = await fetch(`/api/relperm/export-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const data = await res.json();
+
+    if (!data.ok || !data.content) {
+      if (status) {
+        status.innerHTML = `
+          RelPerm IXF export is <b>not available</b> for ${escapeHtml(well)}.
+          ${data && data.message ? `<br>${escapeHtml(data.message)}` : ""}
+        `;
+    `;
+  }
+
+  try {
+    const res = await fetch(`/api/relperm/export-ixf/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    const data = await res.json();
+
+    if (!data.ok || !data.content) {
+      const msg = data && data.message ? data.message : "RelPerm IXF export is not available for this well.";
+
+      if (status) {
+        status.innerHTML = `
+          RelPerm IXF export is <b>not available</b> for ${escapeHtml(well)}.
+}
+
+async function fetchTranCandidateV101(well) {
+  try {
+    const res = await fetch(`/api/tran-corridor-candidate/${encodeURIComponent(well)}?ts=${Date.now()}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    console.warn("[V101] TRAN candidate fetch failed", e);
+    return null;
+  }
+}
+
+
+    if (!card) return false;
+
+    // V406: move new card first, then remove previous slot cards.
+    // This avoids a visible empty Pattern-Aware box during chat/trace refresh.
+    const previousPatternCardsV406 = Array.from(content.querySelectorAll(".smart-well-recommendation-v41"));
+    content.appendChild(card);
+    previousPatternCardsV406.forEach(x => {
+      if (x !== card) x.remove();
+    });
+    slot.style.display = "block";
+
+    console.log("[V311] Pattern-aware card moved to fixed slot");
+
+    if (!card) return false;
+
+    // V406: move new card first, then remove previous slot cards.
+    // This avoids a visible empty Pattern-Aware box during chat/trace refresh.
+    const previousPatternCardsV406 = Array.from(content.querySelectorAll(".smart-well-recommendation-v41"));
+    content.appendChild(card);
+    previousPatternCardsV406.forEach(x => {
+      if (x !== card) x.remove();
+    });
+
+    slot.style.display = "block";
+
+
+  try {
+    panel.innerHTML = `<div class="empty-state">Loading agent collaboration trace...</div>`;
+
+    const res = await fetch("/api/agent-collaboration-log?limit=1&t=" + Date.now());
+    const data = await res.json();
+
+    const records = data.records || [];
+
+    if (!records.length) {
+      panel.innerHTML = `<div class="empty-state">No collaboration trace yet. Ask a question first.</div>`;
+      return;
+    }
+
+    const records = data.records || [];
+
+    if (!records.length) {
+      panel.innerHTML = `<div class="empty-state">No collaboration trace yet. Ask a question first.</div>`;
+      return;
+    }
+
+    panel.innerHTML = records.slice().reverse().map((rec, idx) => {
+      const path = rec.collaboration_path || [];
+      const decision = rec.langgraph_decision || {};
+      const critic = rec.critic_review || {};
+      const uiBlocks = rec.ui_blocks || [];
+            ${pathHtml}
+          </div>
+
+          <div class="agent-trace-preview">
+            ${escapeHtml(rec.final_answer_preview || "")}
+          </div>
+
+          ${criticHtml}
+        </div>
+      `;
+    }).join("");
+
+  } catch (e) {
+
+
+// ==========================================================
+// AGENT TRACE AUTO-REFRESH V011
+// Refreshes the collapsible trace panel after each /api/chat response.
+// ==========================================================
+
+function installAgentTraceAutoRefreshV011() {
+  if (window.__agentTraceAutoRefreshV011) return;
+
+  const originalFetch = window.fetch;
+
+  window.fetch = async function(...args) {
+  const originalFetch = window.fetch;
+
+  window.fetch = async function(...args) {
+    const url = String(args[0] || "");
+    const isChatCall = url.includes("/api/chat");
+
+    const result = await originalFetch.apply(this, args);
+
+    if (isChatCall) {
+      setTimeout(() => {
+        const panel = document.getElementById("agentTracePanel");
+        const isOpen = panel && panel.style.display !== "none" && panel.style.display !== "";
+
+    const isChatCall = url.includes("/api/chat");
+
+    const result = await originalFetch.apply(this, args);
+
+    if (isChatCall) {
+      setTimeout(() => {
+        const panel = document.getElementById("agentTracePanel");
+        const isOpen = panel && panel.style.display !== "none" && panel.style.display !== "";
+
+        if (isOpen && typeof loadAgentCollaborationTraceV010 === "function") {
+          loadAgentCollaborationTraceV010();
+        }
+      }, 500);
+
+// ==========================================================
+// UI STABILITY V012
+// 1) Keep Pattern-Aware Recommendation stable in its fixed slot.
+// 2) Auto-refresh the trace panel after chat, showing the latest record only.
+// ==========================================================
+
+function preservePatternAwareSlotV012() {
+  try {
+    const slot = document.getElementById("patternAwareSlotV311");
+    const content = document.getElementById("patternAwareContentV311");
+
+    if (!slot || !content) return;
+    obs2.observe(content, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class"] });
+    window.__patternAwareSlotObserverV012B = obs2;
+  }
+
+  // Lightweight safety check: avoids transient disappearance during chat updates.
+  setInterval(preservePatternAwareSlotV012, 800);
+
+  window.__patternAwareSlotPreserverV012 = true;
+  console.log("[V012] Pattern-Aware slot preserver active");
+}
+
+function installAgentTraceLatestOnlyLabelV012() {
+  if (window.__agentTraceLatestOnlyLabelV012) return;
+  if (window.__agentTraceLatestOnlyLabelV012) return;
+
+  const header = document.querySelector("#agentTraceSection .panel-header p");
+  if (header) {
+    header.textContent = "Latest answer trace: routing, shared memory and critic validation.";
+  }
+
+  window.__agentTraceLatestOnlyLabelV012 = true;
+}
+
+setTimeout(() => {
+  installPatternAwareSlotPreserverV012();
+  installAgentTraceLatestOnlyLabelV012();
+
+
+
+// ==========================================================
+// CURRENT ANSWER AGENT TRACE PANEL V016
+// Shows only the latest chat response trace in the dashboard panel.
+// Historical logs remain available in logs/agent_collaboration_trace.jsonl.
+// ==========================================================
+
+function buildCurrentTraceRecordV016(message, response) {
+  const trace = response?.agent_trace || {};
+  const v013 = trace.LangGraphActiveNodesV013 || {};
+  const decision =
+
+
+// ==========================================================
+// CURRENT ANSWER AGENT TRACE PANEL V016
+// Shows only the latest chat response trace in the dashboard panel.
+// Historical logs remain available in logs/agent_collaboration_trace.jsonl.
+// ==========================================================
+
+function buildCurrentTraceRecordV016(message, response) {
+  const trace = response?.agent_trace || {};
+  const v013 = trace.LangGraphActiveNodesV013 || {};
+  const decision =
+    v013.decision ||
+  return {
+    timestamp: new Date().toISOString(),
+    user_message: message || "",
+    final_intent: response?.intent || "",
+    final_answer_preview: String(response?.answer || "").slice(0, 900),
+    ui_blocks: uiBlocks,
+    collaboration_path: path,
+    langgraph_decision: decision,
+    critic_review: critic,
+    trace_keys: Object.keys(trace || {}),
+    source: "current_chat_response"
+  };
+}
+    collaboration_path: path,
+    langgraph_decision: decision,
+    critic_review: critic,
+    trace_keys: Object.keys(trace || {}),
+    source: "current_chat_response"
+  };
+}
+
+function renderAgentTraceRecordsV016(records) {
+  const panel = document.getElementById("agentTracePanel");
+  if (!panel) return;
+
+  if (!records || !records.length) {
+  const panel = document.getElementById("agentTracePanel");
+  if (!panel) return;
+
+  if (!records || !records.length) {
+    panel.innerHTML = `<div class="empty-state">No current answer trace yet. Ask a question first.</div>`;
+    return;
+  }
+
+  panel.innerHTML = records.map((rec) => {
+    const path = rec.collaboration_path || [];
+    const decision = rec.langgraph_decision || {};
+    const critic = rec.critic_review || {};
+    const uiBlocks = rec.ui_blocks || [];
+
+    return `
+      <div class="agent-trace-record current-agent-trace-record-v016">
+        <div class="agent-trace-record-title">
+          Current answer trace: ${escapeHtml(rec.final_intent || "unknown_intent")}
+        </div>
+
+        <div class="agent-trace-record-sub">
+          User: ${escapeHtml(rec.user_message || "")}<br>
+          Route: ${escapeHtml(decision?.route || decision?.dispatch?.selected_agent || "existing/unknown")}
+          ${decision?.intent ? " | Detected intent: " + escapeHtml(decision.intent) : ""}
+          ${decision?.confidence ? " | Confidence: " + escapeHtml(decision.confidence) : ""}
+          <br>
+          ${pathHtml}
+        </div>
+
+        <div class="agent-trace-preview">
+          ${escapeHtml(rec.final_answer_preview || "")}
+        </div>
+
+        ${criticHtml}
+      </div>
+    `;
+  }).join("");
+}
+
+    renderAgentTraceRecordsV016([window.__lastAgentTraceRecordV016]);
+  } else {
+    const panel = document.getElementById("agentTracePanel");
+    if (panel) {
+      panel.innerHTML = `<div class="empty-state">No current answer trace yet. Ask a question first.</div>`;
+    }
+  }
+}
+
+function installCurrentTraceFetchCaptureV016() {
+  if (window.__currentTraceFetchCaptureV016) return;
+
+  const previousFetch = window.fetch;
+  const previousFetch = window.fetch;
+
+  window.fetch = async function(...args) {
+    const url = String(args[0] || "");
+    const isChatCall = url.includes("/api/chat");
+
+    const result = await previousFetch.apply(this, args);
+
+    if (isChatCall) {
+      try {
+        const clone = result.clone();
+        const data = await clone.json();
+
+    const isChatCall = url.includes("/api/chat");
+
+    const result = await previousFetch.apply(this, args);
+
+    if (isChatCall) {
+      try {
+        const clone = result.clone();
+        const data = await clone.json();
+
+        let message = "";
+        try {
+          const body = args[1]?.body;
+          if (body) {
+        if (isOpen) {
+          renderCurrentAgentTraceV016();
+        }
+      } catch (e) {
+        console.warn("[V016] Could not capture current chat trace", e);
+      }
+    }
+
+    return result;
+  };
+
+  window.__currentTraceFetchCaptureV016 = true;
+  console.log("[V016] Current answer trace capture active");
+    return result;
+  };
+
+  window.__currentTraceFetchCaptureV016 = true;
+  console.log("[V016] Current answer trace capture active");
+}
+
+function installCurrentTracePanelOverrideV016() {
+  if (window.__currentTracePanelOverrideV016) return;
+
+  const btn = document.getElementById("toggleAgentTraceBtn");
+  const panel = document.getElementById("agentTracePanel");
+
+  }
+
+  const header = document.querySelector("#agentTraceSection .panel-header p");
+  if (header) {
+    header.textContent = "Current answer trace: routing, shared memory and critic validation.";
+  }
+
+  window.__currentTracePanelOverrideV016 = true;
+  console.log("[V016] Current answer trace panel override active");
+}
+
+setTimeout(() => {
+  installCurrentTraceFetchCaptureV016();
+    header.textContent = "Current answer trace: routing, shared memory and critic validation.";
+  }
+
+  window.__currentTracePanelOverrideV016 = true;
+  console.log("[V016] Current answer trace panel override active");
+}
+
+setTimeout(() => {
+  installCurrentTraceFetchCaptureV016();
+  installCurrentTracePanelOverrideV016();
+}, 600);
+
+
+
+
+// ==========================================================
+// FORCE CURRENT FRIENDLY TRACE PANEL V018
+// Hard override: the trace panel shows only the current answer trace,
+// with readable node names. It no longer reloads historical JSONL records.
+// ==========================================================
+
+function friendlyAgentLabelV018(name) {
+  const raw = String(name || "");
+
+  const map = {
+    "IntentRouterNode": "Intent Router",
+  return {
+    timestamp: new Date().toISOString(),
+    user_message: message || "",
+    final_intent: response?.intent || "",
+    final_answer_preview: String(response?.answer || "").slice(0, 900),
+    ui_blocks: uiBlocks,
+    collaboration_path: path,
+    langgraph_decision: decision,
+    dispatch,
+    critic_review: critic,
+    trace_keys: Object.keys(trace || {}),
+    source: "current_chat_response"
+  };
+    langgraph_decision: decision,
+    dispatch,
+    critic_review: critic,
+    trace_keys: Object.keys(trace || {}),
+    source: "current_chat_response"
+  };
+}
+
+function renderCurrentFriendlyTraceV018() {
+  const panel = document.getElementById("agentTracePanel");
+  if (!panel) return;
+
+  const rec = window.__lastAgentTraceRecordV018 || window.__lastAgentTraceRecordV016;
+
+  const rec = window.__lastAgentTraceRecordV018 || window.__lastAgentTraceRecordV016;
+
+  if (!rec) {
+    panel.innerHTML = `<div class="empty-state">No current answer trace yet. Ask a question first.</div>`;
+    return;
+  }
+
+  const path = rec.collaboration_path || [];
+  const decision = rec.langgraph_decision || {};
+  const dispatch = rec.dispatch || {};
+  const critic = rec.critic_review || {};
+  const uiBlocks = rec.ui_blocks || [];
+
+  panel.innerHTML = `
+    <div class="agent-trace-record current-agent-trace-record-v018">
+      <div class="agent-trace-record-title">
+        Current answer trace: ${escapeHtml(rec.final_intent || "unknown_intent")}
+      </div>
+
+      <div class="agent-trace-record-sub">
+        User: ${escapeHtml(rec.user_message || "")}<br>
+        Selected agent: ${escapeHtml(friendlyAgentLabelV018(selectedAgent))}
+        ${decision.intent ? " | Detected intent: " + escapeHtml(decision.intent) : ""}
+        ${decision.confidence ? " | Confidence: " + escapeHtml(decision.confidence) : ""}
+        <br>
+        ${pathHtml}
+      </div>
+
+      <div class="agent-trace-preview">
+        ${escapeHtml(rec.final_answer_preview || "")}
+      </div>
+
+      ${criticHtml}
+    </div>
+  `;
+}
+
+function installForceCurrentFriendlyTraceV018() {
+  const previousFetch = window.fetch;
+
+  window.fetch = async function(...args) {
+    const url = String(args[0] || "");
+    const isChatCall = url.includes("/api/chat");
+
+    const result = await previousFetch.apply(this, args);
+
+    if (isChatCall) {
+      try {
+        const clone = result.clone();
+        const data = await clone.json();
+
+    const isChatCall = url.includes("/api/chat");
+
+    const result = await previousFetch.apply(this, args);
+
+    if (isChatCall) {
+      try {
+        const clone = result.clone();
+        const data = await clone.json();
+
+        let message = "";
+        try {
+          const body = args[1]?.body;
+          if (body) {
+  }
+
+  const header = document.querySelector("#agentTraceSection .panel-header p");
+  if (header) {
+    header.textContent = "Current answer trace: routing, shared memory and critic validation.";
+  }
+
+  window.__forceCurrentFriendlyTraceV018 = true;
+  console.log("[V018] Force current friendly trace panel active");
+}
+
+setTimeout(installForceCurrentFriendlyTraceV018, 1200);
+
+
+
+// ==========================================================
+// V375 SINGLE CLEAN VISUAL PANEL PLOT RENDERER
+// One renderer only. One render per latest /api/chat response.
+// Target: #visualPanel.
+// Observed: dark red solid. Simulated: cyan solid.
+// ==========================================================
+(function installSingleCleanVisualPanelRendererV375() {
+  if (window.__singleCleanVisualPanelRendererV375Installed) return;
+  window.__singleCleanVisualPanelRendererV375Installed = true;
+
+  console.log("[V375] Single clean visualPanel renderer installed");
+  function cleanupV375() {
+    document.querySelectorAll(
+      "#universalInteractivePlotBoxV362, " +
+      "#interactivePlotBoxV361, " +
+      ".chat-plotly-card-v355, " +
+      ".visual-evidence-plotly-card-v356, " +
+      ".visual-evidence-plotly-card-v357, " +
+      ".visual-panel-plotly-card-v364, " +
+      ".visual-panel-plotly-card-v365, " +
+      ".visual-panel-plotly-card-v366, " +
+      ".visual-panel-plotly-card-v367, " +
+      ".visual-panel-plotly-card-v374"
+    ).forEach(e => e.remove());
+    ).forEach(e => e.remove());
+
+    document.querySelectorAll("img").forEach(img => {
+      const src = img.getAttribute("src") || img.src || "";
+      if (src.includes("/artifacts/chat_plots/")) {
+        const wrapper = img.closest("div, p, section, article") || img;
+        wrapper.remove();
+      }
+    });
+
+    Array.from(document.querySelectorAll("*")).forEach(el => {
+      if ((el.innerText || "").trim() === "NVIDIA STYLE") {
+        el.remove();
+    try {
+      const url = typeof input === "string" ? input : (input && input.url) || "";
+      const method = (init && init.method ? init.method : "GET").toUpperCase();
+
+      if (url.includes("/api/chat") && method === "POST") {
+        const clone = response.clone();
+        clone.json().then(data => {
+          const chart =
+            data?.plotly_chart ||
+            data?.plot?.plotly_chart ||
+            data?.visual?.plotly_chart ||
+            data?.visual_evidence?.plotly_chart;
+
+// ==========================================================
+// V391 SAFE TRACE TEXT-ONLY FIX
+// Does NOT rewrite/duplicate the trace panel.
+// It only corrects misleading legacy trace labels when the
+// answer is clearly an interactive Plot Intent Engine visual.
+// ==========================================================
+(function installSafeTraceTextOnlyFixV391() {
+  if (window.__safeTraceTextOnlyFixV391Installed) return;
+  window.__safeTraceTextOnlyFixV391Installed = true;
+
+  console.log("[V391] Safe trace text-only fix installed");
+
+  function isPlotIntentTraceTextV391(text) {
+    nodes.forEach(node => {
+      let s = node.nodeValue || "";
+      const original = s;
+
+      s = s.replace("Current answer trace: unknown intent", "Current answer trace: plot/map intent");
+      s = s.replace("Selected agent: existing/unknown", "Selected agent: Plot Intent Engine");
+      s = s.replace("UI: No visual blocks", "UI: Interactive Plotly visual rendered in Visual / Evidence");
+
+      if (s !== original) {
+        node.nodeValue = s;
+      }
+    });
+  }
+      .filter(el => {
+        const t = el.innerText || "";
+        return (
+          t.includes("Agent Collaboration Trace") &&
+          t.includes("Current answer trace")
+        );
+      });
+
+    candidates.forEach(replaceTextNodeContentV391);
+  }
+
+  // Run after chat render.
+  [250, 700, 1400].forEach(ms => setTimeout(scanTracePanelsV391, ms));
+
+    candidates.forEach(replaceTextNodeContentV391);
+  }
+
+  // Run after chat render.
+  [250, 700, 1400].forEach(ms => setTimeout(scanTracePanelsV391, ms));
+
+  // Observe future trace updates without rewriting HTML.
+  const obs = new MutationObserver(() => {
+    clearTimeout(window.__traceFixV391Timer);
+    window.__traceFixV391Timer = setTimeout(scanTracePanelsV391, 120);
+  });
+
+// ==========================================================
+// HM_WELL_MAP_RENDER_FALLBACK_V393
+// UI-only fallback for the KPI well map.
+// If the main renderer filters out all wells and leaves the map empty,
+// this renders all wells with valid I/J coordinates from /api/dashboard/hm-map.
+// ==========================================================
+(function () {
+  const MARK = "HM_WELL_MAP_RENDER_FALLBACK_V393";
+  if (window[MARK]) return;
+  window[MARK] = true;
+
+  function esc(v) {
+    return String(v ?? "").replace(/[&<>"']/g, c => ({
+    const panel = document.getElementById("wellInsight");
+    if (!panel) return;
+
+    try {
+      const r = await fetch("/api/dashboard/well/" + encodeURIComponent(wellName) + "?t=" + Date.now());
+      const d = await r.json();
+      const data = d.data || d || {};
+      const scores = data.scores || {};
+
+      panel.innerHTML = `
+        <div class="section-title">${esc(wellName)}</div>
+        <div class="empty-state" style="text-align:left">
+          <b>Well KPI detail</b><br><br>
+    const variable = document.getElementById("hmVariable")?.value || "overall";
+
+    let payload = null;
+    try {
+      const r = await fetch("/api/dashboard/hm-map?t=" + Date.now());
+      payload = await r.json();
+    } catch (err) {
+      console.warn("[V393] Could not load /api/dashboard/hm-map", err);
+      return;
+    }
+
+    const wells = (payload?.wells || []).filter(w =>
+      Number.isFinite(Number(w.i)) &&
+    try {
+      const r = await fetch("/api/dashboard/hm-map?t=" + Date.now());
+      payload = await r.json();
+    } catch (err) {
+      console.warn("[V393] Could not load /api/dashboard/hm-map", err);
+      return;
+    }
+
+    const wells = (payload?.wells || []).filter(w =>
+      Number.isFinite(Number(w.i)) &&
+      Number.isFinite(Number(w.j))
+    );
+

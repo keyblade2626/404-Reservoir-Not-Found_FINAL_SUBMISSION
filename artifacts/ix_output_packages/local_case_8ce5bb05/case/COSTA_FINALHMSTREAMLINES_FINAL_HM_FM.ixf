@@ -1,0 +1,1578 @@
+######################################
+# IXFVERSION: 2023.4 Petrel
+######################################
+
+MODEL_DEFINITION
+
+FieldManagement {
+    StartDay=1
+    StartMonth=FEBRUARY
+    StartYear=1996
+    StartHour=0
+    StartMinute=0
+    StartSecond=0
+}
+
+Units {
+    UnitSystem=ECLIPSE_FIELD
+}
+
+
+START
+DATE "1-Feb-1996"
+#TIME 0.0
+
+HistoricalDataControl "New Historical Data Control 1" {
+    Wells=[Well("HW-3") Well("HW-5") Well("HW-6") Well("HW-7") Well("HW-8") Well("HW-9") Well("HW-10") Well("HW-24") Well("HW-25") Well("HW-26") Well("HW-28") Well("HW-29") Well("HW-30") Well("HW-31") Well("HW-32")]
+    Active="True"
+    ExtrapolationMethod=LINEAR
+}
+
+Group "Field" {
+    Members=[Well("HW-3") Well("HW-5") Well("HW-6") Well("HW-7") Well("HW-8") Well("HW-9") Well("HW-10") Well("HW-24") Well("HW-25") Well("HW-26") Well("HW-28") Well("HW-29") Well("HW-30") Well("HW-31") Well("HW-32")]
+}
+
+Well "HW-3" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=7667.37550098
+}
+
+Well "HW-5" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[RES_VOLUME_PRODUCTION_RATE]
+    BottomHoleRefDepth=8162.83166113
+}
+
+Well "HW-6" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=7880.32105762
+}
+
+Well "HW-7" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[RES_VOLUME_PRODUCTION_RATE]
+    BottomHoleRefDepth=8163.38218359
+}
+
+Well "HW-8" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[RES_VOLUME_PRODUCTION_RATE]
+    BottomHoleRefDepth=8223.90974219
+}
+
+Well "HW-9" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=8115.81739453
+}
+
+Well "HW-10" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=8058.70965332
+}
+
+Well "HW-24" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=7954.16544531
+}
+
+Well "HW-25" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=7863.23491309
+}
+
+Well "HW-26" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=8099.70677246
+}
+
+Well "HW-28" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=8113.3985293
+}
+
+Well "HW-29" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=7720.14494043
+}
+
+Well "HW-30" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=7746.49795996
+}
+
+Well "HW-31" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[RES_VOLUME_PRODUCTION_RATE]
+    BottomHoleRefDepth=8179.9749043
+}
+
+Well "HW-32" {
+    Type=PRODUCER
+    Status=OPEN
+    HistoricalControlModes=[OIL_PRODUCTION_RATE]
+    BottomHoleRefDepth=7946.39368457
+}
+
+
+DATE "1-Mar-1996"
+#TIME 29.0
+
+
+DATE "1-Apr-1996"
+#TIME 60.0
+
+
+DATE "1-May-1996"
+#TIME 90.0
+
+
+DATE "1-Jun-1996"
+#TIME 121.0
+
+
+DATE "1-Jul-1996"
+#TIME 151.0
+
+
+DATE "1-Aug-1996"
+#TIME 182.0
+
+
+DATE "1-Sep-1996"
+#TIME 213.0
+
+
+DATE "1-Oct-1996"
+#TIME 243.0
+
+
+DATE "1-Nov-1996"
+#TIME 274.0
+
+
+DATE "1-Dec-1996"
+#TIME 304.0
+
+
+DATE "1-Jan-1997"
+#TIME 335.0
+
+
+DATE "1-Feb-1997"
+#TIME 366.0
+
+
+DATE "1-Mar-1997"
+#TIME 394.0
+
+
+DATE "1-Apr-1997"
+#TIME 425.0
+
+
+DATE "1-May-1997"
+#TIME 455.0
+
+
+DATE "1-Jun-1997"
+#TIME 486.0
+
+
+DATE "1-Jul-1997"
+#TIME 516.0
+
+
+DATE "1-Aug-1997"
+#TIME 547.0
+
+
+DATE "1-Sep-1997"
+#TIME 578.0
+
+
+DATE "1-Oct-1997"
+#TIME 608.0
+
+
+DATE "1-Nov-1997"
+#TIME 639.0
+
+
+DATE "1-Dec-1997"
+#TIME 669.0
+
+
+DATE "1-Jan-1998"
+#TIME 700.0
+
+
+DATE "1-Feb-1998"
+#TIME 731.0
+
+
+DATE "1-Mar-1998"
+#TIME 759.0
+
+
+DATE "1-Apr-1998"
+#TIME 790.0
+
+
+DATE "1-May-1998"
+#TIME 820.0
+
+
+DATE "1-Jun-1998"
+#TIME 851.0
+
+
+DATE "1-Jul-1998"
+#TIME 881.0
+
+
+DATE "1-Aug-1998"
+#TIME 912.0
+
+
+DATE "1-Sep-1998"
+#TIME 943.0
+
+
+DATE "1-Oct-1998"
+#TIME 973.0
+
+
+DATE "1-Nov-1998"
+#TIME 1004.0
+
+
+DATE "1-Dec-1998"
+#TIME 1034.0
+
+
+DATE "1-Jan-1999"
+#TIME 1065.0
+
+
+DATE "1-Feb-1999"
+#TIME 1096.0
+
+
+DATE "1-Mar-1999"
+#TIME 1124.0
+
+
+DATE "1-Apr-1999"
+#TIME 1155.0
+
+
+DATE "1-May-1999"
+#TIME 1185.0
+
+
+DATE "1-Jun-1999"
+#TIME 1216.0
+
+
+DATE "1-Jul-1999"
+#TIME 1246.0
+
+
+DATE "1-Aug-1999"
+#TIME 1277.0
+
+
+DATE "1-Sep-1999"
+#TIME 1308.0
+
+
+DATE "1-Oct-1999"
+#TIME 1338.0
+
+
+DATE "1-Nov-1999"
+#TIME 1369.0
+
+
+DATE "1-Dec-1999"
+#TIME 1399.0
+
+
+DATE "1-Jan-2000"
+#TIME 1430.0
+
+
+DATE "1-Feb-2000"
+#TIME 1461.0
+
+
+DATE "1-Mar-2000"
+#TIME 1490.0
+
+
+DATE "1-Apr-2000"
+#TIME 1521.0
+
+
+DATE "1-May-2000"
+#TIME 1551.0
+
+
+DATE "1-Jun-2000"
+#TIME 1582.0
+
+
+DATE "1-Jul-2000"
+#TIME 1612.0
+
+
+DATE "1-Aug-2000"
+#TIME 1643.0
+
+
+DATE "1-Sep-2000"
+#TIME 1674.0
+
+
+DATE "1-Oct-2000"
+#TIME 1704.0
+
+
+DATE "1-Nov-2000"
+#TIME 1735.0
+
+
+DATE "1-Dec-2000"
+#TIME 1765.0
+
+
+DATE "1-Jan-2001"
+#TIME 1796.0
+
+
+DATE "1-Feb-2001"
+#TIME 1827.0
+
+
+DATE "1-Mar-2001"
+#TIME 1855.0
+
+
+DATE "1-Apr-2001"
+#TIME 1886.0
+
+
+DATE "1-May-2001"
+#TIME 1916.0
+
+
+DATE "1-Jun-2001"
+#TIME 1947.0
+
+
+DATE "1-Jul-2001"
+#TIME 1977.0
+
+
+DATE "1-Aug-2001"
+#TIME 2008.0
+
+
+DATE "1-Sep-2001"
+#TIME 2039.0
+
+
+DATE "1-Oct-2001"
+#TIME 2069.0
+
+
+DATE "1-Nov-2001"
+#TIME 2100.0
+
+
+DATE "1-Dec-2001"
+#TIME 2130.0
+
+
+DATE "1-Jan-2002"
+#TIME 2161.0
+
+
+DATE "1-Feb-2002"
+#TIME 2192.0
+
+
+DATE "1-Mar-2002"
+#TIME 2220.0
+
+
+DATE "1-Apr-2002"
+#TIME 2251.0
+
+
+DATE "1-May-2002"
+#TIME 2281.0
+
+
+DATE "1-Jun-2002"
+#TIME 2312.0
+
+
+DATE "1-Jul-2002"
+#TIME 2342.0
+
+
+DATE "1-Aug-2002"
+#TIME 2373.0
+
+
+DATE "1-Sep-2002"
+#TIME 2404.0
+
+
+DATE "1-Oct-2002"
+#TIME 2434.0
+
+
+DATE "1-Nov-2002"
+#TIME 2465.0
+
+
+DATE "1-Dec-2002"
+#TIME 2495.0
+
+
+DATE "1-Jan-2003"
+#TIME 2526.0
+
+
+DATE "1-Feb-2003"
+#TIME 2557.0
+
+
+DATE "1-Mar-2003"
+#TIME 2585.0
+
+
+DATE "1-Apr-2003"
+#TIME 2616.0
+
+
+DATE "1-May-2003"
+#TIME 2646.0
+
+
+DATE "1-Jun-2003"
+#TIME 2677.0
+
+
+DATE "1-Jul-2003"
+#TIME 2707.0
+
+
+DATE "1-Aug-2003"
+#TIME 2738.0
+
+
+DATE "1-Sep-2003"
+#TIME 2769.0
+
+
+DATE "1-Oct-2003"
+#TIME 2799.0
+
+
+DATE "1-Nov-2003"
+#TIME 2830.0
+
+
+DATE "1-Dec-2003"
+#TIME 2860.0
+
+
+DATE "1-Jan-2004"
+#TIME 2891.0
+
+
+DATE "1-Feb-2004"
+#TIME 2922.0
+
+
+DATE "1-Mar-2004"
+#TIME 2951.0
+
+
+DATE "1-Apr-2004"
+#TIME 2982.0
+
+
+DATE "1-May-2004"
+#TIME 3012.0
+
+
+DATE "1-Jun-2004"
+#TIME 3043.0
+
+
+DATE "1-Jul-2004"
+#TIME 3073.0
+
+
+DATE "1-Aug-2004"
+#TIME 3104.0
+
+
+DATE "1-Sep-2004"
+#TIME 3135.0
+
+
+DATE "1-Oct-2004"
+#TIME 3165.0
+
+
+DATE "1-Nov-2004"
+#TIME 3196.0
+
+
+DATE "1-Dec-2004"
+#TIME 3226.0
+
+
+DATE "1-Jan-2005"
+#TIME 3257.0
+
+
+DATE "1-Feb-2005"
+#TIME 3288.0
+
+
+DATE "1-Mar-2005"
+#TIME 3316.0
+
+
+DATE "1-Apr-2005"
+#TIME 3347.0
+
+
+DATE "1-May-2005"
+#TIME 3377.0
+
+
+DATE "1-Jun-2005"
+#TIME 3408.0
+
+
+DATE "1-Jul-2005"
+#TIME 3438.0
+
+
+DATE "1-Aug-2005"
+#TIME 3469.0
+
+
+DATE "1-Sep-2005"
+#TIME 3500.0
+
+
+DATE "1-Oct-2005"
+#TIME 3530.0
+
+
+DATE "1-Nov-2005"
+#TIME 3561.0
+
+
+DATE "1-Dec-2005"
+#TIME 3591.0
+
+
+DATE "1-Jan-2006"
+#TIME 3622.0
+
+
+DATE "1-Feb-2006"
+#TIME 3653.0
+
+
+DATE "1-Mar-2006"
+#TIME 3681.0
+
+
+DATE "1-Apr-2006"
+#TIME 3712.0
+
+
+DATE "1-May-2006"
+#TIME 3742.0
+
+
+DATE "1-Jun-2006"
+#TIME 3773.0
+
+
+DATE "1-Jul-2006"
+#TIME 3803.0
+
+
+DATE "1-Aug-2006"
+#TIME 3834.0
+
+
+DATE "1-Sep-2006"
+#TIME 3865.0
+
+
+DATE "1-Oct-2006"
+#TIME 3895.0
+
+
+DATE "1-Nov-2006"
+#TIME 3926.0
+
+
+DATE "1-Dec-2006"
+#TIME 3956.0
+
+
+DATE "1-Jan-2007"
+#TIME 3987.0
+
+
+DATE "1-Feb-2007"
+#TIME 4018.0
+
+
+DATE "1-Mar-2007"
+#TIME 4046.0
+
+
+DATE "1-Apr-2007"
+#TIME 4077.0
+
+
+DATE "1-May-2007"
+#TIME 4107.0
+
+
+DATE "1-Jun-2007"
+#TIME 4138.0
+
+
+DATE "1-Jul-2007"
+#TIME 4168.0
+
+
+DATE "1-Aug-2007"
+#TIME 4199.0
+
+
+DATE "1-Sep-2007"
+#TIME 4230.0
+
+
+DATE "1-Oct-2007"
+#TIME 4260.0
+
+
+DATE "1-Nov-2007"
+#TIME 4291.0
+
+
+DATE "1-Dec-2007"
+#TIME 4321.0
+
+
+DATE "1-Jan-2008"
+#TIME 4352.0
+
+
+DATE "1-Feb-2008"
+#TIME 4383.0
+
+
+DATE "1-Mar-2008"
+#TIME 4412.0
+
+
+DATE "1-Apr-2008"
+#TIME 4443.0
+
+
+DATE "1-May-2008"
+#TIME 4473.0
+
+
+DATE "1-Jun-2008"
+#TIME 4504.0
+
+
+DATE "1-Jul-2008"
+#TIME 4534.0
+
+
+DATE "1-Aug-2008"
+#TIME 4565.0
+
+
+DATE "1-Sep-2008"
+#TIME 4596.0
+
+
+DATE "1-Oct-2008"
+#TIME 4626.0
+
+
+DATE "1-Nov-2008"
+#TIME 4657.0
+
+
+DATE "1-Dec-2008"
+#TIME 4687.0
+
+
+DATE "1-Jan-2009"
+#TIME 4718.0
+
+
+DATE "1-Feb-2009"
+#TIME 4749.0
+
+
+DATE "1-Mar-2009"
+#TIME 4777.0
+
+
+DATE "1-Apr-2009"
+#TIME 4808.0
+
+
+DATE "1-May-2009"
+#TIME 4838.0
+
+
+DATE "1-Jun-2009"
+#TIME 4869.0
+
+
+DATE "1-Jul-2009"
+#TIME 4899.0
+
+
+DATE "1-Aug-2009"
+#TIME 4930.0
+
+
+DATE "1-Sep-2009"
+#TIME 4961.0
+
+
+DATE "1-Oct-2009"
+#TIME 4991.0
+
+
+DATE "1-Nov-2009"
+#TIME 5022.0
+
+
+DATE "1-Dec-2009"
+#TIME 5052.0
+
+
+DATE "1-Jan-2010"
+#TIME 5083.0
+
+
+DATE "1-Feb-2010"
+#TIME 5114.0
+
+
+DATE "1-Mar-2010"
+#TIME 5142.0
+
+
+DATE "1-Apr-2010"
+#TIME 5173.0
+
+
+DATE "1-May-2010"
+#TIME 5203.0
+
+
+DATE "1-Jun-2010"
+#TIME 5234.0
+
+
+DATE "1-Jul-2010"
+#TIME 5264.0
+
+
+DATE "1-Aug-2010"
+#TIME 5295.0
+
+
+DATE "1-Sep-2010"
+#TIME 5326.0
+
+
+DATE "1-Oct-2010"
+#TIME 5356.0
+
+
+DATE "1-Nov-2010"
+#TIME 5387.0
+
+
+DATE "1-Dec-2010"
+#TIME 5417.0
+
+
+DATE "1-Jan-2011"
+#TIME 5448.0
+
+
+DATE "1-Feb-2011"
+#TIME 5479.0
+
+
+DATE "1-Mar-2011"
+#TIME 5507.0
+
+
+DATE "1-Apr-2011"
+#TIME 5538.0
+
+
+DATE "1-May-2011"
+#TIME 5568.0
+
+
+DATE "1-Jun-2011"
+#TIME 5599.0
+
+
+DATE "1-Jul-2011"
+#TIME 5629.0
+
+
+DATE "1-Aug-2011"
+#TIME 5660.0
+
+
+DATE "1-Sep-2011"
+#TIME 5691.0
+
+
+DATE "1-Oct-2011"
+#TIME 5721.0
+
+
+DATE "1-Nov-2011"
+#TIME 5752.0
+
+
+DATE "1-Dec-2011"
+#TIME 5782.0
+
+
+DATE "1-Jan-2012"
+#TIME 5813.0
+
+
+DATE "1-Feb-2012"
+#TIME 5844.0
+
+
+DATE "1-Mar-2012"
+#TIME 5873.0
+
+
+DATE "1-Apr-2012"
+#TIME 5904.0
+
+
+DATE "1-May-2012"
+#TIME 5934.0
+
+
+DATE "1-Jun-2012"
+#TIME 5965.0
+
+
+DATE "1-Jul-2012"
+#TIME 5995.0
+
+
+DATE "1-Aug-2012"
+#TIME 6026.0
+
+
+DATE "1-Sep-2012"
+#TIME 6057.0
+
+
+DATE "1-Oct-2012"
+#TIME 6087.0
+
+
+DATE "1-Nov-2012"
+#TIME 6118.0
+
+
+DATE "1-Dec-2012"
+#TIME 6148.0
+
+
+DATE "1-Jan-2013"
+#TIME 6179.0
+
+
+DATE "1-Feb-2013"
+#TIME 6210.0
+
+
+DATE "1-Mar-2013"
+#TIME 6238.0
+
+
+DATE "1-Apr-2013"
+#TIME 6269.0
+
+
+DATE "1-May-2013"
+#TIME 6299.0
+
+
+DATE "1-Jun-2013"
+#TIME 6330.0
+
+
+DATE "1-Jul-2013"
+#TIME 6360.0
+
+
+DATE "1-Aug-2013"
+#TIME 6391.0
+
+
+DATE "1-Sep-2013"
+#TIME 6422.0
+
+
+DATE "1-Oct-2013"
+#TIME 6452.0
+
+
+DATE "1-Nov-2013"
+#TIME 6483.0
+
+
+DATE "1-Dec-2013"
+#TIME 6513.0
+
+
+DATE "1-Jan-2014"
+#TIME 6544.0
+
+
+DATE "1-Feb-2014"
+#TIME 6575.0
+
+
+DATE "1-Mar-2014"
+#TIME 6603.0
+
+
+DATE "1-Apr-2014"
+#TIME 6634.0
+
+
+DATE "1-May-2014"
+#TIME 6664.0
+
+
+DATE "1-Jun-2014"
+#TIME 6695.0
+
+
+DATE "1-Jul-2014"
+#TIME 6725.0
+
+
+DATE "1-Aug-2014"
+#TIME 6756.0
+
+
+DATE "1-Sep-2014"
+#TIME 6787.0
+
+
+DATE "1-Oct-2014"
+#TIME 6817.0
+
+
+DATE "1-Nov-2014"
+#TIME 6848.0
+
+
+DATE "1-Dec-2014"
+#TIME 6878.0
+
+
+DATE "1-Jan-2015"
+#TIME 6909.0
+
+
+DATE "1-Feb-2015"
+#TIME 6940.0
+
+
+DATE "1-Mar-2015"
+#TIME 6968.0
+
+
+DATE "1-Apr-2015"
+#TIME 6999.0
+
+
+DATE "1-May-2015"
+#TIME 7029.0
+
+
+DATE "1-Jun-2015"
+#TIME 7060.0
+
+
+DATE "1-Jul-2015"
+#TIME 7090.0
+
+
+DATE "1-Aug-2015"
+#TIME 7121.0
+
+
+DATE "1-Sep-2015"
+#TIME 7152.0
+
+
+DATE "1-Oct-2015"
+#TIME 7182.0
+
+
+DATE "1-Nov-2015"
+#TIME 7213.0
+
+
+DATE "1-Dec-2015"
+#TIME 7243.0
+
+
+DATE "1-Jan-2016"
+#TIME 7274.0
+
+
+DATE "1-Feb-2016"
+#TIME 7305.0
+
+
+DATE "1-Mar-2016"
+#TIME 7334.0
+
+
+DATE "1-Apr-2016"
+#TIME 7365.0
+
+
+DATE "1-May-2016"
+#TIME 7395.0
+
+
+DATE "1-Jun-2016"
+#TIME 7426.0
+
+
+DATE "1-Jul-2016"
+#TIME 7456.0
+
+
+DATE "1-Aug-2016"
+#TIME 7487.0
+
+
+DATE "1-Sep-2016"
+#TIME 7518.0
+
+
+DATE "1-Oct-2016"
+#TIME 7548.0
+
+
+DATE "1-Nov-2016"
+#TIME 7579.0
+
+
+DATE "1-Dec-2016"
+#TIME 7609.0
+
+
+DATE "1-Jan-2017"
+#TIME 7640.0
+
+
+DATE "1-Feb-2017"
+#TIME 7671.0
+
+
+DATE "1-Mar-2017"
+#TIME 7699.0
+
+
+DATE "1-Apr-2017"
+#TIME 7730.0
+
+
+DATE "1-May-2017"
+#TIME 7760.0
+
+
+DATE "1-Jun-2017"
+#TIME 7791.0
+
+
+DATE "1-Jul-2017"
+#TIME 7821.0
+
+
+DATE "1-Aug-2017"
+#TIME 7852.0
+
+
+DATE "1-Sep-2017"
+#TIME 7883.0
+
+
+DATE "1-Oct-2017"
+#TIME 7913.0
+
+
+DATE "1-Nov-2017"
+#TIME 7944.0
+
+
+DATE "1-Dec-2017"
+#TIME 7974.0
+
+
+DATE "1-Jan-2018"
+#TIME 8005.0
+
+
+DATE "1-Feb-2018"
+#TIME 8036.0
+
+
+DATE "1-Mar-2018"
+#TIME 8064.0
+
+
+DATE "1-Apr-2018"
+#TIME 8095.0
+
+
+DATE "1-May-2018"
+#TIME 8125.0
+
+
+DATE "1-Jun-2018"
+#TIME 8156.0
+
+
+DATE "1-Jul-2018"
+#TIME 8186.0
+
+
+DATE "1-Aug-2018"
+#TIME 8217.0
+
+
+DATE "1-Sep-2018"
+#TIME 8248.0
+
+
+DATE "1-Oct-2018"
+#TIME 8278.0
+
+
+DATE "1-Nov-2018"
+#TIME 8309.0
+
+
+DATE "1-Dec-2018"
+#TIME 8339.0
+
+
+DATE "1-Jan-2019"
+#TIME 8370.0
+
+
+DATE "1-Feb-2019"
+#TIME 8401.0
+
+
+DATE "1-Mar-2019"
+#TIME 8429.0
+
+
+DATE "1-Apr-2019"
+#TIME 8460.0
+
+
+DATE "1-May-2019"
+#TIME 8490.0
+
+
+DATE "1-Jun-2019"
+#TIME 8521.0
+
+
+DATE "1-Jul-2019"
+#TIME 8551.0
+
+
+DATE "1-Aug-2019"
+#TIME 8582.0
+
+
+DATE "1-Sep-2019"
+#TIME 8613.0
+
+
+DATE "1-Oct-2019"
+#TIME 8643.0
+
+
+DATE "1-Nov-2019"
+#TIME 8674.0
+
+
+DATE "1-Dec-2019"
+#TIME 8704.0
+
+
+DATE "1-Jan-2020"
+#TIME 8735.0
+
+
+DATE "1-Feb-2020"
+#TIME 8766.0
+
+
+DATE "1-Mar-2020"
+#TIME 8795.0
+
+
+DATE "1-Apr-2020"
+#TIME 8826.0
+
+
+DATE "1-May-2020"
+#TIME 8856.0
+
+
+DATE "1-Jun-2020"
+#TIME 8887.0
+
+
+DATE "1-Jul-2020"
+#TIME 8917.0
+
+
+DATE "1-Aug-2020"
+#TIME 8948.0
+
+
+DATE "1-Sep-2020"
+#TIME 8979.0
+
+
+DATE "1-Oct-2020"
+#TIME 9009.0
+
+
+DATE "1-Nov-2020"
+#TIME 9040.0
+
+
+DATE "1-Dec-2020"
+#TIME 9070.0
+
+
+DATE "1-Jan-2021"
+#TIME 9101.0
+
+
+DATE "1-Feb-2021"
+#TIME 9132.0
+
+
+DATE "1-Mar-2021"
+#TIME 9160.0
+
+
+DATE "1-Apr-2021"
+#TIME 9191.0
+
+
+DATE "1-May-2021"
+#TIME 9221.0
+
+
+DATE "1-Jun-2021"
+#TIME 9252.0
+
+
+DATE "1-Jul-2021"
+#TIME 9282.0
+
+
+DATE "1-Aug-2021"
+#TIME 9313.0
+
+
+DATE "1-Sep-2021"
+#TIME 9344.0
+
+
+DATE "1-Oct-2021"
+#TIME 9374.0
+
+
+DATE "1-Nov-2021"
+#TIME 9405.0
+
+
+DATE "1-Dec-2021"
+#TIME 9435.0
+
+
+DATE "1-Jan-2022"
+#TIME 9466.0
+
+
+DATE "1-Feb-2022"
+#TIME 9497.0
+
+
+DATE "1-Mar-2022"
+#TIME 9525.0
+
+
+DATE "1-Apr-2022"
+#TIME 9556.0
+
+
+DATE "1-May-2022"
+#TIME 9586.0
+
+
+DATE "1-Jun-2022"
+#TIME 9617.0
+
+
+DATE "1-Jul-2022"
+#TIME 9647.0
+
+
+DATE "1-Aug-2022"
+#TIME 9678.0
+
+
+DATE "1-Sep-2022"
+#TIME 9709.0
+
+
+DATE "1-Oct-2022"
+#TIME 9739.0
+
+
+DATE "1-Nov-2022"
+#TIME 9770.0
+
+
+DATE "1-Dec-2022"
+#TIME 9800.0
+
+
+DATE "1-Jan-2023"
+#TIME 9831.0
+
+
+DATE "1-Feb-2023"
+#TIME 9862.0
+
+
+DATE "1-Mar-2023"
+#TIME 9890.0
+
+
+DATE "1-Apr-2023"
+#TIME 9921.0
+
+
+DATE "1-May-2023"
+#TIME 9951.0
+
+
+DATE "1-Jun-2023"
+#TIME 9982.0
+
+
+DATE "1-Jul-2023"
+#TIME 10012.0
+
+
+DATE "1-Aug-2023"
+#TIME 10043.0
+
+
+DATE "1-Sep-2023"
+#TIME 10074.0
+
+
+DATE "1-Oct-2023"
+#TIME 10104.0
+
+
+DATE "1-Nov-2023"
+#TIME 10135.0
+
+
+DATE "1-Dec-2023"
+#TIME 10165.0
+
+
+DATE "1-Jan-2024"
+#TIME 10196.0
+
+
+DATE "1-Feb-2024"
+#TIME 10227.0
+
+
+DATE "1-Mar-2024"
+#TIME 10256.0
+
+
+DATE "1-Apr-2024"
+#TIME 10287.0
+
+
+DATE "1-May-2024"
+#TIME 10317.0
+
+
+DATE "1-Jun-2024"
+#TIME 10348.0
+
+
+DATE "1-Jul-2024"
+#TIME 10378.0
+
+
+DATE "1-Aug-2024"
+#TIME 10409.0
+
+
+DATE "1-Sep-2024"
+#TIME 10440.0
+
+
+DATE "1-Oct-2024"
+#TIME 10470.0
+
+
+DATE "1-Nov-2024"
+#TIME 10501.0
+
+
+DATE "1-Dec-2024"
+#TIME 10531.0
+
+
+DATE "1-Jan-2025"
+#TIME 10562.0
+
+
+DATE "1-Feb-2025"
+#TIME 10593.0
+
+
+DATE "1-Mar-2025"
+#TIME 10621.0
+
+
+DATE "1-Apr-2025"
+#TIME 10652.0
+
+
+DATE "1-May-2025"
+#TIME 10682.0
+
+
+DATE "1-Jun-2025"
+#TIME 10713.0
+
+
+DATE "1-Jul-2025"
+#TIME 10743.0
+
+
+DATE "1-Aug-2025"
+#TIME 10774.0
+
+
+DATE "1-Sep-2025"
+#TIME 10805.0
+
+
+DATE "1-Oct-2025"
+#TIME 10835.0
+
+
+DATE "1-Nov-2025"
+#TIME 10866.0
+
+
+DATE "1-Dec-2025"
+#TIME 10896.0
+
+
+DATE "1-Jan-2026"    SAVE_RESTART    "*.0000"
+#TIME 10927.0    SAVE_RESTART    "*.0000"
+
+
+END_INPUT
+#DATE 1-Jan-2026 00:00:00

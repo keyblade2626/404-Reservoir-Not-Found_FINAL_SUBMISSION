@@ -1,0 +1,8 @@
+﻿property_name,property_value,prt_index,prt_region_name,rrt,rocknum,saturation_model,mapping_confidence,mapping_reason
+FILEUNIT,0,0,ROCKNUM_1_RRT_01,RRT_01,1,Model_01,Medium,RRT_01 matches Model_01. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7).
+FILEUNIT,1,1,ROCKNUM_1_RRT_02,RRT_02,1,Model_02,Medium,RRT_02 matches Model_02. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7).
+FILEUNIT,2,2,ROCKNUM_1_RRT_03,RRT_03,1,Model_03,Medium,RRT_03 matches Model_03. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7).
+FILEUNIT,3,3,ROCKNUM_1_RRT_04,RRT_04,1,Model_04,Medium,RRT_04 matches Model_04. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7).
+FILEUNIT,4,4,ROCKNUM_1_RRT_05,RRT_05,1,Model_05,Medium,RRT_05 matches Model_05. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7).
+FILEUNIT,5,5,ROCKNUM_1_RRT_06,RRT_06,1,Model_06,Medium,RRT_06 matches Model_06. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7).
+FILEUNIT,6,6,ROCKNUM_1_RRT_07,RRT_07,1,Model_07,Medium,RRT_07 matches Model_07. IXF model count matches PRT region count. Property unique values count (16) differs from PRT region count (7).

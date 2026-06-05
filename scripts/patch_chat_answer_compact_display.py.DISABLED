@@ -1,0 +1,289 @@
+﻿from pathlib import Path
+
+WEB = Path("web")
+
+START = "/* 404_RNF_CHAT_ANSWER_COMPACT_DISPLAY_FIX_START */"
+END = "/* 404_RNF_CHAT_ANSWER_COMPACT_DISPLAY_FIX_END */"
+
+patch = r'''
+/* 404_RNF_CHAT_ANSWER_COMPACT_DISPLAY_FIX_START */
+(function () {
+  "use strict";
+
+  if (window.__404RnfChatAnswerCompactFixInstalled) {
+    return;
+  }
+
+  window.__404RnfChatAnswerCompactFixInstalled = true;
+
+  function arr(x) {
+    return Array.prototype.slice.call(x || []);
+  }
+
+  function normalizeEvidenceBody(line) {
+    return String(line || "")
+      .replace(/^[-*]\s*/g, "")
+      .replace(/^[A-Za-z /()_-]+ evidence:\s*/i, "")
+      .replace(/^Integrated diagnosis:\s*/i, "")
+      .replace(/^Water-cut \/ spatial bias evidence:\s*/i, "")
+      .replace(/\*\*/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase()
+      .slice(0, 260);
+  }
+
+  function cleanReservoirAnswer(text) {
+    if (!text || typeof text !== "string") return text;
+
+    var t = text;
+
+    // Remove obvious unfinished fragments caused by evidence-preview truncation.
+    t = t.replace(/\s+This is a\.\.\./g, ".");
+    t = t.replace(/\s+This is an\.\.\./g, ".");
+    t = t.replace(/\s+This is\.\.\./g, ".");
+
+    // Avoid telling the user that a chart/table was built when the UI already shows it.
+    t = t.replace(
+      /- Profile evidence:\s*I built an interactive WCT profile for ([A-Z]+-\d+[A-Z]?)\. WCT is computed as water rate divided by oil plus water rate\./gi,
+      "- Profile evidence: The WCT profile is available in the visualization panel. Use it to compare breakthrough timing and simulated-vs-observed water behaviour."
+    );
+
+    t = t.replace(
+      /I built an interactive WCT profile for ([A-Z]+-\d+[A-Z]?)\. WCT is computed as water rate divided by oil plus water rate\./gi,
+      "The WCT profile is available in the visualization panel."
+    );
+
+    t = t.replace(
+      /I prepared an interactive chart/gi,
+      "The visualization panel shows"
+    );
+
+    t = t.replace(
+      /I created an interactive chart/gi,
+      "The visualization panel shows"
+    );
+
+    // Deduplicate repeated evidence bullets.
+    var lines = t.split(/\r?\n/);
+    var seenEvidence = {};
+    var cleaned = [];
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var trimmed = line.trim();
+
+      if (
+        trimmed.indexOf("- Integrated diagnosis:") === 0 ||
+        trimmed.indexOf("- Water-cut / spatial bias evidence:") === 0 ||
+        trimmed.indexOf("- Water-cut evidence:") === 0 ||
+        trimmed.indexOf("- Spatial bias evidence:") === 0
+      ) {
+        var key = normalizeEvidenceBody(trimmed);
+
+        if (key && seenEvidence[key]) {
+          // Keep a short non-repetitive pointer instead of repeating the full evidence.
+          if (trimmed.indexOf("Water-cut") >= 0 || trimmed.indexOf("Spatial") >= 0) {
+            cleaned.push("- Water-cut / spatial evidence: Same direction as the integrated diagnosis; WCT is underestimated and supports a water-mobility / RelPerm review.");
+          }
+          continue;
+        }
+
+        seenEvidence[key] = true;
+      }
+
+      cleaned.push(line);
+    }
+
+    t = cleaned.join("\n");
+
+    // Make the standard HW-28 diagnosis more executive and less verbose.
+    t = t.replace(
+      /This is a model-specific reservoir diagnosis\. I compared the available profile, WCT-bias, TRAN\/connectivity and property evidence before ranking the most likely causes\./i,
+      "Integrated reservoir diagnosis based on profile behaviour, WCT bias, TRAN/connectivity, BHP/pressure response and saturation/property indicators."
+    );
+
+    // If repeated compact lines were inserted more than once, keep one.
+    t = t.replace(
+      /(- Water-cut \/ spatial evidence: Same direction as the integrated diagnosis; WCT is underestimated and supports a water-mobility \/ RelPerm review\.\n)+/g,
+      "- Water-cut / spatial evidence: Same direction as the integrated diagnosis; WCT is underestimated and supports a water-mobility / RelPerm review.\n"
+    );
+
+    return t.trim();
+  }
+
+  function looksLikeAssistantAnswer(el) {
+    if (!el || !el.textContent) return false;
+
+    var txt = el.textContent;
+
+    return (
+      txt.indexOf("Main evidence:") >= 0 ||
+      txt.indexOf("Hypothesis ranking:") >= 0 ||
+      txt.indexOf("Most likely explanation:") >= 0 ||
+      txt.indexOf("Integrated reservoir diagnosis") >= 0 ||
+      txt.indexOf("This is a model-specific reservoir diagnosis") >= 0
+    );
+  }
+
+  function cleanElement(el) {
+    if (!el || el.__404RnfCleanedAnswer) return;
+
+    var original = el.innerText || el.textContent || "";
+    if (!original) return;
+
+    var cleaned = cleanReservoirAnswer(original);
+
+    if (cleaned && cleaned !== original) {
+      // Preserve plain-text readability and avoid damaging tables/widgets.
+      el.innerText = cleaned;
+      el.__404RnfCleanedAnswer = true;
+    }
+
+    // Ensure full answer is visible / scrollable.
+    el.style.maxHeight = "none";
+    el.style.overflow = "visible";
+    el.style.whiteSpace = "pre-wrap";
+  }
+
+  function applyChatDisplayCSS() {
+    if (document.getElementById("404-rnf-chat-answer-compact-style")) return;
+
+    var style = document.createElement("style");
+    style.id = "404-rnf-chat-answer-compact-style";
+    style.textContent = `
+      .chat-message,
+      .assistant-message,
+      .assistant-response,
+      .ai-response,
+      .message-content,
+      .chat-answer,
+      .answer-content,
+      #chatMessages,
+      #chatBox,
+      #agentChat,
+      #chatResponse {
+        max-height: none !important;
+      }
+
+      .chat-message,
+      .assistant-message,
+      .assistant-response,
+      .ai-response,
+      .message-content,
+      .chat-answer,
+      .answer-content {
+        white-space: pre-wrap !important;
+        overflow: visible !important;
+      }
+
+      .chat-history,
+      .chat-messages,
+      #chatMessages {
+        overflow-y: auto !important;
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function cleanAllAnswers() {
+    applyChatDisplayCSS();
+
+    var candidates = arr(document.querySelectorAll(
+      ".chat-message, .assistant-message, .assistant-response, .ai-response, .message-content, .chat-answer, .answer-content, div, article, section"
+    ));
+
+    candidates.forEach(function (el) {
+      if (looksLikeAssistantAnswer(el)) {
+        cleanElement(el);
+      }
+    });
+  }
+
+  function scheduleClean() {
+    window.clearTimeout(window.__404RnfCleanAnswerT1);
+    window.clearTimeout(window.__404RnfCleanAnswerT2);
+    window.clearTimeout(window.__404RnfCleanAnswerT3);
+
+    window.__404RnfCleanAnswerT1 = window.setTimeout(cleanAllAnswers, 100);
+    window.__404RnfCleanAnswerT2 = window.setTimeout(cleanAllAnswers, 500);
+    window.__404RnfCleanAnswerT3 = window.setTimeout(cleanAllAnswers, 1200);
+  }
+
+  function install() {
+    applyChatDisplayCSS();
+    scheduleClean();
+
+    var observer = new MutationObserver(function () {
+      scheduleClean();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+
+    document.addEventListener("click", function () {
+      scheduleClean();
+    }, true);
+
+    window.__404_RNF_cleanChatAnswers = cleanAllAnswers;
+
+    console.log("[404_RNF] Chat answer compact display cleaner installed");
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", install);
+  } else {
+    install();
+  }
+
+})();
+/* 404_RNF_CHAT_ANSWER_COMPACT_DISPLAY_FIX_END */
+'''
+
+def remove_existing(text):
+    while START in text:
+        before = text.split(START, 1)[0]
+        rest = text.split(START, 1)[1]
+        if END in rest:
+            after = rest.split(END, 1)[1]
+            text = before.rstrip() + "\n" + after.lstrip()
+        else:
+            text = before.rstrip() + "\n"
+    return text
+
+targets = []
+
+for p in list(WEB.glob("**/*.js")) + list(WEB.glob("**/*.html")):
+    txt = p.read_text(encoding="utf-8-sig", errors="ignore")
+
+    if (
+        "agent-chat" in txt.lower()
+        or "chatbox" in txt.lower()
+        or "chat" in p.name.lower()
+        or "dashboard" in p.name.lower()
+        or "Ask Reservoir AI" in txt
+        or "hmVariable" in txt
+    ):
+        original = txt
+        txt = remove_existing(txt)
+
+        if p.suffix.lower() == ".html" and "</body>" in txt.lower():
+            idx = txt.lower().rfind("</body>")
+            txt = txt[:idx] + "\n<script>\n" + patch + "\n</script>\n" + txt[idx:]
+        else:
+            txt = txt.rstrip() + "\n\n" + patch + "\n"
+
+        if txt != original:
+            p.write_text(txt, encoding="utf-8")
+            targets.append(str(p))
+
+print("[OK] Patched files:")
+for t in targets:
+    print(" -", t)
+
+if not targets:
+    raise SystemExit("No dashboard/chat frontend file was patched.")

@@ -1,0 +1,86 @@
+{
+  "source_file": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\data\\sample_model\\SIMULATION.PRT",
+  "created_region_count": 7,
+  "created_regions": [
+    {
+      "index": 0,
+      "region_name": "ROCKNUM_1_RRT_01",
+      "rrt": "RRT_01",
+      "rocknum": 1,
+      "combined_region_text": "ROCK_COMPACTION_REGION.ROCKNUM_1"
+    },
+    {
+      "index": 1,
+      "region_name": "ROCKNUM_1_RRT_02",
+      "rrt": "RRT_02",
+      "rocknum": 1,
+      "combined_region_text": "ROCK_COMPACTION_REGION.ROCKNUM_1"
+    },
+    {
+      "index": 2,
+      "region_name": "ROCKNUM_1_RRT_03",
+      "rrt": "RRT_03",
+      "rocknum": 1,
+      "combined_region_text": "ROCK_COMPACTION_REGION.ROCKNUM_1"
+    },
+    {
+      "index": 3,
+      "region_name": "ROCKNUM_1_RRT_04",
+      "rrt": "RRT_04",
+      "rocknum": 1,
+      "combined_region_text": "ROCK_COMPACTION_REGION.ROCKNUM_1"
+    },
+    {
+      "index": 4,
+      "region_name": "ROCKNUM_1_RRT_05",
+      "rrt": "RRT_05",
+      "rocknum": 1,
+      "combined_region_text": "ROCK_COMPACTION_REGION.ROCKNUM_1"
+    },
+    {
+      "index": 5,
+      "region_name": "ROCKNUM_1_RRT_06",
+      "rrt": "RRT_06",
+      "rocknum": 1,
+      "combined_region_text": "ROCK_COMPACTION_REGION.ROCKNUM_1"
+    },
+    {
+      "index": 6,
+      "region_name": "ROCKNUM_1_RRT_07",
+      "rrt": "RRT_07",
+      "rocknum": 1,
+      "combined_region_text": "ROCK_COMPACTION_REGION.ROCKNUM_1"
+    }
+  ],
+  "region_model_mapping_count": 7,
+  "region_model_mapping": [
+    {
+      "region_name": "ROCKNUM_1_RRT_01",
+      "model_name_from_prt": "ROCKNUM_1_RRT_01"
+    },
+    {
+      "region_name": "ROCKNUM_1_RRT_02",
+      "model_name_from_prt": "ROCKNUM_1_RRT_02"
+    },
+    {
+      "region_name": "ROCKNUM_1_RRT_03",
+      "model_name_from_prt": "ROCKNUM_1_RRT_03"
+    },
+    {
+      "region_name": "ROCKNUM_1_RRT_04",
+      "model_name_from_prt": "ROCKNUM_1_RRT_04"
+    },
+    {
+      "region_name": "ROCKNUM_1_RRT_05",
+      "model_name_from_prt": "ROCKNUM_1_RRT_05"
+    },
+    {
+      "region_name": "ROCKNUM_1_RRT_06",
+      "model_name_from_prt": "ROCKNUM_1_RRT_06"
+    },
+    {
+      "region_name": "ROCKNUM_1_RRT_07",
+      "model_name_from_prt": "ROCKNUM_1_RRT_07"
+    }
+  ]
+}

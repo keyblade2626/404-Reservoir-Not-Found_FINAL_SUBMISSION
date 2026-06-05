@@ -1,0 +1,33 @@
+#################################
+# IXFVERSION: 2023.4 (20240319.2)
+#################################
+
+SIMULATION ix "Costa_FinalHmStreamlines" {
+  INCLUDE "COSTA_FINALHMSTREAMLINES.GSG" { type="gsg" gsg_type="geom_and_props" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_REGIONS.GSG" { type="gsg" gsg_type="props" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_FLUID_IN_PLACE_REGION.GSG" { type="gsg" gsg_type="props" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_PERM_I.GSG" { type="gsg" gsg_type="props" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_PERM_J.GSG" { type="gsg" gsg_type="props" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_PERM_K.GSG" { type="gsg" gsg_type="props" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_POROSITY.GSG" { type="gsg" gsg_type="props" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_RESERVOIR_DEFINITION.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_FLUIDS.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_ROCKS.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_REGIONS.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_SEPARATORS.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_WELLS.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_WELL_CONNECTIONS.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_RESERVOIR_SIMULATION_SETTINGS.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_STREAMLINES.ixf" { type="ixf" skip_model_def="true" }
+  EXTENSION "custom_scripts"
+}
+SIMULATION fm {
+  INCLUDE "COSTA_FINALHMSTREAMLINES_WELL_COMPLETIONS.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_FINAL_HM_FM.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES.obsh" { type="obsh" historical_data_control="New Historical Data Control 1" }
+  INCLUDE "COSTA_FINALHMSTREAMLINES_REPORT_SETTINGS.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "ar360_summary_FM_EDIT.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "ar360_3D_props_FM_EDIT.ixf" { type="ixf" skip_model_def="true" }
+  INCLUDE "historical_control_FM_EDIT.ixf" { type="ixf" skip_model_def="true" }
+}
+INCLUDE "COSTA_FINALHMSTREAMLINES.0000" { time="10927.0" type="restart" }

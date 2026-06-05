@@ -1,0 +1,167 @@
+[
+  {
+    "well": "HW-10",
+    "ok": true,
+    "eligible": true,
+    "model": "Model_04",
+    "target_bias": "underestimated_wct",
+    "factor": 0.055,
+    "message": "Proposed uplift of Krw_v_Sw for Model_04 with maximum conservative factor 5.5%.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-24",
+    "ok": true,
+    "eligible": true,
+    "model": "Model_04",
+    "target_bias": "overestimated_wct",
+    "factor": 0.025,
+    "message": "Low-confidence diagnostic RelPerm candidate generated for HW-24: reduction of Krw_v_Sw for Model_04, max factor 2.5%. This is recommended as a test sensitivity because the water-driver diagnosis flagged RelPerm/well-connection review.",
+    "bridge": "water_driver_diagnosis_review_relperm_or_well_connection",
+    "bridge_confidence": "Low / diagnostic-review"
+  },
+  {
+    "well": "HW-25",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "unclear",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-26",
+    "ok": true,
+    "eligible": true,
+    "model": "Model_04",
+    "target_bias": "underestimated_wct",
+    "factor": 0.033,
+    "message": "Proposed uplift of Krw_v_Sw for Model_04 with maximum conservative factor 3.3%.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-28",
+    "ok": true,
+    "eligible": true,
+    "model": "Model_04",
+    "target_bias": "underestimated_wct",
+    "factor": 0.052,
+    "message": "Proposed uplift of Krw_v_Sw for Model_04 with maximum conservative factor 5.2%.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-29",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "negligible",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-3",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "negligible",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-30",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "negligible",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-31",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "negligible",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-32",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "unclear",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-5",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "negligible",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-6",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "unclear",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-7",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "negligible",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-8",
+    "ok": true,
+    "eligible": false,
+    "model": "Model_04",
+    "target_bias": "negligible",
+    "factor": null,
+    "message": "Water mismatch direction is not clear enough for a relperm sensitivity.",
+    "bridge": null,
+    "bridge_confidence": null
+  },
+  {
+    "well": "HW-9",
+    "ok": true,
+    "eligible": true,
+    "model": "Model_04",
+    "target_bias": "underestimated_wct",
+    "factor": 0.034,
+    "message": "Proposed uplift of Krw_v_Sw for Model_04 with maximum conservative factor 3.4%.",
+    "bridge": null,
+    "bridge_confidence": null
+  }
+]

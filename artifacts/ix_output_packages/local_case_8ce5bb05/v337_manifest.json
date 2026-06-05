@@ -1,0 +1,129 @@
+{
+  "status": "success",
+  "afi_file": "COSTA_FINALHMSTREAMLINES.afi",
+  "modified_afi": "COSTA_FINALHMSTREAMLINES_404_RNF.afi",
+  "ix_include": "404_RNF_STREAMLINE_MGR_IX_EDIT.ixf",
+  "fm_include": "404_RNF_MINIMAL_OUTPUT_REQUEST_FM_EDIT.ixf",
+  "metadata": "404_RNF_RELPERM_REGION_MAPPING_USED_BY_GENERATOR.json",
+  "zip_file": "404_RNF_INTERSECT_OUTPUT_PACKAGE.zip",
+  "generated_files": [
+    "COSTA_FINALHMSTREAMLINES_404_RNF.afi",
+    "404_RNF_STREAMLINE_MGR_IX_EDIT.ixf",
+    "404_RNF_MINIMAL_OUTPUT_REQUEST_FM_EDIT.ixf",
+    "404_RNF_RELPERM_REGION_MAPPING_USED_BY_GENERATOR.json"
+  ],
+  "reservoir_name": "Costa_FinalHmStreamlines",
+  "history_start": "01-Feb-1996",
+  "history_end": "01-Jan-2026",
+  "date_sources": [
+    "COSTA_FINALHMSTREAMLINES.obsh: 01-Feb-1996 -> 01-Jan-2026",
+    "historical_control_FM_EDIT.ixf: 01-Feb-1996 -> 01-Feb-1996",
+    "COSTA_FINALHMSTREAMLINES_RESERVOIR_DEFINITION.ixf: 01-Feb-1996 -> 01-Feb-1996",
+    "COSTA_FINALHMSTREAMLINES_FLUIDS.ixf: 01-Feb-1996 -> 01-Feb-1996",
+    "COSTA_FINALHMSTREAMLINES_ROCKS.ixf: 01-Feb-1996 -> 01-Feb-1996",
+    "COSTA_FINALHMSTREAMLINES_REGIONS.ixf: 01-Feb-1996 -> 01-Feb-1996",
+    "COSTA_FINALHMSTREAMLINES_SEPARATORS.ixf: 01-Feb-1996 -> 01-Jan-2026",
+    "COSTA_FINALHMSTREAMLINES_WELLS.ixf: 01-Feb-1996 -> 01-Feb-1996",
+    "COSTA_FINALHMSTREAMLINES_WELL_CONNECTIONS.ixf: 01-Feb-1996 -> 01-Feb-1996",
+    "COSTA_FINALHMSTREAMLINES_RESERVOIR_SIMULATION_SETTINGS.ixf: 01-Feb-1996 -> 01-Feb-1996"
+  ],
+  "warnings": [],
+  "target_3d_outputs_enabled": true,
+  "relperm_detection": {
+    "detected": true,
+    "region_family": "SATURATION_FUNCTION_DRAINAGE_TABLE_NO",
+    "report_property_name": "SATURATION_FUNCTION_DRAINAGE_TABLE_NO",
+    "report_label": "SATNUM",
+    "score": 32,
+    "region_names": [
+      "RRT_01",
+      "RRT_02",
+      "RRT_03",
+      "RRT_04",
+      "RRT_05",
+      "RRT_06",
+      "RRT_07"
+    ],
+    "model_names": [
+      "Model_01",
+      "Model_02",
+      "Model_03",
+      "Model_04",
+      "Model_05",
+      "Model_06",
+      "Model_07"
+    ],
+    "mapping_types": [
+      "DRAINAGE_SATURATION_FUNCTION"
+    ],
+    "source_files": [
+      "COSTA_FINALHMSTREAMLINES_REGIONS.ixf"
+    ],
+    "rows": [
+      {
+        "source_file": "COSTA_FINALHMSTREAMLINES_REGIONS.ixf",
+        "region_family": "SATURATION_FUNCTION_DRAINAGE_TABLE_NO",
+        "region_name": "RRT_01",
+        "model_name": "Model_01",
+        "mapping_type": "DRAINAGE_SATURATION_FUNCTION",
+        "raw_line": "\"Model_01\"    DRAINAGE_SATURATION_FUNCTION    \"SATURATION_FUNCTION_DRAINAGE_TABLE_NO\"       \"RRT_01\""
+      },
+      {
+        "source_file": "COSTA_FINALHMSTREAMLINES_REGIONS.ixf",
+        "region_family": "SATURATION_FUNCTION_DRAINAGE_TABLE_NO",
+        "region_name": "RRT_02",
+        "model_name": "Model_02",
+        "mapping_type": "DRAINAGE_SATURATION_FUNCTION",
+        "raw_line": "\"Model_02\"    DRAINAGE_SATURATION_FUNCTION    \"SATURATION_FUNCTION_DRAINAGE_TABLE_NO\"       \"RRT_02\""
+      },
+      {
+        "source_file": "COSTA_FINALHMSTREAMLINES_REGIONS.ixf",
+        "region_family": "SATURATION_FUNCTION_DRAINAGE_TABLE_NO",
+        "region_name": "RRT_03",
+        "model_name": "Model_03",
+        "mapping_type": "DRAINAGE_SATURATION_FUNCTION",
+        "raw_line": "\"Model_03\"    DRAINAGE_SATURATION_FUNCTION    \"SATURATION_FUNCTION_DRAINAGE_TABLE_NO\"       \"RRT_03\""
+      },
+      {
+        "source_file": "COSTA_FINALHMSTREAMLINES_REGIONS.ixf",
+        "region_family": "SATURATION_FUNCTION_DRAINAGE_TABLE_NO",
+        "region_name": "RRT_04",
+        "model_name": "Model_04",
+        "mapping_type": "DRAINAGE_SATURATION_FUNCTION",
+        "raw_line": "\"Model_04\"    DRAINAGE_SATURATION_FUNCTION    \"SATURATION_FUNCTION_DRAINAGE_TABLE_NO\"       \"RRT_04\""
+      },
+      {
+        "source_file": "COSTA_FINALHMSTREAMLINES_REGIONS.ixf",
+        "region_family": "SATURATION_FUNCTION_DRAINAGE_TABLE_NO",
+        "region_name": "RRT_05",
+        "model_name": "Model_05",
+        "mapping_type": "DRAINAGE_SATURATION_FUNCTION",
+        "raw_line": "\"Model_05\"    DRAINAGE_SATURATION_FUNCTION    \"SATURATION_FUNCTION_DRAINAGE_TABLE_NO\"       \"RRT_05\""
+      },
+      {
+        "source_file": "COSTA_FINALHMSTREAMLINES_REGIONS.ixf",
+        "region_family": "SATURATION_FUNCTION_DRAINAGE_TABLE_NO",
+        "region_name": "RRT_06",
+        "model_name": "Model_06",
+        "mapping_type": "DRAINAGE_SATURATION_FUNCTION",
+        "raw_line": "\"Model_06\"    DRAINAGE_SATURATION_FUNCTION    \"SATURATION_FUNCTION_DRAINAGE_TABLE_NO\"       \"RRT_06\""
+      },
+      {
+        "source_file": "COSTA_FINALHMSTREAMLINES_REGIONS.ixf",
+        "region_family": "SATURATION_FUNCTION_DRAINAGE_TABLE_NO",
+        "region_name": "RRT_07",
+        "model_name": "Model_07",
+        "mapping_type": "DRAINAGE_SATURATION_FUNCTION",
+        "raw_line": "\"Model_07\"    DRAINAGE_SATURATION_FUNCTION    \"SATURATION_FUNCTION_DRAINAGE_TABLE_NO\"       \"RRT_07\""
+      }
+    ],
+    "reason": "Detected saturation-function mapping through RockRegionMapping. Exporting IX property 'SATURATION_FUNCTION_DRAINAGE_TABLE_NO' as report label 'SATNUM'."
+  },
+  "message": "INTERSECT output package generated successfully.",
+  "ok": true,
+  "package_id": "local_case_8ce5bb05",
+  "source_folder": "C:\\Users\\gianluca.scutiero\\OneDrive - G42\\Desktop\\AR360\\Model\\CostaSimulationModel.sim\\COSTA_FINALHMSTREAMLINES",
+  "selected_afi": "COSTA_FINALHMSTREAMLINES.afi",
+  "working_folder": "C:\\Users\\gianluca.scutiero\\404-Reservoir-Not-Found_FINAL_SUBMISSION_20260603_223128\\artifacts\\ix_output_packages\\local_case_8ce5bb05\\case",
+  "download_base": "/artifacts/ix_output_packages/local_case_8ce5bb05/case"
+}

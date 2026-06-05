@@ -1,0 +1,14 @@
+# ==============================================================================
+# 404 Reservoir Not Found - IX Streamline Manager Activation
+# Include this file as: simulation="ix" type="ixf"
+# ==============================================================================
+START MODEL_DEFINITION
+
+StreamlineMgr {
+  Active = TRUE
+  SeedDensity = 0.3
+  SeedMethod = BOTH
+  VerbosityLevel = 1
+}
+
+END_INPUT

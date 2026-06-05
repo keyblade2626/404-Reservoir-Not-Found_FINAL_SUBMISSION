@@ -1,0 +1,167 @@
+{
+  "HW-10": {
+    "well": "HW-10",
+    "smart_key_findings": "Water match is the main concern (13.1/100). Pressure/BHP is moderate (66.8/100), so it should be checked but is not the only driver. The model appears to bring too little water or delays water breakthrough.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high \u0394SWAT percentile (80); high pressure-depletion percentile (80).",
+    "smart_recommended_action": "Water is present near the well, but the model does not produce enough water. TRAN/PERM are not clearly low, so a simple local TRAN increase is not strongly supported. First inspect whether the connected cells actually communicate with the completion through streamlines. If the corridor is weak, increase local/fault TRAN; if the corridor is already connected, the better hypothesis is water relative permeability/SATNUM.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "underestimated_wct",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-24": {
+    "well": "HW-24",
+    "smart_key_findings": "Water match is the main concern (59.8/100). Pressure/BHP is acceptable (75.6/100), so pressure alone is unlikely to explain the issue. The model appears to bring water too early or too strongly.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high \u0394SWAT percentile (73); low pressure-depletion percentile (13).",
+    "smart_recommended_action": "This overestimated-WCT issue looks isolated. Do not change regional relperm or field-wide water mobility from this well alone. Start with a strictly local test: reduce TRAN around the completed cells or along the nearest preferential streamline corridor only if the map shows a clear water path into the well. If no clear path exists, the tool has weak local evidence and the safer next hypothesis is relperm/SATNUM rather than transmissibility.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "overestimated_wct_early",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-25": {
+    "well": "HW-25",
+    "smart_key_findings": "Water match is the main concern (0.0/100). Pressure/BHP is moderate (65.5/100), so it should be checked but is not the only driver. The model appears to bring too little water or delays water breakthrough.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: low TRAN percentile (20); low PERM percentile (27); low pressure-depletion percentile (20).",
+    "smart_recommended_action": "Water is present near the well in the model, but the simulated WCT is too low. This points to insufficient effective communication between water-bearing cells and the well. The first tuning candidate is to increase local TRAN around the completed cells, or open the preferential corridor indicated by streamlines. If a nearby fault cuts the connection, test higher fault transmissibility. Do not use PI multiplier as a first-line correction because the issue is phase communication/mobility, not generic deliverability.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "underestimated_wct_late",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-26": {
+    "well": "HW-26",
+    "smart_key_findings": "Water match is the main concern (66.5/100). Pressure/BHP is acceptable (78.2/100), so pressure alone is unlikely to explain the issue. The model appears to bring too little water or delays water breakthrough.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: low \u0394SWAT percentile (7); low TRAN percentile (13); low PERM percentile (13).",
+    "smart_recommended_action": "The model underestimates WCT and \u0394SWAT is not high around the well. This suggests the problem is not just well-to-cell communication: the model may not be bringing enough water into the area. Check regional water support first: streamline support, fault connectivity between water source and producer, and aquifer/contact representation if available. If those do not explain the issue, then relperm/SATNUM becomes a more defensible tuning lever than local TRAN.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "underestimated_wct",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-28": {
+    "well": "HW-28",
+    "smart_key_findings": "Water match is the main concern (20.2/100). Pressure/BHP is moderate (70.7/100), so it should be checked but is not the only driver. The model appears to bring too little water or delays water breakthrough.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high \u0394SWAT percentile (100).",
+    "smart_recommended_action": "Water is present near the well, but the model does not produce enough water. TRAN/PERM are not clearly low, so a simple local TRAN increase is not strongly supported. First inspect whether the connected cells actually communicate with the completion through streamlines. If the corridor is weak, increase local/fault TRAN; if the corridor is already connected, the better hypothesis is water relative permeability/SATNUM.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "underestimated_wct",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-29": {
+    "well": "HW-29",
+    "smart_key_findings": "Pressure/BHP is also weak (58.8/100), so pressure support may be part of the issue. Water is negligible in both observed and simulated profiles; water tuning is not material for this well.",
+    "smart_pattern_context": "There is partial local support: HW-30 show a related water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high TRAN percentile (93); high PERM percentile (93); low pressure-depletion percentile (7).",
+    "smart_recommended_action": "No water-specific tuning is needed for this well. Do not spend HM effort on water here. Focus on the weakest non-water variable, and only revisit water if WCT becomes material in the history.",
+    "smart_pattern_type": "weak_local_pattern",
+    "smart_wct_bias": "negligible",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": "HW-30"
+  },
+  "HW-3": {
+    "well": "HW-3",
+    "smart_key_findings": "Pressure/BHP is also weak (44.3/100), so pressure support may be part of the issue. Water is negligible in both observed and simulated profiles; water tuning is not material for this well.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high TRAN percentile (73); high PERM percentile (80).",
+    "smart_recommended_action": "No water-specific tuning is needed for this well. Do not spend HM effort on water here. Focus on the weakest non-water variable, and only revisit water if WCT becomes material in the history.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "negligible",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-30": {
+    "well": "HW-30",
+    "smart_key_findings": "Pressure/BHP is also weak (52.8/100), so pressure support may be part of the issue. Water is negligible in both observed and simulated profiles; water tuning is not material for this well.",
+    "smart_pattern_context": "There is partial local support: HW-29 show a related water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high PERM percentile (87).",
+    "smart_recommended_action": "No water-specific tuning is needed for this well. Do not spend HM effort on water here. Focus on the weakest non-water variable, and only revisit water if WCT becomes material in the history.",
+    "smart_pattern_type": "weak_local_pattern",
+    "smart_wct_bias": "negligible",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": "HW-29"
+  },
+  "HW-31": {
+    "well": "HW-31",
+    "smart_key_findings": "Pressure/BHP is also weak (0.0/100), so pressure support may be part of the issue. Water is negligible in both observed and simulated profiles; water tuning is not material for this well.",
+    "smart_pattern_context": "There is partial local support: HW-32 show a related water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: low \u0394SWAT percentile (20); high TRAN percentile (87).",
+    "smart_recommended_action": "No water-specific tuning is needed for this well. Do not spend HM effort on water here. Focus on the weakest non-water variable, and only revisit water if WCT becomes material in the history.",
+    "smart_pattern_type": "weak_local_pattern",
+    "smart_wct_bias": "negligible",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": "HW-32"
+  },
+  "HW-32": {
+    "well": "HW-32",
+    "smart_key_findings": "Water match is the main concern (49.2/100). Pressure/BHP is also weak (57.8/100), so pressure support may be part of the issue. The model appears to bring too little water or delays water breakthrough.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high \u0394SWAT percentile (87); high TRAN percentile (100); high PERM percentile (100).",
+    "smart_recommended_action": "Water is present near the well, but the model does not produce enough water. TRAN/PERM are not clearly low, so a simple local TRAN increase is not strongly supported. First inspect whether the connected cells actually communicate with the completion through streamlines. If the corridor is weak, increase local/fault TRAN; if the corridor is already connected, the better hypothesis is water relative permeability/SATNUM.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "underestimated_wct_late",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-5": {
+    "well": "HW-5",
+    "smart_key_findings": "Pressure/BHP is also weak (0.0/100), so pressure support may be part of the issue. Water is negligible in both observed and simulated profiles; water tuning is not material for this well.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: low \u0394SWAT percentile (27); low TRAN percentile (7); low PERM percentile (7); high pressure-depletion percentile (100).",
+    "smart_recommended_action": "No water-specific tuning is needed for this well. Do not spend HM effort on water here. Focus on the weakest non-water variable, and only revisit water if WCT becomes material in the history.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "negligible",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-6": {
+    "well": "HW-6",
+    "smart_key_findings": "Water match is the main concern (0.0/100). Pressure/BHP is also weak (43.6/100), so pressure support may be part of the issue. The model appears to bring too little water or delays water breakthrough.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high \u0394SWAT percentile (93); high TRAN percentile (80); high PERM percentile (73); low pressure-depletion percentile (27).",
+    "smart_recommended_action": "Water is present near the well, but the model does not produce enough water. TRAN/PERM are not clearly low, so a simple local TRAN increase is not strongly supported. First inspect whether the connected cells actually communicate with the completion through streamlines. If the corridor is weak, increase local/fault TRAN; if the corridor is already connected, the better hypothesis is water relative permeability/SATNUM.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "underestimated_wct_late",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-7": {
+    "well": "HW-7",
+    "smart_key_findings": "Pressure/BHP is also weak (0.0/100), so pressure support may be part of the issue. Water is negligible in both observed and simulated profiles; water tuning is not material for this well.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high pressure-depletion percentile (93).",
+    "smart_recommended_action": "No water-specific tuning is needed for this well. Do not spend HM effort on water here. Focus on the weakest non-water variable, and only revisit water if WCT becomes material in the history.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "negligible",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-8": {
+    "well": "HW-8",
+    "smart_key_findings": "Pressure/BHP is also weak (0.0/100), so pressure support may be part of the issue. Water is negligible in both observed and simulated profiles; water tuning is not material for this well.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: low \u0394SWAT percentile (20); low TRAN percentile (27); low PERM percentile (20); high pressure-depletion percentile (87).",
+    "smart_recommended_action": "No water-specific tuning is needed for this well. Do not spend HM effort on water here. Focus on the weakest non-water variable, and only revisit water if WCT becomes material in the history.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "negligible",
+    "smart_confidence": "Medium",
+    "smart_similar_wells": ""
+  },
+  "HW-9": {
+    "well": "HW-9",
+    "smart_key_findings": "Water match is the main concern (62.7/100). Pressure/BHP is moderate (72.1/100), so it should be checked but is not the only driver. The model appears to bring too little water or delays water breakthrough.",
+    "smart_pattern_context": "This looks more isolated. Nearby wells do not show a strong matching water-mismatch signature.",
+    "smart_local_evidence": "Local evidence: high pressure-depletion percentile (73).",
+    "smart_recommended_action": "The model underestimates WCT and \u0394SWAT is not high around the well. This suggests the problem is not just well-to-cell communication: the model may not be bringing enough water into the area. Check regional water support first: streamline support, fault connectivity between water source and producer, and aquifer/contact representation if available. If those do not explain the issue, then relperm/SATNUM becomes a more defensible tuning lever than local TRAN.",
+    "smart_pattern_type": "isolated",
+    "smart_wct_bias": "underestimated_wct",
+    "smart_confidence": "Low",
+    "smart_similar_wells": ""
+  }
+}
