@@ -8,7 +8,7 @@ The target user is a reservoir engineer reviewing a dynamic model. The system he
 
 Demo video:
 
-	[https://youtu.be/4mHldFevx20?si=p-xcf2QyDYfD4QMq](https://youtu.be/iJags9sYRXM?si=hYyMQLruAxhHYOlh)
+	https://youtu.be/iJags9sYRXM?si=0t4p7BarD_s-Y_oE or https://www.youtube.com/watch?v=iJags9sYRXM
 
 ## Running the Project
 
